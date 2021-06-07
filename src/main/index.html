@@ -6,7 +6,7 @@
     <title>Kulturalni - Wyszukiwarka wydarzeń</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" sizes="32x32" href="Assets/favicon.ico">
-    <!-- CSS (Bootstrap)-->
+
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet"/>
 </head>
@@ -23,11 +23,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0 ">
-                <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
-                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
-                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" href="#events">Wydarzenia</a></li>
+                <li class="nav-item"><a class="nav-link" href="#searchBar">Wyszukiwarka</a></li>
+                <li class="nav-item"><a class="nav-link" href="#favourites">Ulubione</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about">O nas</a></li>
+                <li class="nav-item"><a class="nav-link" href="#team">Zespół</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Kontakt</a></li>
+                <li class="nav-item"><a class="nav-link" href="#login">Zaloguj</a></li>
             </ul>
         </div>
     </div>
@@ -35,19 +37,18 @@
 <!-- Masthead-->
 <header class="masthead text-dark">
     <div class="container">
-        <div class="masthead-subheading ">Witamy w aplikacji wydarzeniowej Kulturalni!</div>
+        <div class="masthead-subheading ">Witamy pośród Kulturalnych!</div>
         <div class="masthead-heading text-uppercase">Znajdź swoje wydarzenie już dziś!</div>
-        <a class="btn btn-primary btn-xl text-uppercase" href="#services">Dowiedz się więcej</a>
+        <a class="btn btn-primary btn-xl text-dark text-uppercase border-2 border-dark" href="#events">ZACZYNAJMY!</a>
     </div>
 </header>
-
 
 <!-- Events-->
 <section class="page-section" id="events">
     <div class="container">
         <div class="text-center">
-            <h2 class="section-heading text-uppercase">Events</h2>
-            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+            <h2 class="section-heading text-uppercase">Bądzmy kulturalni</h2>
+            <h3 class="section-subheading text-muted">Wybierz interesującą cię opcję:</h3>
         </div>
         <div class="row text-center">
             <div class="col-md-4">
@@ -55,42 +56,59 @@
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
                             <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
                         </span>
-                <h4 class="my-3">Event1</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam
-                    architecto quo inventore harum ex magni, dicta impedit.</p>
+                <h4 class="my-3">WYSZUKIWARKA WYDARZEŃ</h4>
+                <p class="text-muted">Wiesz czego chcesz ale nie możesz tego znaleźć?<br>
+                    Spróbuj naszej wyszukiwarki!</p>
             </div>
             <div class="col-md-4">
                         <span class="fa-stack fa-4x">
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
                             <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
                         </span>
-                <h4 class="my-3">Event2</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam
-                    architecto quo inventore harum ex magni, dicta impedit.</p>
+                <h4 class="my-3">LISTA WSZYSTKICH WYDARZEŃ</h4>
+                <p class="text-muted">Nie masz pojęcia, co aktualnie dzieje się na mieście? <br>
+                    Nie zostawaj w tyle!<br>
+                    Odkryj wszystkie najbliższe wydarzenia w Twoim mieście i działaj!</p>
+
             </div>
             <div class="col-md-4">
                         <span class="fa-stack fa-4x">
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
                             <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
                         </span>
-                <h4 class="my-3">Event3</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam
-                    architecto quo inventore harum ex magni, dicta impedit.</p>
+                <h4 class="my-3">ULUBIONE</h4>
+                <p class="text-muted">Jeśli jesteś MEGA kulturalny i potrzebujesz miejsca, gdzie zapiszesz swoje
+                    liczne wydarzenia, to to jest właśnie to miejsce.</p>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-4">
+                <a class="btn btn-primary btn-xl text-uppercase" href="#searchBar">WYSZUKAJ WYDARZENIE</a>
+            </div>
+            <div class="col-md-4">
+                <a class="btn btn-primary btn-xl text-uppercase" href="#events">WYŚWIETL WSZYSTKIE WYDARZENIA</a>
+            </div>
+            <div class="col-md-4">
+                <a class="btn btn-primary btn-xl text-uppercase" href="#events">PRZEJDŹ DO ULUBIONYCH</a>
             </div>
         </div>
     </div>
 </section>
 
-
-
-<div class="container sticky-top my-5 bg-light ">
-
-    <form class="d-flex">
-        <input class="form-control me-2" type="search"
-               placeholder="Wpisz nazwę wydarzenia, miejsce wydarzenia lub organizatora" aria-label="Search">
-        <button class="btn btn-success" type="submit">Szukaj wydarzeń</button>
-    </form>
-</div>
+<!-- SearchBar-->
+<section class="page-section" id="searchBar">
+    <div class="container sticky-top my-4">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">Powiedz czego szukasz</h2>
+                <h3 class="section-subheading text-muted">Wpisz przynajmniej 3 znaki, aby wyszukać wydarzenie</h3>
+            </div>
+        <form class="d-flex">
+            <input class="form-control me-2" type="search"
+                   placeholder="Wpisz nazwę wydarzenia, miejsce wydarzenia lub organizatora" aria-label="Search">
+            <button class="btn btn-success" type="submit">Szukaj wydarzeń</button>
+        </form>
+    </div>
+</section>
 
 
 <hr class="ui-menu-divider">
@@ -140,7 +158,7 @@
 
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
-      <!-- Core theme JS-->
+<!-- Core theme JS-->
 <script src="js/scripts.js"></script>
 </body>
 </html>
