@@ -27,5 +27,10 @@ public class MainController implements ControllerEntity{
         return "singleevent";
     }
 
+    //przesunac do wlasciwego kontrolera!!!
+    @GetMapping("/login")
+    public String login () {
+        return "login";
+    }
 
 }
