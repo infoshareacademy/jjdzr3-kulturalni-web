@@ -3674,7 +3674,7 @@ textarea.form-control-lg {
     padding: 0.25rem 1rem;
     clear: both;
     font-weight: 400;
-    color: #212529;
+    color: #ffc800;
     text-align: inherit;
     text-decoration: none;
     white-space: nowrap;
@@ -3683,7 +3683,8 @@ textarea.form-control-lg {
 }
 .dropdown-item:hover, .dropdown-item:focus {
     color: #1e2125;
-    background-color: #e9ecef;
+    background-color: #ffffff;
+    font-weight: bold;
 }
 .dropdown-item.active, .dropdown-item:active {
     color: #fff;
