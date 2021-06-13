@@ -15,9 +15,16 @@ public class MainController implements ControllerEntity{
         return "index";
     }
 
+    //przesunac do wlasciwego kontrolera!!!
     @GetMapping("/allevents")
     public String allevents () {
         return "allevents";
+    }
+
+    //przesunac do wlasciwego kontrolera!!!
+    @GetMapping("/singleevent")
+    public String singleevent () {
+        return "singleevent";
     }
 
 
