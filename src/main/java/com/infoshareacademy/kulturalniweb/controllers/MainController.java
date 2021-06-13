@@ -15,5 +15,10 @@ public class MainController implements ControllerEntity{
         return "index";
     }
 
+    @GetMapping("/allevents")
+    public String allevents () {
+        return "allevents";
+    }
+
 
 }
