@@ -1,8 +1,23 @@
 html,
 body {
   height: 100%;
-}
 
+}
+header.masthead {
+  align-content: center;
+  width: 2300px;
+  height: 978px;
+  padding-top: 10.5rem;
+  padding-bottom: 6rem;
+  text-align: center;
+  color: #fff;
+  background-image: url("../images/img/header-bg.jpg");
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+  background-size: cover;
+
+}
 body {
   display: flex;
   align-items: center;
@@ -19,7 +34,7 @@ body {
 }
 
 .form-signin .checkbox {
-  font-weight: 400;
+  font-weight: 450;
 }
 
 .form-signin .form-floating:focus-within {
