@@ -1,4 +1,4 @@
-package com.infoshareacademy.kulturalniweb.configurer;
+package com.infoshareacademy.kulturalniweb.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
