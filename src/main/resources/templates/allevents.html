@@ -92,7 +92,7 @@
     </div>
   </div>
 
-  <div th:each="eventSimple: ${collectionOfEventSimple}" class="container main-table">
+  <div th:each="eventSimple: ${listOfEventSimple}" class="container main-table">
     <div class="row" >
       <div class="col-md-1 low-padding">
         <p class="table-city-paragraph" th:text="${eventSimple.getEventSimpleCity()}">Miasto</p>
