@@ -16,10 +16,10 @@ public class Event {
     private Organizer organizer;
     private String active;
     private String descShort;
-    private com.pr.reservation.domainData.Tickets tickets;
+    private Tickets tickets;
 
     public Event(Integer id, Place place, String endDate, String name, Urls urls, List<FileName> attachments, String descLong,
-                 Integer categoryId, String startDate, Organizer organizer, String active, String descShort, com.pr.reservation.domainData.Tickets tickets) {
+                 Integer categoryId, String startDate, Organizer organizer, String active, String descShort, Tickets tickets) {
         this.id = id;
         this.place = place;
         this.endDate = endDate;
@@ -95,7 +95,7 @@ public class Event {
         return active;
     }
 
-    public com.pr.reservation.domainData.Tickets getTickets() {
+    public Tickets getTickets() {
         return tickets;
     }
 }

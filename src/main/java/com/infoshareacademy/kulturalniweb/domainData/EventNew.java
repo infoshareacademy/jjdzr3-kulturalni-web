@@ -5,7 +5,7 @@ import java.util.List;
 
 public class EventNew {
     private Integer id;
-    private com.pr.reservation.domainData.Place place;
+    private Place place;
     private String endDate;
     private String name;
     private Urls urls;
@@ -16,9 +16,9 @@ public class EventNew {
     private Organizer organizer;
     private String active;
     private String descShort;
-    private com.pr.reservation.domainData.Tickets tickets;
+    private Tickets tickets;
 
-    public EventNew(Integer id, com.pr.reservation.domainData.Place place, String endDate, String name, Urls urls, List<FileName> attachments, String descLong, Integer categoryId, String startDate, Organizer organizer, String active, String descShort, com.pr.reservation.domainData.Tickets tickets) {
+    public EventNew(Integer id, Place place, String endDate, String name, Urls urls, List<FileName> attachments, String descLong, Integer categoryId, String startDate, Organizer organizer, String active, String descShort, Tickets tickets) {
         this.id = id;
         this.place = place;
         this.endDate = endDate;
@@ -45,11 +45,11 @@ public class EventNew {
         this.id = id;
     }
 
-    public com.pr.reservation.domainData.Place getPlace() {
+    public Place getPlace() {
         return place;
     }
 
-    public void setPlace(com.pr.reservation.domainData.Place place) {
+    public void setPlace(Place place) {
         this.place = place;
     }
 
@@ -140,11 +140,11 @@ public class EventNew {
         this.descShort = descShort;
     }
 
-    public com.pr.reservation.domainData.Tickets getTickets() {
+    public Tickets getTickets() {
         return tickets;
     }
 
-    public void setTickets(com.pr.reservation.domainData.Tickets tickets) {
+    public void setTickets(Tickets tickets) {
         this.tickets = tickets;
     }
 
