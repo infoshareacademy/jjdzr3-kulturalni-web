@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns: th="http://www.thymeleaf.org" lang="pl">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title>Kulturalni - Wszystkie wydarzenia</title>
+
+  <!-- Favicon-->
+  <link rel="icon" type="image/x-icon" sizes="32x32" href="images/favicon.ico">
+
+  <!-- Core theme CSS (includes Bootstrap)-->
+  <link href="css/styles.css" rel="stylesheet"/>
+  <link rel="stylesheet" type="text/css" href="css/additional.css">
+</head>
+
+<body id="page-top">
+<!-- Navigation-->
+<div th:insert="index :: copy-header"></div>
+<!-- Masthead-->
+<header class="masthead text-dark">
+
+  <div class="container bg-light rounded-3">
+    <div class="row head-border">
+      <div class="col-md-3">
+        <select class="dropdown-fields dropdown-field-type" name="searchType">
+          <option value="wszystkie_rodzaje" selected>Wszystkie rodzaje</option>
+          <option value="kino">kino</option>
+          <option value="teatr">teatr</option>
+          <option value="koncert">koncert</option>
+          <option value="inne">inne</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <select class="dropdown-fields dropdown-field-city" name="searchCity">
+          <option value="wszystkie_rodzaje" selected>Wszystkie miejsca</option>
+          <option value="kino">Miniatura</option>
+          <option value="teatr">Archipelag Kultury</option>
+          <option value="inne">inne</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <select class="dropdown-fields dropdown-field-city" name="searchCity">
+          <option value="wszystkie_rodzaje" selected>Sortuj po dacie</option>
+          <option value="kino">Sortuj po miejscowości</option>
+          <option value="teatr">Sortuj po tytule</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <select class="dropdown-fields dropdown-field-direction" name="searchDirection" id="searchDirection">
+          <option value="ascending" selected>Sortuj rosnąco</option>
+          <option value="descending">Sortuj malejąco</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="container bg-light rounded-3 mb-2">
+    <div class="row head-border">
+      <div class="col-md-6">
+        <input class="dropdown-fields event-name-input" type="text" value="" placeholder="Wpisz tytuł wydarzenia" autocomplete="off" />
+      </div>
+      <div class="col-md-3">
+        <select class="dropdown-fields dropdown-field-quantity" name="searchCity">
+          <option value="quantity_20" selected>20 wyników</option>
+          <option value="quantity_40">40 wyników</option>
+          <option value="quantity_60">60 wyników</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <button type="button" class="button-search">Szukaj</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container main-table">
+    <div class="row" >
+      <div class="col-md-1 low-padding">
+        <p class="header-city-paragraph">Miasto</p>
+      </div>
+      <div class="col-md-1">
+        <p class="header-city-paragraph table-date-paragraph">Data</p>
+      </div>
+      <div class="col-md-1">
+        <p class="header-city-paragraph">Godzina</p>
+      </div>
+      <div class="col-md-8">
+        <p class="header-city-paragraph">Nazwa wydarzenia</p>
+      </div>
+      <div class="col-md-1">
+        <p class="header-city-paragraph">Ulubione</p>
+      </div>
+    </div>
+  </div>
+
+  <div th:each="eventSimple: ${listOfEventSimple}" class="container main-table">
+    <div class="row" >
+      <div class="col-md-1 low-padding">
+        <p class="table-city-paragraph" th:text="${eventSimple.getEventSimpleCity()}">Miasto</p>
+      </div>
+      <div class="col-md-1">
+        <p class="table-city-paragraph table-date-paragraph" th:text="${eventSimple.getEventSimpleDate()}">Data</p>
+      </div>
+      <div class="col-md-1">
+        <p class="table-city-paragraph" th:text="${eventSimple.getEventSimpleStartTime()}">Godzina</p>
+      </div>
+      <div class="col-md-8">
+        <a href=# th:href="@{/singleEvent(id=${eventSimple.getEventSimpleId()})}" style="text-decoration: none">
+          <p class="table-city-paragraph" th:text="${eventSimple.getEventSimpleName()}">Nazwa wydarzenia</p>
+        </a>
+      </div>
+      <div class="col-md-1">
+        <p class="table-city-paragraph">Ulubione</p>
+      </div>
+    </div>
+  </div>
+
+
+</header>
+<!-- Events-->
+
+
+
+<div th:insert="index :: copy-footer"></div>
+
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>
+</body>
+</html>
