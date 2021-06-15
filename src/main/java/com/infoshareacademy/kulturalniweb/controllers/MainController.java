@@ -9,28 +9,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping
-public class MainController{
+public class MainController {
 
     //przesunac do wlasciwego kontrolera!!!
     @GetMapping("/allevents")
-    public String allevents () {
+    public String allevents() {
         return "allevents";
     }
 
     //przesunac do wlasciwego kontrolera!!!
     @GetMapping("/singleevent")
-    public String singleevent () {
+    public String singleevent() {
         return "singleevent";
     }
 
-    //przesunac do wlasciwego kontrolera!!!
-    @GetMapping("/login")
-    public String login () {
-        return "login";
-    }
-
     @GetMapping("/")
-    public String displayMainPage (Model model) {
-            return "index";
+    public String displayMainPage(Model model) {
+        return "index";
     }
 }
