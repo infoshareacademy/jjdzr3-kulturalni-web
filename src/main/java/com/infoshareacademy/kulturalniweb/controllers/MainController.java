@@ -32,5 +32,4 @@ public class MainController implements ControllerEntity{
     public String login () {
         return "login";
     }
-
 }
