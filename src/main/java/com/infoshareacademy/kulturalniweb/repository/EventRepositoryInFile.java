@@ -13,7 +13,6 @@ import java.util.List;
 
 @Component
 public class EventRepositoryInFile {
-
     private List<EventNew> eventsDB = new ArrayList<>();
     private Path path = Paths.get("src", "main", "resources", "data.json");
 
@@ -26,15 +25,14 @@ public class EventRepositoryInFile {
             for (EventNew eventNew : eventList) {
                 eventsDB.add(eventNew);
             }
-
-/*            for (int i = 0; i < eventList.length; i++) {
-                eventsDB.add(eventList[i]);
-            }*/
-
             System.out.println("Baza wydarzeń załadowana: + " + eventsDB.size());
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Błąd odczytu pliku .json.");
         }
+    }
+
+    public List<EventNew> getEventsDB() {
+        return eventsDB;
     }
 }
