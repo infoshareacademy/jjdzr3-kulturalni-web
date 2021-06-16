@@ -25,45 +25,33 @@
     <div class="form-signin">
         <form>
             <img class="mb-4" src="images/img/logos/logo.png" alt="" width="150" height="145">
-            <h4 class="mb-3 fw-normal text-warning">Witamy w gronie kulturalnych!</h4>
+            <h4 class="mb-3 fw-normal text-warning" th:text="#{login.greeting}"></h4>
 
             <div class="form-floating text-muted">
                 <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Email</label>
+                <label for="floatingInput" th:text="#{login.email}"></label>
             </div>
             <div class="form-floating text-muted">
                 <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                <label for="floatingPassword">Hasło</label>
+                <label for="floatingPassword" th:text="#{login.password}"></label>
             </div>
 
-            <div class="checkbox mb-3 text-light ">
+            <div class="checkbox mb-3 text-light">
                 <label>
-                    <input type="checkbox" value="remember-me"> Zapamiętaj mnie
+                    <input type="checkbox" value="remember-me" class="mx-1" th:text="#{login.checkmark}">
                 </label>
             </div>
-            <button class="w-100 btn btn-lg btn-primary text-dark " type="submit">Zaloguj się</button>
+            <button class="w-100 btn btn-lg btn-primary text-dark " type="submit" th:text="#{login.button}"></button>
         </form>
     </div>
     <div class="p-3 text-white">
         <footer class="footer mt-5 mb-1 text-white">
             <div class="container">
-                <span class="footer">&copy 2021, <a href="mailto: kontakt@xyz.pl"
-                                                    class="footer">kontakt@xyz.pl</a></span>
+                <span class="footer">&copy 2021, <a href="mailto: kontakt@xyz.pl" class="footer">kontakt@xyz.pl</a></span>
             </div>
         </footer>
     </div>
 </header>
-
-
-<!--class="footer mt-5 mb-1">
-       <div class="container" style="justify-content: center">
-           <span style="text-align: center; font-size: 18px; color: grey">&copy 2021, <a
-                   href="mailto: kontakt@xyz.pl"
-                   style="text-decoration: none; color: grey">kontakt@xyz.pl</a></span>
-       </div>-->
-
-
-<!--<div class="container-fluid" th:insert="index::copy-footer"></div>-->
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
