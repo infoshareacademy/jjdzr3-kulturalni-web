@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class LoginController {
 
     @GetMapping("/login")
-    public String login (Model model) {
+    public String login(Model model) {
         return "login";
     }
 
