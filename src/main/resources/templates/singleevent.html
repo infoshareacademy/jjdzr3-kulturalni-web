@@ -29,7 +29,7 @@
             <div class="col-md-3">
             </div>
             <div class="col-md-6" style="text-align: center">
-                <p class="event-title">Nazwa wydarzenia</p>
+                <p class="event-title" th:text="${singleEventSimpleModel.getEventSimpleName()}">Nazwa wydarzenia</p>
             </div>
             <div class="col-md-1">
                 <a href=""><img src="images/img/heart-bw.png" alt="Ulubione" class="heart-image"></a>
@@ -46,10 +46,10 @@
     <div class="container">
         <div class="row event-description" style="background-color: white">
             <div class="col-md-3">
-                <p class="event-left-description">Nazwa wydarzenia</p></p>
+                <p class="event-left-description" >Nazwa wydarzenia</p></p>
             </div>
             <div class="col-md-9">
-                <p class="event-right-description">Model data</p>
+                <p class="event-right-description" th:text="${singleEventSimpleModel.getEventSimpleName()}">Nazwa wydarzenia</p>
             </div>
         </div>
         <div class="row event-description" style="background-color: white">
@@ -57,7 +57,7 @@
                 <p class="event-left-description">Opis</p></p>
             </div>
             <div class="col-md-9">
-                <p class="event-right-description">Model data</p>
+                <p class="event-right-description" th:text="${singleEventSimpleModel.getEventSimpleDescription()}">Opis</p>
             </div>
         </div>
         <div class="row event-description" style="background-color: white">
@@ -65,7 +65,7 @@
                 <p class="event-left-description">Termin</p></p>
             </div>
             <div class="col-md-9">
-                <p class="event-right-description">Model data</p>
+                <p class="event-right-description" th:text="${singleEventSimpleModel.getEventSimpleDate()}">Termin</p>
             </div>
         </div>
         <div class="row event-description" style="background-color: white">
@@ -73,7 +73,7 @@
                 <p class="event-left-description">Początek</p></p>
             </div>
             <div class="col-md-9">
-                <p class="event-right-description">Model data</p>
+                <p class="event-right-description" th:text="${singleEventSimpleModel.getEventSimpleStartTime()}">Początek</p>
             </div>
         </div>
         <div class="row event-description" style="background-color: white">
@@ -81,7 +81,7 @@
                 <p class="event-left-description">Koniec</p></p>
             </div>
             <div class="col-md-9">
-                <p class="event-right-description">Model data</p>
+                <p class="event-right-description" th:text="${singleEventSimpleModel.getEventSimpleEndTime()}">Koniec</p>
             </div>
         </div>
         <div class="row event-description" style="background-color: white">
@@ -89,7 +89,7 @@
                 <p class="event-left-description">Miejsce</p></p>
             </div>
             <div class="col-md-9">
-                <p class="event-right-description">Model data</p>
+                <p class="event-right-description" th:text="${singleEventSimpleModel.getEventSimplePlace()}">Miejsce</p>
             </div>
         </div>
         <div class="row event-description" style="background-color: white">
@@ -97,7 +97,7 @@
                 <p class="event-left-description">Cena</p></p>
             </div>
             <div class="col-md-9">
-                <p class="event-right-description">Model data</p>
+                <p class="event-right-description" th:text="${singleEventSimpleModel.getEventSimpleTicketPrice()}">Cena</p>
             </div>
         </div>
         <div class="row event-description" style="background-color: white">
@@ -105,7 +105,7 @@
                 <p class="event-left-description">Strona wydarzenia</p></p>
             </div>
             <div class="col-md-9" style="margin-bottom: 30px">
-                <p class="event-right-description">Model data</p>
+                    <p class="event-right-description" th:text="${singleEventSimpleModel.getEventSimpleWebPageAddress()}">Strona wydarzenia</p>
             </div>
         </div>
     </div>
