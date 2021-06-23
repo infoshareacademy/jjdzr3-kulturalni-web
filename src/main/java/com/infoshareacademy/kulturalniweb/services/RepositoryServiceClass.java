@@ -3,6 +3,7 @@ package com.infoshareacademy.kulturalniweb.services;
 import com.infoshareacademy.kulturalniweb.domainData.EventNew;
 import com.infoshareacademy.kulturalniweb.domainData.EventSimple;
 import com.infoshareacademy.kulturalniweb.repository.EventRepositoryInFile;
+import com.infoshareacademy.kulturalniweb.repository.ListEventRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,18 +11,18 @@ import java.util.List;
 
 @Service
 public class RepositoryServiceClass {
-    EventRepositoryInFile eventRepositoryInFile;
+    ListEventRepository listEventRepository;
 
-    public RepositoryServiceClass(EventRepositoryInFile eventRepositoryInFile) {
-        this.eventRepositoryInFile = eventRepositoryInFile;
+    public RepositoryServiceClass(ListEventRepository listEventRepository) {
+        this.listEventRepository = listEventRepository;
     }
 
     public EventSimple getSingleEventSimpleById(Integer eventNewId) {
         EventSimple eventSimple = new EventSimple();
 
-        for (Integer i=0; i < eventRepositoryInFile.getEventsDB().size(); i++){
-            if(eventRepositoryInFile.getEventsDB().get(i).getId().equals(eventNewId)) {
-                eventSimple = createSingleEventSimple(eventRepositoryInFile.getEventsDB().get(i));
+        for (Integer i=0; i < listEventRepository.getEventsDB().size(); i++){
+            if(listEventRepository.getEventsDB().get(i).getId().equals(eventNewId)) {
+                eventSimple = createSingleEventSimple(listEventRepository.getEventsDB().get(i));
             }
         }
         return eventSimple;
@@ -29,7 +30,7 @@ public class RepositoryServiceClass {
 
     public EventSimple getSingleEventSimpleFromList(Integer pointer) {
         System.out.println("list");
-        return createSingleEventSimple(eventRepositoryInFile.getEventsDB().get(pointer));
+        return createSingleEventSimple(listEventRepository.getEventsDB().get(pointer));
     }
 
 
@@ -59,7 +60,18 @@ public class RepositoryServiceClass {
         for (int i = 0; i < numberOfEventsOnThePage; i++) {
             listOfEventSimple.add(getSingleEventSimpleFromList(i));
         }
-        System.out.println("Repos: " + listOfEventSimple.size());
+        return listOfEventSimple;
+    }
+
+    public List<EventSimple> getListOfEventSimple() {
+        List<EventSimple> listOfEventSimple = new ArrayList<>();
+
+        for (int i = 0; i < listEventRepository.getEventsDB().size(); i++) {
+            listOfEventSimple.add(getSingleEventSimpleFromList(i));
+
+            System.out.println(i + " = " + getSingleEventSimpleFromList(i).getEventSimpleDescriptionShort());
+        }
+        System.out.println("newest= " + listOfEventSimple.size());
         return listOfEventSimple;
     }
     

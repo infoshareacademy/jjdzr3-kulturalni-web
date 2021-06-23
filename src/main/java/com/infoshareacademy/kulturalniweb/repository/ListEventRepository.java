@@ -18,6 +18,7 @@ public class ListEventRepository {
     private Path path = Paths.get("src", "main", "resources", "data.json");
 
     public void readEventsFromGsonToList() {
+        clearList();
         Gson gson = new Gson();
         try {
             FileReader reader = new FileReader(String.valueOf(path));
@@ -30,6 +31,10 @@ public class ListEventRepository {
             e.printStackTrace();
             System.out.println("Błąd odczytu pliku .json.");
         }
+    }
+
+    public void clearList() {
+        eventsDB.clear();
     }
 
 
@@ -69,6 +74,10 @@ public class ListEventRepository {
             if(eventsDB.get(i).getId().equals(id)) {
                 eventSimple = createSingleEventSimple(eventsDB.get(i));
 
+
+                System.out.println("aa" + eventSimple.getEventSimpleDescriptionShort() + " bbb " + eventSimple.getEventSimpleName() );
+
+
             }
         }
         return eventSimple;
@@ -89,6 +98,7 @@ public class ListEventRepository {
         eventSimple.setEventSimplePlace(eventNew.getPlace().getName());
         eventSimple.setEventSimpleTicketPrice(0.0);
         eventSimple.setEventSimpleWebPageAddress(eventNew.getUrls().getWww());
+        eventSimple.setEventSimpleDescriptionShort(eventNew.getDescShort());
         return eventSimple;
     }
 
