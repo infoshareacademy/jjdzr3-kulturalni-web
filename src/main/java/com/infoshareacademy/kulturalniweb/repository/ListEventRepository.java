@@ -37,47 +37,12 @@ public class ListEventRepository {
         eventsDB.clear();
     }
 
-
-/*    public List<EventSimple> createEventsSimpleList() {
-        List<EventSimple> simpleEvents = new ArrayList<>();
-
-        for (Integer i = 0; i < eventsDB.size(); i++) {
-            EventSimple eventSimple = new EventSimple();
-            eventSimple.setEventSimpleId(eventNew.getId());
-            eventSimple.setEventSimpleName(eventNew.getName());
-            eventSimple.setEventSimpleDescription(eventNew.getDescLong());
-
-            String[] date = eventNew.getStartDate().split("T");
-            eventSimple.setEventSimpleDate(date[0]);
-
-            String time = date[1].substring(0, 8);
-            eventSimple.setEventSimpleStartTime(time);
-            eventSimple.setEventSimpleEndTime(time);
-            eventSimple.setEventSimplePlace(eventNew.getPlace().getName());
-            eventSimple.setEventSimpleTicketPrice(0.0);
-            eventSimple.setEventSimpleWebPageAddress(eventNew.getUrls().getWww());
-
-            simpleEvents.add(eventSimple);
-
-            EventSimple eventSimple = createSingleEventSimple(eventsDB)
-            simpleEvents.add(eventSimple)
-        }
-        return simpleEvents;
-    }*/
-
     public EventSimple getSingleEventSimple(Integer id) {
         EventSimple eventSimple = new EventSimple();
-        System.out.println("ID=" + id + "  " + eventsDB.size());
-        for (int i=0; i < eventsDB.size(); i++){
 
-            System.out.println("ID=" + id + "  " + eventsDB.get(i).getId());
+        for (int i=0; i < eventsDB.size(); i++){
             if(eventsDB.get(i).getId().equals(id)) {
                 eventSimple = createSingleEventSimple(eventsDB.get(i));
-
-
-                System.out.println("aa" + eventSimple.getEventSimpleDescriptionShort() + " bbb " + eventSimple.getEventSimpleName() );
-
-
             }
         }
         return eventSimple;
@@ -104,7 +69,6 @@ public class ListEventRepository {
 
 
     public List<EventNew> getEventsDB() {
-        System.out.println("eventsDB size = " + eventsDB.size());
         return eventsDB;
     }
 
