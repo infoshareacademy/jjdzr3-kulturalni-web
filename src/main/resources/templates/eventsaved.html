@@ -18,10 +18,10 @@
 <!-- Navigation-->
 <div th:insert="index :: copy-header"></div>
 <!-- Masthead-->
-<header class="masthead text-dark">
+<header class="masthead text-dark" style="margin-bottom: 50px">
 
   <div class="container" style="text-align: center">
-    <p>Panel administracyjny - dodawanie nowego wydarzenia</p>
+    <p style="color: yellow">Panel administracyjny - dodawanie nowego wydarzenia</p>
   </div>
 
   <div class="container" style="text-align: center">
@@ -29,7 +29,7 @@
       <div class="col-md-3">
       </div>
       <div class="col-md-6" style="text-align: center">
-        <p class="event-title" >Nazwa wydarzenia</p>
+        <p class="event-title" style="color: red">Wydarzenie zostało zapisane!</p>
       </div>
       <div class="col-md-1">
 
@@ -49,7 +49,7 @@
           <p class="event-left-description" >Id wydarzenia</p>
         </div>
         <div class="col-md-9">
-          <p class="event-right-description" th:field="*{newEventID}">77896</p>
+          <p class="event-right-description" th:text="${newEventDto.getNewEventID()}">77896</p>
         </div>
       </div>
       <div class="row event-description" style="background-color: white">
@@ -57,7 +57,7 @@
           <p class="event-left-description" >Nazwa wydarzenia</p>
         </div>
         <div class="col-md-9">
-          <p class="event-right-description" ></p>
+          <p class="event-right-description" th:text="${newEventDto.getNewEventName()}"></p>
         </div>
       </div>
       <div class="row event-description" style="background-color: white">
@@ -65,7 +65,7 @@
           <p class="event-left-description">Opis</p>
         </div>
         <div class="col-md-9">
-          <p class="event-right-description" ></p>
+          <p class="event-right-description" th:text="${newEventDto.getNewEventDescription()}"></p>
         </div>
       </div>
       <div class="row event-description" style="background-color: white">
@@ -73,14 +73,7 @@
           <p class="event-left-description">Rodzaj</p>
         </div>
         <div class="col-md-9">
-          <p class="event-right-description" >
-            <select name="newEventType" >
-              <option value="kino">kino</option>
-              <option value="teatr">teatr</option>
-              <option value="koncert">koncert</option>
-              <option value="inne">inne</option>
-            </select>
-          </p>
+          <p class="event-right-description" th:text="${newEventDto.getNewEventType()}"></p>
         </div>
       </div>
       <div class="row event-description" style="background-color: white">
@@ -88,7 +81,7 @@
           <p class="event-left-description">Termin</p>
         </div>
         <div class="col-md-9">
-          <p class="event-right-description" ></p>
+          <p class="event-right-description" th:text="${newEventDto.getNewEventDate()}"></p>
         </div>
       </div>
       <div class="row event-description" style="background-color: white">
@@ -96,7 +89,7 @@
           <p class="event-left-description">Początek</p>
         </div>
         <div class="col-md-9">
-          <p class="event-right-description" ></p>
+          <p class="event-right-description" th:text="${newEventDto.getNewEventStartTime()}"></p>
         </div>
       </div>
       <div class="row event-description" style="background-color: white">
@@ -104,7 +97,7 @@
           <p class="event-left-description">Koniec</p>
         </div>
         <div class="col-md-9">
-          <p class="event-right-description" ></p>
+          <p class="event-right-description" th:text="${newEventDto.getNewEventEndTime()}"></p>
         </div>
       </div>
       <div class="row event-description" style="background-color: white">
@@ -112,7 +105,7 @@
           <p class="event-left-description">Miejsce</p>
         </div>
         <div class="col-md-9">
-          <p class="event-right-description" ></p>
+          <p class="event-right-description" th:text="${newEventDto.getNewEventPlace()}"></p>
         </div>
       </div>
       <div class="row event-description" style="background-color: white">
@@ -120,7 +113,7 @@
           <p class="event-left-description">Cena</p>
         </div>
         <div class="col-md-9">
-          <p class="event-right-description" ></p>
+          <p class="event-right-description" th:text="${newEventDto.getNewEventPrice()}"></p>
         </div>
       </div>
       <div class="row event-description" style="background-color: white">
@@ -128,7 +121,7 @@
           <p class="event-left-description">Strona wydarzenia</p>
         </div>
         <div class="col-md-9">
-          <p class="event-right-description" ></p>
+          <p class="event-right-description" th:text="${newEventDto.getNewEventWebPage()}"></p>
         </div>
       </div>
       <div class="row event-description" style="background-color: white">
@@ -136,7 +129,7 @@
           <p class="event-left-description">Obrazek</p>
         </div>
         <div class="col-md-9">
-          <p class="event-right-description" ></p>
+          <p class="event-right-description" th:text="${newEventDto.getNewEventPicture()}"></p>
         </div>
       </div>
   </div>

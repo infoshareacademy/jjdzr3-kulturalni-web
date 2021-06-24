@@ -26,11 +26,12 @@ public class AddEventController {
 
     @PostMapping(value = "/saveevent")
     public String addEvent(@ModelAttribute @Valid NewEventDto newEventDto, BindingResult result, Model model) {
-
+        model.addAttribute("newEventDto", newEventDto);
 
         if (result.hasFieldErrors()) {
             return "addeventform";
         } else {
+
             return "eventsaved";
         }
     }
