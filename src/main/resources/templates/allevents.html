@@ -21,8 +21,29 @@
 
     <div class="container bg-light rounded-3">
         <div class="row head-border">
+
             <div class="col-md-3">
-                <select class="dropdown-fields dropdown-field-type" name="searchType">
+
+                <select class="dropdown-fields dropdown-field-type" name="searchType" >
+                    <option value="wszystkie_rodzaje" selected>Wszystkie rodzaje</option>
+                    <a href=# th:href="@{/singleevent(id=kino)}"><option value="kino">kino</option></a>
+                    <option value="teatr">teatr</option>
+                    <option value="koncert">koncert</option>
+                    <option value="inne">inne</option>
+                </select>
+            </div>
+
+<!--            <a href=# th:href="@{/singleevent(id=${eventSimple.getEventSimpleId()})}" style="text-decoration: none">
+                <p class="table-city-paragraph" th:text="${eventSimple.getEventSimpleName()}">Nazwa wydarzenia</p>
+            </a>    -->
+
+
+
+
+
+
+            <div class="col-md-3">
+                <select class="dropdown-fields dropdown-field-type" name="searchType" >
                     <option value="wszystkie_rodzaje" selected>Wszystkie rodzaje</option>
                     <option value="kino">kino</option>
                     <option value="teatr">teatr</option>
