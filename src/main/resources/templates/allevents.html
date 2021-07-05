@@ -22,20 +22,23 @@
     <div class="container bg-light rounded-3">
         <div class="row head-border">
 
-            <div class="col-md-3">
+<!--            <div class="col-md-3">
 
-                <select class="dropdown-fields dropdown-field-type" name="searchType" >
-                    <option value="wszystkie_rodzaje" selected>Wszystkie rodzaje</option>
-                    <a href=# th:href="@{/singleevent(id=kino)}"><option value="kino">kino</option></a>
-                    <option value="teatr">teatr</option>
-                    <option value="koncert">koncert</option>
-                    <option value="inne">inne</option>
-                </select>
-            </div>
 
-<!--            <a href=# th:href="@{/singleevent(id=${eventSimple.getEventSimpleId()})}" style="text-decoration: none">
-                <p class="table-city-paragraph" th:text="${eventSimple.getEventSimpleName()}">Nazwa wydarzenia</p>
-            </a>    -->
+                <form action="/iii">
+                    <select class="dropdown-fields dropdown-field-type" name="searchType" onchange="this.form.submit()">
+                        <option value="wszystkie_rodzaje" selected>Wszystkie rodzaje</option>
+                        <a href=# th:href="@{/singleevent(id=kino)}"><option value="kino">kino</option></a>
+                        <option value="teatr">teatr</option>
+                        <option value="koncert">koncert</option>
+                        <option value="inne">inne</option>
+                    </select>
+                </form>
+
+
+            </div>-->
+
+
 
 
 
@@ -81,16 +84,24 @@
                 <input class="dropdown-fields event-name-input" type="text" value=""
                        placeholder="Wpisz tytuł wydarzenia" autocomplete="off"/>
             </div>
-            <div class="col-md-3">
-                <select class="dropdown-fields dropdown-field-quantity" name="searchCity">
-                    <option value="quantity_20" selected>20 wyników</option>
-                    <option value="quantity_40">40 wyników</option>
-                    <option value="quantity_60">60 wyników</option>
-                </select>
-            </div>
+
             <div class="col-md-3">
                 <button type="button" class="button-search">Szukaj</button>
             </div>
+
+            <div class="col-md-3">
+                <form action="/eventsPerPage">
+                    <select class="dropdown-fields dropdown-field-quantity" name="eventsPerPage" onchange="this.form.submit()">
+                        <option value="20" selected th:if="${numberOfEventsperpage.equals(20)}">20 wyników</option>
+                        <option value="20" th:if="${not numberOfEventsperpage.equals(20)}">20 wyników</option>
+                        <option value="40" selected th:if="${numberOfEventsperpage.equals(40)}">40 wyników</option>
+                        <option value="40" th:if="${not numberOfEventsperpage.equals(40)}">40 wyników</option>
+                        <option value="60" selected th:if="${numberOfEventsperpage.equals(60)}">60 wyników</option>
+                        <option value="60" th:if="${not numberOfEventsperpage.equals(60)}">60 wyników</option>
+                    </select>
+                </form>
+            </div>
+
         </div>
     </div>
 
@@ -136,6 +147,23 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-12" style="margin-top: 30px">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item" style="width: 100px"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                    <li class="page-item" style="width: 100px"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </nav>
+        </div>
+     </div>
+
 
 
 </header>
