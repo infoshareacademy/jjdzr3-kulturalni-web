@@ -16,11 +16,25 @@ import java.util.List;
 public class AllEventsController {
     AppServiceClass appServiceClass;
     ListEventRepository listEventRepository;
+
     private Integer numberOfEventsOnThePage = 20;
+    private String eventFilterType = "all";
+    private String eventFilterPlace = "all";
+    private String eventSortType = "date";
+    private String eventSortDirection = "descending";
 
     public AllEventsController(AppServiceClass appServiceClass, ListEventRepository listEventRepository) {
         this.appServiceClass = appServiceClass;
         this.listEventRepository = listEventRepository;
+    }
+
+    @GetMapping("/alleventsindex")
+    public String displayAllEventsFromIndex () {
+        System.out.println("AllEvents from index");
+
+        numberOfEventsOnThePage = 20;
+
+        return "redirect:allevents";
     }
 
     @GetMapping("/allevents")

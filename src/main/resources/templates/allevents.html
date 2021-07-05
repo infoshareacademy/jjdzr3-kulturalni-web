@@ -22,57 +22,43 @@
     <div class="container bg-light rounded-3">
         <div class="row head-border">
 
-<!--            <div class="col-md-3">
-
-
-                <form action="/iii">
-                    <select class="dropdown-fields dropdown-field-type" name="searchType" onchange="this.form.submit()">
-                        <option value="wszystkie_rodzaje" selected>Wszystkie rodzaje</option>
-                        <a href=# th:href="@{/singleevent(id=kino)}"><option value="kino">kino</option></a>
-                        <option value="teatr">teatr</option>
-                        <option value="koncert">koncert</option>
-                        <option value="inne">inne</option>
+             <div class="col-md-3">
+                <form action="/eventFilterType">
+                    <select class="dropdown-fields dropdown-field-type" name="eventFilterType" onchange="this.form.submit()">
+                        <option value="all" selected>Wszystkie rodzaje</option>
+                        <option value="cinema">kino</option>
+                        <option value="theatre">teatr</option>
+                        <option value="concert">koncert</option>
+                        <option value="other">inne</option>
                     </select>
                 </form>
-
-
-            </div>-->
-
-
-
-
-
-
-
-
-            <div class="col-md-3">
-                <select class="dropdown-fields dropdown-field-type" name="searchType" >
-                    <option value="wszystkie_rodzaje" selected>Wszystkie rodzaje</option>
-                    <option value="kino">kino</option>
-                    <option value="teatr">teatr</option>
-                    <option value="koncert">koncert</option>
-                    <option value="inne">inne</option>
-                </select>
             </div>
+
             <div class="col-md-3">
-                <select class="dropdown-fields dropdown-field-city" name="searchCity">
-                    <option value="wszystkie_rodzaje" selected>Wszystkie miejsca</option>
-                    <option value="kino">Miniatura</option>
-                    <option value="teatr">Archipelag Kultury</option>
-                    <option value="inne">inne</option>
-                </select>
+                <form action="/eventFilterPlace">
+                    <select class="dropdown-fields dropdown-field-city" name="eventFilterPlace">
+                        <option value="all" selected>Wszystkie miejsca</option>
+                        <option value="Miniatura">Miniatura</option>
+                        <option value="Archipelag">Archipelag Kultury</option>
+                        <option value="other">inne</option>
+                    </select>
+                </form>
             </div>
+
             <div class="col-md-3">
-                <select class="dropdown-fields dropdown-field-city" name="searchCity">
-                    <option value="wszystkie_rodzaje" selected>Sortuj po dacie</option>
-                    <option value="kino">Sortuj po miejscowości</option>
-                    <option value="teatr">Sortuj po tytule</option>
-                </select>
+                <form action="/eventSortType">
+                    <select class="dropdown-fields dropdown-field-city" name="eventSortType">
+                        <option value="date" selected>Sortuj po dacie</option>
+                        <option value="city">Sortuj po miejscowości</option>
+                        <option value="name">Sortuj po tytule</option>
+                    </select>
+                </form>
             </div>
+
             <div class="col-md-3">
-                <select class="dropdown-fields dropdown-field-direction" name="searchDirection" id="searchDirection">
-                    <option value="ascending" selected>Sortuj rosnąco</option>
-                    <option value="descending">Sortuj malejąco</option>
+                <select class="dropdown-fields dropdown-field-direction" name="eventSortDirection">
+                    <option value="ascending">Sortuj rosnąco</option>
+                    <option value="descending" selected>Sortuj malejąco</option>
                 </select>
             </div>
         </div>
