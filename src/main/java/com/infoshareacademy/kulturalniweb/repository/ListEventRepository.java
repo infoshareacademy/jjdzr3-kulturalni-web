@@ -37,7 +37,7 @@ public class ListEventRepository {
         eventsDB.clear();
     }
 
-    public EventSimple getSingleEventSimple(Integer id) {
+/*    public EventSimple getSingleEventSimple(Integer id) {
         EventSimple eventSimple = new EventSimple();
 
         for (int i=0; i < eventsDB.size(); i++){
@@ -46,26 +46,9 @@ public class ListEventRepository {
             }
         }
         return eventSimple;
-    }
+    }*/
 
-    public EventSimple createSingleEventSimple(EventNew eventNew) {
-        EventSimple eventSimple = new EventSimple();
-        eventSimple.setEventSimpleId(eventNew.getId());
-        eventSimple.setEventSimpleName(eventNew.getName());
-        eventSimple.setEventSimpleDescription(eventNew.getDescLong());
 
-        String[] date = eventNew.getStartDate().split("T");
-        eventSimple.setEventSimpleDate(date[0]);
-
-        String time = date[1].substring(0, 8);
-        eventSimple.setEventSimpleStartTime(time);
-        eventSimple.setEventSimpleEndTime(time);
-        eventSimple.setEventSimplePlace(eventNew.getPlace().getName());
-        eventSimple.setEventSimpleTicketPrice(0.0);
-        eventSimple.setEventSimpleWebPageAddress(eventNew.getUrls().getWww());
-        eventSimple.setEventSimpleDescriptionShort(eventNew.getDescShort());
-        return eventSimple;
-    }
 
 
     public List<EventNew> getEventsDB() {

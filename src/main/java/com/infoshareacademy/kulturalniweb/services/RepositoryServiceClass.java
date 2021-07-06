@@ -18,6 +18,10 @@ public class RepositoryServiceClass {
         this.listEventRepository = listEventRepository;
     }
 
+    public void readEventsFromGsonToList() {
+        listEventRepository.readEventsFromGsonToList();
+    }
+
 /*    public EventSimple getSingleEventSimpleById(Integer eventNewId) {
         EventSimple eventSimple = new EventSimple();
 
@@ -29,9 +33,7 @@ public class RepositoryServiceClass {
         return eventSimple;
     }*/
 
-    public EventSimple getSingleEventSimpleFromList(Integer pointer) {
-        return createSingleEventSimple(listEventRepository.getEventsDB().get(pointer));
-    }
+
 
 
 
@@ -54,26 +56,16 @@ public class RepositoryServiceClass {
         return eventSimple;
     }
 
-    public List<EventSimple> getListOfEventSimple(Integer numberOfEventsOnThePage) {
+/*    public List<EventSimple> getListOfEventSimple(Integer numberOfEventsOnThePage) {
         List<EventSimple> listOfEventSimple = new ArrayList<>();
 
         for (int i = 0; i < numberOfEventsOnThePage; i++) {
             listOfEventSimple.add(getSingleEventSimpleFromList(i));
         }
         return listOfEventSimple;
-    }
+    }*/
 
-    public List<EventSimple> getListOfEventSimple() {
-        List<EventSimple> listOfEventSimple = new ArrayList<>();
 
-        for (int i = 0; i < listEventRepository.getEventsDB().size(); i++) {
-            listOfEventSimple.add(getSingleEventSimpleFromList(i));
-
-            System.out.println(i + " = " + getSingleEventSimpleFromList(i).getEventSimpleDescriptionShort());
-        }
-        System.out.println("newest= " + listOfEventSimple.size());
-        return listOfEventSimple;
-    }
 
     public EventNew createEventNewFromNewEventDto (NewEventDto newEventDto) {
         EventNew eventNew = new EventNew();

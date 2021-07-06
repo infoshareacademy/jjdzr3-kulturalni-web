@@ -15,13 +15,16 @@ public class AppServiceClass {
         this.repositoryServiceClass = repositoryServiceClass;
     }
 
-    public List<EventSimple> getSimpleEventsList(int numberOfEventsOnThePage) {
-        return repositoryServiceClass.getListOfEventSimple(numberOfEventsOnThePage);
-    }
 
-    public List<EventSimple> getNewestEventSimple() {
+
+/*    public List<EventSimple> getSimpleEventsList() {
         return repositoryServiceClass.getListOfEventSimple();
-    }
+    }*/
+
+
+/*    public List<EventSimple> getNewestEventSimple() {
+        return repositoryServiceClass.getListOfEventSimple();
+    }*/
 
 
 

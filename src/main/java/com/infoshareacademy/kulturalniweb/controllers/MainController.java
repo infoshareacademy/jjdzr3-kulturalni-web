@@ -25,13 +25,13 @@ public class MainController {
     public String displayMainPage(Model model) {
 
         listEventRepository.readEventsFromGsonToList();
-        List<EventSimple> newestEventsSimple = appServiceClass.getNewestEventSimple();
-        System.out.println("newest2= " + newestEventsSimple.size());
+        List<EventSimple> newestEventsSimple;// = appServiceClass.getNewestEventSimple();
+       // System.out.println("newest2= " + newestEventsSimple.size());
 
-        model.addAttribute("firstNewestEventSimple", newestEventsSimple.get(0));
-        System.out.println("size=" + newestEventsSimple.get(0).getEventSimpleName());
-        model.addAttribute("secondNewestEventSimple", newestEventsSimple.get(1));
-        model.addAttribute("thirdNewestEventSimple", newestEventsSimple.get(2));
+        //model.addAttribute("firstNewestEventSimple", newestEventsSimple.get(0));
+        //System.out.println("size=" + newestEventsSimple.get(0).getEventSimpleName());
+        //model.addAttribute("secondNewestEventSimple", newestEventsSimple.get(1));
+        //model.addAttribute("thirdNewestEventSimple", newestEventsSimple.get(2));
 
 
         return "index";

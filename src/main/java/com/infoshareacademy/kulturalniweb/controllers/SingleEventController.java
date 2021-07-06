@@ -17,7 +17,7 @@ public class SingleEventController {
         this.listEventRepository = listEventRepository;
     }
 
-    @GetMapping(value = "/singleevent")
+/*    @GetMapping(value = "/singleevent")
     public String singleEvent(@RequestParam("id") Integer id, Model model) {
         System.out.println("singleEvent " + id);
         listEventRepository.readEventsFromGsonToList();
@@ -27,7 +27,7 @@ public class SingleEventController {
         System.out.println(eventSimple.getEventSimpleName());
 
         return "singleevent";
-    }
+    }*/
 
     @PostMapping("/toggleFavourite")
     public String toggleFavourite() {
