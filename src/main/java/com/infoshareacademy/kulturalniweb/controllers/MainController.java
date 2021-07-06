@@ -25,7 +25,7 @@ public class MainController {
     public String displayMainPage(Model model) {
 
         listEventRepository.readEventsFromGsonToList();
-        List<EventSimple> newestEventsSimple;// = appServiceClass.getNewestEventSimple();
+        List<EventSimple> newestEventsSimple = appServiceClass.getNewestEventSimple();
        // System.out.println("newest2= " + newestEventsSimple.size());
 
         //model.addAttribute("firstNewestEventSimple", newestEventsSimple.get(0));

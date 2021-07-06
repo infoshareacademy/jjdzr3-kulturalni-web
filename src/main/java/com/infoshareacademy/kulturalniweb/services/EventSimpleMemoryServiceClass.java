@@ -5,11 +5,12 @@ import com.infoshareacademy.kulturalniweb.domainData.EventSimple;
 import com.infoshareacademy.kulturalniweb.repository.EventSimpleMemory;
 import com.infoshareacademy.kulturalniweb.repository.ListEventRepository;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Service
 public class EventSimpleMemoryServiceClass {
     EventSimpleMemory eventSimpleMemory;
     ListEventRepository listEventRepository;
@@ -19,10 +20,6 @@ public class EventSimpleMemoryServiceClass {
     public EventSimpleMemoryServiceClass(EventSimpleMemory eventSimpleMemory, ListEventRepository listEventRepository) {
         this.eventSimpleMemory = eventSimpleMemory;
         this.listEventRepository = listEventRepository;
-    }
-
-    public EventSimpleMemoryServiceClass(EventSimpleMemory eventSimpleMemory) {
-        this.eventSimpleMemory = eventSimpleMemory;
     }
 
     public void prepareSimpleEventsListFromRepository() {
