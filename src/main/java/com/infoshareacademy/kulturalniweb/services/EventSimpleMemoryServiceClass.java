@@ -27,9 +27,8 @@ public class EventSimpleMemoryServiceClass {
         for (int i = 0; i < listEventRepository.getEventsDB().size(); i++) {
             listOfEventSimple.add(getSingleEventSimpleFromList(i));
         }
-
         eventSimpleMemory.setListOfEventSimple(listOfEventSimple);
-        listOfEventSimple.clear();
+        //listOfEventSimple.clear();
     }
 
 
@@ -66,14 +65,33 @@ public class EventSimpleMemoryServiceClass {
 
     public List<EventSimple> getPartialListOfEventSimple(Integer numberOfEventsOnThePage) {
         List<EventSimple> listOfEventSimple = new ArrayList<>();
+        System.out.println("xxxx " + numberOfEventsOnThePage + "       " + eventSimpleMemory.getListOfEventSimple().size());
 
         for (int i = 0; i < numberOfEventsOnThePage; i++) {
+            System.out.println("eSM = " + eventSimpleMemory.getListOfEventSimple().size());
             listOfEventSimple.add(eventSimpleMemory.getListOfEventSimple().get(i));
         }
         return listOfEventSimple;
     }
 
+    public List<EventSimple> getListOfEventSimple() {
+        List<EventSimple> listOfEventSimple = new ArrayList<>();
 
+        for (int i = 0; i < listEventRepository.getEventsDB().size(); i++) {
+            listOfEventSimple.add(getSingleEventSimpleFromList(i));
+
+            System.out.println(i + " = " + getSingleEventSimpleFromList(i).getEventSimpleDescriptionShort());
+        }
+        System.out.println("newest= " + listOfEventSimple.size());
+        return listOfEventSimple;
+    }
+
+
+
+
+    public List<EventSimple> getListOfEventSimpleMemory() {
+        return listOfEventSimple;
+    }
 
 
 }

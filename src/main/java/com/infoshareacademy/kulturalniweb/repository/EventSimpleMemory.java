@@ -1,7 +1,6 @@
 package com.infoshareacademy.kulturalniweb.repository;
 
 import com.infoshareacademy.kulturalniweb.domainData.EventSimple;
-import com.infoshareacademy.kulturalniweb.services.RepositoryServiceClass;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

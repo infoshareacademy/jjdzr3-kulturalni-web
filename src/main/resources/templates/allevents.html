@@ -24,43 +24,55 @@
 
              <div class="col-md-3">
                 <form action="/eventFilterType">
-                    <select class="dropdown-fields dropdown-field-type" name="eventFilterType" onchange="this.form.submit()">
+<!--                    <select class="dropdown-fields dropdown-field-type" name="eventFilterType" onchange="this.form.submit()">
                         <option value="all" selected>Wszystkie rodzaje</option>
                         <option value="cinema">kino</option>
                         <option value="theatre">teatr</option>
                         <option value="concert">koncert</option>
                         <option value="other">inne</option>
-                    </select>
+                    </select>-->
                 </form>
             </div>
 
             <div class="col-md-3">
                 <form action="/eventFilterPlace">
-                    <select class="dropdown-fields dropdown-field-city" name="eventFilterPlace">
-                        <option value="all" selected>Wszystkie miejsca</option>
-                        <option value="Miniatura">Miniatura</option>
-                        <option value="Archipelag">Archipelag Kultury</option>
-                        <option value="other">inne</option>
+                    <select class="dropdown-fields dropdown-field-city" name="eventFilterPlace" onchange="this.form.submit()">
+                        <option value="all" selected th:if="${eventFilterPlace == 'all'}">Wszystkie miejsca</option>
+                        <option value="all" th:if="${eventFilterPlace != 'all'}">Wszystkie miejsca</option>
+                        <option value="Miejski Teatr MINIATURA" selected th:if="${eventFilterPlace == 'Miejski Teatr MINIATURA'}">Miejski Teatr MINIATURA</option>
+                        <option value="Miejski Teatr MINIATURA" th:if="${eventFilterPlace != 'Miejski Teatr MINIATURA'}">Miejski Teatr MINIATURA</option>
+                        <option value="Gdański Archipelag Kultury" selected th:if="${eventFilterPlace == 'Gdański Archipelag Kultury'}">Gdański Archipelag Kultury</option>
+                        <option value="Gdański Archipelag Kultury" th:if="${eventFilterPlace != 'Gdański Archipelag Kultury'}">Gdański Archipelag Kultury</option>
+                        <option value="other" selected th:if="${eventFilterPlace == 'other'}">inne</option>
+                        <option value="other" th:if="${eventFilterPlace != 'other'}">inne</option>
                     </select>
                 </form>
             </div>
 
             <div class="col-md-3">
                 <form action="/eventSortType">
-                    <select class="dropdown-fields dropdown-field-city" name="eventSortType">
-                        <option value="date" selected>Sortuj po dacie</option>
-                        <option value="city">Sortuj po miejscowości</option>
-                        <option value="name">Sortuj po tytule</option>
+                    <select class="dropdown-fields dropdown-field-city" name="eventSortType" onchange="this.form.submit()">
+                        <option value="date" selected th:if="${eventSortType == 'date'}">Sortuj po dacie</option>
+                        <option value="date" th:if="${eventSortType != 'date'}">Sortuj po dacie</option>
+                        <option value="city" selected th:if="${eventSortType == 'city'}">Sortuj po miejscowości</option>
+                        <option value="city" th:if="${eventSortType != 'city'}">Sortuj po miejscowości</option>
+                        <option value="name" selected th:if="${eventSortType == 'name'}">Sortuj po tytule</option>
+                        <option value="name" th:if="${eventSortType != 'name'}">Sortuj po tytule</option>
                     </select>
                 </form>
             </div>
 
             <div class="col-md-3">
-                <select class="dropdown-fields dropdown-field-direction" name="eventSortDirection">
-                    <option value="ascending">Sortuj rosnąco</option>
-                    <option value="descending" selected>Sortuj malejąco</option>
-                </select>
+                <form action="/eventSortDirection">
+                    <select class="dropdown-fields dropdown-field-direction" name="eventSortDirection" onchange="this.form.submit()">
+                        <option value="ascending" selected th:if="${eventSortDirection == 'ascending'}">Sortuj rosnąco</option>
+                        <option value="ascending" th:if="${eventSortDirection != 'ascending'}">Sortuj rosnąco</option>
+                        <option value="descending" selected th:if="${eventSortDirection == 'descending'}">Sortuj malejąco</option>
+                        <option value="descending" th:if="${eventSortDirection != 'descending'}">Sortuj malejąco</option>
+                    </select>
+                </form>
             </div>
+
         </div>
     </div>
 
@@ -78,12 +90,12 @@
             <div class="col-md-3">
                 <form action="/eventsPerPage">
                     <select class="dropdown-fields dropdown-field-quantity" name="eventsPerPage" onchange="this.form.submit()">
-                        <option value="20" selected th:if="${numberOfEventsperpage.equals(20)}">20 wyników</option>
-                        <option value="20" th:if="${not numberOfEventsperpage.equals(20)}">20 wyników</option>
-                        <option value="40" selected th:if="${numberOfEventsperpage.equals(40)}">40 wyników</option>
-                        <option value="40" th:if="${not numberOfEventsperpage.equals(40)}">40 wyników</option>
-                        <option value="60" selected th:if="${numberOfEventsperpage.equals(60)}">60 wyników</option>
-                        <option value="60" th:if="${not numberOfEventsperpage.equals(60)}">60 wyników</option>
+                        <option value="20" selected th:if="${numberOfEventsPerPage.equals(20)}">20 wyników</option>
+                        <option value="20" th:if="${not numberOfEventsPerPage.equals(20)}">20 wyników</option>
+                        <option value="40" selected th:if="${numberOfEventsPerPage.equals(40)}">40 wyników</option>
+                        <option value="40" th:if="${not numberOfEventsPerPage.equals(40)}">40 wyników</option>
+                        <option value="60" selected th:if="${numberOfEventsPerPage.equals(60)}">60 wyników</option>
+                        <option value="60" th:if="${not numberOfEventsPerPage.equals(60)}">60 wyników</option>
                     </select>
                 </form>
             </div>

@@ -151,4 +151,7 @@ public class EventSimple {
     public int hashCode() {
         return Objects.hash(eventSimpleId, eventSimpleName, eventSimpleDescription, eventSimpleDate, eventSimpleStartTime, eventSimpleEndTime, eventSimplePlace, eventSimpleTicketPrice, eventSimpleWebPageAddress, eventSimpleCity, eventSimpleDescriptionShort);
     }
+
+
+
 }
