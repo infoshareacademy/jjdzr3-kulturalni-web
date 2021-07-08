@@ -90,12 +90,12 @@
             <div class="col-md-3">
                 <form action="/eventsPerPage">
                     <select class="dropdown-fields dropdown-field-quantity" name="eventsPerPage" onchange="this.form.submit()">
-                        <option value="20" selected th:if="${numberOfEventsPerPage.equals(20)}">20 wyników</option>
-                        <option value="20" th:if="${not numberOfEventsPerPage.equals(20)}">20 wyników</option>
-                        <option value="40" selected th:if="${numberOfEventsPerPage.equals(40)}">40 wyników</option>
-                        <option value="40" th:if="${not numberOfEventsPerPage.equals(40)}">40 wyników</option>
-                        <option value="60" selected th:if="${numberOfEventsPerPage.equals(60)}">60 wyników</option>
-                        <option value="60" th:if="${not numberOfEventsPerPage.equals(60)}">60 wyników</option>
+                        <option value="10" selected th:if="${numberOfEventsPerPage.equals(10)}">10 wyników</option>
+                        <option value="20" th:if="${not numberOfEventsPerPage.equals(10)}">10 wyników</option>
+                        <option value="30" selected th:if="${numberOfEventsPerPage.equals(30)}">30 wyników</option>
+                        <option value="30" th:if="${not numberOfEventsPerPage.equals(30)}">30 wyników</option>
+                        <option value="50" selected th:if="${numberOfEventsPerPage.equals(50)}">50 wyników</option>
+                        <option value="50" th:if="${not numberOfEventsPerPage.equals(50)}">50 wyników</option>
                     </select>
                 </form>
             </div>
@@ -146,17 +146,17 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-12" style="margin-top: 30px">
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item" style="width: 100px"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                    <li class="page-item" style="width: 100px"><a class="page-link" href="#">Next</a></li>
+    <div class="container">
+        <div class="col-md-4" style="margin-top: 15px">
+            <nav aria-label="Page navigation example" th:if="${paginationDto.shouldBeDisplayed}">
+                <ul class="pagination align-items-center">
+                    <li class="page-item" style="width: 100px" th:if="${(paginationDto.totalNumberOfPages > 1) && (numberOfPageThatIsBeeingDisplayed > 1)}"><a class="page-link" href="#"  th:href="@{/alleventsChangePage(page=${-1})}">Previous</a></li>
+                    <li class="page-item" th:if="${paginationDto.totalNumberOfPages > 0}"><a class="page-link" href="#" th:href="@{/alleventsChangePage(page=${paginationDto.getFirstNavBarNumber()})}"><span th:text="${paginationDto.getFirstNavBarNumber()}"></span></a></li>
+                    <li class="page-item" th:if="${paginationDto.totalNumberOfPages > 1}"><a class="page-link" href="#" th:href="@{/alleventsChangePage(page=${paginationDto.getSecondNavBarNumber()})}"><span th:text="${paginationDto.getSecondNavBarNumber()}"></span></a></li>
+                    <li class="page-item" th:if="${paginationDto.totalNumberOfPages > 2}"><a class="page-link" href="#" th:href="@{/alleventsChangePage(page=${paginationDto.getThirdNavBarNumber()})}"><span th:text="${paginationDto.getThirdNavBarNumber()}"></span></a></li>
+                    <li class="page-item" th:if="${paginationDto.totalNumberOfPages > 3}"><a class="page-link" href="#" th:href="@{/alleventsChangePage(page=${paginationDto.getFourthNavBarNumber()})}"><span th:text="${paginationDto.getFourthNavBarNumber()}"></span></a></li>
+                    <li class="page-item" th:if="${paginationDto.totalNumberOfPages > 4}"><a class="page-link" href="#" th:href="@{/alleventsChangePage(page=${paginationDto.getFifthNavBarNumber()})}"><span th:text="${paginationDto.getFifthNavBarNumber()}"></span></a></li>
+                    <li class="page-item" style="width: 100px" th:if="${paginationDto.totalNumberOfPages > numberOfPageThatIsBeeingDisplayed}"><a class="page-link" href="#" th:href="@{/alleventsChangePage(page=${-2})}">Next</a></li>
                 </ul>
             </nav>
         </div>

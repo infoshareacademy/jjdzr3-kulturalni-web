@@ -1,22 +1,17 @@
 package com.infoshareacademy.kulturalniweb.controllers;
 
 import com.infoshareacademy.kulturalniweb.domainData.EventSimple;
-import com.infoshareacademy.kulturalniweb.repository.EventRepositoryInFile;
+import com.infoshareacademy.kulturalniweb.models.PaginationDto;
 import com.infoshareacademy.kulturalniweb.repository.EventSimpleMemory;
 import com.infoshareacademy.kulturalniweb.repository.ListEventRepository;
-import com.infoshareacademy.kulturalniweb.services.AppServiceClass;
-import com.infoshareacademy.kulturalniweb.services.EventSimpleMemoryServiceClass;
-import com.infoshareacademy.kulturalniweb.services.RepositoryServiceClass;
-import com.infoshareacademy.kulturalniweb.services.SortingServices;
+import com.infoshareacademy.kulturalniweb.services.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 public class AllEventsController {
@@ -26,85 +21,98 @@ public class AllEventsController {
     RepositoryServiceClass repositoryServiceClass;
     EventSimpleMemoryServiceClass eventSimpleMemoryServiceClass;
     SortingServices sortingServices;
+    PaginationServiceClass paginationServiceClass;
 
+    private Integer totalNumberOfEvents = 0;
     private Integer numberOfEventsOnThePage = 20;
+    private Integer numberOfPageThatIsBeeingDisplayed = 0;
+    private Integer requestedPageNumber = 0;
+    private Integer requestedPageChange = 0;
+    //private Integer maximumPageNumber = 0;
     private List<EventSimple> eventsToDisplay = new ArrayList<>();
-/*    private String eventFilterType = "all";
-    private String eventFilterPlace = "all";
-    private String eventSortType = "date";
-    private String eventSortDirection = "descending";*/
 
-   // private List<EventSimple> listOfEventSimple;
 
-    public AllEventsController(AppServiceClass appServiceClass, ListEventRepository listEventRepository, EventSimpleMemory eventSimpleMemory, RepositoryServiceClass repositoryServiceClass, EventSimpleMemoryServiceClass eventSimpleMemoryServiceClass, SortingServices sortingServices) {
+
+
+    public AllEventsController(AppServiceClass appServiceClass, ListEventRepository listEventRepository, EventSimpleMemory eventSimpleMemory, RepositoryServiceClass repositoryServiceClass, EventSimpleMemoryServiceClass eventSimpleMemoryServiceClass, SortingServices sortingServices, PaginationServiceClass paginationServiceClass) {
         this.appServiceClass = appServiceClass;
         this.listEventRepository = listEventRepository;
         this.eventSimpleMemory = eventSimpleMemory;
         this.repositoryServiceClass = repositoryServiceClass;
         this.eventSimpleMemoryServiceClass = eventSimpleMemoryServiceClass;
         this.sortingServices = sortingServices;
+        this.paginationServiceClass = paginationServiceClass;
     }
 
     @GetMapping("/alleventsindex")
     public String displayAllEventsFromIndex () {
-/*        numberOfEventsOnThePage = 20;
-        eventFilterType = "all";
-        eventFilterPlace = "all";
-        eventSortType = "date";
-        eventSortDirection = "descending";*/
-
+        sortingServices.setEventFilterType("all");
+        sortingServices.setEventFilterPlace("all");
+        sortingServices.setEventSortType("date");
+        sortingServices.setEventSortDirection("descending");
+        paginationServiceClass.setVirtualDisplayedPageNumber(1);
 
         repositoryServiceClass.readEventsFromGsonToList();
         eventSimpleMemoryServiceClass.clearMemory();
         eventSimpleMemoryServiceClass.prepareSimpleEventsListFromRepository();
         prepareEventsToDisplay();
 
+        numberOfEventsOnThePage = 10;
+        totalNumberOfEvents = eventsToDisplay.size();
+        numberOfPageThatIsBeeingDisplayed = 1;
+
+
+
         return "redirect:allevents";
     }
 
     @GetMapping("/allevents")
     public String allEvents (Model model) {
-        //List<EventSimple> listOfEventSimple = eventSimpleMemoryServiceClass.getPartialListOfEventSimple(numberOfEventsOnThePage);
-            //List<EventSimple> listOfEventSimple = eventSimpleMemory.getListOfEventSimple();
 
-        //List<EventSimple> result = listOfEventSimple.stream().filter((x) -> x.getEventSimplePlace().equals(sortingServices.getEventFilterPlace())).collect(Collectors.toList());
+        totalNumberOfEvents = eventsToDisplay.size();
 
-            //List<EventSimple> result = listOfEventSimple;
+        paginationServiceClass.setNumberOfEventsOnThePage(numberOfEventsOnThePage);
+        paginationServiceClass.setTotalNumberOfEvents(totalNumberOfEvents);
+        paginationServiceClass.setRequestedPageNumber(numberOfPageThatIsBeeingDisplayed);
+        paginationServiceClass.setRequestedPageChange(requestedPageChange);
 
-        model.addAttribute("listOfEventSimple", eventsToDisplay);
         model.addAttribute("numberOfEventsPerPage", numberOfEventsOnThePage);
         model.addAttribute("eventFilterPlace", sortingServices.getEventFilterPlace());
         model.addAttribute("eventSortType", sortingServices.getEventSortType());
         model.addAttribute("eventSortDirection", sortingServices.getEventSortDirection());
+
+        PaginationDto paginationDto = paginationServiceClass.getPaginationDto();
+
+        model.addAttribute("paginationDto", paginationDto);
+        model.addAttribute("numberOfPageThatIsBeeingDisplayed", numberOfPageThatIsBeeingDisplayed);
+
+        List<EventSimple> paginatedEventsToDisplay = selectEventsForEachPage();
+
+        //model.addAttribute("listOfEventSimple", eventsToDisplay);
+        model.addAttribute("listOfEventSimple", paginatedEventsToDisplay);
+        log();
         return "allevents";
     }
 
     @GetMapping("/eventsPerPage")
     public String changeNumberOfEventsPerPage (@RequestParam("eventsPerPage") Integer eventsPerPage) {
 
-        if (eventsPerPage == 20) {
-            numberOfEventsOnThePage = 20;
-        } else if (eventsPerPage == 40) {
-            numberOfEventsOnThePage = 40;
-        } else if (eventsPerPage == 60) {
-            numberOfEventsOnThePage = 60;
+        if (eventsPerPage == 10) {
+            numberOfEventsOnThePage = 10;
+        } else if (eventsPerPage == 30) {
+            numberOfEventsOnThePage = 30;
+        } else if (eventsPerPage == 50) {
+            numberOfEventsOnThePage = 50;
         }
 
         return "redirect:allevents";
     }
 
-
-/*    @GetMapping("/eventFilterType")
-    public String changeEventType (@RequestParam("eventFilterType") String eventFilterType) {
-        sortingServices.setEventFilterType(eventFilterType);
-        //sortingServices.filterByType();
-        return "redirect:allevents";
-    }*/
-
     @GetMapping("/eventFilterPlace")
     public String changeEventPlace (@RequestParam("eventFilterPlace") String eventFilterPlace) {
         sortingServices.setEventFilterPlace(eventFilterPlace);
         eventsToDisplay = sortingServices.filterByPlace();
+        paginationServiceClass.setRequestedPageNumber(numberOfPageThatIsBeeingDisplayed);
         return "redirect:allevents";
     }
 
@@ -122,12 +130,66 @@ public class AllEventsController {
         return "redirect:allevents";
     }
 
+    @GetMapping("/alleventsChangePage")
+    public String changeNumberOfPageBeeingDisplayed(@RequestParam("page") Integer requestedPageNumber) {
+
+
+        if (requestedPageNumber == -1) {
+            numberOfPageThatIsBeeingDisplayed = numberOfPageThatIsBeeingDisplayed - 1;
+            requestedPageChange = -1;
+        } else if (requestedPageNumber == -2) {
+            numberOfPageThatIsBeeingDisplayed = numberOfPageThatIsBeeingDisplayed + 1;
+            requestedPageChange = -2;
+        } else {
+            numberOfPageThatIsBeeingDisplayed = requestedPageNumber;
+            requestedPageChange = 0;
+        }
+        System.out.println("Req Page number: " + requestedPageNumber + "    newpagenum: " + numberOfPageThatIsBeeingDisplayed);
+        return "redirect:allevents";
+    }
+
+
+
     public void prepareEventsToDisplay() {
         List<EventSimple> listOfEventSimpleMemory = eventSimpleMemoryServiceClass.getListOfEventSimpleMemory();
         for (int i = 0; i < listOfEventSimpleMemory.size(); i++) {
             eventsToDisplay.add(listOfEventSimpleMemory.get(i));
         }
     }
+
+    private List<EventSimple> selectEventsForEachPage() {
+        List<EventSimple> list = new ArrayList<>();
+
+        if (numberOfPageThatIsBeeingDisplayed < paginationServiceClass.getTotalNumberOfPages()) {
+            Integer startIndex = (numberOfPageThatIsBeeingDisplayed - 1) * numberOfEventsOnThePage;
+            Integer endIndex = startIndex + numberOfEventsOnThePage;
+
+            System.out.println("start: " + startIndex + "   end: " + endIndex + "   number: " + numberOfEventsOnThePage);
+
+
+            for (int i = startIndex; i < endIndex; i++) {
+                list.add(eventsToDisplay.get(i));
+            }
+        } else {
+            Integer startIndex = (numberOfPageThatIsBeeingDisplayed - 1) * numberOfEventsOnThePage;
+            Integer endIndex = eventsToDisplay.size();
+
+            System.out.println("start: " + startIndex + "   end: " + endIndex + "   number: " + numberOfEventsOnThePage);
+
+
+            for (int i = startIndex; i < endIndex; i++) {
+                list.add(eventsToDisplay.get(i));
+            }
+        }
+
+        return list;
+    }
+
+
+    public void log() {
+        System.out.println("total liczba wydarzeń: " + totalNumberOfEvents + "  Wydarz na strone: " + numberOfEventsOnThePage + "   Numer wysw strony: " + numberOfPageThatIsBeeingDisplayed + "   Liczba stron: " + paginationServiceClass.getTotalNumberOfPages() + "   eventsToDisplay.size()=" + eventsToDisplay.size());
+    }
+
 
 
 
