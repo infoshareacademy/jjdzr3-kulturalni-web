@@ -15,7 +15,7 @@ public class EventSimpleMemoryServiceClass {
     EventSimpleMemory eventSimpleMemory;
     ListEventRepository listEventRepository;
 
-    List<EventSimple> listOfEventSimple = new ArrayList<>();
+
 
     public EventSimpleMemoryServiceClass(EventSimpleMemory eventSimpleMemory, ListEventRepository listEventRepository) {
         this.eventSimpleMemory = eventSimpleMemory;
@@ -23,12 +23,12 @@ public class EventSimpleMemoryServiceClass {
     }
 
     public void prepareSimpleEventsListFromRepository() {
+        List<EventSimple> listOfEventSimple = new ArrayList<>();
 
         for (int i = 0; i < listEventRepository.getEventsDB().size(); i++) {
             listOfEventSimple.add(getSingleEventSimpleFromList(i));
         }
         eventSimpleMemory.setListOfEventSimple(listOfEventSimple);
-        //listOfEventSimple.clear();
     }
 
 
@@ -56,12 +56,8 @@ public class EventSimpleMemoryServiceClass {
     }
 
     public void clearMemory() {
-        eventSimpleMemory.getListOfEventSimple().clear();
+        eventSimpleMemory.clear();
     }
-
-/*    public List<EventSimple> getSimpleEventsList(int numberOfEventsOnThePage) {
-        return repositoryServiceClass.getListOfEventSimple(numberOfEventsOnThePage);
-    }*/
 
     public List<EventSimple> getPartialListOfEventSimple(Integer numberOfEventsOnThePage) {
         List<EventSimple> listOfEventSimple = new ArrayList<>();
@@ -72,20 +68,20 @@ public class EventSimpleMemoryServiceClass {
         return listOfEventSimple;
     }
 
-    public List<EventSimple> getListOfEventSimple() {
-        List<EventSimple> listOfEventSimple = new ArrayList<>();
+                        public List<EventSimple> getListOfEventSimple() {
+                            List<EventSimple> listOfEventSimple = new ArrayList<>();
 
-        for (int i = 0; i < listEventRepository.getEventsDB().size(); i++) {
-            listOfEventSimple.add(getSingleEventSimpleFromList(i));
-        }
-        return listOfEventSimple;
-    }
-
-
+                            for (int i = 0; i < listEventRepository.getEventsDB().size(); i++) {
+                                listOfEventSimple.add(getSingleEventSimpleFromList(i));
+                            }
+                            return listOfEventSimple;
+                        }
 
 
-    public List<EventSimple> getListOfEventSimpleMemory() {
-        return listOfEventSimple;
+
+
+    public List<EventSimple> getListOfEventSimpleFromMemory() {
+        return eventSimpleMemory.getListOfEventSimple();
     }
 
 

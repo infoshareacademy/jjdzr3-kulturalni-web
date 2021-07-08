@@ -37,19 +37,6 @@ public class ListEventRepository {
         eventsDB.clear();
     }
 
-/*    public EventSimple getSingleEventSimple(Integer id) {
-        EventSimple eventSimple = new EventSimple();
-
-        for (int i=0; i < eventsDB.size(); i++){
-            if(eventsDB.get(i).getId().equals(id)) {
-                eventSimple = createSingleEventSimple(eventsDB.get(i));
-            }
-        }
-        return eventSimple;
-    }*/
-
-
-
 
     public List<EventNew> getEventsDB() {
         return eventsDB;

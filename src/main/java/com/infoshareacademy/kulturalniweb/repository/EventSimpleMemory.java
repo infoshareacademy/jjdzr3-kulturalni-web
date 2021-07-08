@@ -15,6 +15,10 @@ public class EventSimpleMemory {
         this.listEventRepository = listEventRepository;
     }
 
+    public void clear() {
+        listOfEventSimple.clear();
+    }
+
     public List<EventSimple> getListOfEventSimple() {
         return listOfEventSimple;
     }
@@ -24,15 +28,3 @@ public class EventSimpleMemory {
     }
 }
 
-/*
-    public void prepareSimpleEventsListFromRepository() {
-        List<EventSimple> listOfEventSimple = new ArrayList<>();
-
-        for (int i = 0; i < listEventRepository.getEventsDB().size(); i++) {
-            listOfEventSimple.add(getSingleEventSimpleFromList(i));
-
-            System.out.println(i + " = " + getSingleEventSimpleFromList(i).getEventSimpleDescriptionShort());
-        }
-        System.out.println("newest= " + listOfEventSimple.size());
-        return listOfEventSimple;
-    }*/

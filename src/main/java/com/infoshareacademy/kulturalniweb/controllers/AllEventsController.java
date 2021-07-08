@@ -52,24 +52,29 @@ public class AllEventsController {
         sortingServices.setEventSortDirection("descending");
         paginationServiceClass.setVirtualDisplayedPageNumber(1);
 
-        repositoryServiceClass.readEventsFromGsonToList();
+/*        repositoryServiceClass.readEventsFromGsonToList();
         eventSimpleMemoryServiceClass.clearMemory();
-        eventSimpleMemoryServiceClass.prepareSimpleEventsListFromRepository();
-        prepareEventsToDisplay();
+        eventSimpleMemoryServiceClass.prepareSimpleEventsListFromRepository();*/
+        //prepareEventsToDisplay();
 
         numberOfEventsOnThePage = 10;
         totalNumberOfEvents = eventsToDisplay.size();
         numberOfPageThatIsBeeingDisplayed = 1;
-
-
 
         return "redirect:allevents";
     }
 
     @GetMapping("/allevents")
     public String allEvents (Model model) {
+        repositoryServiceClass.readEventsFromGsonToList();
+        eventSimpleMemoryServiceClass.clearMemory();
+        eventSimpleMemoryServiceClass.prepareSimpleEventsListFromRepository();
+        //System.out.println("rozmiar: " + eventSimpleMemory.getListOfEventSimple().size());
 
-        totalNumberOfEvents = eventsToDisplay.size();
+        sortingServices.sort();
+        sortingServices.filterByPlace();
+
+        totalNumberOfEvents = eventSimpleMemory.getListOfEventSimple().size();
 
         paginationServiceClass.setNumberOfEventsOnThePage(numberOfEventsOnThePage);
         paginationServiceClass.setTotalNumberOfEvents(totalNumberOfEvents);
@@ -88,7 +93,10 @@ public class AllEventsController {
 
         List<EventSimple> paginatedEventsToDisplay = selectEventsForEachPage();
 
-        //model.addAttribute("listOfEventSimple", eventsToDisplay);
+
+
+        System.out.println("Pagin: " + paginatedEventsToDisplay.size() + "     Filter: " + sortingServices.getEventFilterPlace());
+
         model.addAttribute("listOfEventSimple", paginatedEventsToDisplay);
         log();
         return "allevents";
@@ -111,22 +119,18 @@ public class AllEventsController {
     @GetMapping("/eventFilterPlace")
     public String changeEventPlace (@RequestParam("eventFilterPlace") String eventFilterPlace) {
         sortingServices.setEventFilterPlace(eventFilterPlace);
-        eventsToDisplay = sortingServices.filterByPlace();
-        paginationServiceClass.setRequestedPageNumber(numberOfPageThatIsBeeingDisplayed);
         return "redirect:allevents";
     }
 
     @GetMapping("/eventSortType")
     public String changeEventSortType (@RequestParam("eventSortType") String eventSortType) {
         sortingServices.setEventSortType(eventSortType);
-        eventsToDisplay = sortingServices.sortByType();
         return "redirect:allevents";
     }
 
     @GetMapping("/eventSortDirection")
     public String changeEventSortDirection (@RequestParam("eventSortDirection") String eventSortDirection) {
         sortingServices.setEventSortDirection(eventSortDirection);
-        eventsToDisplay = sortingServices.sortByType();
         return "redirect:allevents";
     }
 
@@ -150,39 +154,40 @@ public class AllEventsController {
 
 
 
-    public void prepareEventsToDisplay() {
+/*    public void prepareEventsToDisplay() {
         List<EventSimple> listOfEventSimpleMemory = eventSimpleMemoryServiceClass.getListOfEventSimpleMemory();
         for (int i = 0; i < listOfEventSimpleMemory.size(); i++) {
             eventsToDisplay.add(listOfEventSimpleMemory.get(i));
         }
-    }
+    }*/
 
     private List<EventSimple> selectEventsForEachPage() {
-        List<EventSimple> list = new ArrayList<>();
+        List<EventSimple> eventSimpleMemoryList = eventSimpleMemoryServiceClass.getListOfEventSimpleFromMemory();
+        List<EventSimple> result = new ArrayList<>();
 
         if (numberOfPageThatIsBeeingDisplayed < paginationServiceClass.getTotalNumberOfPages()) {
             Integer startIndex = (numberOfPageThatIsBeeingDisplayed - 1) * numberOfEventsOnThePage;
-            Integer endIndex = startIndex + numberOfEventsOnThePage;
+            Integer endIndex = (startIndex + (numberOfEventsOnThePage -1));
 
             System.out.println("start: " + startIndex + "   end: " + endIndex + "   number: " + numberOfEventsOnThePage);
 
 
-            for (int i = startIndex; i < endIndex; i++) {
-                list.add(eventsToDisplay.get(i));
+            for (int i = startIndex; i <= endIndex; i++) {
+                result.add(eventSimpleMemoryList.get(i));
             }
         } else {
             Integer startIndex = (numberOfPageThatIsBeeingDisplayed - 1) * numberOfEventsOnThePage;
-            Integer endIndex = eventsToDisplay.size();
+            Integer endIndex = eventSimpleMemoryList.size();
 
             System.out.println("start: " + startIndex + "   end: " + endIndex + "   number: " + numberOfEventsOnThePage);
 
 
             for (int i = startIndex; i < endIndex; i++) {
-                list.add(eventsToDisplay.get(i));
+                result.add(eventSimpleMemoryList.get(i));
             }
         }
 
-        return list;
+        return result;
     }
 
 

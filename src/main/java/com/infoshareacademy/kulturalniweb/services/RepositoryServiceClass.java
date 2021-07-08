@@ -22,6 +22,8 @@ public class RepositoryServiceClass {
         listEventRepository.readEventsFromGsonToList();
     }
 
+
+
 /*    public EventSimple getSingleEventSimpleById(Integer eventNewId) {
         EventSimple eventSimple = new EventSimple();
 

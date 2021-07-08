@@ -59,7 +59,7 @@ public class SortingServices {
     }
 
 
-    public void updateSortDirection() {
+    public void sort() {
         List<EventSimple> listOfEventSimple = eventSimpleMemory.getListOfEventSimple();
         Comparator<EventSimple> comparator;
 
@@ -87,25 +87,25 @@ public class SortingServices {
             Collections.sort(listOfEventSimple, comparator.reversed());
         }
         eventSimpleMemory.setListOfEventSimple(listOfEventSimple);
-
-
     }
 
-    public List<EventSimple> filterByPlace() {
-        List<EventSimple> eventsToDisplay = new ArrayList<>();
-        List<EventSimple> events = eventSimpleMemoryServiceClass.getListOfEventSimpleMemory();
+    public void filterByPlace() {
+        List<EventSimple> listOfEventSimple = eventSimpleMemory.getListOfEventSimple();
+        List<EventSimple> result = new ArrayList<>();
 
         if (eventFilterPlace.equals("all")) {
-            return events;
+            eventSimpleMemory.setListOfEventSimple(listOfEventSimple);
         } else if (eventFilterPlace.equals("Miejski Teatr MINIATURA")) {
-            eventsToDisplay = events.stream().filter((x) -> x.getEventSimplePlace().equals(getEventFilterPlace())).collect(Collectors.toList());
-            return eventsToDisplay;
+            result = listOfEventSimple.stream().filter((x) -> x.getEventSimplePlace().equals(eventFilterPlace)).collect(Collectors.toList());
+            eventSimpleMemory.setListOfEventSimple(result);
         } else if (eventFilterPlace.equals("Gdański Archipelag Kultury")) {
-            eventsToDisplay = events.stream().filter((x) -> x.getEventSimplePlace().equals(getEventFilterPlace())).collect(Collectors.toList());
-            return eventsToDisplay;
+            result = listOfEventSimple.stream().filter((x) -> x.getEventSimplePlace().equals(eventFilterPlace)).collect(Collectors.toList());
+            eventSimpleMemory.setListOfEventSimple(result);
         } else {
-            return events;
+            eventSimpleMemory.setListOfEventSimple(listOfEventSimple);
         }
+
+        System.out.println("result: " + result.size());
     }
 
 

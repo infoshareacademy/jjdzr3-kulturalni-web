@@ -13,7 +13,7 @@ public class PaginationServiceClass {
     private Integer numberOfEventsOnThePage;
     private Integer requestedPageNumber;
     private Integer requestedPageChange;
-    private Integer virtualDisplayedPageNumber = 0;
+    private Integer virtualDisplayedPageNumber = 1;
     private Integer totalNumberOfPages;
 
 
@@ -25,6 +25,7 @@ public class PaginationServiceClass {
         paginationDto.setTotalNumberOfPages(totalNumberOfPages);
 
         List<Integer> navBarPositions = calculateNavBarMiddleLinks();
+
         paginationDto.setFirstNavBarNumber(navBarPositions.get(0));
         paginationDto.setSecondNavBarNumber(navBarPositions.get(1));
         paginationDto.setThirdNavBarNumber(navBarPositions.get(2));
@@ -53,8 +54,8 @@ public class PaginationServiceClass {
         updateVirtualDisplayedPageNumber();
 
         List<Integer> navBarPositions = new ArrayList<>();
-        System.out.println("totnumofpg: " + totalNumberOfPages);
-        if ((totalNumberOfPages > 5) && (virtualDisplayedPageNumber > 5)) {
+        System.out.println("totnumofpg: " + totalNumberOfPages + "    req page nmbr: " + requestedPageNumber);
+        if ((totalNumberOfPages > 5) && (requestedPageNumber > 5)) {
             navBarPositions.add(virtualDisplayedPageNumber - 4);
             navBarPositions.add(virtualDisplayedPageNumber - 3 );
             navBarPositions.add(virtualDisplayedPageNumber - 2);
