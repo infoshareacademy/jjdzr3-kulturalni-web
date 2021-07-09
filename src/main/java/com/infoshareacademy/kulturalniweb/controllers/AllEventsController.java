@@ -28,10 +28,7 @@ public class AllEventsController {
     private Integer numberOfPageThatIsBeeingDisplayed = 0;
     private Integer requestedPageNumber = 0;
     private Integer requestedPageChange = 0;
-    //private Integer maximumPageNumber = 0;
     private List<EventSimple> eventsToDisplay = new ArrayList<>();
-
-
 
 
     public AllEventsController(AppServiceClass appServiceClass, ListEventRepository listEventRepository, EventSimpleMemory eventSimpleMemory, RepositoryServiceClass repositoryServiceClass, EventSimpleMemoryServiceClass eventSimpleMemoryServiceClass, SortingServices sortingServices, PaginationServiceClass paginationServiceClass) {
@@ -52,11 +49,6 @@ public class AllEventsController {
         sortingServices.setEventSortDirection("descending");
         paginationServiceClass.setVirtualDisplayedPageNumber(1);
 
-/*        repositoryServiceClass.readEventsFromGsonToList();
-        eventSimpleMemoryServiceClass.clearMemory();
-        eventSimpleMemoryServiceClass.prepareSimpleEventsListFromRepository();*/
-        //prepareEventsToDisplay();
-
         numberOfEventsOnThePage = 10;
         totalNumberOfEvents = eventsToDisplay.size();
         numberOfPageThatIsBeeingDisplayed = 1;
@@ -69,9 +61,8 @@ public class AllEventsController {
         repositoryServiceClass.readEventsFromGsonToList();
         eventSimpleMemoryServiceClass.clearMemory();
         eventSimpleMemoryServiceClass.prepareSimpleEventsListFromRepository();
-        //System.out.println("rozmiar: " + eventSimpleMemory.getListOfEventSimple().size());
 
-        sortingServices.sort();
+        sortingServices.sortBySelectedCriteria();
         sortingServices.filterByPlace();
 
         totalNumberOfEvents = eventSimpleMemory.getListOfEventSimple().size();
@@ -93,12 +84,8 @@ public class AllEventsController {
 
         List<EventSimple> paginatedEventsToDisplay = selectEventsForEachPage();
 
-
-
-        System.out.println("Pagin: " + paginatedEventsToDisplay.size() + "     Filter: " + sortingServices.getEventFilterPlace());
-
         model.addAttribute("listOfEventSimple", paginatedEventsToDisplay);
-        log();
+ //       log();
         return "allevents";
     }
 
@@ -152,15 +139,6 @@ public class AllEventsController {
         return "redirect:allevents";
     }
 
-
-
-/*    public void prepareEventsToDisplay() {
-        List<EventSimple> listOfEventSimpleMemory = eventSimpleMemoryServiceClass.getListOfEventSimpleMemory();
-        for (int i = 0; i < listOfEventSimpleMemory.size(); i++) {
-            eventsToDisplay.add(listOfEventSimpleMemory.get(i));
-        }
-    }*/
-
     private List<EventSimple> selectEventsForEachPage() {
         List<EventSimple> eventSimpleMemoryList = eventSimpleMemoryServiceClass.getListOfEventSimpleFromMemory();
         List<EventSimple> result = new ArrayList<>();
@@ -169,18 +147,12 @@ public class AllEventsController {
             Integer startIndex = (numberOfPageThatIsBeeingDisplayed - 1) * numberOfEventsOnThePage;
             Integer endIndex = (startIndex + (numberOfEventsOnThePage -1));
 
-            System.out.println("start: " + startIndex + "   end: " + endIndex + "   number: " + numberOfEventsOnThePage);
-
-
             for (int i = startIndex; i <= endIndex; i++) {
                 result.add(eventSimpleMemoryList.get(i));
             }
         } else {
             Integer startIndex = (numberOfPageThatIsBeeingDisplayed - 1) * numberOfEventsOnThePage;
             Integer endIndex = eventSimpleMemoryList.size();
-
-            System.out.println("start: " + startIndex + "   end: " + endIndex + "   number: " + numberOfEventsOnThePage);
-
 
             for (int i = startIndex; i < endIndex; i++) {
                 result.add(eventSimpleMemoryList.get(i));
@@ -190,12 +162,7 @@ public class AllEventsController {
         return result;
     }
 
-
     public void log() {
         System.out.println("total liczba wydarzeń: " + totalNumberOfEvents + "  Wydarz na strone: " + numberOfEventsOnThePage + "   Numer wysw strony: " + numberOfPageThatIsBeeingDisplayed + "   Liczba stron: " + paginationServiceClass.getTotalNumberOfPages() + "   eventsToDisplay.size()=" + eventsToDisplay.size());
     }
-
-
-
-
 }

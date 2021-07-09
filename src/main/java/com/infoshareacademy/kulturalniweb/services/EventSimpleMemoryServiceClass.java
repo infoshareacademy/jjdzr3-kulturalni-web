@@ -15,8 +15,6 @@ public class EventSimpleMemoryServiceClass {
     EventSimpleMemory eventSimpleMemory;
     ListEventRepository listEventRepository;
 
-
-
     public EventSimpleMemoryServiceClass(EventSimpleMemory eventSimpleMemory, ListEventRepository listEventRepository) {
         this.eventSimpleMemory = eventSimpleMemory;
         this.listEventRepository = listEventRepository;
@@ -30,7 +28,6 @@ public class EventSimpleMemoryServiceClass {
         }
         eventSimpleMemory.setListOfEventSimple(listOfEventSimple);
     }
-
 
     public EventSimple getSingleEventSimpleFromList(Integer pointer) {
         return createSingleEventSimple(listEventRepository.getEventsDB().get(pointer));
@@ -52,6 +49,7 @@ public class EventSimpleMemoryServiceClass {
         eventSimple.setEventSimpleTicketPrice(0.0);
         eventSimple.setEventSimpleWebPageAddress(eventNew.getUrls().getWww());
         eventSimple.setEventSimpleDescriptionShort(eventNew.getDescShort());
+        eventSimple.setEventSimplePicture(eventNew.getPlace().getSubname());
         return eventSimple;
     }
 
@@ -83,6 +81,4 @@ public class EventSimpleMemoryServiceClass {
     public List<EventSimple> getListOfEventSimpleFromMemory() {
         return eventSimpleMemory.getListOfEventSimple();
     }
-
-
 }

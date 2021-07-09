@@ -3,6 +3,7 @@ package com.infoshareacademy.kulturalniweb.repository;
 import com.google.gson.Gson;
 import com.infoshareacademy.kulturalniweb.domainData.EventNew;
 import com.infoshareacademy.kulturalniweb.domainData.EventSimple;
+import com.infoshareacademy.kulturalniweb.services.PictureService;
 import org.springframework.stereotype.Component;
 
 import java.io.FileReader;
@@ -14,8 +15,14 @@ import java.util.List;
 
 @Component
 public class ListEventRepository {
+    PictureService pictureService;
+
     private List<EventNew> eventsDB = new ArrayList<>();
     private Path path = Paths.get("src", "main", "resources", "data.json");
+
+    public ListEventRepository(PictureService pictureService) {
+        this.pictureService = pictureService;
+    }
 
     public void readEventsFromGsonToList() {
         clearList();
@@ -27,6 +34,9 @@ public class ListEventRepository {
             for (EventNew eventNew : eventList) {
                 eventsDB.add(eventNew);
             }
+
+            addPictures();
+
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Błąd odczytu pliku .json.");
@@ -35,6 +45,12 @@ public class ListEventRepository {
 
     public void clearList() {
         eventsDB.clear();
+    }
+
+    public void addPictures() {
+        for (int i = 0; i < eventsDB.size(); i++) {
+            eventsDB.get(i).getPlace().setSubname(pictureService.getPictureFilename());
+        }
     }
 
 

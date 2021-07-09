@@ -5,10 +5,8 @@ import com.infoshareacademy.kulturalniweb.repository.EventSimpleMemory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -59,7 +57,7 @@ public class SortingServices {
     }
 
 
-    public void sort() {
+    public void sortBySelectedCriteria() {
         List<EventSimple> listOfEventSimple = eventSimpleMemory.getListOfEventSimple();
         Comparator<EventSimple> comparator;
 
@@ -104,9 +102,47 @@ public class SortingServices {
         } else {
             eventSimpleMemory.setListOfEventSimple(listOfEventSimple);
         }
-
-        System.out.println("result: " + result.size());
     }
+
+    public List<EventSimple> sortByIdDescending () {
+        List<EventSimple> listOfEventSimple = eventSimpleMemory.getListOfEventSimple();
+
+        Comparator<EventSimple> comparator;
+        comparator = (e1, e2) -> e1.getEventSimpleId() - e2.getEventSimpleId();
+        Collections.sort(listOfEventSimple, comparator.reversed());
+
+        return listOfEventSimple;
+    }
+
+    public List<EventSimple> createListOfClosestEvents() {
+        List<EventSimple> listOfEventSimple = eventSimpleMemory.getListOfEventSimple();
+
+        Comparator<EventSimple> comparator;
+        comparator = (e1, e2) -> e1.getEventSimpleDate().compareToIgnoreCase(e2.getEventSimpleDate());
+        Collections.sort(listOfEventSimple, comparator.reversed());
+
+        String todaysDate = "2021-03-29";
+        LocalDate todaysDatelocalDate = LocalDate.parse(todaysDate);
+        List<EventSimple> result = new ArrayList<>();
+
+        for (int i = 0; i < listOfEventSimple.size(); i++) {
+            String date = listOfEventSimple.get(i).getEventSimpleDate();
+            LocalDate eventSimpleLocalDate = LocalDate.parse(date);
+
+            if (eventSimpleLocalDate.isAfter(todaysDatelocalDate.minusDays(1))) {
+                result.add(listOfEventSimple.get(i));
+            }
+        }
+
+        List<EventSimple> resultShortList = new ArrayList<>();
+        resultShortList.add(result.get(result.size() - 1));
+        resultShortList.add(result.get(result.size() - 2));
+        resultShortList.add(result.get(result.size() - 3));
+
+        System.out.println(resultShortList.size());
+        return resultShortList;
+    }
+
 
 
 

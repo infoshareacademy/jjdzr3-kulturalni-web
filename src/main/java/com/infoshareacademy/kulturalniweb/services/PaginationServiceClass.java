@@ -54,7 +54,7 @@ public class PaginationServiceClass {
         updateVirtualDisplayedPageNumber();
 
         List<Integer> navBarPositions = new ArrayList<>();
-        System.out.println("totnumofpg: " + totalNumberOfPages + "    req page nmbr: " + requestedPageNumber);
+
         if ((totalNumberOfPages > 5) && (requestedPageNumber > 5)) {
             navBarPositions.add(virtualDisplayedPageNumber - 4);
             navBarPositions.add(virtualDisplayedPageNumber - 3 );

@@ -14,8 +14,9 @@ public class EventSimple {
     private String eventSimpleWebPageAddress;
     private String eventSimpleCity;
     private String eventSimpleDescriptionShort;
+    private String eventSimplePicture;
 
-    public EventSimple(Integer eventSimpleId, String eventSimpleName, String eventSimpleDescription, String eventSimpleDate, String eventSimpleStartTime, String eventSimpleEndTime, String eventSimplePlace, Double eventSimpleTicketPrice, String eventSimpleWebPageAddress, String eventSimpleDescriptionShort) {
+    public EventSimple(Integer eventSimpleId, String eventSimpleName, String eventSimpleDescription, String eventSimpleDate, String eventSimpleStartTime, String eventSimpleEndTime, String eventSimplePlace, Double eventSimpleTicketPrice, String eventSimpleWebPageAddress, String eventSimpleDescriptionShort, String eventSimplePicture) {
         this.eventSimpleId = eventSimpleId;
         this.eventSimpleName = eventSimpleName;
         this.eventSimpleDescription = eventSimpleDescription;
@@ -27,11 +28,8 @@ public class EventSimple {
         this.eventSimpleWebPageAddress = eventSimpleWebPageAddress;
         this.eventSimpleCity = "Gdańsk";
         this.eventSimpleDescriptionShort = eventSimpleDescriptionShort;
+        this.eventSimplePicture = eventSimplePicture;
     }
-
-
-
-
 
     public EventSimple() {
         this.eventSimpleId = 0;
@@ -45,6 +43,7 @@ public class EventSimple {
         this.eventSimpleWebPageAddress = "";
         this.eventSimpleCity = "Gdańsk";
         this.eventSimpleDescriptionShort = "";
+        this.eventSimplePicture = "";
     }
 
     public Integer getEventSimpleId() {
@@ -137,6 +136,14 @@ public class EventSimple {
 
     public void setEventSimpleDescriptionShort(String eventSimpleDescriptionShort) {
         this.eventSimpleDescriptionShort = eventSimpleDescriptionShort;
+    }
+
+    public String getEventSimplePicture() {
+        return eventSimplePicture;
+    }
+
+    public void setEventSimplePicture(String eventSimplePicture) {
+        this.eventSimplePicture = eventSimplePicture;
     }
 
     @Override
