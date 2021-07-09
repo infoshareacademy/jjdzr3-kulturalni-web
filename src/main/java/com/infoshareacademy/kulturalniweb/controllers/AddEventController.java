@@ -48,14 +48,25 @@ public class AddEventController {
         if (result.hasFieldErrors()) {
             return "addeventform";
         } else {
-            addEventService.saveEventSimpleToMemory(eventSimple);
+            EventSimple eventSimpleWithFullPicturePath = createEventSimpleWithFullPathForPicture(eventSimple);
+            addEventService.saveEventSimpleToMemory(eventSimpleWithFullPicturePath);
+            model.addAttribute("savedEventSimple", eventSimpleWithFullPicturePath);
 
-
-            return "redirect:login";
+            return "redirect:eventsaved";
         }
     }
 
 
+    public EventSimple createEventSimpleWithFullPathForPicture(EventSimple eventSimple) {
+        String path = PATH_TO_PICTURES;
+        EventSimple result = eventSimple;
+
+        String pictureName = result.getEventSimplePicture();
+        path = path + pictureName;
+        result.setEventSimplePicture(path);
+
+        return result;
+    }
 
 
 }

@@ -43,24 +43,24 @@
 
   </div>
 
-  <div class="container">
-      <div class="row event-description" style="background-color: white">
+  <div class="container" th:object="${savedEventSimple}">
+<!--      <div class="row event-description" style="background-color: white">
         <div class="col-md-3">
           <p class="event-left-description" >Id wydarzenia</p>
         </div>
         <div class="col-md-9">
           <p class="event-right-description" th:text="${eventSimple.getNewEventID()}">77896</p>
         </div>
-      </div>
+      </div>-->
       <div class="row event-description" style="background-color: white">
         <div class="col-md-3">
           <p class="event-left-description" >Nazwa wydarzenia</p>
         </div>
         <div class="col-md-9">
-          <p class="event-right-description" th:text="${newEventDto.getNewEventName()}"></p>
+          <p class="event-right-description" th:text="${ev}"></p>
         </div>
       </div>
-      <div class="row event-description" style="background-color: white">
+ <!--     <div class="row event-description" style="background-color: white">
         <div class="col-md-3">
           <p class="event-left-description">Opis</p>
         </div>
@@ -131,7 +131,7 @@
         <div class="col-md-9">
           <p class="event-right-description" th:text="${newEventDto.getNewEventPicture()}"></p>
         </div>
-      </div>
+      </div>-->
   </div>
 
 
