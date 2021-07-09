@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class AddEventController {
 
-    @GetMapping
+    @GetMapping("/addEvent")
     public String addEvent(Model model) {
         return "addeventform";
     }

@@ -41,6 +41,18 @@
                 <li class="nav-item"><a class="nav-link" href="/favourites" th:text="#{menu.favourites}"></a></li>
                 <li class="nav-item"><a class="nav-link" href="#about" th:text="#{menu.about}"></a></li>
                 <li class="nav-item"><a class="nav-link" href="/login" th:text="#{menu.login}"></a></li>
+                <!--<li class="nav-item"><a class="nav-link" href="/addEvent" th:text="#{menu.administrationPanel}"></a></li>-->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                       th:text="#{menu.administrationPanel}"
+                       role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    </a>
+                    <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item text-color-#ffc800" th:href="@{/(menu.administrationPanel)}"></a></li>
+                        <li class="nav-item"><a class="nav-link" href="/addEvent" th:text="#{menu.addEvent}"></a></li>
+                        <li class="nav-item"><a class="nav-link" href="/editEvent" th:text="#{menu.editEvent}"></a></li>
+                    </ul>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1"
                        th:text="${#strings.toUpperCase(#locale)}"
