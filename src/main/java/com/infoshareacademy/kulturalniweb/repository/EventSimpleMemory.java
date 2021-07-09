@@ -26,5 +26,10 @@ public class EventSimpleMemory {
     public void setListOfEventSimple(List<EventSimple> listOfEventSimple) {
         this.listOfEventSimple = listOfEventSimple;
     }
+
+    public void saveEventSimpleToMemory (EventSimple eventSimple) {
+        listOfEventSimple.add(eventSimple);
+        System.out.println("rozmiar bazy: " + listOfEventSimple.size());
+    }
 }
 

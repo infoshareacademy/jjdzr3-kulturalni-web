@@ -93,4 +93,8 @@ public class EventSimpleMemoryServiceClass {
     public List<EventSimple> getListOfEventSimpleFromMemory() {
         return eventSimpleMemory.getListOfEventSimple();
     }
+
+    public void saveEventSimpleToMemory(EventSimple eventSimple) {
+        eventSimpleMemory.saveEventSimpleToMemory(eventSimple);
+    }
 }

@@ -24,4 +24,12 @@ public class AddEventService {
         }
         return highestId;
     }
+
+    public void saveEventSimpleToMemory (EventSimple eventSimple) {
+        eventSimpleMemoryServiceClass.saveEventSimpleToMemory(eventSimple);
+    }
+
+
+
+
 }

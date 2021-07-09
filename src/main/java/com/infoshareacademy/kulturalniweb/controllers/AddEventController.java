@@ -1,8 +1,10 @@
 package com.infoshareacademy.kulturalniweb.controllers;
 
 import com.infoshareacademy.kulturalniweb.domainData.EventNew;
+import com.infoshareacademy.kulturalniweb.domainData.EventSimple;
 import com.infoshareacademy.kulturalniweb.models.NewEventDto;
 import com.infoshareacademy.kulturalniweb.services.AddEventService;
+import com.infoshareacademy.kulturalniweb.services.EventSimpleMemoryServiceClass;
 import com.infoshareacademy.kulturalniweb.services.RepositoryServiceClass;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,24 +17,22 @@ import javax.validation.Valid;
 
 @Controller
 public class AddEventController {
-    RepositoryServiceClass repositoryServiceClass;
     AddEventService addEventService;
 
     final String PATH_TO_PICTURES = "images/img/events/";
 
-    public AddEventController(RepositoryServiceClass repositoryServiceClass, AddEventService addEventService) {
-        this.repositoryServiceClass = repositoryServiceClass;
+    public AddEventController(AddEventService addEventService) {
         this.addEventService = addEventService;
     }
 
     @GetMapping("/addevent")
     public String addEvent(Model model) {
-        NewEventDto newEventDto = new NewEventDto();
+        EventSimple eventSimple = new EventSimple();
 
-        Integer idForNewEvent = addEventService.getHighestEventId() + 5;
+        Integer idForEventSimple = addEventService.getHighestEventId() + 5;
 
-        model.addAttribute("newEventDto", newEventDto);
-        model.addAttribute("idForNewEvent", idForNewEvent);
+        model.addAttribute("eventSimple", eventSimple);
+        model.addAttribute("idForEventSimple", idForEventSimple);
 
         return "addeventform";
     }
@@ -42,15 +42,16 @@ public class AddEventController {
 
 
     @PostMapping(value = "/saveevent")
-    public String addEvent(@ModelAttribute @Valid NewEventDto newEventDto, BindingResult result, Model model) {
-        model.addAttribute("newEventDto", newEventDto);
+    public String addEvent(@ModelAttribute @Valid EventSimple eventSimple, BindingResult result, Model model) {
+        model.addAttribute("idForEventSimple", eventSimple);
 
         if (result.hasFieldErrors()) {
             return "addeventform";
         } else {
-            EventNew eventNew = repositoryServiceClass.createEventNewFromNewEventDto(newEventDto);
-            repositoryServiceClass.saveEventNew(eventNew);
-            return "eventsaved";
+            addEventService.saveEventSimpleToMemory(eventSimple);
+
+
+            return "redirect:login";
         }
     }
 
