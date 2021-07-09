@@ -30,6 +30,7 @@ public class AddEventController {
         EventSimple eventSimple = new EventSimple();
 
         Integer idForEventSimple = addEventService.getHighestEventId() + 5;
+        eventSimple.setEventSimpleId(idForEventSimple);
 
         model.addAttribute("eventSimple", eventSimple);
         model.addAttribute("idForEventSimple", idForEventSimple);
@@ -37,13 +38,9 @@ public class AddEventController {
         return "addeventform";
     }
 
-
-
-
-
     @PostMapping(value = "/saveevent")
     public String addEvent(@ModelAttribute @Valid EventSimple eventSimple, BindingResult result, Model model) {
-        model.addAttribute("idForEventSimple", eventSimple);
+        //model.addAttribute("idForEventSimple", eventSimple);
 
         if (result.hasFieldErrors()) {
             return "addeventform";
@@ -52,10 +49,9 @@ public class AddEventController {
             addEventService.saveEventSimpleToMemory(eventSimpleWithFullPicturePath);
             model.addAttribute("savedEventSimple", eventSimpleWithFullPicturePath);
 
-            return "redirect:eventsaved";
+            return "eventsaved";
         }
     }
-
 
     public EventSimple createEventSimpleWithFullPathForPicture(EventSimple eventSimple) {
         String path = PATH_TO_PICTURES;

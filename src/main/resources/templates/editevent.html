@@ -18,8 +18,7 @@
 <!-- Navigation-->
 <div th:insert="index :: copy-header"></div>
 <!-- Masthead-->
-<header class="masthead text-dark" style="margin-bottom: 50px">
-
+<header class="masthead text-dark">
 
 
   <div class="container" style="text-align: center">
@@ -27,7 +26,7 @@
       <div class="col-md-3">
       </div>
       <div class="col-md-6" style="text-align: center">
-        <p class="event-title" style="color: blue">Panel administracyjny<br>Wydarzenie zostało zapisane</p>
+        <p class="event-title" style="color: blue">Panel administracyjny<br>edycja istniejącego wydarzenia</p>
       </div>
       <div class="col-md-1">
 
@@ -41,13 +40,14 @@
 
   </div>
 
-  <div class="container" >
+  <div class="container">
+    <form action="#" th:action="@{/saveeditedevent}" th:object="${eventSimple}" method="post">
       <div class="row event-description" style="background-color: white">
         <div class="col-md-3">
           <p class="event-left-description" >Id wydarzenia</p>
         </div>
         <div class="col-md-9">
-          <p class="event-right-description" th:text="${savedEventSimple.getEventSimpleId()}"></p>
+          <p class="event-right-description" th:text="${idForEventSimple}"></p>
         </div>
       </div>
       <div class="row event-description" style="background-color: white">
@@ -55,7 +55,7 @@
           <p class="event-left-description" >Nazwa wydarzenia</p>
         </div>
         <div class="col-md-9">
-          <p class="event-right-description" th:text="${savedEventSimple.getEventSimpleName}"></p>
+          <p class="event-right-description" ><input type="text" style="width: 500px" th:field="*{eventSimpleName}" th:value="${g}"/><span th:if="${#fields.hasErrors('eventSimpleName')}" th:errors="*{eventSimpleName}"></span></p>
         </div>
       </div>
       <div class="row event-description" style="background-color: white">
@@ -63,7 +63,7 @@
           <p class="event-left-description">Opis</p>
         </div>
         <div class="col-md-9">
-          <p class="event-right-description" th:text="${savedEventSimple.getEventSimpleDescription()}"></p>
+          <p class="event-right-description" ><input type="text" name="newEventDescription" style="width: 500px" th:field="*{eventSimpleDescription}" /></p>
         </div>
       </div>
       <div class="row event-description" style="background-color: white">
@@ -71,15 +71,30 @@
           <p class="event-left-description">Krótki opis</p>
         </div>
         <div class="col-md-9">
-          <p class="event-right-description" th:text="${savedEventSimple.getEventSimpleDescriptionShort()}"></p>
+          <p class="event-right-description" ><input type="text" name="eventSimpleDescriptionShort" style="width: 500px" th:field="*{eventSimpleDescriptionShort}" /></p>
         </div>
       </div>
+      <!--           <div class="row event-description" style="background-color: white">
+                     <div class="col-md-3">
+                         <p class="event-left-description">Rodzaj</p>
+                     </div>
+                     <div class="col-md-9">
+                         <p class="event-right-description" >
+                             <select name="newEventType" style="width: 500px" th:field="*{newEventType}">
+                                 <option value="kino">kino</option>
+                                 <option value="teatr">teatr</option>
+                                 <option value="koncert">koncert</option>
+                                 <option value="inne">inne</option>
+                             </select>
+                         </p>
+                     </div>
+                 </div>-->
       <div class="row event-description" style="background-color: white">
         <div class="col-md-3">
           <p class="event-left-description">Miasto</p>
         </div>
         <div class="col-md-9">
-          <p class="event-right-description" th:text="${savedEventSimple.getEventSimpleCity()}"></p>
+          <p class="event-right-description" ><input type="text" name="eventSimpleCity" style="width: 500px" th:field="*{eventSimpleCity}" /></p>
         </div>
       </div>
       <div class="row event-description" style="background-color: white">
@@ -87,7 +102,7 @@
           <p class="event-left-description">Miejsce</p>
         </div>
         <div class="col-md-9">
-          <p class="event-right-description" th:text="${savedEventSimple.getEventSimplePlace()}"></p>
+          <p class="event-right-description" ><input type="text" name="newEventPlace" style="width: 500px" th:field="*{eventSimplePlace}" /></p>
         </div>
       </div>
       <div class="row event-description" style="background-color: white">
@@ -95,7 +110,7 @@
           <p class="event-left-description">Termin</p>
         </div>
         <div class="col-md-9">
-          <p class="event-right-description" th:text="${savedEventSimple.getEventSimpleDate()}"></p>
+          <p class="event-right-description" ><input type="text" name="newEventDate" style="width: 500px" th:field="*{eventSimpleDate}" /></p>
         </div>
       </div>
       <div class="row event-description" style="background-color: white">
@@ -103,7 +118,7 @@
           <p class="event-left-description">Początek</p>
         </div>
         <div class="col-md-9">
-          <p class="event-right-description" th:text="${savedEventSimple.getEventSimpleStartTime()}"></p>
+          <p class="event-right-description" ><input type="text" name="newEventStartTime" style="width: 500px" th:field="*{eventSimpleStartTime}" /></p>
         </div>
       </div>
       <div class="row event-description" style="background-color: white">
@@ -111,7 +126,7 @@
           <p class="event-left-description">Koniec</p>
         </div>
         <div class="col-md-9">
-          <p class="event-right-description" th:text="${savedEventSimple.getEventSimpleEndTime()}"></p>
+          <p class="event-right-description" ><input type="text" name="newEventEndTime" style="width: 500px" th:field="*{eventSimpleEndTime}" /></p>
         </div>
       </div>
       <div class="row event-description" style="background-color: white">
@@ -119,7 +134,7 @@
           <p class="event-left-description">Cena</p>
         </div>
         <div class="col-md-9">
-          <p class="event-right-description" th:text="${savedEventSimple.getEventSimpleTicketPrice()}"></p>
+          <p class="event-right-description" ><input type="text" name="newEventPrice" style="width: 500px" th:field="*{eventSimpleTicketPrice}" /></p>
         </div>
       </div>
       <div class="row event-description" style="background-color: white">
@@ -127,7 +142,7 @@
           <p class="event-left-description">Strona wydarzenia</p>
         </div>
         <div class="col-md-9">
-          <p class="event-right-description" th:text="${savedEventSimple.getEventSimpleWebPageAddress()}"></p>
+          <p class="event-right-description" ><input type="text" name="newEventWebPage" style="width: 500px" th:field="*{eventSimpleWebPageAddress}" /></p>
         </div>
       </div>
       <div class="row event-description" style="background-color: white">
@@ -135,9 +150,15 @@
           <p class="event-left-description">Obrazek</p>
         </div>
         <div class="col-md-9">
-          <img th:src="${savedEventSimple.getEventSimplePicture()}" style="margin-bottom: 50px">
+          <p class="event-right-description" ><input type="file" name="newEventPicture" style="width: 500px" th:field="*{eventSimplePicture}" /></p>
         </div>
       </div>
+      <div class="row event-description" style="background-color: white">
+        <div class="col-md-12">
+          <input type="submit" value="Zapisz" style="margin-bottom: 30px">
+        </div>
+      </div>-->
+    </form>
   </div>
 
 
