@@ -121,7 +121,7 @@ public class SortingServices {
         comparator = (e1, e2) -> e1.getEventSimpleDate().compareToIgnoreCase(e2.getEventSimpleDate());
         Collections.sort(listOfEventSimple, comparator.reversed());
 
-        String todaysDate = "2021-03-29";
+        String todaysDate = "2021-03-26";
         LocalDate todaysDatelocalDate = LocalDate.parse(todaysDate);
         List<EventSimple> result = new ArrayList<>();
 

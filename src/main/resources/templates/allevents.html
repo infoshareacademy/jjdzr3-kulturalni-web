@@ -147,9 +147,9 @@
     </div>
 
     <div class="container">
-        <div class="col-md-4" style="margin-top: 15px">
+        <div class="col-md-12" style="margin-top: 15px">
             <nav th:if="${paginationDto.shouldBeDisplayed}">
-                <ul class="pagination align-items-center" >
+                <ul class="pagination" >
                     <li class="page-item" style="width: 100px" th:if="${(paginationDto.totalNumberOfPages > 1) && (numberOfPageThatIsBeeingDisplayed > 1)}"><a class="page-link" href="#"  th:href="@{/alleventsChangePage(page=${-1})}" style="color: deeppink">Previous</a></li>
                     <li class="page-item" th:if="${paginationDto.totalNumberOfPages > 0}"><a class="page-link" href="#" th:href="@{/alleventsChangePage(page=${paginationDto.getFirstNavBarNumber()})}"><span th:text="${paginationDto.getFirstNavBarNumber()}" style="color: deeppink"></span></a></li>
                     <li class="page-item" th:if="${paginationDto.totalNumberOfPages > 1}"><a class="page-link" href="#" th:href="@{/alleventsChangePage(page=${paginationDto.getSecondNavBarNumber()})}"><span th:text="${paginationDto.getSecondNavBarNumber()}" style="color: deeppink"></span></a></li>

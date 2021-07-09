@@ -20,16 +20,13 @@
 <!-- Masthead-->
 <header class="masthead text-dark">
 
-    <div class="container" style="text-align: center">
-        <p>Panel administracyjny - dodawanie nowego wydarzenia</p>
-    </div>
 
     <div class="container" style="text-align: center">
         <div class="row" style="background-color: white">
             <div class="col-md-3">
             </div>
             <div class="col-md-6" style="text-align: center">
-                <p class="event-title" >Nazwa wydarzenia</p>
+                <p class="event-title" style="color: blue">Panel administracyjny<br>dodawanie nowego wydarzenia</p>
             </div>
             <div class="col-md-1">
 
@@ -50,7 +47,7 @@
                     <p class="event-left-description" >Id wydarzenia</p>
                 </div>
                 <div class="col-md-9">
-                    <p class="event-right-description" th:field="*{newEventID}">77896</p>
+                    <p class="event-right-description" th:field="*{newEventID}" th:text="${idForNewEvent}"></p>
                 </div>
             </div>
             <div class="row event-description" style="background-color: white">
@@ -137,7 +134,7 @@
                     <p class="event-left-description">Obrazek</p>
                 </div>
                 <div class="col-md-9">
-                    <p class="event-right-description" ><input type="text" name="newEventPicture" style="width: 500px" th:field="*{newEventPicture}" /></p>
+                    <p class="event-right-description" ><input type="file" name="newEventPicture" style="width: 500px" th:field="*{newEventPicture}" /></p>
                 </div>
             </div>
             <div class="row event-description" style="background-color: white">
