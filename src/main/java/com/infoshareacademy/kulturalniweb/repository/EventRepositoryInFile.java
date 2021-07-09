@@ -1,3 +1,4 @@
+/*
 package com.infoshareacademy.kulturalniweb.repository;
 
 import com.google.gson.Gson;
@@ -36,3 +37,4 @@ public class EventRepositoryInFile {
         return eventsDB;
     }
 }
+*/

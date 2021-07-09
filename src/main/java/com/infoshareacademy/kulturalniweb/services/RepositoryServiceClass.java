@@ -3,12 +3,8 @@ package com.infoshareacademy.kulturalniweb.services;
 import com.infoshareacademy.kulturalniweb.domainData.EventNew;
 import com.infoshareacademy.kulturalniweb.domainData.EventSimple;
 import com.infoshareacademy.kulturalniweb.models.NewEventDto;
-import com.infoshareacademy.kulturalniweb.repository.EventRepositoryInFile;
 import com.infoshareacademy.kulturalniweb.repository.ListEventRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class RepositoryServiceClass {
@@ -21,24 +17,6 @@ public class RepositoryServiceClass {
     public void readEventsFromGsonToList() {
         listEventRepository.readEventsFromGsonToList();
     }
-
-
-
-/*    public EventSimple getSingleEventSimpleById(Integer eventNewId) {
-        EventSimple eventSimple = new EventSimple();
-
-        for (Integer i=0; i < listEventRepository.getEventsDB().size(); i++){
-            if(listEventRepository.getEventsDB().get(i).getId().equals(eventNewId)) {
-                eventSimple = createSingleEventSimple(listEventRepository.getEventsDB().get(i));
-            }
-        }
-        return eventSimple;
-    }*/
-
-
-
-
-
 
     public EventSimple createSingleEventSimple(EventNew eventNew) {
         EventSimple eventSimple = new EventSimple();
@@ -83,17 +61,8 @@ public class RepositoryServiceClass {
         return eventNew;
     }
 
-
-
-
-/*        eventSimple.setEventSimplePlace(eventNew.getPlace().getName());
-        eventSimple.setEventSimpleTicketPrice(0.0);
-        eventSimple.setEventSimpleWebPageAddress(eventNew.getUrls().getWww());
-        eventSimple.setEventSimpleDescriptionShort(eventNew.getDescShort());*/
-
-
-        public void saveEventNew (EventNew eventNew) {
-            listEventRepository.getEventsDB().add(eventNew);
-        }
+    public void saveEventNew (EventNew eventNew) {
+        listEventRepository.getEventsDB().add(eventNew);
+    }
     
 }

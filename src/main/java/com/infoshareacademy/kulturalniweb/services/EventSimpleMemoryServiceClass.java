@@ -7,6 +7,7 @@ import com.infoshareacademy.kulturalniweb.repository.ListEventRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,12 +25,12 @@ public class EventSimpleMemoryServiceClass {
         List<EventSimple> listOfEventSimple = new ArrayList<>();
 
         for (int i = 0; i < listEventRepository.getEventsDB().size(); i++) {
-            listOfEventSimple.add(getSingleEventSimpleFromList(i));
+            listOfEventSimple.add(getSingleEventSimpleFromRepository(i));
         }
         eventSimpleMemory.setListOfEventSimple(listOfEventSimple);
     }
 
-    public EventSimple getSingleEventSimpleFromList(Integer pointer) {
+    public EventSimple getSingleEventSimpleFromRepository(Integer pointer) {
         return createSingleEventSimple(listEventRepository.getEventsDB().get(pointer));
     }
 
@@ -70,12 +71,23 @@ public class EventSimpleMemoryServiceClass {
                             List<EventSimple> listOfEventSimple = new ArrayList<>();
 
                             for (int i = 0; i < listEventRepository.getEventsDB().size(); i++) {
-                                listOfEventSimple.add(getSingleEventSimpleFromList(i));
+                                listOfEventSimple.add(getSingleEventSimpleFromRepository(i));
                             }
                             return listOfEventSimple;
                         }
 
 
+    public EventSimple getSingleEventSimpleFromEventSimpleMemory(Integer id) {
+        List<EventSimple> events = eventSimpleMemory.getListOfEventSimple();
+        EventSimple eventSimple = new EventSimple();
+
+        for (int i = 0; i < events.size(); i++) {
+            if (events.get(i).getEventSimpleId().equals(id)) {
+                eventSimple = events.get(i);
+            }
+        }
+        return eventSimple;
+    }
 
 
     public List<EventSimple> getListOfEventSimpleFromMemory() {

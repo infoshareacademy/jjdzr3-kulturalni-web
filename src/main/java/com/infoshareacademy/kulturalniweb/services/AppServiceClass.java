@@ -17,15 +17,4 @@ public class AppServiceClass {
 
 
 
-/*    public List<EventSimple> getSimpleEventsList() {
-        return repositoryServiceClass.getListOfEventSimple();
-    }*/
-
-
-/*    public List<EventSimple> getNewestEventSimple() {
-        return repositoryServiceClass.getListOfEventSimple();
-    }*/
-
-
-
 }
