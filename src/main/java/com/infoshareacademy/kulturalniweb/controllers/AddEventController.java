@@ -18,6 +18,7 @@ import javax.validation.Valid;
 @Controller
 public class AddEventController {
     AddEventService addEventService;
+    Integer idForNewEvent;
 
     final String PATH_TO_PICTURES = "images/img/events/";
 
@@ -29,11 +30,11 @@ public class AddEventController {
     public String addEvent(Model model) {
         EventSimple eventSimple = new EventSimple();
 
-        Integer idForEventSimple = addEventService.getHighestEventId() + 5;
-        eventSimple.setEventSimpleId(idForEventSimple);
+        idForNewEvent = addEventService.getHighestEventId() + 5;
+        eventSimple.setEventSimpleId(idForNewEvent);
 
         model.addAttribute("eventSimple", eventSimple);
-        model.addAttribute("idForEventSimple", idForEventSimple);
+        model.addAttribute("idForEventSimple", idForNewEvent);
 
         return "addeventform";
     }
@@ -46,6 +47,7 @@ public class AddEventController {
             return "addeventform";
         } else {
             EventSimple eventSimpleWithFullPicturePath = createEventSimpleWithFullPathForPicture(eventSimple);
+            eventSimpleWithFullPicturePath.setEventSimpleId(idForNewEvent);
             addEventService.saveEventSimpleToMemory(eventSimpleWithFullPicturePath);
             model.addAttribute("savedEventSimple", eventSimpleWithFullPicturePath);
 
