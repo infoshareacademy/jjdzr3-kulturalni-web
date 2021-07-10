@@ -23,6 +23,9 @@ public class AllEventsController {
     SortingServices sortingServices;
     PaginationServiceClass paginationServiceClass;
 
+    Boolean fileNotReadYet = true;
+    Integer favId = 0;
+
     private Integer totalNumberOfEvents = 0;
     private Integer numberOfEventsOnThePage = 20;
     private Integer numberOfPageThatIsBeeingDisplayed = 0;
@@ -58,9 +61,15 @@ public class AllEventsController {
 
     @GetMapping("/allevents")
     public String allEvents (Model model) {
-        repositoryServiceClass.readEventsFromGsonToList();
-        eventSimpleMemoryServiceClass.clearMemory();
-        eventSimpleMemoryServiceClass.prepareSimpleEventsListFromRepository();
+
+        // Usunąć ifa - przy naprawieniu listy wydarzeń do bazy
+        if (fileNotReadYet) {
+            repositoryServiceClass.readEventsFromGsonToList();
+            eventSimpleMemoryServiceClass.clearMemory();
+            eventSimpleMemoryServiceClass.prepareSimpleEventsListFromRepository();
+            fileNotReadYet = false;
+        }
+
 
         sortingServices.sortBySelectedCriteria();
         sortingServices.filterByPlace();
@@ -85,6 +94,7 @@ public class AllEventsController {
         List<EventSimple> paginatedEventsToDisplay = selectEventsForEachPage();
 
         model.addAttribute("listOfEventSimple", paginatedEventsToDisplay);
+        model.addAttribute("favouriteEvent", favId);
  //       log();
         return "allevents";
     }
@@ -165,4 +175,13 @@ public class AllEventsController {
     public void log() {
         System.out.println("total liczba wydarzeń: " + totalNumberOfEvents + "  Wydarz na strone: " + numberOfEventsOnThePage + "   Numer wysw strony: " + numberOfPageThatIsBeeingDisplayed + "   Liczba stron: " + paginationServiceClass.getTotalNumberOfPages() + "   eventsToDisplay.size()=" + eventsToDisplay.size());
     }
+
+    @GetMapping(value = "/favselect")
+    public String favSelect(@RequestParam("id") Integer id) {
+        favId = id;
+        System.out.println(favId);
+        return "redirect:allevents";
+    }
+
+
 }

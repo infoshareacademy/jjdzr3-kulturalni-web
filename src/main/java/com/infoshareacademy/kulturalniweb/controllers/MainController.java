@@ -29,6 +29,8 @@ public class MainController {
         eventSimpleMemoryServiceClass.clearMemory();
         eventSimpleMemoryServiceClass.prepareSimpleEventsListFromRepository();
 
+
+
         List<EventSimple> closestEventsSimple = sortingServices.createListOfClosestEvents();
         model.addAttribute("firstClosestEventSimple", closestEventsSimple.get(0));
         model.addAttribute("secondClosestEventSimple", closestEventsSimple.get(1));

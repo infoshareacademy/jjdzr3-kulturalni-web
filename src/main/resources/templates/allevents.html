@@ -141,7 +141,10 @@
                 </a>
             </div>
             <div class="col-md-1">
-                <p class="table-city-paragraph">Ulubione</p>
+                <form action="/favselect">
+                    <a href=# th:href="@{/favselect(id=${eventSimple.getEventSimpleId()})}" ><img src="images/img/heart-bw.png" style="width: 32px; height: 32px; margin-top: 10px"></a>
+                    <!--<a href=# th:href="@{/favselect(id=${eventSimple.getEventSimpleId()})}" th:if="${eventSimple.getEventSimpleId() != favId}" ? 'img src="images/img/heart-bw.png"' : 'img src="images/img/heart-red.png"'" style="width: 32px; height: 32px; margin-top: 10px"></a>-->
+                </form>
             </div>
         </div>
     </div>
