@@ -15,14 +15,14 @@ public class AddEventController {
 
     @GetMapping("/addEvent")
     public String addEvent(Model model) {
-        return "addeventform";
+        return "addEventForm";
     }
 
     @PostMapping(value = "/saveEvent")
     public String addEvent(@ModelAttribute @Valid NewEventDto newEventDto, BindingResult result, Model model) {
         model.addAttribute("newEventDto", newEventDto);
         if (result.hasFieldErrors()) {
-            return "addeventform";
+            return "addEventForm";
         } else {
             return "saveEvent";
         }
