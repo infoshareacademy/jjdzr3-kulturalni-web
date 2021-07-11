@@ -16,7 +16,7 @@ public class NewEventDto {
     private String newEventPrice;
     private String newEventUrl;
     private String newEventImage;
-    private String newDescription;
+    private String newEventDescription;
 
     public NewEventDto(Integer newEventId, String newEventName, String newEventPlace, String newEventType, String newEventStartDate, String newEventEndDate, String newEventStartTime, String newEventEndTime, String newEventPrice, String newEventUrl, String newEventImage, String newDescription) {
         this.newEventId = newEventId;
@@ -30,7 +30,10 @@ public class NewEventDto {
         this.newEventPrice = newEventPrice;
         this.newEventUrl = newEventUrl;
         this.newEventImage = newEventImage;
-        this.newDescription = newDescription;
+        this.newEventDescription = newDescription;
+    }
+
+    public NewEventDto() {
     }
 
     public Integer getNewEventId() {
@@ -121,11 +124,11 @@ public class NewEventDto {
         this.newEventImage = newEventImage;
     }
 
-    public String getNewDescription() {
-        return newDescription;
+    public String getNewEventDescription() {
+        return newEventDescription;
     }
 
-    public void setNewDescription(String newDescription) {
-        this.newDescription = newDescription;
+    public void setNewEventDescription(String newEventDescription) {
+        this.newEventDescription = newEventDescription;
     }
 }

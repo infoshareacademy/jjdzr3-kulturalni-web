@@ -25,18 +25,18 @@
     </div>
 
     <div class="container col-lg-4">
-        <form action="">
+        <form action="#" th:action="@{/saveEvent}" th:object="${newEventDto}" method="post">
             <!-- idEvent input -->
             <div class="row event-description">
                 <div class="col">
-                    <input type="text" readonly class="form-control" value="Id Wydarzenia: 336695_640">
+                    <input type="text" readonly class="form-control" value="Id Wydarzenia: 336695_640" th:field="*{newEventID}">
                 </div>
             </div>
             <!-- nameEvent input -->
             <div class="row event-description">
                 <div>
                     <label for="nameEvent"></label>
-                    <input type="text" class="form-control" id="nameEvent" placeholder="Nazwa wydarzenia">
+                    <input type="text" class="form-control" id="nameEvent" placeholder="Nazwa wydarzenia" th:field="*{newEventName}">
                 </div>
             </div>
             <!-- placeEvent input -->
