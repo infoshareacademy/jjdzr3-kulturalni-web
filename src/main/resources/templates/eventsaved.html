@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns: th="http://www.thymeleaf.org" lang="pl">
+<head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="UTF-8">
+      <title>Kulturalni - Dodaj wydarzenie</title>
+
+      <!-- Favicon-->
+      <link rel="icon" type="image/x-icon" sizes="32x32" href="images/favicon.ico">
+
+      <!-- Core theme CSS (includes Bootstrap)-->
+
+      <link href="css/styles.css" type="text/css" rel="stylesheet"/>
+      <link rel="stylesheet" type="text/css" href="css/additional.css">
+</head>
+
+<body id="page-top">
+<!-- Navigation-->
+<div th:insert="index :: copy-header"></div>
+<!-- Masthead-->
+<header class="masthead text-dark" >
+
+
+    <div class="container" style="text-align: center">
+        <div class="row" style="background-color: white">
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-6" style="text-align: center">
+                <p class="event-title" style="color: blue">Panel administracyjny<br>Wydarzenie zostało zapisane</p>
+            </div>
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-1">
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row event-description" style="background-color: white">
+            <div class="col-md-3">
+                <p class="event-left-description">Id wydarzenia</p>
+            </div>
+            <div class="col-md-9">
+                <p class="event-right-description" th:text="${savedEventSimple.getEventSimpleId()}"></p>
+            </div>
+        </div>
+        <div class="row event-description" style="background-color: white">
+            <div class="col-md-3">
+                <p class="event-left-description">Nazwa wydarzenia</p>
+            </div>
+            <div class="col-md-9">
+                <p class="event-right-description" th:text="${savedEventSimple.getEventSimpleName}"></p>
+            </div>
+        </div>
+        <div class="row event-description" style="background-color: white">
+            <div class="col-md-3">
+                <p class="event-left-description">Opis</p>
+            </div>
+            <div class="col-md-9">
+                <p class="event-right-description" th:text="${savedEventSimple.getEventSimpleDescription()}"></p>
+            </div>
+        </div>
+        <div class="row event-description" style="background-color: white">
+            <div class="col-md-3">
+                <p class="event-left-description">Krótki opis</p>
+            </div>
+            <div class="col-md-9">
+                <p class="event-right-description" th:text="${savedEventSimple.getEventSimpleDescriptionShort()}"></p>
+            </div>
+        </div>
+        <div class="row event-description" style="background-color: white">
+            <div class="col-md-3">
+                <p class="event-left-description">Miasto</p>
+            </div>
+            <div class="col-md-9">
+                <p class="event-right-description" th:text="${savedEventSimple.getEventSimpleCity()}"></p>
+            </div>
+        </div>
+        <div class="row event-description" style="background-color: white">
+            <div class="col-md-3">
+                <p class="event-left-description">Miejsce</p>
+            </div>
+            <div class="col-md-9">
+                <p class="event-right-description" th:text="${savedEventSimple.getEventSimplePlace()}"></p>
+            </div>
+        </div>
+        <div class="row event-description" style="background-color: white">
+            <div class="col-md-3">
+                <p class="event-left-description">Termin</p>
+            </div>
+            <div class="col-md-9">
+                <p class="event-right-description" th:text="${savedEventSimple.getEventSimpleDate()}"></p>
+            </div>
+        </div>
+        <div class="row event-description" style="background-color: white">
+            <div class="col-md-3">
+                <p class="event-left-description">Początek</p>
+            </div>
+            <div class="col-md-9">
+                <p class="event-right-description" th:text="${savedEventSimple.getEventSimpleStartTime()}"></p>
+            </div>
+        </div>
+        <div class="row event-description" style="background-color: white">
+            <div class="col-md-3">
+                <p class="event-left-description">Koniec</p>
+            </div>
+            <div class="col-md-9">
+                <p class="event-right-description" th:text="${savedEventSimple.getEventSimpleEndTime()}"></p>
+            </div>
+        </div>
+        <div class="row event-description" style="background-color: white">
+            <div class="col-md-3">
+                <p class="event-left-description">Cena</p>
+            </div>
+            <div class="col-md-9">
+                <p class="event-right-description" th:text="${savedEventSimple.getEventSimpleTicketPrice()}"></p>
+            </div>
+        </div>
+        <div class="row event-description" style="background-color: white">
+            <div class="col-md-3">
+                <p class="event-left-description">Strona wydarzenia</p>
+            </div>
+            <div class="col-md-9">
+                <p class="event-right-description" th:text="${savedEventSimple.getEventSimpleWebPageAddress()}"></p>
+            </div>
+        </div>
+        <div class="row event-description" style="background-color: white">
+            <div class="col-md-3">
+                <p class="event-left-description">Obrazek</p>
+            </div>
+            <div class="col-md-9">
+                <img th:src="${savedEventSimple.getEventSimplePicture()}" style="margin-bottom: 50px">
+            </div>
+        </div>
+    </div>
+
+
+</header>
+
+
+<div th:insert="index :: copy-footer"></div>
+
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>
+</body>
+</html>

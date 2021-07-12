@@ -13,8 +13,10 @@ public class EventSimple {
     private Double eventSimpleTicketPrice;
     private String eventSimpleWebPageAddress;
     private String eventSimpleCity;
+    private String eventSimpleDescriptionShort;
+    private String eventSimplePicture;
 
-    public EventSimple(Integer eventSimpleId, String eventSimpleName, String eventSimpleDescription, String eventSimpleDate, String eventSimpleStartTime, String eventSimpleEndTime, String eventSimplePlace, Double eventSimpleTicketPrice, String eventSimpleWebPageAddress) {
+    public EventSimple(Integer eventSimpleId, String eventSimpleName, String eventSimpleDescription, String eventSimpleDate, String eventSimpleStartTime, String eventSimpleEndTime, String eventSimplePlace, Double eventSimpleTicketPrice, String eventSimpleWebPageAddress, String eventSimpleDescriptionShort, String eventSimplePicture) {
         this.eventSimpleId = eventSimpleId;
         this.eventSimpleName = eventSimpleName;
         this.eventSimpleDescription = eventSimpleDescription;
@@ -25,6 +27,8 @@ public class EventSimple {
         this.eventSimpleTicketPrice = eventSimpleTicketPrice;
         this.eventSimpleWebPageAddress = eventSimpleWebPageAddress;
         this.eventSimpleCity = "Gdańsk";
+        this.eventSimpleDescriptionShort = eventSimpleDescriptionShort;
+        this.eventSimplePicture = eventSimplePicture;
     }
 
     public EventSimple() {
@@ -38,6 +42,8 @@ public class EventSimple {
         this.eventSimpleTicketPrice = 0.0;
         this.eventSimpleWebPageAddress = "";
         this.eventSimpleCity = "Gdańsk";
+        this.eventSimpleDescriptionShort = "";
+        this.eventSimplePicture = "";
     }
 
     public Integer getEventSimpleId() {
@@ -124,16 +130,35 @@ public class EventSimple {
         this.eventSimpleCity = "Gdańsk";
     }
 
+    public String getEventSimpleDescriptionShort() {
+        return eventSimpleDescriptionShort;
+    }
+
+    public void setEventSimpleDescriptionShort(String eventSimpleDescriptionShort) {
+        this.eventSimpleDescriptionShort = eventSimpleDescriptionShort;
+    }
+
+    public String getEventSimplePicture() {
+        return eventSimplePicture;
+    }
+
+    public void setEventSimplePicture(String eventSimplePicture) {
+        this.eventSimplePicture = eventSimplePicture;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EventSimple that = (EventSimple) o;
-        return Objects.equals(eventSimpleId, that.eventSimpleId) && Objects.equals(eventSimpleName, that.eventSimpleName) && Objects.equals(eventSimpleDescription, that.eventSimpleDescription) && Objects.equals(eventSimpleDate, that.eventSimpleDate) && Objects.equals(eventSimpleStartTime, that.eventSimpleStartTime) && Objects.equals(eventSimpleEndTime, that.eventSimpleEndTime) && Objects.equals(eventSimplePlace, that.eventSimplePlace) && Objects.equals(eventSimpleTicketPrice, that.eventSimpleTicketPrice) && Objects.equals(eventSimpleWebPageAddress, that.eventSimpleWebPageAddress) && Objects.equals(eventSimpleCity, that.eventSimpleCity);
+        return Objects.equals(eventSimpleId, that.eventSimpleId) && Objects.equals(eventSimpleName, that.eventSimpleName) && Objects.equals(eventSimpleDescription, that.eventSimpleDescription) && Objects.equals(eventSimpleDate, that.eventSimpleDate) && Objects.equals(eventSimpleStartTime, that.eventSimpleStartTime) && Objects.equals(eventSimpleEndTime, that.eventSimpleEndTime) && Objects.equals(eventSimplePlace, that.eventSimplePlace) && Objects.equals(eventSimpleTicketPrice, that.eventSimpleTicketPrice) && Objects.equals(eventSimpleWebPageAddress, that.eventSimpleWebPageAddress) && Objects.equals(eventSimpleCity, that.eventSimpleCity) && Objects.equals(eventSimpleDescriptionShort, that.eventSimpleDescriptionShort);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(eventSimpleId, eventSimpleName, eventSimpleDescription, eventSimpleDate, eventSimpleStartTime, eventSimpleEndTime, eventSimplePlace, eventSimpleTicketPrice, eventSimpleWebPageAddress, eventSimpleCity);
+        return Objects.hash(eventSimpleId, eventSimpleName, eventSimpleDescription, eventSimpleDate, eventSimpleStartTime, eventSimpleEndTime, eventSimplePlace, eventSimpleTicketPrice, eventSimpleWebPageAddress, eventSimpleCity, eventSimpleDescriptionShort);
     }
+
+
+
 }
