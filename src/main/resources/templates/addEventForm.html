@@ -29,14 +29,14 @@
             <!-- idEvent input -->
             <div class="row event-description">
                 <div class="col">
-                    <input type="text" readonly class="form-control" value="Id Wydarzenia: 336695_640" th:field="*{newEventID}">
+                    <input type="text" readonly class="form-control" value="Id Wydarzenia: 336695_640">
                 </div>
             </div>
             <!-- nameEvent input -->
             <div class="row event-description">
                 <div>
                     <label for="nameEvent"></label>
-                    <input type="text" class="form-control" id="nameEvent" placeholder="Nazwa wydarzenia" th:field="*{newEventName}">
+                    <input type="text" class="form-control" id="nameEvent" placeholder="Nazwa wydarzenia">
                 </div>
             </div>
             <!-- placeEvent input -->
@@ -83,7 +83,13 @@
             <div class="row event-description">
                 <div class="col">
                     <label for="priceEvent"></label>
-                    <input type="text" class="form-control" id="priceEvent" placeholder="Cena wydarzenia">
+                    <input type="text" name="free" class="form-control" id="priceEvent" placeholder="Cena wydarzenia">
+                </div>
+                <div class="col">
+                    <br><p></p>
+                    <input class="form-check-input" type="checkbox" value="" id="priceEventFree"
+                           onclick="this.form.elements['free'].disabled = this.checked">
+                    <label class="form-check-label text-warning" for="priceEventFree">Wydarzenie Bezpłatne</label>
                 </div>
             </div>
             <!-- urlAddress input -->
