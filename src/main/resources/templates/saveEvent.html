@@ -49,6 +49,14 @@
                            th:text="${newEventDto.getNewEventPlace()}">
                 </div>
             </div>
+            <!-- placeEvent -->
+            <div class="row event-description">
+                <div>
+                    <label for="cityEvent"></label>
+                    <input type="text" class="form-control" readonly id="cityEvent" placeholder="Miasto wydarzenia: "
+                           th:text="${newEventDto.getNewEventCity()}">
+                </div>
+            </div>
             <!-- startEvent -->
             <div class="row event-description">
                 <div class="col">
