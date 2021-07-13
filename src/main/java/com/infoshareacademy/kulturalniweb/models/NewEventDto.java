@@ -2,35 +2,38 @@ package com.infoshareacademy.kulturalniweb.models;
 
 import javax.validation.constraints.Size;
 
+//TODO : walidacje dla pól
 public class NewEventDto {
     private Integer newEventId;
     @Size(min = 3, message = "Wprowadź co najmniej 3 znaki")
     private String newEventName;
     @Size(min = 3, message = "Wprowadź co najmniej 3 znaki")
     private String newEventPlace;
-    private String newEventType;
+    private String newEventCity;
     private String newEventStartDate;
     private String newEventEndDate;
     private String newEventStartTime;
     private String newEventEndTime;
     private String newEventPrice;
+    private Boolean newEventPriceFree;
     private String newEventUrl;
     private String newEventImage;
     private String newEventDescription;
 
-    public NewEventDto(Integer newEventId, String newEventName, String newEventPlace, String newEventType, String newEventStartDate, String newEventEndDate, String newEventStartTime, String newEventEndTime, String newEventPrice, String newEventUrl, String newEventImage, String newDescription) {
+    public NewEventDto(Integer newEventId, String newEventName, String newEventPlace, String newEventCity, String newEventStartDate, String newEventEndDate, String newEventStartTime, String newEventEndTime, String newEventPrice, Boolean newEventPriceFree, String newEventUrl, String newEventImage, String newEventDescription) {
         this.newEventId = newEventId;
         this.newEventName = newEventName;
         this.newEventPlace = newEventPlace;
-        this.newEventType = newEventType;
+        this.newEventCity = newEventCity;
         this.newEventStartDate = newEventStartDate;
         this.newEventEndDate = newEventEndDate;
         this.newEventStartTime = newEventStartTime;
         this.newEventEndTime = newEventEndTime;
         this.newEventPrice = newEventPrice;
+        this.newEventPriceFree = newEventPriceFree;
         this.newEventUrl = newEventUrl;
         this.newEventImage = newEventImage;
-        this.newEventDescription = newDescription;
+        this.newEventDescription = newEventDescription;
     }
 
     public NewEventDto() {
@@ -60,12 +63,12 @@ public class NewEventDto {
         this.newEventPlace = newEventPlace;
     }
 
-    public String getNewEventType() {
-        return newEventType;
+    public String getNewEventCity() {
+        return newEventCity;
     }
 
-    public void setNewEventType(String newEventType) {
-        this.newEventType = newEventType;
+    public void setNewEventCity(String newEventCity) {
+        this.newEventCity = newEventCity;
     }
 
     public String getNewEventStartDate() {
@@ -106,6 +109,14 @@ public class NewEventDto {
 
     public void setNewEventPrice(String newEventPrice) {
         this.newEventPrice = newEventPrice;
+    }
+
+    public Boolean getNewEventPriceFree() {
+        return newEventPriceFree;
+    }
+
+    public void setNewEventPriceFree(Boolean newEventPriceFree) {
+        this.newEventPriceFree = newEventPriceFree;
     }
 
     public String getNewEventUrl() {

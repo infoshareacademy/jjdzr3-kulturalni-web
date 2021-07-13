@@ -87,8 +87,15 @@
             <div class="row event-description">
                 <div class="col">
                     <label for="priceEvent"></label>
-                    <input type="text" class="form-control" id="priceEvent" placeholder="Cena wydarzenia: "
+                    <input type="text" name="free" class="form-control" id="priceEvent" placeholder="Cena wydarzenia: "
                            th:text="${newEventDto.getNewEventPlace()}">
+                </div>
+                <div class="col">
+                    br><p></p>
+                    <input class="form-check-input" type="checkbox" value="" id="priceEventFree"
+                           onclick="this.form.elements['free'].disabled = this.checked"
+                           th:text="${newEventDto.getNewEventPriceFree()}">
+                    <label class="form-check-label text-warning" for="priceEventFree">Wydarzenie Bezpłatne</label>
                 </div>
             </div>
             <!-- urlAddress -->
