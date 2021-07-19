@@ -1,7 +1,9 @@
 package com.infoshareacademy.kulturalniweb.kulturalniEntities;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
+@Entity
 public class Attachments {
 
     @Id
