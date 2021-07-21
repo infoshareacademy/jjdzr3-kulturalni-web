@@ -24,112 +24,97 @@
         <h4 class="mb-3 fw-normal text-warning" th:text="#{saveEvent.greeting}"></h4>
     </div>
 
-    <div class="container col-lg-4">
-        <form action="">
-            <!-- idEvent -->
-            <div class="row event-description">
-                <div class="col">
-                    <input type="text" readonly class="form-control" th:text="${newEventDto.getNewEventId()}"
-                           value="Id Wydarzenia: 336695_640">
-                </div>
+    <div class="container col-lg-4 text-warning">
+
+        <!-- idEvent -->
+        <div class="row event-description">
+            <div class="col-md-4">
+                <label>Id wydarzenia: </label>
             </div>
-            <!-- nameEvent -->
-            <div class="row event-description">
-                <div>
-                    <label for="nameEvent"></label>
-                    <input type="text" class="form-control" id="nameEvent" placeholder="Nazwa wydarzenia: "
-                           th:text="${newEventDto.getNewEventName()}">
-                </div>
+            <div class="col-md-1">
+                <p th:text="${newEventDto.getNewEventId()}"></p>
             </div>
-            <!-- placeEvent -->
-            <div class="row event-description">
-                <div>
-                    <label for="placeEvent"></label>
-                    <input type="text" class="form-control" readonly id="placeEvent" placeholder="Miejsce wydarzenia: "
-                           th:text="${newEventDto.getNewEventPlace()}">
-                </div>
+        <!-- nameEvent -->
+        <div class="row event-description">
+            <div class="col-md-4">
+                <label>Nazwa wydarzenia: </label>
             </div>
-            <!-- placeEvent -->
-            <div class="row event-description">
-                <div>
-                    <label for="cityEvent"></label>
-                    <input type="text" class="form-control" readonly id="cityEvent" placeholder="Miasto wydarzenia: "
-                           th:text="${newEventDto.getNewEventCity()}">
-                </div>
+            <div class="col-md-1">
+                <p th:text="${newEventDto.getNewEventName()}"></p>
             </div>
-            <!-- startEvent -->
-            <div class="row event-description">
-                <div class="col">
-                    <label for="sortEventsDateStart" class="text-warning">Początek wydarzenia</label>
-                    <input type="date" class="form-control" readonly id="sortEventsDateStart"
-                           placeholder="Początek wydarzenia : " th:text="${newEventDto.getNewEventStartDate()}">
-                </div>
-                <div class="col">
-                    <label for="startEventTimeStart"></label>
-                    <input type="time" class="form-control" readonly id="startEventTimeStart" placeholder="Początek wydarzenia"
-                           th:text="${newEventDto.getNewEventStartTime()}">
-                </div>
+        </div>
+        <!-- placeEvent -->
+        <div class="row event-description">
+            <div class="col-md-4">
+                <label>Miejsca wydarzenia: </label>
             </div>
-            <!-- endEvent input -->
-            <div class="row event-description">
-                <div class="col">
-                    <label for="sortEventsDateEnd" class="text-warning">Koniec wydarzenia</label>
-                    <input type="date" class="form-control" readonly id="sortEventsDateEnd" placeholder="Koniec wydarzenia: "
-                           th:text="${newEventDto.getNewEventEndDate()}">
-                </div>
-                <div class="col">
-                    <label for="startEventTimeEnd"></label>
-                    <input type="time" class="form-control" readonly id="startEventTimeEnd" placeholder="Koniec wydarzenia: "
-                           th:text="${newEventDto.getNewEventEndTime()}">
-                </div>
+            <div class="col-md-1">
+                <p th:text="${newEventDto.getNewEventPlace()}"></p>
             </div>
-            <!-- priceEvent  -->
-            <div class="row event-description">
-                <div class="col">
-                    <label for="priceEvent"></label>
-                    <input type="text" name="free" class="form-control" readonly id="priceEvent" placeholder="Cena wydarzenia: "
-                           th:text="${newEventDto.getNewEventPlace()}">
-                </div>
-                <div class="col">
-                    br><p></p>
-                    <input class="form-check-input" type="checkbox" value="" readonly id="priceEventFree"
-                           onclick="this.form.elements['free'].disabled = this.checked"
-                           th:text="${newEventDto.getNewEventPriceFree()}">
-                    <label class="form-check-label text-warning" for="priceEventFree">Wydarzenie Bezpłatne</label>
-                </div>
+        </div>
+        <!-- cityEvent -->
+        <div class="row event-description">
+            <div class="col-md-4">
+                <label>Miejsca wydarzenia: </label>
             </div>
-            <!-- urlAddress -->
-            <div class="row event-description">
-                <div class="col">
-                    <label for="urlAddress"></label>
-                    <input type="url" class="form-control" readonly id="urlAddress" placeholder="Adres strony"
-                           th:text="${newEventDto.getNewEventUrl()}">
-                </div>
+            <div class="col-md-1">
+                <p th:text="${newEventDto.getNewEventCity()}"></p>
             </div>
-            <!-- descriptionEvent input -->
-            <div class="row event-description">
-                <div class="col">
-                    <label for="descriptionEvent"></label>
-                    <textarea class="form-control" id="descriptionEvent" placeholder="Opis Wydarzenia"
-                              th:text="${newEventDto.getNewEventDescription()}"
-                              rows="3"></textarea>
-                </div>
+        </div>
+        <!-- startEvent -->
+        <div class="row event-description">
+            <div class="col-md-4">
+                <label>Początek wydarzenia:</label>
             </div>
-            <!-- imageEvent input -->
-            <div class="row event-description">
-                <div class="col">
-                    <input type="text" readonly class="form-control" value="Dodaj plik (JPG, PNG, GIF, RAW)">
-                    <input type="file" class="form-control-file text-warning" id="imageEvent"
-                           th:text="${newEventDto.getNewEventImage()}">
-                </div>
+            <div class="col-md-2">
+                <p th:text="${newEventDto.getNewEventStartDate()}"></p>
             </div>
-            <!-- saveBottom -->
-            <div class="row event-description">
-                <div class="col-md-12">
-                    <input type="submit" value="Zapisz" style="margin-bottom: 30px">
-                </div>
+            <div class="col-md-2">
+                <p th:text="${newEventDto.getNewEventStartTime()}"></p>
             </div>
-        </form>
+        </div>
+        <!-- endEvent input -->
+        <div class="row event-description">
+            <div class="col-md-4">
+                <label>Koniec wydarzenia</label>
+            </div>
+            <div class="col-md-2">
+                <p th:text="${newEventDto.getNewEventEndDate()}"></p>
+            </div>
+            <div class="col-md-2">
+                <p th:text="${newEventDto.getNewEventEndTime()}"></p>
+            </div>
+        </div>
+        <!-- priceEvent  -->
+        <div class="row event-description">
+            <div class="col-md-4">
+                <label>Cena wydarzenia: </label>
+            </div>
+            <div class="col-md-1">
+                <span th:text="${newEventDto.getNewEventPrice()}"></span>
+                <span th:if="${newEventDto.getNewEventPriceFree()}">Wydarzenie Bezpłatne</span>
+            </div>
+        </div>
+        <!-- urlAddress -->
+        <div class="row event-description">
+            <div class="col">
+                <label></label>
+                <p th:text="${newEventDto.getNewEventUrl()}"></p>
+            </div>
+        </div>
+        <!-- descriptionEvent input -->
+        <div class="row event-description">
+            <div class="col">
+                <label></label>
+                <p th:text="${newEventDto.getNewEventDescription()}"></p>
+            </div>
+        </div>
+        <!-- imageEvent input -->
+        <div class="row event-description">
+            <div class="col">
+                <p th:text="${newEventDto.getNewEventImage()}"></p>
+            </div>
+        </div>
     </div>
 
     <div class="p-3 text-white">

@@ -36,6 +36,7 @@ public class AddEventController {
         } else {
             EventNew eventNew = repositoryServiceClass.createEventNewFromNewEventDto(newEventDto);
             repositoryServiceClass.saveEventNew(eventNew);
+            model.addAttribute("newEventDto", newEventDto);
             return "saveEvent";
         }
     }
