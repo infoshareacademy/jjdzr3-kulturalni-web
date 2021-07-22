@@ -8,7 +8,7 @@ public class Tickets {
 
     @Id
     private Long id;
-    private String typr;
+    private String type;
 
     public Long getId() {
         return id;
@@ -18,19 +18,19 @@ public class Tickets {
         this.id = id;
     }
 
-    public String getTypr() {
-        return typr;
+    public String getType() {
+        return type;
     }
 
-    public void setTypr(String typr) {
-        this.typr = typr;
+    public void setType(String type) {
+        this.type = type;
     }
 
     @Override
     public String toString() {
         return "Tickets{" +
                 "id=" + id +
-                ", typr='" + typr + '\'' +
+                ", type='" + type + '\'' +
                 '}';
     }
 }
