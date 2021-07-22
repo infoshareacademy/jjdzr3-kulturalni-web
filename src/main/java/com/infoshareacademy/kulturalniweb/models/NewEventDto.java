@@ -1,23 +1,32 @@
 package com.infoshareacademy.kulturalniweb.models;
 
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 //TODO : walidacje dla pól
 public class NewEventDto {
     private Integer newEventId;
+    @NotNull
     @Size(min = 3, message = "Wprowadź co najmniej 3 znaki")
     private String newEventName;
+    @NotNull
     @Size(min = 3, message = "Wprowadź co najmniej 3 znaki")
     private String newEventPlace;
+    @NotNull
+    @Size(min = 3, message = "Wprowadź co najmniej 3 znaki")
     private String newEventCity;
     private String newEventStartDate;
     private String newEventEndDate;
     private String newEventStartTime;
     private String newEventEndTime;
+    @Size(min = 1, message = "Wprowadź co najmniej jedną cyfre")
     private String newEventPrice;
     private Boolean newEventPriceFree;
     private String newEventUrl;
     private String newEventImage;
+    @Size(min = 3, max =500,  message = "Wprowadź co najmniej 3 znaki")
     private String newEventDescription;
 
     public NewEventDto(Integer newEventId, String newEventName, String newEventPlace, String newEventCity, String newEventStartDate, String newEventEndDate, String newEventStartTime, String newEventEndTime, String newEventPrice, Boolean newEventPriceFree, String newEventUrl, String newEventImage, String newEventDescription) {
