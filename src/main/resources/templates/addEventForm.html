@@ -96,7 +96,7 @@
             <div class="row event-description">
                 <div class="col text-warning">
                     <label for="urlAddress"></label>
-                    <input type="url" class="form-control" id="urlAddress" placeholder="Adres strony" th:field="*{newEventUrl}">
+                    <input type="text" class="form-control" id="urlAddress" placeholder="Adres strony" th:field="*{newEventUrl}">
                 </div>
             </div>
             <!-- descriptionEvent input -->
@@ -112,7 +112,7 @@
             <div class="row event-description">
                 <div class="col text-warning">
                     <input type="text" readonly class="form-control" value="Dodaj plik (JPG, PNG, GIF, RAW)">
-                    <input type="image" class="form-control-file text-warning" id="imageEvent" th:field="*{newEventImage}">
+                    <input type="file" class="form-control-file text-warning" id="imageEvent" th:field="*{newEventImage}">
                 </div>
             </div>
             <!-- saveBottom -->
