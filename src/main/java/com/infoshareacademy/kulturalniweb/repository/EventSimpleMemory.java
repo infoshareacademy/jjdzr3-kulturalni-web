@@ -1,6 +1,6 @@
 package com.infoshareacademy.kulturalniweb.repository;
 
-import com.infoshareacademy.kulturalniweb.domainData.EventSimple;
+import com.infoshareacademy.kulturalniweb.jsonData.EventSimple;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -27,9 +27,8 @@ public class EventSimpleMemory {
         this.listOfEventSimple = listOfEventSimple;
     }
 
-    public void saveEventSimpleToMemory (EventSimple eventSimple) {
+    public void saveEventSimpleToMemory(EventSimple eventSimple) {
         listOfEventSimple.add(eventSimple);
-        System.out.println("rozmiar bazy: " + listOfEventSimple.size());
     }
 }
 

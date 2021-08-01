@@ -1,4 +1,4 @@
-package com.infoshareacademy.kulturalniweb.kulturalniEntities;
+package com.infoshareacademy.kulturalniweb.entities.event;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

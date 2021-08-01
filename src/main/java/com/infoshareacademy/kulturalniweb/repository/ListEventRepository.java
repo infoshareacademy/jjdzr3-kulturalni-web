@@ -1,8 +1,7 @@
 package com.infoshareacademy.kulturalniweb.repository;
 
 import com.google.gson.Gson;
-import com.infoshareacademy.kulturalniweb.domainData.EventNew;
-import com.infoshareacademy.kulturalniweb.domainData.EventSimple;
+import com.infoshareacademy.kulturalniweb.jsonData.EventNew;
 import com.infoshareacademy.kulturalniweb.services.PictureService;
 import org.springframework.stereotype.Component;
 

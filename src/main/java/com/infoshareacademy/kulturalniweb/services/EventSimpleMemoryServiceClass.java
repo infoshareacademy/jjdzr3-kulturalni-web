@@ -1,13 +1,11 @@
 package com.infoshareacademy.kulturalniweb.services;
 
-import com.infoshareacademy.kulturalniweb.domainData.EventNew;
-import com.infoshareacademy.kulturalniweb.domainData.EventSimple;
+import com.infoshareacademy.kulturalniweb.jsonData.EventNew;
+import com.infoshareacademy.kulturalniweb.jsonData.EventSimple;
 import com.infoshareacademy.kulturalniweb.repository.EventSimpleMemory;
 import com.infoshareacademy.kulturalniweb.repository.ListEventRepository;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,14 +65,14 @@ public class EventSimpleMemoryServiceClass {
         return listOfEventSimple;
     }
 
-                        public List<EventSimple> getListOfEventSimple() {
-                            List<EventSimple> listOfEventSimple = new ArrayList<>();
+    public List<EventSimple> getListOfEventSimple() {
+        List<EventSimple> listOfEventSimple = new ArrayList<>();
 
-                            for (int i = 0; i < listEventRepository.getEventsDB().size(); i++) {
-                                listOfEventSimple.add(getSingleEventSimpleFromRepository(i));
-                            }
-                            return listOfEventSimple;
-                        }
+        for (int i = 0; i < listEventRepository.getEventsDB().size(); i++) {
+            listOfEventSimple.add(getSingleEventSimpleFromRepository(i));
+        }
+        return listOfEventSimple;
+    }
 
 
     public EventSimple getSingleEventSimpleFromEventSimpleMemory(Integer id) {

@@ -1,6 +1,6 @@
 package com.infoshareacademy.kulturalniweb.services;
 
-import com.infoshareacademy.kulturalniweb.domainData.EventSimple;
+import com.infoshareacademy.kulturalniweb.jsonData.EventSimple;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,11 +25,9 @@ public class AddEventService {
         return highestId;
     }
 
-    public void saveEventSimpleToMemory (EventSimple eventSimple) {
+    public void saveEventSimpleToMemory(EventSimple eventSimple) {
         eventSimpleMemoryServiceClass.saveEventSimpleToMemory(eventSimple);
     }
-
-
 
 
 }

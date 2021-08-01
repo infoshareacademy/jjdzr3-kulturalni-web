@@ -1,8 +1,8 @@
 package com.infoshareacademy.kulturalniweb.services;
 
-import com.infoshareacademy.kulturalniweb.domainData.EventNew;
-import com.infoshareacademy.kulturalniweb.domainData.EventSimple;
-import com.infoshareacademy.kulturalniweb.models.NewEventDto;
+import com.infoshareacademy.kulturalniweb.dto.NewEventDto;
+import com.infoshareacademy.kulturalniweb.jsonData.EventNew;
+import com.infoshareacademy.kulturalniweb.jsonData.EventSimple;
 import com.infoshareacademy.kulturalniweb.repository.ListEventRepository;
 import org.springframework.stereotype.Service;
 
@@ -36,18 +36,7 @@ public class RepositoryServiceClass {
         return eventSimple;
     }
 
-/*    public List<EventSimple> getListOfEventSimple(Integer numberOfEventsOnThePage) {
-        List<EventSimple> listOfEventSimple = new ArrayList<>();
-
-        for (int i = 0; i < numberOfEventsOnThePage; i++) {
-            listOfEventSimple.add(getSingleEventSimpleFromList(i));
-        }
-        return listOfEventSimple;
-    }*/
-
-
-
-    public EventNew createEventNewFromNewEventDto (NewEventDto newEventDto) {
+    public EventNew createEventNewFromNewEventDto(NewEventDto newEventDto) {
         EventNew eventNew = new EventNew();
 
         //eventNew.setId(newEventDto.getNewEventID());
@@ -55,14 +44,14 @@ public class RepositoryServiceClass {
         eventNew.setName(newEventDto.getNewEventName());
         eventNew.setDescLong(newEventDto.getNewEventDescription());
         eventNew.setStartDate(newEventDto.getNewEventDate() + "T" + newEventDto.getNewEventStartTime() + "-00:00");
-        eventNew.setEndDate(newEventDto.getNewEventDate() + "T" +newEventDto.getNewEventEndTime() + "-00:00");
+        eventNew.setEndDate(newEventDto.getNewEventDate() + "T" + newEventDto.getNewEventEndTime() + "-00:00");
 
 
         return eventNew;
     }
 
-    public void saveEventNew (EventNew eventNew) {
+    public void saveEventNew(EventNew eventNew) {
         listEventRepository.getEventsDB().add(eventNew);
     }
-    
+
 }

@@ -1,12 +1,14 @@
 package com.infoshareacademy.kulturalniweb.services;
 
-import com.infoshareacademy.kulturalniweb.domainData.EventSimple;
+import com.infoshareacademy.kulturalniweb.jsonData.EventSimple;
 import com.infoshareacademy.kulturalniweb.repository.EventSimpleMemory;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -104,7 +106,7 @@ public class SortingServices {
         }
     }
 
-    public List<EventSimple> sortByIdDescending () {
+    public List<EventSimple> sortByIdDescending() {
         List<EventSimple> listOfEventSimple = eventSimpleMemory.getListOfEventSimple();
 
         Comparator<EventSimple> comparator;
@@ -142,14 +144,6 @@ public class SortingServices {
         System.out.println(resultShortList.size());
         return resultShortList;
     }
-
-
-
-
-
-
-
-
 
 
     public String getEventFilterType() {
