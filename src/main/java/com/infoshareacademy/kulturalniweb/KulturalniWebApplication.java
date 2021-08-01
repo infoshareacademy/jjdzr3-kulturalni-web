@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class KulturalniWebApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(KulturalniWebApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(KulturalniWebApplication.class, args);
+    }
 
 }

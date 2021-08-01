@@ -1,4 +1,4 @@
-package com.infoshareacademy.kulturalniweb.models;
+package com.infoshareacademy.kulturalniweb.dto;
 
 public class PaginationDto {
     private Boolean shouldBeDisplayed;

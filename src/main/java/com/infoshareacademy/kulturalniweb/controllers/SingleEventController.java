@@ -1,7 +1,6 @@
 package com.infoshareacademy.kulturalniweb.controllers;
 
-import com.infoshareacademy.kulturalniweb.domainData.EventSimple;
-import com.infoshareacademy.kulturalniweb.repository.ListEventRepository;
+import com.infoshareacademy.kulturalniweb.jsonData.EventSimple;
 import com.infoshareacademy.kulturalniweb.services.EventSimpleMemoryServiceClass;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

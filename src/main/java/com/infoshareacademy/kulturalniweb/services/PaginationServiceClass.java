@@ -1,9 +1,8 @@
 package com.infoshareacademy.kulturalniweb.services;
 
-import com.infoshareacademy.kulturalniweb.models.PaginationDto;
+import com.infoshareacademy.kulturalniweb.dto.PaginationDto;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +16,7 @@ public class PaginationServiceClass {
     private Integer totalNumberOfPages;
 
 
-    public PaginationDto getPaginationDto () {
+    public PaginationDto getPaginationDto() {
         PaginationDto paginationDto = new PaginationDto();
 
         paginationDto.setShoulBeDisplayed(shouldBeDisplayed(totalNumberOfEvents, numberOfEventsOnThePage));
@@ -33,18 +32,17 @@ public class PaginationServiceClass {
         paginationDto.setFifthNavBarNumber(navBarPositions.get(4));
 
 
-
         return paginationDto;
     }
 
 
-    private Boolean shouldBeDisplayed (Integer totalNumberOfEvents, Integer numberOfEventsOnThePage) {
+    private Boolean shouldBeDisplayed(Integer totalNumberOfEvents, Integer numberOfEventsOnThePage) {
         return (totalNumberOfEvents > numberOfEventsOnThePage);
     }
 
-    private Integer calculateTotalNumberOfPages (Integer totalNumberOfEvents, Integer numberOfEventsOnThePage) {
+    private Integer calculateTotalNumberOfPages(Integer totalNumberOfEvents, Integer numberOfEventsOnThePage) {
         Integer totalNumberOfPages = (totalNumberOfEvents / numberOfEventsOnThePage);
-        if ((totalNumberOfEvents % numberOfEventsOnThePage) > 0 ) {
+        if ((totalNumberOfEvents % numberOfEventsOnThePage) > 0) {
             totalNumberOfPages = totalNumberOfPages + 1;
         }
         return totalNumberOfPages;
@@ -57,7 +55,7 @@ public class PaginationServiceClass {
 
         if ((totalNumberOfPages > 5) && (requestedPageNumber > 5)) {
             navBarPositions.add(virtualDisplayedPageNumber - 4);
-            navBarPositions.add(virtualDisplayedPageNumber - 3 );
+            navBarPositions.add(virtualDisplayedPageNumber - 3);
             navBarPositions.add(virtualDisplayedPageNumber - 2);
             navBarPositions.add(virtualDisplayedPageNumber - 1);
             navBarPositions.add(virtualDisplayedPageNumber);
@@ -78,7 +76,6 @@ public class PaginationServiceClass {
             virtualDisplayedPageNumber++;
         }
     }
-
 
 
     public Integer getTotalNumberOfEvents() {

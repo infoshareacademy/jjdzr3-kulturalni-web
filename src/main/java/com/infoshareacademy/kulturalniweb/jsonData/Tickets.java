@@ -1,4 +1,4 @@
-package com.infoshareacademy.kulturalniweb.domainData;
+package com.infoshareacademy.kulturalniweb.jsonData;
 
 public class Tickets {
     private String type;

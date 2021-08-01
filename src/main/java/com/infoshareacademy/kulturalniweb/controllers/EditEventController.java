@@ -8,18 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class EditEventController {
 
 
-    @GetMapping("/ew")
+    @GetMapping("/editEvent")
     public String editEvent(Model model) {
-
 
 
         return "editevent";
     }
-
-
-
-
-
-
-
 }

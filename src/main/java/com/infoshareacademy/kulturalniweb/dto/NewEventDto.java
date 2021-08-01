@@ -1,6 +1,4 @@
-package com.infoshareacademy.kulturalniweb.models;
-
-import org.springframework.format.annotation.DateTimeFormat;
+package com.infoshareacademy.kulturalniweb.dto;
 
 import javax.validation.constraints.Size;
 
