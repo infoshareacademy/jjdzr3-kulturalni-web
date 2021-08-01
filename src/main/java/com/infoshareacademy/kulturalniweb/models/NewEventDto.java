@@ -151,4 +151,6 @@ public class NewEventDto {
     public void setNewEventDescription(String newEventDescription) {
         this.newEventDescription = newEventDescription;
     }
+
+
 }

@@ -44,8 +44,8 @@ public class RepositoryServiceClass {
         eventNew.setId(95000);
         eventNew.setName(newEventDto.getNewEventName());
         eventNew.setDescLong(newEventDto.getNewEventDescription());
-        eventNew.setStartDate(newEventDto.getNewEventDate() + "T" + newEventDto.getNewEventStartTime() + "-00:00");
-        eventNew.setEndDate(newEventDto.getNewEventDate() + "T" + newEventDto.getNewEventEndTime() + "-00:00");
+        eventNew.setStartDate(newEventDto.getNewEventStartDate() + "T" + newEventDto.getNewEventStartTime() + "-00:00");
+        eventNew.setEndDate(newEventDto.getNewEventEndDate() + "T" + newEventDto.getNewEventEndTime() + "-00:00");
 
 
         return eventNew;
