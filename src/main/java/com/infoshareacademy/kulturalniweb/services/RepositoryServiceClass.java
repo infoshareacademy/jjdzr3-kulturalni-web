@@ -1,5 +1,11 @@
 package com.infoshareacademy.kulturalniweb.services;
 
+import com.infoshareacademy.kulturalniweb.dto.NewEventDto;
+import com.infoshareacademy.kulturalniweb.jsonData.EventNew;
+import com.infoshareacademy.kulturalniweb.jsonData.EventSimple;
+import com.infoshareacademy.kulturalniweb.repository.ListEventRepository;
+import org.springframework.stereotype.Service;
+
 import com.infoshareacademy.kulturalniweb.domainData.EventNew;
 import com.infoshareacademy.kulturalniweb.domainData.EventSimple;
 import com.infoshareacademy.kulturalniweb.models.NewEventDto;
@@ -17,23 +23,9 @@ public class RepositoryServiceClass {
         this.listEventRepository = listEventRepository;
     }
 
-/*    public EventSimple getSingleEventSimpleById(Integer eventNewId) {
-        EventSimple eventSimple = new EventSimple();
-
-        for (Integer i=0; i < listEventRepository.getEventsDB().size(); i++){
-            if(listEventRepository.getEventsDB().get(i).getId().equals(eventNewId)) {
-                eventSimple = createSingleEventSimple(listEventRepository.getEventsDB().get(i));
-            }
-        }
-        return eventSimple;
-    }*/
-
-    public EventSimple getSingleEventSimpleFromList(Integer pointer) {
-        return createSingleEventSimple(listEventRepository.getEventsDB().get(pointer));
+    public void readEventsFromGsonToList() {
+        listEventRepository.readEventsFromGsonToList();
     }
-
-
-
 
     public EventSimple createSingleEventSimple(EventNew eventNew) {
         EventSimple eventSimple = new EventSimple();
@@ -53,52 +45,22 @@ public class RepositoryServiceClass {
         return eventSimple;
     }
 
-    public List<EventSimple> getListOfEventSimple(Integer numberOfEventsOnThePage) {
-        List<EventSimple> listOfEventSimple = new ArrayList<>();
-
-        for (int i = 0; i < numberOfEventsOnThePage; i++) {
-            listOfEventSimple.add(getSingleEventSimpleFromList(i));
-        }
-        return listOfEventSimple;
-    }
-
-    public List<EventSimple> getListOfEventSimple() {
-        List<EventSimple> listOfEventSimple = new ArrayList<>();
-
-        for (int i = 0; i < listEventRepository.getEventsDB().size(); i++) {
-            listOfEventSimple.add(getSingleEventSimpleFromList(i));
-
-            System.out.println(i + " = " + getSingleEventSimpleFromList(i).getEventSimpleDescriptionShort());
-        }
-        System.out.println("newest= " + listOfEventSimple.size());
-        return listOfEventSimple;
-    }
-
-    public EventNew createEventNewFromNewEventDto (NewEventDto newEventDto) {
+    public EventNew createEventNewFromNewEventDto(NewEventDto newEventDto) {
         EventNew eventNew = new EventNew();
 
         //eventNew.setId(newEventDto.getNewEventID());
         eventNew.setId(95000);
         eventNew.setName(newEventDto.getNewEventName());
         eventNew.setDescLong(newEventDto.getNewEventDescription());
-        eventNew.setStartDate(newEventDto.getNewEventStartDate() + "T" + newEventDto.getNewEventStartTime() + "-00:00");
-        eventNew.setEndDate(newEventDto.getNewEventEndDate() + "T" +newEventDto.getNewEventEndTime() + "-00:00");
+        eventNew.setStartDate(newEventDto.getNewEventDate() + "T" + newEventDto.getNewEventStartTime() + "-00:00");
+        eventNew.setEndDate(newEventDto.getNewEventDate() + "T" + newEventDto.getNewEventEndTime() + "-00:00");
 
 
         return eventNew;
     }
 
+    public void saveEventNew(EventNew eventNew) {
+        listEventRepository.getEventsDB().add(eventNew);
+    }
 
-
-
-/*        eventSimple.setEventSimplePlace(eventNew.getPlace().getName());
-        eventSimple.setEventSimpleTicketPrice(0.0);
-        eventSimple.setEventSimpleWebPageAddress(eventNew.getUrls().getWww());
-        eventSimple.setEventSimpleDescriptionShort(eventNew.getDescShort());*/
-
-
-        public void saveEventNew (EventNew eventNew) {
-            listEventRepository.getEventsDB().add(eventNew);
-        }
-    
 }

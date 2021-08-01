@@ -21,36 +21,58 @@
 
     <div class="container bg-light rounded-3">
         <div class="row head-border">
-            <div class="col-md-3">
-                <select class="dropdown-fields dropdown-field-type" name="searchType">
-                    <option value="wszystkie_rodzaje" selected>Wszystkie rodzaje</option>
-                    <option value="kino">kino</option>
-                    <option value="teatr">teatr</option>
-                    <option value="koncert">koncert</option>
-                    <option value="inne">inne</option>
-                </select>
+
+             <div class="col-md-3">
+                <form action="/eventFilterType">
+<!--                    <select class="dropdown-fields dropdown-field-type" name="eventFilterType" onchange="this.form.submit()">
+                        <option value="all" selected>Wszystkie rodzaje</option>
+                        <option value="cinema">kino</option>
+                        <option value="theatre">teatr</option>
+                        <option value="concert">koncert</option>
+                        <option value="other">inne</option>
+                    </select>-->
+                </form>
             </div>
+
             <div class="col-md-3">
-                <select class="dropdown-fields dropdown-field-city" name="searchCity">
-                    <option value="wszystkie_rodzaje" selected>Wszystkie miejsca</option>
-                    <option value="kino">Miniatura</option>
-                    <option value="teatr">Archipelag Kultury</option>
-                    <option value="inne">inne</option>
-                </select>
+                <form action="/eventFilterPlace">
+                    <select class="dropdown-fields dropdown-field-city" name="eventFilterPlace" onchange="this.form.submit()">
+                        <option value="all" selected th:if="${eventFilterPlace == 'all'}">Wszystkie miejsca</option>
+                        <option value="all" th:if="${eventFilterPlace != 'all'}">Wszystkie miejsca</option>
+                        <option value="Miejski Teatr MINIATURA" selected th:if="${eventFilterPlace == 'Miejski Teatr MINIATURA'}">Miejski Teatr MINIATURA</option>
+                        <option value="Miejski Teatr MINIATURA" th:if="${eventFilterPlace != 'Miejski Teatr MINIATURA'}">Miejski Teatr MINIATURA</option>
+                        <option value="Gdański Archipelag Kultury" selected th:if="${eventFilterPlace == 'Gdański Archipelag Kultury'}">Gdański Archipelag Kultury</option>
+                        <option value="Gdański Archipelag Kultury" th:if="${eventFilterPlace != 'Gdański Archipelag Kultury'}">Gdański Archipelag Kultury</option>
+                        <option value="other" selected th:if="${eventFilterPlace == 'other'}">inne</option>
+                        <option value="other" th:if="${eventFilterPlace != 'other'}">inne</option>
+                    </select>
+                </form>
             </div>
+
             <div class="col-md-3">
-                <select class="dropdown-fields dropdown-field-city" name="searchCity">
-                    <option value="wszystkie_rodzaje" selected>Sortuj po dacie</option>
-                    <option value="kino">Sortuj po miejscowości</option>
-                    <option value="teatr">Sortuj po tytule</option>
-                </select>
+                <form action="/eventSortType">
+                    <select class="dropdown-fields dropdown-field-city" name="eventSortType" onchange="this.form.submit()">
+                        <option value="date" selected th:if="${eventSortType == 'date'}">Sortuj po dacie</option>
+                        <option value="date" th:if="${eventSortType != 'date'}">Sortuj po dacie</option>
+                        <option value="city" selected th:if="${eventSortType == 'city'}">Sortuj po miejscowości</option>
+                        <option value="city" th:if="${eventSortType != 'city'}">Sortuj po miejscowości</option>
+                        <option value="name" selected th:if="${eventSortType == 'name'}">Sortuj po tytule</option>
+                        <option value="name" th:if="${eventSortType != 'name'}">Sortuj po tytule</option>
+                    </select>
+                </form>
             </div>
+
             <div class="col-md-3">
-                <select class="dropdown-fields dropdown-field-direction" name="searchDirection" id="searchDirection">
-                    <option value="ascending" selected>Sortuj rosnąco</option>
-                    <option value="descending">Sortuj malejąco</option>
-                </select>
+                <form action="/eventSortDirection">
+                    <select class="dropdown-fields dropdown-field-direction" name="eventSortDirection" onchange="this.form.submit()">
+                        <option value="ascending" selected th:if="${eventSortDirection == 'ascending'}">Sortuj rosnąco</option>
+                        <option value="ascending" th:if="${eventSortDirection != 'ascending'}">Sortuj rosnąco</option>
+                        <option value="descending" selected th:if="${eventSortDirection == 'descending'}">Sortuj malejąco</option>
+                        <option value="descending" th:if="${eventSortDirection != 'descending'}">Sortuj malejąco</option>
+                    </select>
+                </form>
             </div>
+
         </div>
     </div>
 
@@ -60,16 +82,24 @@
                 <input class="dropdown-fields event-name-input" type="text" value=""
                        placeholder="Wpisz tytuł wydarzenia" autocomplete="off"/>
             </div>
-            <div class="col-md-3">
-                <select class="dropdown-fields dropdown-field-quantity" name="searchCity">
-                    <option value="quantity_20" selected>20 wyników</option>
-                    <option value="quantity_40">40 wyników</option>
-                    <option value="quantity_60">60 wyników</option>
-                </select>
-            </div>
+
             <div class="col-md-3">
                 <button type="button" class="button-search">Szukaj</button>
             </div>
+
+            <div class="col-md-3">
+                <form action="/eventsPerPage">
+                    <select class="dropdown-fields dropdown-field-quantity" name="eventsPerPage" onchange="this.form.submit()">
+                        <option value="10" selected th:if="${numberOfEventsPerPage.equals(10)}">10 wyników</option>
+                        <option value="10" th:if="${not numberOfEventsPerPage.equals(10)}">10 wyników</option>
+                        <option value="30" selected th:if="${numberOfEventsPerPage.equals(30)}">30 wyników</option>
+                        <option value="30" th:if="${not numberOfEventsPerPage.equals(30)}">30 wyników</option>
+                        <option value="50" selected th:if="${numberOfEventsPerPage.equals(50)}">50 wyników</option>
+                        <option value="50" th:if="${not numberOfEventsPerPage.equals(50)}">50 wyników</option>
+                    </select>
+                </form>
+            </div>
+
         </div>
     </div>
 
@@ -93,7 +123,7 @@
         </div>
     </div>
 
-    <div th:each="eventSimple: ${collectionOfEventSimple}" class="container main-table">
+    <div th:each="eventSimple: ${listOfEventSimple}" class="container main-table">
         <div class="row">
             <div class="col-md-1 low-padding">
                 <p class="table-city-paragraph" th:text="${eventSimple.getEventSimpleCity()}">Miasto</p>
@@ -106,15 +136,38 @@
                 <p class="table-city-paragraph" th:text="${eventSimple.getEventSimpleStartTime()}">Godzina</p>
             </div>
             <div class="col-md-8">
-                <a href=# th:href="@{/singleEvent(id=${eventSimple.getEventSimpleId()})}" style="text-decoration: none">
+                <a href=# th:href="@{/singleevent(id=${eventSimple.getEventSimpleId()})}" style="text-decoration: none">
                     <p class="table-city-paragraph" th:text="${eventSimple.getEventSimpleName()}">Nazwa wydarzenia</p>
                 </a>
             </div>
             <div class="col-md-1">
-                <p class="table-city-paragraph">Ulubione</p>
+                <form action="/favselect">
+                    <a href=# th:href="@{/favselect(id=${eventSimple.getEventSimpleId()})}" ><img src="images/img/heart-bw.png" style="width: 32px; height: 32px; margin-top: 10px"></a>
+                    <!--<a href=# th:href="@{/favselect(id=${eventSimple.getEventSimpleId()})}" th:if="${eventSimple.getEventSimpleId() != favId}" ? 'img src="images/img/heart-bw.png"' : 'img src="images/img/heart-red.png"'" style="width: 32px; height: 32px; margin-top: 10px"></a>-->
+                </form>
             </div>
         </div>
     </div>
+
+    <div class="container">
+        <div class="row" style="margin-top: 15px">
+            <div class="col-md-4" style="margin: 0 auto">
+                <nav th:if="${paginationDto.shouldBeDisplayed}">
+                    <ul class="pagination" >
+                        <li class="page-item" style="width: 100px" th:if="${(paginationDto.totalNumberOfPages > 1) && (numberOfPageThatIsBeeingDisplayed > 1)}"><a class="page-link" href="#"  th:href="@{/alleventsChangePage(page=${-1})}" style="color: deeppink">Previous</a></li>
+                        <li class="page-item" th:if="${paginationDto.totalNumberOfPages > 0}"><a class="page-link" href="#" th:href="@{/alleventsChangePage(page=${paginationDto.getFirstNavBarNumber()})}"><span th:text="${paginationDto.getFirstNavBarNumber()}" style="color: deeppink"></span></a></li>
+                        <li class="page-item" th:if="${paginationDto.totalNumberOfPages > 1}"><a class="page-link" href="#" th:href="@{/alleventsChangePage(page=${paginationDto.getSecondNavBarNumber()})}"><span th:text="${paginationDto.getSecondNavBarNumber()}" style="color: deeppink"></span></a></li>
+                        <li class="page-item" th:if="${paginationDto.totalNumberOfPages > 2}"><a class="page-link" href="#" th:href="@{/alleventsChangePage(page=${paginationDto.getThirdNavBarNumber()})}"><span th:text="${paginationDto.getThirdNavBarNumber()}" style="color: deeppink"></span></a></li>
+                        <li class="page-item" th:if="${paginationDto.totalNumberOfPages > 3}"><a class="page-link" href="#" th:href="@{/alleventsChangePage(page=${paginationDto.getFourthNavBarNumber()})}"><span th:text="${paginationDto.getFourthNavBarNumber()}" style="color: deeppink"></span></a></li>
+                        <li class="page-item" th:if="${paginationDto.totalNumberOfPages > 4}"><a class="page-link" href="#" th:href="@{/alleventsChangePage(page=${paginationDto.getFifthNavBarNumber()})}"><span th:text="${paginationDto.getFifthNavBarNumber()}" style="color: deeppink"></span></a></li>
+                        <li class="page-item" style="width: 100px" th:if="${paginationDto.totalNumberOfPages > numberOfPageThatIsBeeingDisplayed}"><a class="page-link" href="#" th:href="@{/alleventsChangePage(page=${-2})}" style="color: deeppink">Next</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+
 
 
 </header>
