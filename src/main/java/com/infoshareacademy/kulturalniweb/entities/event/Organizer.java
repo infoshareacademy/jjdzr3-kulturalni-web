@@ -1,14 +1,19 @@
 package com.infoshareacademy.kulturalniweb.entities.event;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Organizer {
 
     @Id
+    @Column(unique = true, nullable = false)
     private Long id;
     private String designation;
+
+    @OneToMany
+    @JoinColumn(name = "eventId")
+    private List<Event> events;
 
     public Long getId() {
         return id;

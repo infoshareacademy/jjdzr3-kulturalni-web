@@ -1,6 +1,7 @@
 package com.infoshareacademy.kulturalniweb.entities.event;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Event {
@@ -10,22 +11,39 @@ public class Event {
     @Column(nullable = false, unique = true)
     private Long id;
     private Long sourceId;
-    private Long place;
+
+    @ManyToOne
+    @JoinColumn(name = "placeId")
+    private Place place;
+
     private String endDateDate;
     private String endDateTime;
     private String endDateLastTime;
     private String name;
-    private Long urls;
-    private Long attachments;
+
+    @OneToOne
+    @JoinColumn(name = "urlsId")
+    private Urls urls;
+
+    @OneToMany
+    @JoinColumn(name = "attachmentsId")
+    private List<Attachments> attachments;
     private String descLong;
-    private Long categoryId;
+    private Integer categoryId;
     private String startDateDate;
     private String startDateTime;
     private String startDateLastTime;
-    private Long organizer;
+
+    @ManyToOne
+    @JoinColumn(name = "organizerId")
+    private Organizer organizer;
+
     private Boolean active;
     private String descShort;
-    private Integer tickets;
+
+    @OneToOne
+    @JoinColumn(name = "ticketsId")
+    private Tickets tickets;
 
     public Long getId() {
         return id;
@@ -43,11 +61,11 @@ public class Event {
         this.sourceId = sourceId;
     }
 
-    public Long getPlace() {
+    public Place getPlace() {
         return place;
     }
 
-    public void setPlace(Long place) {
+    public void setPlace(Place place) {
         this.place = place;
     }
 
@@ -83,19 +101,19 @@ public class Event {
         this.name = name;
     }
 
-    public Long getUrls() {
+    public Urls getUrls() {
         return urls;
     }
 
-    public void setUrls(Long urls) {
+    public void setUrls(Urls urls) {
         this.urls = urls;
     }
 
-    public Long getAttachments() {
+    public List<Attachments> getAttachments() {
         return attachments;
     }
 
-    public void setAttachments(Long attachments) {
+    public void setAttachments(List<Attachments> attachments) {
         this.attachments = attachments;
     }
 
@@ -107,11 +125,11 @@ public class Event {
         this.descLong = descLong;
     }
 
-    public Long getCategoryId() {
+    public Integer getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(Long categoryId) {
+    public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
     }
 
@@ -139,11 +157,11 @@ public class Event {
         this.startDateLastTime = startDateLastTime;
     }
 
-    public Long getOrganizer() {
+    public Organizer getOrganizer() {
         return organizer;
     }
 
-    public void setOrganizer(Long organizer) {
+    public void setOrganizer(Organizer organizer) {
         this.organizer = organizer;
     }
 
@@ -163,11 +181,11 @@ public class Event {
         this.descShort = descShort;
     }
 
-    public Integer getTickets() {
+    public Tickets getTickets() {
         return tickets;
     }
 
-    public void setTickets(Integer tickets) {
+    public void setTickets(Tickets tickets) {
         this.tickets = tickets;
     }
 

@@ -1,12 +1,13 @@
 package com.infoshareacademy.kulturalniweb.entities.event;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Attachments {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true, nullable = false)
     private Long id;
     private String fileName;
 

@@ -8,15 +8,15 @@ public class Urls {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique = true, nullable = false)
-    private Integer Id;
+    private Integer id;
     private String  url;
 
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Integer id) {
-        Id = id;
+        id = id;
     }
 
     public String getUrl() {
@@ -30,7 +30,7 @@ public class Urls {
     @Override
     public String toString() {
         return "Urls{" +
-                "Id=" + Id +
+                "Id=" + id +
                 ", url='" + url + '\'' +
                 '}';
     }

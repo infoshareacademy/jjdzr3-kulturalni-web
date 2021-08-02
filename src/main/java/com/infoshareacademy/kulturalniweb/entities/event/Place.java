@@ -1,15 +1,20 @@
 package com.infoshareacademy.kulturalniweb.entities.event;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Place {
 
     @Id
-    @Column(unique = false, nullable = false)
+    @Column(unique = true, nullable = false)
     private Long id;
     private String subname;
     private String name;
+
+    @OneToMany
+    @JoinColumn(name = "eventId")
+    private List<Event> events;
 
     public Long getId() {
         return id;
