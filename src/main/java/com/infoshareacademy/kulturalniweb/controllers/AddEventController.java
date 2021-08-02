@@ -1,7 +1,8 @@
 package com.infoshareacademy.kulturalniweb.controllers;
 
-import com.infoshareacademy.kulturalniweb.jsonData.EventSimple;
-import com.infoshareacademy.kulturalniweb.services.AddEventService;
+import com.infoshareacademy.kulturalniweb.jsonData.EventNew;
+import com.infoshareacademy.kulturalniweb.models.NewEventDto;
+import com.infoshareacademy.kulturalniweb.services.RepositoryServiceClass;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,54 +14,31 @@ import javax.validation.Valid;
 
 @Controller
 public class AddEventController {
-    AddEventService addEventService;
-    Integer idForNewEvent;
 
-    final String PATH_TO_PICTURES = "images/img/events/";
+    RepositoryServiceClass repositoryServiceClass;
 
-    public AddEventController(AddEventService addEventService) {
-        this.addEventService = addEventService;
+    public AddEventController(RepositoryServiceClass repositoryServiceClass) {
+        this.repositoryServiceClass = repositoryServiceClass;
     }
 
-    @GetMapping("/addevent")
+    @GetMapping("/addEvent")
     public String addEvent(Model model) {
-        EventSimple eventSimple = new EventSimple();
-
-        idForNewEvent = addEventService.getHighestEventId() + 5;
-        eventSimple.setEventSimpleId(idForNewEvent);
-
-        model.addAttribute("eventSimple", eventSimple);
-        model.addAttribute("idForEventSimple", idForNewEvent);
-
-        return "addeventform";
+        NewEventDto newEventDto = new NewEventDto();
+        model.addAttribute("newEventDto", newEventDto);
+        return "addEventForm";
     }
 
-    @PostMapping(value = "/saveevent")
-    public String addEvent(@ModelAttribute @Valid EventSimple eventSimple, BindingResult result, Model model) {
-        //model.addAttribute("idForEventSimple", eventSimple);
-
+    @PostMapping(value = "/saveEvent")
+    public String addEvent(@ModelAttribute @Valid NewEventDto newEventDto, BindingResult result, Model model) {
+        model.addAttribute("newEventDto", newEventDto);
         if (result.hasFieldErrors()) {
-            return "addeventform";
+            return "addEventForm";
         } else {
-            EventSimple eventSimpleWithFullPicturePath = createEventSimpleWithFullPathForPicture(eventSimple);
-            eventSimpleWithFullPicturePath.setEventSimpleId(idForNewEvent);
-            addEventService.saveEventSimpleToMemory(eventSimpleWithFullPicturePath);
-            model.addAttribute("savedEventSimple", eventSimpleWithFullPicturePath);
-
-            return "eventsaved";
+            EventNew eventNew = repositoryServiceClass.createEventNewFromNewEventDto(newEventDto);
+            repositoryServiceClass.saveEventNew(eventNew);
+            model.addAttribute("newEventDto", newEventDto);
+            return "saveEvent";
         }
     }
-
-    public EventSimple createEventSimpleWithFullPathForPicture(EventSimple eventSimple) {
-        String path = PATH_TO_PICTURES;
-        EventSimple result = eventSimple;
-
-        String pictureName = result.getEventSimplePicture();
-        path = path + pictureName;
-        result.setEventSimplePicture(path);
-
-        return result;
-    }
-
-
 }
+
