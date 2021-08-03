@@ -1,3 +1,4 @@
+/*
 package com.infoshareacademy.kulturalniweb.entities.event;
 
 import javax.persistence.*;
@@ -35,3 +36,4 @@ public class Attachments {
                 '}';
     }
 }
+*/

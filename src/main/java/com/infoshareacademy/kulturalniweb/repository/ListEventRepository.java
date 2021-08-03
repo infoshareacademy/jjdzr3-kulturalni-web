@@ -36,7 +36,7 @@ public class ListEventRepository {
             for (EventNew eventNew : eventList) {
                 eventsDB.add(eventNew);
 
-                eventsRepository.save(EventMapper.mapEventNewToEvent(eventNew));
+               // eventsRepository.save(EventMapper.mapEventNewToEvent(eventNew));
             }
 
 

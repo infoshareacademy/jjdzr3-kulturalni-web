@@ -9,16 +9,16 @@ public class EventNew {
     private String endDate;
     private String name;
     private Urls urls;
-    private List<FileName> attachments;
+    private List<String> attachments;
     private String descLong;
     private Integer categoryId;
     private String startDate;
     private Organizer organizer;
-    private Boolean active;
+    private String active;
     private String descShort;
     private Tickets tickets;
 
-    public EventNew(Integer id, Place place, String endDate, String name, Urls urls, List<FileName> attachments, String descLong, Integer categoryId, String startDate, Organizer organizer, Boolean active, String descShort, Tickets tickets) {
+    public EventNew(Integer id, Place place, String endDate, String name, Urls urls, List<String> attachments, String descLong, Integer categoryId, String startDate, Organizer organizer, String active, String descShort, Tickets tickets) {
         this.id = id;
         this.place = place;
         this.endDate = endDate;
@@ -77,18 +77,19 @@ public class EventNew {
         this.urls = urls;
     }
 
-    public List<FileName> getAttachments() {
+    public List<String> getAttachments() {
         return attachments;
     }
-    public FileName getAttachment() {
+
+    public String getAttachment() {
         if (attachments.isEmpty()) {
-            FileName fileName = new FileName("-");
+            String fileName = "-";
             attachments.add(fileName);
         }
         return attachments.get(0);
     }
 
-    public void setAttachments(List<FileName> attachments) {
+    public void setAttachments(List<String> attachments) {
         this.attachments = attachments;
     }
 
@@ -124,11 +125,11 @@ public class EventNew {
         this.organizer = organizer;
     }
 
-    public Boolean getActive() {
+    public String getActive() {
         return active;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(String active) {
         this.active = active;
     }
 

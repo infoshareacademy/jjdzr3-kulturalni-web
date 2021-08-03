@@ -25,9 +25,9 @@ public class Event {
     @JoinColumn(name = "urlsId")
     private Urls urls;
 
-    @OneToMany
+/*    @OneToMany
     @JoinColumn(name = "attachmentsId")
-    private List<Attachments> attachments;
+    private List<Attachments> attachments;*/
     private String descLong;
     private Integer categoryId;
     private String startDateDate;
@@ -38,7 +38,7 @@ public class Event {
     @JoinColumn(name = "organizerId")
     private Organizer organizer;
 
-    private Boolean active;
+    private String active;
     private String descShort;
 
     @OneToOne
@@ -109,6 +109,7 @@ public class Event {
         this.urls = urls;
     }
 
+/*
     public List<Attachments> getAttachments() {
         return attachments;
     }
@@ -116,6 +117,7 @@ public class Event {
     public void setAttachments(List<Attachments> attachments) {
         this.attachments = attachments;
     }
+*/
 
     public String getDescLong() {
         return descLong;
@@ -165,11 +167,11 @@ public class Event {
         this.organizer = organizer;
     }
 
-    public Boolean getActive() {
+    public String getActive() {
         return active;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(String active) {
         this.active = active;
     }
 
@@ -189,7 +191,7 @@ public class Event {
         this.tickets = tickets;
     }
 
-    @Override
+/*    @Override
     public String toString() {
         return "Event{" +
                 "id=" + id +
@@ -211,5 +213,5 @@ public class Event {
                 ", descShort='" + descShort + '\'' +
                 ", tickets=" + tickets +
                 '}';
-    }
+    }*/
 }

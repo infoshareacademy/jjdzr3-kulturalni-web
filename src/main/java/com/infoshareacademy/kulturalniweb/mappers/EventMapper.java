@@ -1,17 +1,22 @@
 package com.infoshareacademy.kulturalniweb.mappers;
 
-import com.infoshareacademy.kulturalniweb.entities.event.Event;
+import com.infoshareacademy.kulturalniweb.entities.event.*;
 import com.infoshareacademy.kulturalniweb.jsonData.EventNew;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class EventMapper {
 
     public static Event mapEventNewToEvent(EventNew eventNew) {
         Event event = new Event();
         event.setId(eventNew.getId());
-        event.getPlace().setId(eventNew.getPlace().getId());
-        event.getPlace().setSubname(eventNew.getPlace().getSubname());
-        event.getPlace().setName(eventNew.getPlace().getSubname());
-        event.setEndDateDate(eventNew.getEndDate());
+
+        Place place = new Place();
+        place.setId(eventNew.getPlace().getId());
+        place.setSubname(eventNew.getPlace().getSubname());
+        place.setName(eventNew.getPlace().getSubname());
+        event.setPlace(place);
 
         String[] separatedEndDateAndTime = divideTimeIntoPieces(eventNew.getEndDate());
         event.setEndDateDate(separatedEndDateAndTime[0]);
@@ -20,9 +25,25 @@ public class EventMapper {
 
         event.setName(eventNew.getName());
 
-        event.getUrls().setUrl(eventNew.getUrls().getWww());
+        Urls urls = new Urls();
+        urls.setUrl(eventNew.getUrls().getWww());
+        event.setUrls(urls);
 
-        event.getAttachments().get(0).setFileName(eventNew.getAttachments().get(0).getFileName());
+/*            List<Attachments> attachments = new ArrayList<>();
+            Attachments att = new Attachments();
+            att.setFileName("plik");
+            attachments.add(att);
+            event.setAttachments(attachments);*/
+
+/*        List<Attachments> attachments = new ArrayList<>();
+        for (int i = 0; i < eventNew.getAttachments().size(); i++) {
+            attachments.add(eventNew.getAttachments().get(i));
+        }
+
+        for(String singleAttachment : eventNew.getAttachments()) {
+            attachments.add(eventNew.getAttachments().get(i));
+        }*/
+
 
         event.setDescLong(eventNew.getDescLong());
         event.setCategoryId(eventNew.getCategoryId());
@@ -32,13 +53,17 @@ public class EventMapper {
         event.setStartDateTime(separatedStartDateAndTime[1]);
         event.setStartDateLastTime(separatedStartDateAndTime[2]);
 
-        event.getOrganizer().setId(eventNew.getOrganizer().getId());
-        event.getOrganizer().setDesignation(eventNew.getOrganizer().getName());
+        Organizer organizer = new Organizer();
+        organizer.setId(eventNew.getOrganizer().getId());
+        organizer.setDesignation(eventNew.getOrganizer().getName());
+        event.setOrganizer(organizer);
 
         event.setActive(eventNew.getActive());
         event.setDescShort(eventNew.getDescShort());
 
-        event.getTickets().setType(eventNew.getTickets().getType());
+        Tickets tickets = new Tickets();
+        tickets.setType(eventNew.getTickets().getType());
+        event.setTickets(tickets);
 
         return event;
     }
