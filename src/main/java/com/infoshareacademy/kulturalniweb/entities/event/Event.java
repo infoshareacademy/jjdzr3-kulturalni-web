@@ -28,6 +28,7 @@ public class Event {
 /*    @OneToMany
     @JoinColumn(name = "attachmentsId")
     private List<Attachments> attachments;*/
+    @Column(length = 1000)
     private String descLong;
     private Integer categoryId;
     private String startDateDate;
