@@ -9,7 +9,7 @@ public class EventNew {
     private String endDate;
     private String name;
     private Urls urls;
-    private List<String> attachments;
+    private List<FileName> attachments;
     private String descLong;
     private Integer categoryId;
     private String startDate;
@@ -18,7 +18,7 @@ public class EventNew {
     private String descShort;
     private Tickets tickets;
 
-    public EventNew(Integer id, Place place, String endDate, String name, Urls urls, List<String> attachments, String descLong, Integer categoryId, String startDate, Organizer organizer, String active, String descShort, Tickets tickets) {
+    public EventNew(Integer id, Place place, String endDate, String name, Urls urls, List<FileName> attachments, String descLong, Integer categoryId, String startDate, Organizer organizer, String active, String descShort, Tickets tickets) {
         this.id = id;
         this.place = place;
         this.endDate = endDate;
@@ -77,19 +77,19 @@ public class EventNew {
         this.urls = urls;
     }
 
-    public List<String> getAttachments() {
+    public List<FileName> getAttachments() {
         return attachments;
     }
 
-    public String getAttachment() {
+    public FileName getAttachment() {
         if (attachments.isEmpty()) {
-            String fileName = "-";
+            FileName fileName = new FileName("-");
             attachments.add(fileName);
         }
         return attachments.get(0);
     }
 
-    public void setAttachments(List<String> attachments) {
+    public void setAttachments(List<FileName> attachments) {
         this.attachments = attachments;
     }
 

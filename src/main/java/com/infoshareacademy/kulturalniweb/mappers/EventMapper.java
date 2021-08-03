@@ -12,11 +12,11 @@ public class EventMapper {
         Event event = new Event();
         event.setId(eventNew.getId());
 
-        Place place = new Place();
+/*        Place place = new Place();
         place.setId(eventNew.getPlace().getId());
         place.setSubname(eventNew.getPlace().getSubname());
         place.setName(eventNew.getPlace().getSubname());
-        event.setPlace(place);
+        event.setPlace(place);*/
 
         String[] separatedEndDateAndTime = divideTimeIntoPieces(eventNew.getEndDate());
         event.setEndDateDate(separatedEndDateAndTime[0]);
@@ -25,9 +25,9 @@ public class EventMapper {
 
         event.setName(eventNew.getName());
 
-        Urls urls = new Urls();
+/*        Urls urls = new Urls();
         urls.setUrl(eventNew.getUrls().getWww());
-        event.setUrls(urls);
+        event.setUrls(urls);*/
 
 /*            List<Attachments> attachments = new ArrayList<>();
             Attachments att = new Attachments();
@@ -53,17 +53,17 @@ public class EventMapper {
         event.setStartDateTime(separatedStartDateAndTime[1]);
         event.setStartDateLastTime(separatedStartDateAndTime[2]);
 
-        Organizer organizer = new Organizer();
+/*        Organizer organizer = new Organizer();
         organizer.setId(eventNew.getOrganizer().getId());
         organizer.setDesignation(eventNew.getOrganizer().getName());
-        event.setOrganizer(organizer);
+        event.setOrganizer(organizer);*/
 
         event.setActive(eventNew.getActive());
         event.setDescShort(eventNew.getDescShort());
 
-        Tickets tickets = new Tickets();
+/*        Tickets tickets = new Tickets();
         tickets.setType(eventNew.getTickets().getType());
-        event.setTickets(tickets);
+        event.setTickets(tickets);*/
 
         return event;
     }
