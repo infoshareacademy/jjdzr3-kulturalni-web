@@ -14,11 +14,11 @@ public class EventNew {
     private Integer categoryId;
     private String startDate;
     private Organizer organizer;
-    private String active;
+    private Boolean active;
     private String descShort;
     private Tickets tickets;
 
-    public EventNew(Integer id, Place place, String endDate, String name, Urls urls, List<FileName> attachments, String descLong, Integer categoryId, String startDate, Organizer organizer, String active, String descShort, Tickets tickets) {
+    public EventNew(Integer id, Place place, String endDate, String name, Urls urls, List<FileName> attachments, String descLong, Integer categoryId, String startDate, Organizer organizer, Boolean active, String descShort, Tickets tickets) {
         this.id = id;
         this.place = place;
         this.endDate = endDate;
@@ -124,11 +124,11 @@ public class EventNew {
         this.organizer = organizer;
     }
 
-    public String getActive() {
+    public Boolean getActive() {
         return active;
     }
 
-    public void setActive(String active) {
+    public void setActive(Boolean active) {
         this.active = active;
     }
 

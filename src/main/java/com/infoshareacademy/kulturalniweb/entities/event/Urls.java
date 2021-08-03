@@ -16,7 +16,7 @@ public class Urls {
     }
 
     public void setId(Integer id) {
-        id = id;
+        this.id = id;
     }
 
     public String getUrl() {
@@ -30,7 +30,7 @@ public class Urls {
     @Override
     public String toString() {
         return "Urls{" +
-                "Id=" + id +
+                "id=" + id +
                 ", url='" + url + '\'' +
                 '}';
     }

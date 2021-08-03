@@ -9,7 +9,7 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, unique = true)
-    private Long id;
+    private Integer id;
     private Long sourceId;
 
     @ManyToOne
@@ -45,11 +45,11 @@ public class Event {
     @JoinColumn(name = "ticketsId")
     private Tickets tickets;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -12,4 +12,16 @@ public class Organizer {
     public String getName() {
         return designation;
     }
+
+    public void setName(String string) {
+        this.designation = string;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }

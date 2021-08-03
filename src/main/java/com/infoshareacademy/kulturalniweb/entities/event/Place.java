@@ -8,7 +8,7 @@ public class Place {
 
     @Id
     @Column(unique = true, nullable = false)
-    private Long id;
+    private Integer id;
     private String subname;
     private String name;
 
@@ -16,11 +16,11 @@ public class Place {
     @JoinColumn(name = "eventId")
     private List<Event> events;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -40,12 +40,21 @@ public class Place {
         this.name = name;
     }
 
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
+    }
+
     @Override
     public String toString() {
         return "Place{" +
                 "id=" + id +
                 ", subname='" + subname + '\'' +
                 ", name='" + name + '\'' +
+                ", events=" + events +
                 '}';
     }
 }
