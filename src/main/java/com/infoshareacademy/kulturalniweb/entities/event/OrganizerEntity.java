@@ -4,16 +4,15 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Organizer {
+public class OrganizerEntity {
 
     @Id
     @Column(unique = true, nullable = false)
     private Integer id;
     private String designation;
 
-    @OneToMany
-    @JoinColumn(name = "eventId")
-    private List<Event> events;
+    @OneToMany(mappedBy = "organizerEntities")
+    private List<EventEntity> eventEntities;
 
     public Integer getId() {
         return id;
@@ -31,20 +30,20 @@ public class Organizer {
         this.designation = designation;
     }
 
-    public List<Event> getEvents() {
-        return events;
+    public List<EventEntity> getEventEntities() {
+        return eventEntities;
     }
 
-    public void setEvents(List<Event> events) {
-        this.events = events;
+    public void setEventEntities(List<EventEntity> eventEntities) {
+        this.eventEntities = eventEntities;
     }
 
     @Override
     public String toString() {
-        return "Organizer{" +
+        return "OrganizerEntity{" +
                 "id=" + id +
                 ", designation='" + designation + '\'' +
-                ", events=" + events +
+                ", eventEntities=" + eventEntities +
                 '}';
     }
 }

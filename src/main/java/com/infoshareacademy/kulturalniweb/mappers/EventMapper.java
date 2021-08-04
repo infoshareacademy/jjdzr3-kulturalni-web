@@ -3,31 +3,28 @@ package com.infoshareacademy.kulturalniweb.mappers;
 import com.infoshareacademy.kulturalniweb.entities.event.*;
 import com.infoshareacademy.kulturalniweb.jsonData.EventNew;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class EventMapper {
 
-    public static Event mapEventNewToEvent(EventNew eventNew) {
-        Event event = new Event();
-        event.setId(eventNew.getId());
+    public static EventEntity mapEventNewToEventEntity(EventNew eventNew) {
+        EventEntity eventEntity = new EventEntity();
+        eventEntity.setSourceId(eventNew.getId());
 
-/*        Place place = new Place();
-        place.setId(eventNew.getPlace().getId());
-        place.setSubname(eventNew.getPlace().getSubname());
-        place.setName(eventNew.getPlace().getSubname());
-        event.setPlace(place);*/
+        PlaceEntity placeEntity = new PlaceEntity();
+        placeEntity.setSourceId(eventNew.getPlace().getId());
+        placeEntity.setSubname(eventNew.getPlace().getSubname());
+        placeEntity.setName(eventNew.getPlace().getSubname());
+        eventEntity.setPlaceEntity(placeEntity);
 
         String[] separatedEndDateAndTime = divideTimeIntoPieces(eventNew.getEndDate());
-        event.setEndDateDate(separatedEndDateAndTime[0]);
-        event.setEndDateTime(separatedEndDateAndTime[1]);
-        event.setEndDateLastTime(separatedEndDateAndTime[2]);
+        eventEntity.setEndDateDate(separatedEndDateAndTime[0]);
+        eventEntity.setEndDateTime(separatedEndDateAndTime[1]);
+        eventEntity.setEndDateLastTime(separatedEndDateAndTime[2]);
 
-        event.setName(eventNew.getName());
+        eventEntity.setName(eventNew.getName());
 
-/*        Urls urls = new Urls();
-        urls.setUrl(eventNew.getUrls().getWww());
-        event.setUrls(urls);*/
+/*        UrlEntity urlEntity = new UrlEntity();
+        urlEntity.setUrl(eventNew.getUrls().getWww());
+        eventEntity.setUrlEntity(urlEntity);*/
 
 /*            List<Attachments> attachments = new ArrayList<>();
             Attachments att = new Attachments();
@@ -45,27 +42,27 @@ public class EventMapper {
         }*/
 
 
-        event.setDescLong(eventNew.getDescLong());
-        event.setCategoryId(eventNew.getCategoryId());
+        eventEntity.setDescLong(eventNew.getDescLong());
+        eventEntity.setCategoryId(eventNew.getCategoryId());
 
         String[] separatedStartDateAndTime = divideTimeIntoPieces(eventNew.getStartDate());
-        event.setStartDateDate(separatedStartDateAndTime[0]);
-        event.setStartDateTime(separatedStartDateAndTime[1]);
-        event.setStartDateLastTime(separatedStartDateAndTime[2]);
+        eventEntity.setStartDateDate(separatedStartDateAndTime[0]);
+        eventEntity.setStartDateTime(separatedStartDateAndTime[1]);
+        eventEntity.setStartDateLastTime(separatedStartDateAndTime[2]);
 
 /*        Organizer organizer = new Organizer();
         organizer.setId(eventNew.getOrganizer().getId());
         organizer.setDesignation(eventNew.getOrganizer().getName());
         event.setOrganizer(organizer);*/
 
-        event.setActive(eventNew.getActive());
-        event.setDescShort(eventNew.getDescShort());
+        eventEntity.setActive(eventNew.getActive());
+        eventEntity.setDescShort(eventNew.getDescShort());
 
 /*        Tickets tickets = new Tickets();
         tickets.setType(eventNew.getTickets().getType());
         event.setTickets(tickets);*/
 
-        return event;
+        return eventEntity;
     }
 
     public static String[] divideTimeIntoPieces(String input) {

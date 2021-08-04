@@ -1,16 +1,19 @@
-/*
 package com.infoshareacademy.kulturalniweb.entities.event;
 
 import javax.persistence.*;
 
 @Entity
-public class Attachments {
+public class AttachmentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
     private String fileName;
+
+    @ManyToOne
+    private EventEntity eventEntity;
+
 
     public Long getId() {
         return id;
@@ -28,12 +31,11 @@ public class Attachments {
         this.fileName = fileName;
     }
 
-    @Override
-    public String toString() {
-        return "Attachments{" +
-                "id=" + id +
-                ", fileName='" + fileName + '\'' +
-                '}';
+    public EventEntity getEventEntity() {
+        return eventEntity;
+    }
+
+    public void setEventEntity(EventEntity eventEntity) {
+        this.eventEntity = eventEntity;
     }
 }
-*/

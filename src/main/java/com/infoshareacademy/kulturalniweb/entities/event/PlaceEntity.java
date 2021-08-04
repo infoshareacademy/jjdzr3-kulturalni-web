@@ -1,20 +1,23 @@
 package com.infoshareacademy.kulturalniweb.entities.event;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Place {
+public class PlaceEntity {
 
     @Id
-    @Column(unique = true, nullable = false)
+    @Column(unique = false, nullable = false)
     private Integer id;
+
+    private Integer sourceId;
     private String subname;
     private String name;
 
-    @OneToMany
-    @JoinColumn(name = "eventId")
-    private List<Event> events;
+    @OneToMany(mappedBy = "placeEntity")
+    private List<EventEntity> eventEntities;
+
 
     public Integer getId() {
         return id;
@@ -22,6 +25,14 @@ public class Place {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getSourceId() {
+        return sourceId;
+    }
+
+    public void setSourceId(Integer sourceId) {
+        this.sourceId = sourceId;
     }
 
     public String getSubname() {
@@ -40,21 +51,22 @@ public class Place {
         this.name = name;
     }
 
-    public List<Event> getEvents() {
-        return events;
+    public List<EventEntity> getEventEntities() {
+        return eventEntities;
     }
 
-    public void setEvents(List<Event> events) {
-        this.events = events;
+    public void setEventEntities(List<EventEntity> eventEntities) {
+        this.eventEntities = eventEntities;
     }
 
     @Override
     public String toString() {
-        return "Place{" +
+        return "PlaceEntity{" +
                 "id=" + id +
+                ", sourceId=" + sourceId +
                 ", subname='" + subname + '\'' +
                 ", name='" + name + '\'' +
-                ", events=" + events +
+                ", eventEntities=" + eventEntities +
                 '}';
     }
 }

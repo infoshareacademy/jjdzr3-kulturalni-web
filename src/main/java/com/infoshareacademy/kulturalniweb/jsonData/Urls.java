@@ -10,4 +10,11 @@ public class Urls {
     public String getWww() {
         return www;
     }
+
+    @Override
+    public String toString() {
+        return "Urls{" +
+                "www='" + www + '\'' +
+                '}';
+    }
 }

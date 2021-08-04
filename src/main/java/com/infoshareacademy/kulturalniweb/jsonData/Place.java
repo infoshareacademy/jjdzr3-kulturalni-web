@@ -31,5 +31,12 @@ public class Place {
         this.id = id;
     }
 
-
+    @Override
+    public String toString() {
+        return "Place{" +
+                "id=" + id +
+                ", subname='" + subname + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

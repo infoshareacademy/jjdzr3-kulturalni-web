@@ -4,31 +4,31 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Event {
+public class EventEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, unique = true)
     private Integer id;
-    private Long sourceId;
+    private Integer sourceId;
 
     @ManyToOne
-    @JoinColumn(name = "placeId")
-    private Place place;
+    private PlaceEntity placeEntity;
 
     private String endDateDate;
     private String endDateTime;
     private String endDateLastTime;
     private String name;
 
+/*
     @OneToOne
-    @JoinColumn(name = "urlsId")
-    private Urls urls;
+    private UrlEntity urlEntity;
+*/
 
-/*    @OneToMany
-    @JoinColumn(name = "attachmentsId")
-    private List<Attachments> attachments;*/
-    @Column(length = 1000)
+    @OneToMany(mappedBy = "eventEntity")
+    private List<AttachmentEntity> attachmentEntities;
+
+    @Column(length = 50000)
     private String descLong;
     private Integer categoryId;
     private String startDateDate;
@@ -36,15 +36,14 @@ public class Event {
     private String startDateLastTime;
 
     @ManyToOne
-    @JoinColumn(name = "organizerId")
-    private Organizer organizer;
+    private OrganizerEntity organizerEntities;
 
     private String active;
     private String descShort;
 
     @OneToOne
-    @JoinColumn(name = "ticketsId")
-    private Tickets tickets;
+    private TicketEntity ticketEntity;
+
 
     public Integer getId() {
         return id;
@@ -54,20 +53,20 @@ public class Event {
         this.id = id;
     }
 
-    public Long getSourceId() {
+    public Integer getSourceId() {
         return sourceId;
     }
 
-    public void setSourceId(Long sourceId) {
+    public void setSourceId(Integer sourceId) {
         this.sourceId = sourceId;
     }
 
-    public Place getPlace() {
-        return place;
+    public PlaceEntity getPlaceEntity() {
+        return placeEntity;
     }
 
-    public void setPlace(Place place) {
-        this.place = place;
+    public void setPlaceEntity(PlaceEntity placeEntity) {
+        this.placeEntity = placeEntity;
     }
 
     public String getEndDateDate() {
@@ -102,23 +101,21 @@ public class Event {
         this.name = name;
     }
 
-    public Urls getUrls() {
-        return urls;
+/*    public UrlEntity getUrlEntity() {
+        return urlEntity;
     }
 
-    public void setUrls(Urls urls) {
-        this.urls = urls;
+    public void setUrlEntity(UrlEntity urlEntity) {
+        this.urlEntity = urlEntity;
+    }*/
+
+    public List<AttachmentEntity> getAttachmentEntities() {
+        return attachmentEntities;
     }
 
-/*
-    public List<Attachments> getAttachments() {
-        return attachments;
+    public void setAttachmentEntities(List<AttachmentEntity> attachmentEntities) {
+        this.attachmentEntities = attachmentEntities;
     }
-
-    public void setAttachments(List<Attachments> attachments) {
-        this.attachments = attachments;
-    }
-*/
 
     public String getDescLong() {
         return descLong;
@@ -160,12 +157,12 @@ public class Event {
         this.startDateLastTime = startDateLastTime;
     }
 
-    public Organizer getOrganizer() {
-        return organizer;
+    public OrganizerEntity getOrganizerEntities() {
+        return organizerEntities;
     }
 
-    public void setOrganizer(Organizer organizer) {
-        this.organizer = organizer;
+    public void setOrganizerEntities(OrganizerEntity organizerEntities) {
+        this.organizerEntities = organizerEntities;
     }
 
     public String getActive() {
@@ -184,35 +181,35 @@ public class Event {
         this.descShort = descShort;
     }
 
-    public Tickets getTickets() {
-        return tickets;
+    public TicketEntity getTicketEntity() {
+        return ticketEntity;
     }
 
-    public void setTickets(Tickets tickets) {
-        this.tickets = tickets;
+    public void setTicketEntity(TicketEntity ticketEntity) {
+        this.ticketEntity = ticketEntity;
     }
 
-/*    @Override
+    @Override
     public String toString() {
-        return "Event{" +
+        return "EventEntity{" +
                 "id=" + id +
                 ", sourceId=" + sourceId +
-                ", place=" + place +
+                ", placeEntity=" + placeEntity +
                 ", endDateDate='" + endDateDate + '\'' +
                 ", endDateTime='" + endDateTime + '\'' +
                 ", endDateLastTime='" + endDateLastTime + '\'' +
                 ", name='" + name + '\'' +
-                ", urls=" + urls +
-                ", attachments=" + attachments +
+/*                ", urlEntity=" + urlEntity +*/
+                ", attachmentEntities=" + attachmentEntities +
                 ", descLong='" + descLong + '\'' +
                 ", categoryId=" + categoryId +
                 ", startDateDate='" + startDateDate + '\'' +
                 ", startDateTime='" + startDateTime + '\'' +
                 ", startDateLastTime='" + startDateLastTime + '\'' +
-                ", organizer=" + organizer +
-                ", active=" + active +
+                ", organizerEntities=" + organizerEntities +
+                ", active='" + active + '\'' +
                 ", descShort='" + descShort + '\'' +
-                ", tickets=" + tickets +
+                ", ticketEntity=" + ticketEntity +
                 '}';
-    }*/
+    }
 }

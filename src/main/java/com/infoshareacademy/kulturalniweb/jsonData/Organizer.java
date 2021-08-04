@@ -24,4 +24,12 @@ public class Organizer {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Organizer{" +
+                "id=" + id +
+                ", designation='" + designation + '\'' +
+                '}';
+    }
 }
