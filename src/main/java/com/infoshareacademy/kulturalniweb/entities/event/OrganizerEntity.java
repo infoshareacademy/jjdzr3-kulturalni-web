@@ -1,18 +1,21 @@
 package com.infoshareacademy.kulturalniweb.entities.event;
 
+
+
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
+
 
 @Entity
 public class OrganizerEntity {
 
     @Id
-    @Column(unique = true, nullable = false)
+    //@Column(unique = true, nullable = false)
     private Integer id;
     private String designation;
 
-    @OneToMany(mappedBy = "organizerEntities")
-    private List<EventEntity> eventEntities;
+    @OneToMany(mappedBy = "id")
+    private Set<EventEntity> eventEntities;
 
     public Integer getId() {
         return id;
@@ -30,11 +33,11 @@ public class OrganizerEntity {
         this.designation = designation;
     }
 
-    public List<EventEntity> getEventEntities() {
+    public Set<EventEntity> getEventEntities() {
         return eventEntities;
     }
 
-    public void setEventEntities(List<EventEntity> eventEntities) {
+    public void setEventEntities(Set<EventEntity> eventEntities) {
         this.eventEntities = eventEntities;
     }
 

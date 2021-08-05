@@ -6,13 +6,12 @@ import javax.persistence.*;
 public class AttachmentEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
     private String fileName;
 
-    @ManyToOne
-    private EventEntity eventEntity;
+/*    @ManyToOne
+    private EventEntity eventEntity;*/
 
 
     public Long getId() {
@@ -31,11 +30,11 @@ public class AttachmentEntity {
         this.fileName = fileName;
     }
 
-    public EventEntity getEventEntity() {
+/*    public EventEntity getEventEntity() {
         return eventEntity;
     }
 
     public void setEventEntity(EventEntity eventEntity) {
         this.eventEntity = eventEntity;
-    }
+    }*/
 }

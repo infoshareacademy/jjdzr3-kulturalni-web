@@ -32,9 +32,9 @@ public class EventsRepository implements Dao<EventEntity> {
 
     @Override
     public void save(EventEntity eventEntity) {
+
         entityManager.persist(eventEntity);
-        PlaceEntity placeEntity = eventEntity.getPlaceEntity();
-        entityManager.persist(placeEntity);
+
     }
 
     @Override

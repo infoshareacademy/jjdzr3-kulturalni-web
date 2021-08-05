@@ -6,19 +6,15 @@ import javax.persistence.*;
 public class TicketEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
     private String type;
 
-    @OneToOne(mappedBy = "ticketEntity")
-    private EventEntity eventEntity;
-
-
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -30,20 +26,11 @@ public class TicketEntity {
         this.type = type;
     }
 
-    public EventEntity getEventEntity() {
-        return eventEntity;
-    }
-
-    public void setEventEntity(EventEntity eventEntity) {
-        this.eventEntity = eventEntity;
-    }
-
     @Override
     public String toString() {
         return "TicketEntity{" +
                 "id=" + id +
                 ", type='" + type + '\'' +
-                ", eventEntity=" + eventEntity +
                 '}';
     }
 }

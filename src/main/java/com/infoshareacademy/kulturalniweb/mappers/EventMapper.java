@@ -10,10 +10,10 @@ public class EventMapper {
         eventEntity.setSourceId(eventNew.getId());
 
         PlaceEntity placeEntity = new PlaceEntity();
-        placeEntity.setSourceId(eventNew.getPlace().getId());
+        placeEntity.setId(eventNew.getPlace().getId());
         placeEntity.setSubname(eventNew.getPlace().getSubname());
         placeEntity.setName(eventNew.getPlace().getSubname());
-        eventEntity.setPlaceEntity(placeEntity);
+      //  eventEntity.setPlaceEntity(placeEntity);
 
         String[] separatedEndDateAndTime = divideTimeIntoPieces(eventNew.getEndDate());
         eventEntity.setEndDateDate(separatedEndDateAndTime[0]);
@@ -50,17 +50,17 @@ public class EventMapper {
         eventEntity.setStartDateTime(separatedStartDateAndTime[1]);
         eventEntity.setStartDateLastTime(separatedStartDateAndTime[2]);
 
-/*        Organizer organizer = new Organizer();
-        organizer.setId(eventNew.getOrganizer().getId());
-        organizer.setDesignation(eventNew.getOrganizer().getName());
-        event.setOrganizer(organizer);*/
+        OrganizerEntity organizerEntity = new OrganizerEntity();
+        organizerEntity.setId(eventNew.getOrganizer().getId());
+        organizerEntity.setDesignation(eventNew.getOrganizer().getName());
+        eventEntity.setOrganizerEntity(organizerEntity);
 
         eventEntity.setActive(eventNew.getActive());
         eventEntity.setDescShort(eventNew.getDescShort());
 
-/*        Tickets tickets = new Tickets();
-        tickets.setType(eventNew.getTickets().getType());
-        event.setTickets(tickets);*/
+        TicketEntity ticketEntity = new TicketEntity();
+        ticketEntity.setType(eventNew.getTickets().getType());
+        eventEntity.setTicketEntity(ticketEntity);
 
         return eventEntity;
     }

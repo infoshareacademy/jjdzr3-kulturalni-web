@@ -8,12 +8,12 @@ public class EventEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false, unique = true)
+    //@Column(nullable = false, unique = true)
     private Integer id;
     private Integer sourceId;
 
-    @ManyToOne
-    private PlaceEntity placeEntity;
+/*    @ManyToOne
+    private PlaceEntity placeEntity;*/
 
     private String endDateDate;
     private String endDateTime;
@@ -25,8 +25,8 @@ public class EventEntity {
     private UrlEntity urlEntity;
 */
 
-    @OneToMany(mappedBy = "eventEntity")
-    private List<AttachmentEntity> attachmentEntities;
+/*    @OneToMany(mappedBy = "eventEntity")
+    private List<AttachmentEntity> attachmentEntities;*/
 
     @Column(length = 50000)
     private String descLong;
@@ -35,13 +35,14 @@ public class EventEntity {
     private String startDateTime;
     private String startDateLastTime;
 
-    @ManyToOne
-    private OrganizerEntity organizerEntities;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private OrganizerEntity organizerEntity;
 
     private String active;
     private String descShort;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(referencedColumnName = "id")
     private TicketEntity ticketEntity;
 
 
@@ -59,14 +60,6 @@ public class EventEntity {
 
     public void setSourceId(Integer sourceId) {
         this.sourceId = sourceId;
-    }
-
-    public PlaceEntity getPlaceEntity() {
-        return placeEntity;
-    }
-
-    public void setPlaceEntity(PlaceEntity placeEntity) {
-        this.placeEntity = placeEntity;
     }
 
     public String getEndDateDate() {
@@ -99,22 +92,6 @@ public class EventEntity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-/*    public UrlEntity getUrlEntity() {
-        return urlEntity;
-    }
-
-    public void setUrlEntity(UrlEntity urlEntity) {
-        this.urlEntity = urlEntity;
-    }*/
-
-    public List<AttachmentEntity> getAttachmentEntities() {
-        return attachmentEntities;
-    }
-
-    public void setAttachmentEntities(List<AttachmentEntity> attachmentEntities) {
-        this.attachmentEntities = attachmentEntities;
     }
 
     public String getDescLong() {
@@ -157,12 +134,12 @@ public class EventEntity {
         this.startDateLastTime = startDateLastTime;
     }
 
-    public OrganizerEntity getOrganizerEntities() {
-        return organizerEntities;
+    public OrganizerEntity getOrganizerEntity() {
+        return organizerEntity;
     }
 
-    public void setOrganizerEntities(OrganizerEntity organizerEntities) {
-        this.organizerEntities = organizerEntities;
+    public void setOrganizerEntity(OrganizerEntity organizerEntity) {
+        this.organizerEntity = organizerEntity;
     }
 
     public String getActive() {
@@ -194,19 +171,16 @@ public class EventEntity {
         return "EventEntity{" +
                 "id=" + id +
                 ", sourceId=" + sourceId +
-                ", placeEntity=" + placeEntity +
                 ", endDateDate='" + endDateDate + '\'' +
                 ", endDateTime='" + endDateTime + '\'' +
                 ", endDateLastTime='" + endDateLastTime + '\'' +
                 ", name='" + name + '\'' +
-/*                ", urlEntity=" + urlEntity +*/
-                ", attachmentEntities=" + attachmentEntities +
                 ", descLong='" + descLong + '\'' +
                 ", categoryId=" + categoryId +
                 ", startDateDate='" + startDateDate + '\'' +
                 ", startDateTime='" + startDateTime + '\'' +
                 ", startDateLastTime='" + startDateLastTime + '\'' +
-                ", organizerEntities=" + organizerEntities +
+                ", organizerEntities=" + organizerEntity +
                 ", active='" + active + '\'' +
                 ", descShort='" + descShort + '\'' +
                 ", ticketEntity=" + ticketEntity +
