@@ -35,8 +35,8 @@ public class EventEntity {
     private String startDateTime;
     private String startDateLastTime;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private OrganizerEntity organizerEntity;
+/*    @ManyToOne(cascade = CascadeType.ALL)
+    private OrganizerEntity organizerEntity;*/
 
     private String active;
     private String descShort;
@@ -134,13 +134,13 @@ public class EventEntity {
         this.startDateLastTime = startDateLastTime;
     }
 
-    public OrganizerEntity getOrganizerEntity() {
+/*    public OrganizerEntity getOrganizerEntity() {
         return organizerEntity;
     }
 
     public void setOrganizerEntity(OrganizerEntity organizerEntity) {
         this.organizerEntity = organizerEntity;
-    }
+    }*/
 
     public String getActive() {
         return active;
@@ -180,7 +180,7 @@ public class EventEntity {
                 ", startDateDate='" + startDateDate + '\'' +
                 ", startDateTime='" + startDateTime + '\'' +
                 ", startDateLastTime='" + startDateLastTime + '\'' +
-                ", organizerEntities=" + organizerEntity +
+            /*    ", organizerEntities=" + organizerEntity +*/
                 ", active='" + active + '\'' +
                 ", descShort='" + descShort + '\'' +
                 ", ticketEntity=" + ticketEntity +
