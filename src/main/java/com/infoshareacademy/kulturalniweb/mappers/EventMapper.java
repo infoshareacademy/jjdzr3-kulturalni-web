@@ -53,7 +53,7 @@ public class EventMapper {
         OrganizerEntity organizerEntity = new OrganizerEntity();
         organizerEntity.setId(eventNew.getOrganizer().getId());
         organizerEntity.setDesignation(eventNew.getOrganizer().getName());
-        eventEntity.setOrganizerEntity(organizerEntity);
+       eventEntity.setOrganizerEntity(organizerEntity);
 
         eventEntity.setActive(eventNew.getActive());
         eventEntity.setDescShort(eventNew.getDescShort());

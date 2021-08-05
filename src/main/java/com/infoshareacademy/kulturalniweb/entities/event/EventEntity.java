@@ -35,13 +35,13 @@ public class EventEntity {
     private String startDateTime;
     private String startDateLastTime;
 
-/*    @ManyToOne(cascade = CascadeType.ALL)
-    private OrganizerEntity organizerEntity;*/
+    @ManyToOne/*(cascade = CascadeType.ALL)*/
+    private OrganizerEntity organizerEntity;
 
     private String active;
     private String descShort;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne/*(cascade = CascadeType.ALL)*/
     @JoinColumn(referencedColumnName = "id")
     private TicketEntity ticketEntity;
 
@@ -134,13 +134,13 @@ public class EventEntity {
         this.startDateLastTime = startDateLastTime;
     }
 
-/*    public OrganizerEntity getOrganizerEntity() {
+    public OrganizerEntity getOrganizerEntity() {
         return organizerEntity;
     }
 
     public void setOrganizerEntity(OrganizerEntity organizerEntity) {
         this.organizerEntity = organizerEntity;
-    }*/
+    }
 
     public String getActive() {
         return active;

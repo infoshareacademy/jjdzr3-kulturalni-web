@@ -2,10 +2,13 @@ package com.infoshareacademy.kulturalniweb.repository;
 
 import com.google.gson.Gson;
 import com.infoshareacademy.kulturalniweb.entities.event.EventEntity;
+import com.infoshareacademy.kulturalniweb.entities.event.OrganizerEntity;
+import com.infoshareacademy.kulturalniweb.entities.event.TicketEntity;
 import com.infoshareacademy.kulturalniweb.jsonData.EventNew;
 import com.infoshareacademy.kulturalniweb.mappers.EventMapper;
 import com.infoshareacademy.kulturalniweb.services.PictureService;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.io.FileReader;
@@ -15,11 +18,12 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+@Transactional
 @Component
 public class ListEventRepository {
-    PictureService pictureService;
-    EventsRepository eventsRepository;
-    EntityManager entityManager;
+    private PictureService pictureService;
+    private EventsRepository eventsRepository;
+    private EntityManager entityManager;
 
     private List<EventNew> eventsDB = new ArrayList<>();
     private Path path = Paths.get("src", "main", "resources", "data.json");
@@ -27,6 +31,7 @@ public class ListEventRepository {
     public ListEventRepository(PictureService pictureService, EventsRepository eventsRepository, EntityManager entityManager) {
         this.pictureService = pictureService;
         this.eventsRepository = eventsRepository;
+        this.entityManager = entityManager;
     }
 
     public void readEventsFromGsonToList() {
@@ -44,7 +49,11 @@ public class ListEventRepository {
                 EventEntity eventEntity = EventMapper.mapEventNewToEventEntity(eventNew);
                 System.out.println("ENTITY " + eventEntity.toString());
 
-                eventsRepository.save(eventEntity);
+                entityManager.persist(eventEntity);
+                TicketEntity ticketEntity = eventEntity.getTicketEntity();
+                entityManager.persist(ticketEntity);
+                OrganizerEntity organizerEntity = eventEntity.getOrganizerEntity();
+                entityManager.persist(organizerEntity);
             }
 
 
