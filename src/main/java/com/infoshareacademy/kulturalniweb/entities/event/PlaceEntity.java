@@ -8,16 +8,12 @@ import java.util.List;
 public class PlaceEntity {
 
     @Id
-    //@Column(unique = false, nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    //private Integer sourceId;
+    private Integer sourceId;
     private String subname;
     private String name;
-
-/*    @OneToMany(mappedBy = "placeEntity")
-    private List<EventEntity> eventEntities;*/
-
 
     public Integer getId() {
         return id;
@@ -27,7 +23,6 @@ public class PlaceEntity {
         this.id = id;
     }
 
-/*
     public Integer getSourceId() {
         return sourceId;
     }
@@ -35,7 +30,6 @@ public class PlaceEntity {
     public void setSourceId(Integer sourceId) {
         this.sourceId = sourceId;
     }
-*/
 
     public String getSubname() {
         return subname;
@@ -53,22 +47,13 @@ public class PlaceEntity {
         this.name = name;
     }
 
-/*    public List<EventEntity> getEventEntities() {
-        return eventEntities;
-    }
-
-    public void setEventEntities(List<EventEntity> eventEntities) {
-        this.eventEntities = eventEntities;
-    }*/
-
     @Override
     public String toString() {
         return "PlaceEntity{" +
                 "id=" + id +
-              /*  ", sourceId=" + sourceId +*/
+                ", sourceId=" + sourceId +
                 ", subname='" + subname + '\'' +
                 ", name='" + name + '\'' +
-            /*    ", eventEntities=" + eventEntities +*/
                 '}';
     }
 }

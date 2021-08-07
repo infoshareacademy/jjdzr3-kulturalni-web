@@ -8,25 +8,26 @@ public class EventEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    //@Column(nullable = false, unique = true)
     private Integer id;
     private Integer sourceId;
 
-/*    @ManyToOne
-    private PlaceEntity placeEntity;*/
+/*    @ManyToOne*/
+    @OneToOne
+    @JoinColumn(referencedColumnName = "id")
+    private PlaceEntity placeEntity;
 
     private String endDateDate;
     private String endDateTime;
     private String endDateLastTime;
     private String name;
 
-/*
     @OneToOne
+    @JoinColumn(referencedColumnName = "id")
     private UrlEntity urlEntity;
-*/
 
-/*    @OneToMany(mappedBy = "eventEntity")
-    private List<AttachmentEntity> attachmentEntities;*/
+    @OneToOne
+    @JoinColumn(referencedColumnName = "id")
+    private AttachmentEntity attachmentEntity;
 
     @Column(length = 50000)
     private String descLong;
@@ -35,7 +36,9 @@ public class EventEntity {
     private String startDateTime;
     private String startDateLastTime;
 
-    @ManyToOne/*(cascade = CascadeType.ALL)*/
+    /*@ManyToOne(cascade = CascadeType.ALL)*/
+    @OneToOne
+    @JoinColumn(referencedColumnName = "id")
     private OrganizerEntity organizerEntity;
 
     private String active;
@@ -60,6 +63,14 @@ public class EventEntity {
 
     public void setSourceId(Integer sourceId) {
         this.sourceId = sourceId;
+    }
+
+    public PlaceEntity getPlaceEntity() {
+        return placeEntity;
+    }
+
+    public void setPlaceEntity(PlaceEntity placeEntity) {
+        this.placeEntity = placeEntity;
     }
 
     public String getEndDateDate() {
@@ -92,6 +103,22 @@ public class EventEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public UrlEntity getUrlEntity() {
+        return urlEntity;
+    }
+
+    public void setUrlEntity(UrlEntity urlEntity) {
+        this.urlEntity = urlEntity;
+    }
+
+    public AttachmentEntity getAttachmentEntity() {
+        return attachmentEntity;
+    }
+
+    public void setAttachmentEntity(AttachmentEntity attachmentEntity) {
+        this.attachmentEntity = attachmentEntity;
     }
 
     public String getDescLong() {
@@ -171,16 +198,19 @@ public class EventEntity {
         return "EventEntity{" +
                 "id=" + id +
                 ", sourceId=" + sourceId +
+                ", placeEntity=" + placeEntity +
                 ", endDateDate='" + endDateDate + '\'' +
                 ", endDateTime='" + endDateTime + '\'' +
                 ", endDateLastTime='" + endDateLastTime + '\'' +
                 ", name='" + name + '\'' +
+                ", urlEntity=" + urlEntity +
+                ", attachmentEntity=" + attachmentEntity +
                 ", descLong='" + descLong + '\'' +
                 ", categoryId=" + categoryId +
                 ", startDateDate='" + startDateDate + '\'' +
                 ", startDateTime='" + startDateTime + '\'' +
                 ", startDateLastTime='" + startDateLastTime + '\'' +
-            /*    ", organizerEntities=" + organizerEntity +*/
+                ", organizerEntity=" + organizerEntity +
                 ", active='" + active + '\'' +
                 ", descShort='" + descShort + '\'' +
                 ", ticketEntity=" + ticketEntity +

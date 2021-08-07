@@ -1,9 +1,7 @@
 package com.infoshareacademy.kulturalniweb.repository;
 
 import com.google.gson.Gson;
-import com.infoshareacademy.kulturalniweb.entities.event.EventEntity;
-import com.infoshareacademy.kulturalniweb.entities.event.OrganizerEntity;
-import com.infoshareacademy.kulturalniweb.entities.event.TicketEntity;
+import com.infoshareacademy.kulturalniweb.entities.event.*;
 import com.infoshareacademy.kulturalniweb.jsonData.EventNew;
 import com.infoshareacademy.kulturalniweb.mappers.EventMapper;
 import com.infoshareacademy.kulturalniweb.services.PictureService;
@@ -54,6 +52,12 @@ public class ListEventRepository {
                 entityManager.persist(ticketEntity);
                 OrganizerEntity organizerEntity = eventEntity.getOrganizerEntity();
                 entityManager.persist(organizerEntity);
+                UrlEntity urlEntity = eventEntity.getUrlEntity();
+                entityManager.persist(urlEntity);
+                AttachmentEntity attachmentEntity = eventEntity.getAttachmentEntity();
+                entityManager.persist(attachmentEntity);
+                PlaceEntity placeEntity = eventEntity.getPlaceEntity();
+                entityManager.persist(placeEntity);
             }
 
 

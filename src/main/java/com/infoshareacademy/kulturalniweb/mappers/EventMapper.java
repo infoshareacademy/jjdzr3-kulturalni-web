@@ -10,10 +10,10 @@ public class EventMapper {
         eventEntity.setSourceId(eventNew.getId());
 
         PlaceEntity placeEntity = new PlaceEntity();
-        placeEntity.setId(eventNew.getPlace().getId());
+        placeEntity.setSourceId(eventNew.getPlace().getId());
         placeEntity.setSubname(eventNew.getPlace().getSubname());
         placeEntity.setName(eventNew.getPlace().getSubname());
-      //  eventEntity.setPlaceEntity(placeEntity);
+        eventEntity.setPlaceEntity(placeEntity);
 
         String[] separatedEndDateAndTime = divideTimeIntoPieces(eventNew.getEndDate());
         eventEntity.setEndDateDate(separatedEndDateAndTime[0]);
@@ -22,25 +22,13 @@ public class EventMapper {
 
         eventEntity.setName(eventNew.getName());
 
-/*        UrlEntity urlEntity = new UrlEntity();
+        UrlEntity urlEntity = new UrlEntity();
         urlEntity.setUrl(eventNew.getUrls().getWww());
-        eventEntity.setUrlEntity(urlEntity);*/
+        eventEntity.setUrlEntity(urlEntity);
 
-/*            List<Attachments> attachments = new ArrayList<>();
-            Attachments att = new Attachments();
-            att.setFileName("plik");
-            attachments.add(att);
-            event.setAttachments(attachments);*/
-
-/*        List<Attachments> attachments = new ArrayList<>();
-        for (int i = 0; i < eventNew.getAttachments().size(); i++) {
-            attachments.add(eventNew.getAttachments().get(i));
-        }
-
-        for(String singleAttachment : eventNew.getAttachments()) {
-            attachments.add(eventNew.getAttachments().get(i));
-        }*/
-
+        AttachmentEntity attachmentEntity = new AttachmentEntity();
+        attachmentEntity.setFileName(eventNew.getAttachment().getFileName());
+        eventEntity.setAttachmentEntity(attachmentEntity);
 
         eventEntity.setDescLong(eventNew.getDescLong());
         eventEntity.setCategoryId(eventNew.getCategoryId());
@@ -51,9 +39,9 @@ public class EventMapper {
         eventEntity.setStartDateLastTime(separatedStartDateAndTime[2]);
 
         OrganizerEntity organizerEntity = new OrganizerEntity();
-        organizerEntity.setId(eventNew.getOrganizer().getId());
+        organizerEntity.setSourceid(eventNew.getOrganizer().getId());
         organizerEntity.setDesignation(eventNew.getOrganizer().getName());
-       eventEntity.setOrganizerEntity(organizerEntity);
+        eventEntity.setOrganizerEntity(organizerEntity);
 
         eventEntity.setActive(eventNew.getActive());
         eventEntity.setDescShort(eventNew.getDescShort());
