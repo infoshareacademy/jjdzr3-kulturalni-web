@@ -123,26 +123,26 @@
         </div>
     </div>
 
-    <div th:each="eventSimple: ${listOfEventSimple}" class="container main-table">
+    <div th:each="eventDto: ${listOfEventDto}" class="container main-table">
         <div class="row">
             <div class="col-md-1 low-padding">
-                <p class="table-city-paragraph" th:text="${eventSimple.getEventSimpleCity()}">Miasto</p>
+                <p class="table-city-paragraph" th:text="${eventDto.getCity()}">Miasto</p>
             </div>
             <div class="col-md-1">
-                <p class="table-city-paragraph table-date-paragraph" th:text="${eventSimple.getEventSimpleDate()}">
+                <p class="table-city-paragraph table-date-paragraph" th:text="${eventDto.getStartDateDate()}">
                     Data</p>
             </div>
             <div class="col-md-1">
-                <p class="table-city-paragraph" th:text="${eventSimple.getEventSimpleStartTime()}">Godzina</p>
+                <p class="table-city-paragraph" th:text="${eventDto.getStartDateTime()}">Godzina</p>
             </div>
             <div class="col-md-8">
-                <a href=# th:href="@{/singleevent(id=${eventSimple.getEventSimpleId()})}" style="text-decoration: none">
-                    <p class="table-city-paragraph" th:text="${eventSimple.getEventSimpleName()}">Nazwa wydarzenia</p>
+                <a href=# th:href="@{/singleevent(id=${eventDto.getId()})}" style="text-decoration: none">
+                    <p class="table-city-paragraph" th:text="${eventDto.getName()}">Nazwa wydarzenia</p>
                 </a>
             </div>
             <div class="col-md-1">
                 <form action="/favselect">
-                    <a href=# th:href="@{/favselect(id=${eventSimple.getEventSimpleId()})}" ><img src="images/img/heart-bw.png" style="width: 32px; height: 32px; margin-top: 10px"></a>
+                    <a href=# th:href="@{/favselect(id=${eventDto.getId})}" ><img src="images/img/heart-bw.png" style="width: 32px; height: 32px; margin-top: 10px"></a>
                     <!--<a href=# th:href="@{/favselect(id=${eventSimple.getEventSimpleId()})}" th:if="${eventSimple.getEventSimpleId() != favId}" ? 'img src="images/img/heart-bw.png"' : 'img src="images/img/heart-red.png"'" style="width: 32px; height: 32px; margin-top: 10px"></a>-->
                 </form>
             </div>

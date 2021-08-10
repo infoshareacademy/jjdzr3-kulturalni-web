@@ -1,5 +1,6 @@
 package com.infoshareacademy.kulturalniweb.controllers;
 
+import com.infoshareacademy.kulturalniweb.dto.EventDto;
 import com.infoshareacademy.kulturalniweb.jsonData.EventSimple;
 import com.infoshareacademy.kulturalniweb.dto.PaginationDto;
 import com.infoshareacademy.kulturalniweb.repository.EventSimpleMemory;
@@ -22,6 +23,8 @@ public class AllEventsController {
     EventSimpleMemoryServiceClass eventSimpleMemoryServiceClass;
     SortingServices sortingServices;
     PaginationServiceClass paginationServiceClass;
+    EventService eventService;
+
 
     Boolean fileNotReadYet = true;
     Integer favId = 0;
@@ -34,7 +37,7 @@ public class AllEventsController {
     private List<EventSimple> eventsToDisplay = new ArrayList<>();
 
 
-    public AllEventsController(AppServiceClass appServiceClass, ListEventRepository listEventRepository, EventSimpleMemory eventSimpleMemory, RepositoryServiceClass repositoryServiceClass, EventSimpleMemoryServiceClass eventSimpleMemoryServiceClass, SortingServices sortingServices, PaginationServiceClass paginationServiceClass) {
+    public AllEventsController(AppServiceClass appServiceClass, ListEventRepository listEventRepository, EventSimpleMemory eventSimpleMemory, RepositoryServiceClass repositoryServiceClass, EventSimpleMemoryServiceClass eventSimpleMemoryServiceClass, SortingServices sortingServices, PaginationServiceClass paginationServiceClass, EventService eventService) {
         this.appServiceClass = appServiceClass;
         this.listEventRepository = listEventRepository;
         this.eventSimpleMemory = eventSimpleMemory;
@@ -42,6 +45,7 @@ public class AllEventsController {
         this.eventSimpleMemoryServiceClass = eventSimpleMemoryServiceClass;
         this.sortingServices = sortingServices;
         this.paginationServiceClass = paginationServiceClass;
+        this.eventService = eventService;
     }
 
     @GetMapping("/alleventsindex")
@@ -92,8 +96,10 @@ public class AllEventsController {
         model.addAttribute("numberOfPageThatIsBeeingDisplayed", numberOfPageThatIsBeeingDisplayed);
 
         List<EventSimple> paginatedEventsToDisplay = selectEventsForEachPage();
+        List<EventDto> eventDtos = eventService.createListOfSortedEventEntities();
 
-        model.addAttribute("listOfEventSimple", paginatedEventsToDisplay);
+        //model.addAttribute("listOfEventSimple", paginatedEventsToDisplay);
+        model.addAttribute("listOfEventDto", eventDtos);
         model.addAttribute("favouriteEvent", favId);
  //       log();
         return "allevents";

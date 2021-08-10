@@ -61,7 +61,7 @@ public class EventMapper {
         eventEntity.setTicketEntity(ticketEntity);
 
         eventEntity.setPicture(pictureService.getPictureFilename());
-        eventEntity.setTimeOfAdding("2010-01-01");
+        eventEntity.setCity("Gdansk");
 
         return eventEntity;
     }
@@ -97,7 +97,7 @@ public class EventMapper {
         eventDto.setDescShort(eventEntity.getDescShort());
         eventDto.setTicket(eventEntity.getTicketEntity().getType());
         eventDto.setPicture(eventEntity.getPicture());
-        eventDto.setTimeOfAdding(eventEntity.getTimeOfAdding());
+        eventDto.setCity(eventEntity.getCity());
         return eventDto;
     }
 
@@ -144,7 +144,7 @@ public class EventMapper {
         eventEntity.setTicketEntity(ticketEntity);
 
         eventEntity.setPicture(eventDto.getPicture());
-        eventEntity.setTimeOfAdding(eventDto.getTimeOfAdding());
+        eventEntity.setCity(eventDto.getCity());
 
         return eventEntity;
     }

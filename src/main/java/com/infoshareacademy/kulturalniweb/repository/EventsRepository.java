@@ -90,4 +90,15 @@ public class EventsRepository implements Dao<EventEntity> {
 
         return eventEntities.get(0);
     }
+
+    public List<EventEntity> createListOfSortedEventEntities() {
+        final Query query = entityManager
+                .createQuery("SELECT e FROM EventEntity e WHERE e.id > 0", EventEntity.class)
+                .setFirstResult(10)
+                .setMaxResults(15);
+        //query.setParameter("numberOfEventsOnThePage", sortingServices.getNumberOfEventsOnThePage());
+        List<EventEntity> eventEntities = query.getResultList();
+
+        return eventEntities;
+    }
 }

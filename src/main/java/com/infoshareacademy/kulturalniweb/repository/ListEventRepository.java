@@ -44,7 +44,7 @@ public class ListEventRepository {
                 eventsDB.add(eventNew);
 
                 //eventNew.getPlace().setSubname(pictureService.getPictureFilename());
-                eventService.eventDtoSave(eventNew);
+                eventService.eventEntityFromJsonSave(eventNew);
 
             }
 

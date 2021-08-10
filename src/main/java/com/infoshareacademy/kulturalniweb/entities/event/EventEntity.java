@@ -48,7 +48,7 @@ public class EventEntity {
     private TicketEntity ticketEntity;
 
     private String picture;
-    private String timeOfAdding;
+    private String City;
 
 
     public Integer getId() {
@@ -203,12 +203,12 @@ public class EventEntity {
         this.picture = picture;
     }
 
-    public String getTimeOfAdding() {
-        return timeOfAdding;
+    public String getCity() {
+        return City;
     }
 
-    public void setTimeOfAdding(String timeOfAdding) {
-        this.timeOfAdding = timeOfAdding;
+    public void setCity(String city) {
+        this.City = city;
     }
 
     @Override
@@ -233,7 +233,7 @@ public class EventEntity {
                 ", descShort='" + descShort + '\'' +
                 ", ticketEntity=" + ticketEntity +
                 ", picture='" + picture + '\'' +
-                ", timeOfAdding='" + timeOfAdding + '\'' +
+                ", city='" + City + '\'' +
                 '}';
     }
 }

@@ -25,9 +25,9 @@ public class EventDto {
     private String descShort;
     private String ticket;
     private String picture;
-    private String timeOfAdding;
+    private String city;
 
-    public EventDto(Integer id, Integer sourceId, Integer placeId, String placeName, String endDateDate, String endDateTime, String endDateLastTime, String name, String url, String attachment, String descLong, Integer categoryId, String startDateDate, String startDateTime, String startDateLastTime, Integer organizerId, String organizerName, String status, String descShort, String ticket, String  picture, String timeOfAdding) {
+    public EventDto(Integer id, Integer sourceId, Integer placeId, String placeName, String endDateDate, String endDateTime, String endDateLastTime, String name, String url, String attachment, String descLong, Integer categoryId, String startDateDate, String startDateTime, String startDateLastTime, Integer organizerId, String organizerName, String status, String descShort, String ticket, String  picture, String city) {
         this.id = id;
         this.sourceId = sourceId;
         this.placeId = placeId;
@@ -49,7 +49,7 @@ public class EventDto {
         this.descShort = descShort;
         this.ticket = ticket;
         this.picture = picture;
-        this.timeOfAdding = timeOfAdding;
+        this.city = city;
     }
 
     public EventDto() {
@@ -223,12 +223,12 @@ public class EventDto {
         this.picture = picture;
     }
 
-    public String getTimeOfAdding() {
-        return timeOfAdding;
+    public String getCity() {
+        return city;
     }
 
-    public void setTimeOfAdding(String timeOfAdding) {
-        this.timeOfAdding = timeOfAdding;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     @Override
@@ -255,7 +255,7 @@ public class EventDto {
                 ", descShort='" + descShort + '\'' +
                 ", ticket='" + ticket + '\'' +
                 ", picture='" + picture + '\'' +
-                ", timeOfAdding='" + timeOfAdding + '\'' +
+                ", city='" + city + '\'' +
                 '}';
     }
 }

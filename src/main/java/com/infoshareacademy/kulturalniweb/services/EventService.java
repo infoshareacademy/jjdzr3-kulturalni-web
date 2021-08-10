@@ -8,6 +8,7 @@ import com.infoshareacademy.kulturalniweb.repository.EventsRepository;
 import org.springframework.stereotype.Service;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,7 +22,7 @@ public class EventService {
         this.eventMapper = eventMapper;
     }
 
-    public void eventDtoSave(EventNew eventNew) {
+    public void eventEntityFromJsonSave(EventNew eventNew) {
         System.out.println("DTO    " + eventNew.toString());
         EventEntity eventEntity = eventMapper.mapEventNewToEventEntity(eventNew);
         System.out.println("ENTITY " + eventEntity.toString());
@@ -40,6 +41,19 @@ public class EventService {
 
         return eventMapper.mapEventEntityToEventDto(eventEntity);
     }
+
+    public  List<EventDto> createListOfSortedEventEntities() {
+        List<EventEntity> eventEntities = eventsRepository.createListOfSortedEventEntities();
+        List<EventDto> eventDtos = new ArrayList<>();
+
+        for(EventEntity eventEntity : eventEntities) {
+            eventDtos.add(eventMapper.mapEventEntityToEventDto(eventEntity));
+        }
+
+        return eventDtos;
+    }
+
+
 
 
 }
