@@ -82,4 +82,12 @@ public class EventsRepository implements Dao<EventEntity> {
         }
         return eventDtos;
     }
+
+    public EventEntity getSingleEvent(Integer id) {
+        final Query query = entityManager.createQuery("SELECT e FROM EventEntity e WHERE e.id = :id", EventEntity.class);
+        query.setParameter("id", id);
+        List<EventEntity> eventEntities = query.getResultList();
+
+        return eventEntities.get(0);
+    }
 }

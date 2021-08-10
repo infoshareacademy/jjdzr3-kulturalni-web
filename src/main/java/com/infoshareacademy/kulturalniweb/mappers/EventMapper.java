@@ -74,7 +74,7 @@ public class EventMapper {
         return  result;
     }
 
-    public static EventDto mapEventEntityToEventDto(EventEntity eventEntity) {
+    public EventDto mapEventEntityToEventDto(EventEntity eventEntity) {
         EventDto eventDto = new EventDto();
         eventDto.setId(eventEntity.getId());
         eventDto.setSourceId(eventEntity.getSourceId());
@@ -101,7 +101,7 @@ public class EventMapper {
         return eventDto;
     }
 
-    public static EventEntity mapEventDtoToEventEntity(EventDto eventDto) {
+    public EventEntity mapEventDtoToEventEntity(EventDto eventDto) {
         EventEntity eventEntity = new EventEntity();
 
         eventEntity.setId(eventDto.getId());

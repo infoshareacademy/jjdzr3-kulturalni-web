@@ -36,8 +36,9 @@ public class EventService {
     }
 
     public EventDto getSingleEvent(Integer id) {
+        EventEntity eventEntity = eventsRepository.getSingleEvent(id);
 
-        return null;
+        return eventMapper.mapEventEntityToEventDto(eventEntity);
     }
 
 
