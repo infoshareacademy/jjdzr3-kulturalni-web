@@ -1,11 +1,14 @@
 package com.infoshareacademy.kulturalniweb.repository;
 
+import com.infoshareacademy.kulturalniweb.dto.EventDto;
 import com.infoshareacademy.kulturalniweb.entities.event.*;
+import com.infoshareacademy.kulturalniweb.mappers.EventMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -14,9 +17,11 @@ import java.util.List;
 public class EventsRepository implements Dao<EventEntity> {
 
     protected EntityManager entityManager;
+    private EventMapper eventMapper;
 
-    public EventsRepository(EntityManager entityManager) {
+    public EventsRepository(EntityManager entityManager, EventMapper eventMapper) {
         this.entityManager = entityManager;
+        this.eventMapper = eventMapper;
     }
 
     @Override
@@ -56,5 +61,25 @@ public class EventsRepository implements Dao<EventEntity> {
 
     @Override
     public void delete(EventEntity eventEntity) {
+    }
+
+    public List<EventDto> createListOfClosestEvents() {
+        final Query query = entityManager.createQuery("SELECT e FROM EventEntity e ORDER BY e.startDateTime DESC, e.startDateDate DESC", EventEntity.class);
+        List<EventEntity> queryResult = query.getResultList();
+        List<EventDto> eventDtos = new ArrayList<>();
+        for(int i = 0; i < queryResult.size(); i++) {
+            eventDtos.add(eventMapper.mapEventEntityToEventDto(queryResult.get(i)));
+        }
+        return eventDtos;
+    }
+
+    public List<EventDto> createListOfNewestEvents() {
+        final Query query = entityManager.createQuery("SELECT e FROM EventEntity e ORDER BY e.id DESC", EventEntity.class);
+        List<EventEntity> queryResult = query.getResultList();
+        List<EventDto> eventDtos = new ArrayList<>();
+        for(int i = 0; i < queryResult.size(); i++) {
+            eventDtos.add(eventMapper.mapEventEntityToEventDto(queryResult.get(i)));
+        }
+        return eventDtos;
     }
 }

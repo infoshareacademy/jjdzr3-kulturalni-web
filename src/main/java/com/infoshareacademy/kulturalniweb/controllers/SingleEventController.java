@@ -19,7 +19,7 @@ public class SingleEventController {
 
     @GetMapping(value = "/singleevent")
     public String singleEvent(@RequestParam("id") Integer id, Model model) {
-        //System.out.println("ID= " + id);
+
         EventSimple eventSimple = eventSimpleMemoryServiceClass.getSingleEventSimpleFromEventSimpleMemory(id);
         model.addAttribute("singleEventSimpleModel", eventSimple);
         //System.out.println("   Name: " + eventSimple.getEventSimpleName() + "   ID: " + eventSimple.getEventSimpleId());

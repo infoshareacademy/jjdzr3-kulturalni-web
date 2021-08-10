@@ -143,13 +143,15 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             <div class="col">
                 <div class="card shadow-sm">
-                    <img th:src="${firstClosestEventSimple.getEventSimplePicture()}" >
+                    <img th:src="${firstClosestEvent.getPicture()}" >
                     <div class="card-body">
-                        <p class="card-text" th:text="${firstClosestEventSimple.getEventSimpleName()}">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
+                        <p class="card-text" th:text="${firstClosestEvent.getName()}">Nazwa wydarzenia</p>
+                        <p class="card-text" th:text="${firstClosestEvent.getStartDateDate()}">Data wydarzenia</p>
+                        <p class="card-text" th:text="${firstClosestEvent.getStartDateTime()}">Godzina wydarzenia</p>
+                        <p class="card-text" th:text="${firstClosestEvent.getPlaceName()}">Miejsce wydarzenia</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary"><a href=# th:href="@{/singleevent(id=${firstClosestEventSimple.getEventSimpleId()})}" style="text-decoration: none; color: #0f5132">Zobacz</a></button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary"><a href=# th:href="@{/singleevent(id=${firstClosestEvent.getId()})}" style="text-decoration: none; color: #0f5132">Zobacz</a></button>
                             </div>
                         </div>
                     </div>
@@ -157,13 +159,15 @@
             </div>
             <div class="col">
                 <div class="card shadow-sm">
-                    <img th:src="${secondClosestEventSimple.getEventSimplePicture()}" >
+                    <img th:src="${secondClosestEvent.getPicture()}" >
                     <div class="card-body">
-                        <p class="card-text" th:text="${secondClosestEventSimple.getEventSimpleName()}">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
+                        <p class="card-text" th:text="${secondClosestEvent.getName()}">Nazwa wydarzenia</p>
+                        <p class="card-text" th:text="${secondClosestEvent.getStartDateDate()}">Data wydarzenia</p>
+                        <p class="card-text" th:text="${secondClosestEvent.getStartDateTime()}">Godzina wydarzenia</p>
+                        <p class="card-text" th:text="${secondClosestEvent.getPlaceName()}">Miejsce wydarzenia</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary"><a href=# th:href="@{/singleevent(id=${secondClosestEventSimple.getEventSimpleId()})}" style="text-decoration: none; color: #0f5132">Zobacz</a></button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary"><a href=# th:href="@{/singleevent(id=${secondClosestEvent.getId()})}" style="text-decoration: none; color: #0f5132">Zobacz</a></button>
                             </div>
                         </div>
                     </div>
@@ -171,13 +175,15 @@
             </div>
             <div class="col">
                 <div class="card shadow-sm">
-                    <img th:src="${thirdClosestEventSimple.getEventSimplePicture()}" >
+                    <img th:src="${thirdClosestEvent.getPicture()}" >
                     <div class="card-body">
-                        <p class="card-text" th:text="${thirdClosestEventSimple.getEventSimpleName()}">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
+                        <p class="card-text" th:text="${thirdClosestEvent.getName()}">Nazwa wydarzenia</p>
+                        <p class="card-text" th:text="${thirdClosestEvent.getStartDateDate()}">Data wydarzenia</p>
+                        <p class="card-text" th:text="${thirdClosestEvent.getStartDateTime()}">Godzina wydarzenia</p>
+                        <p class="card-text" th:text="${thirdClosestEvent.getPlaceName()}">Miejsce wydarzenia</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary"><a href=# th:href="@{/singleevent(id=${thirdClosestEventSimple.getEventSimpleId()})}" style="text-decoration: none; color: #0f5132">Zobacz</a></button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary"><a href=# th:href="@{/singleevent(id=${thirdClosestEvent.getId()})}" style="text-decoration: none; color: #0f5132">Zobacz</a></button>
                             </div>
                         </div>
                     </div>
@@ -202,13 +208,13 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             <div class="col">
                 <div class="card shadow-sm">
-                    <img th:src="${firstNewestEventSimple.getEventSimplePicture()}" >
+                    <img th:src="${firstNewestEvent.getPicture()}" >
                     <div class="card-body">
-                        <p class="card-text" th:text="${firstNewestEventSimple.getEventSimpleName()}">This is a wider card with supporting text below as a natural lead-in to
+                        <p class="card-text" th:text="${firstNewestEvent.getName()}">This is a wider card with supporting text below as a natural lead-in to
                             additional content. This content is a little bit longer.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary" ><a href=# th:href="@{/singleevent(id=${firstNewestEventSimple.getEventSimpleId()})}" style="text-decoration: none; color: #0f5132">Zobacz</a></button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary" ><a href=# th:href="@{/singleevent(id=${firstNewestEvent.getId()})}" style="text-decoration: none; color: #0f5132">Zobacz</a></button>
                             </div>
                         </div>
                     </div>
@@ -216,13 +222,13 @@
             </div>
             <div class="col">
                 <div class="card shadow-sm">
-                    <img th:src="${secondNewestEventSimple.getEventSimplePicture()}" >
+                    <img th:src="${secondNewestEvent.getPicture()}" >
                     <div class="card-body">
-                        <p class="card-text" th:text="${secondNewestEventSimple.getEventSimpleName()}">This is a wider card with supporting text below as a natural lead-in to
+                        <p class="card-text" th:text="${secondNewestEvent.getName()}">This is a wider card with supporting text below as a natural lead-in to
                             additional content. This content is a little bit longer.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary"><a href=# th:href="@{/singleevent(id=${secondNewestEventSimple.getEventSimpleId()})}" style="text-decoration: none; color: #0f5132">Zobacz</a></button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary"><a href=# th:href="@{/singleevent(id=${secondNewestEvent.getId()})}" style="text-decoration: none; color: #0f5132">Zobacz</a></button>
                             </div>
                         </div>
                     </div>
@@ -230,13 +236,13 @@
             </div>
             <div class="col">
                 <div class="card shadow-sm">
-                    <img th:src="${thirdNewestEventSimple.getEventSimplePicture()}" >
+                    <img th:src="${thirdNewestEvent.getPicture()}" >
                     <div class="card-body">
-                        <p class="card-text" th:text="${thirdNewestEventSimple.getEventSimpleName()}">This is a wider card with supporting text below as a natural lead-in to
+                        <p class="card-text" th:text="${thirdNewestEvent.getName()}">This is a wider card with supporting text below as a natural lead-in to
                             additional content. This content is a little bit longer.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary"><a href=# th:href="@{/singleevent(id=${thirdNewestEventSimple.getEventSimpleId()})}" style="text-decoration: none; color: #0f5132">Zobacz</a></button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary"><a href=# th:href="@{/singleevent(id=${thirdNewestEvent.getId()})}" style="text-decoration: none; color: #0f5132">Zobacz</a></button>
                             </div>
                         </div>
                     </div>

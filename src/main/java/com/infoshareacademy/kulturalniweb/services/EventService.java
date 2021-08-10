@@ -1,6 +1,6 @@
 package com.infoshareacademy.kulturalniweb.services;
 
-import com.infoshareacademy.kulturalniweb.dto.eventDto.EventDto;
+import com.infoshareacademy.kulturalniweb.dto.EventDto;
 import com.infoshareacademy.kulturalniweb.entities.event.EventEntity;
 import com.infoshareacademy.kulturalniweb.jsonData.EventNew;
 import com.infoshareacademy.kulturalniweb.mappers.EventMapper;
@@ -23,7 +23,7 @@ public class EventService {
 
     public void eventDtoSave(EventNew eventNew) {
         System.out.println("DTO    " + eventNew.toString());
-        EventEntity eventEntity = EventMapper.mapEventNewToEventEntity(eventNew);
+        EventEntity eventEntity = eventMapper.mapEventNewToEventEntity(eventNew);
         System.out.println("ENTITY " + eventEntity.toString());
 
         eventsRepository.save(eventEntity);
@@ -31,8 +31,13 @@ public class EventService {
 
     public List<EventNew> eventDtoFindAll() {
         List<EventEntity> list = (List<EventEntity>) eventsRepository.findAll();
-        List<EventDto> result = eventMapper.
-        return result;
+       // List<EventDto> result = eventMapper.
+        return null;
+    }
+
+    public EventDto getSingleEvent(Integer id) {
+
+        return null;
     }
 
 

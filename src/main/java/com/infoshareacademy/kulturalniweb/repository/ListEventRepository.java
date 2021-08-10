@@ -43,22 +43,9 @@ public class ListEventRepository {
             for (EventNew eventNew : eventList) {
                 eventsDB.add(eventNew);
 
+                //eventNew.getPlace().setSubname(pictureService.getPictureFilename());
                 eventService.eventDtoSave(eventNew);
-/*                System.out.println("NEW    " + eventNew.toString());
-                EventEntity eventEntity = EventMapper.mapEventNewToEventEntity(eventNew);
-                System.out.println("ENTITY " + eventEntity.toString());*/
 
-/*                entityManager.persist(eventEntity);
-                TicketEntity ticketEntity = eventEntity.getTicketEntity();
-                entityManager.persist(ticketEntity);
-                OrganizerEntity organizerEntity = eventEntity.getOrganizerEntity();
-                entityManager.persist(organizerEntity);
-                UrlEntity urlEntity = eventEntity.getUrlEntity();
-                entityManager.persist(urlEntity);
-                AttachmentEntity attachmentEntity = eventEntity.getAttachmentEntity();
-                entityManager.persist(attachmentEntity);
-                PlaceEntity placeEntity = eventEntity.getPlaceEntity();
-                entityManager.persist(placeEntity);*/
             }
 
 
@@ -87,6 +74,8 @@ public class ListEventRepository {
             eventsDB.get(i).getPlace().setSubname(pictureService.getPictureFilename());
         }
     }
+
+
 
 
     public List<EventNew> getEventsDB() {

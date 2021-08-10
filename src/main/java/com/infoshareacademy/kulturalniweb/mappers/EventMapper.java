@@ -1,14 +1,21 @@
 package com.infoshareacademy.kulturalniweb.mappers;
 
-import com.infoshareacademy.kulturalniweb.dto.eventDto.EventDto;
+import com.infoshareacademy.kulturalniweb.dto.EventDto;
 import com.infoshareacademy.kulturalniweb.entities.event.*;
 import com.infoshareacademy.kulturalniweb.jsonData.EventNew;
+import com.infoshareacademy.kulturalniweb.services.PictureService;
 import org.springframework.stereotype.Component;
 
 @Component
 public class EventMapper {
 
-    public static EventEntity mapEventNewToEventEntity(EventNew eventNew) {
+    PictureService pictureService;
+
+    public EventMapper(PictureService pictureService) {
+        this.pictureService = pictureService;
+    }
+
+    public EventEntity mapEventNewToEventEntity(EventNew eventNew) {
         EventEntity eventEntity = new EventEntity();
         eventEntity.setSourceId(eventNew.getId());
 
@@ -53,6 +60,9 @@ public class EventMapper {
         ticketEntity.setType(eventNew.getTickets().getType());
         eventEntity.setTicketEntity(ticketEntity);
 
+        eventEntity.setPicture(pictureService.getPictureFilename());
+        eventEntity.setTimeOfAdding("2010-01-01");
+
         return eventEntity;
     }
 
@@ -68,7 +78,7 @@ public class EventMapper {
         EventDto eventDto = new EventDto();
         eventDto.setId(eventEntity.getId());
         eventDto.setSourceId(eventEntity.getSourceId());
-        eventDto.setPlaceId(eventEntity.getPlaceEntity().getId());
+        eventDto.setPlaceId(eventEntity.getPlaceEntity().getSourceId());
         eventDto.setPlaceName(eventEntity.getPlaceEntity().getName());
         eventDto.setEndDateDate(eventEntity.getEndDateDate());
         eventDto.setEndDateTime(eventEntity.getEndDateTime());
@@ -86,7 +96,8 @@ public class EventMapper {
         eventDto.setStatus(eventEntity.getActive());
         eventDto.setDescShort(eventEntity.getDescShort());
         eventDto.setTicket(eventEntity.getTicketEntity().getType());
-
+        eventDto.setPicture(eventEntity.getPicture());
+        eventDto.setTimeOfAdding(eventEntity.getTimeOfAdding());
         return eventDto;
     }
 
@@ -131,6 +142,9 @@ public class EventMapper {
         TicketEntity ticketEntity = new TicketEntity();
         ticketEntity.setType(eventDto.getTicket());
         eventEntity.setTicketEntity(ticketEntity);
+
+        eventEntity.setPicture(eventDto.getPicture());
+        eventEntity.setTimeOfAdding(eventDto.getTimeOfAdding());
 
         return eventEntity;
     }

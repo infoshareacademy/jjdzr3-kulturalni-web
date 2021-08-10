@@ -12,7 +12,7 @@ public class EventEntity {
 
 /*    @ManyToOne*/
     @OneToOne
-    @JoinColumn(referencedColumnName = "id")
+    @JoinColumn(name = "placeEntityId")
     private PlaceEntity placeEntity;
 
     private String endDateDate;
@@ -21,11 +21,11 @@ public class EventEntity {
     private String name;
 
     @OneToOne
-    @JoinColumn(referencedColumnName = "id")
+    @JoinColumn(name = "urlEntityId")
     private UrlEntity urlEntity;
 
     @OneToOne
-    @JoinColumn(referencedColumnName = "id")
+    @JoinColumn(name = "attachmentEntityId")
     private AttachmentEntity attachmentEntity;
 
     @Column(length = 50000)
@@ -37,15 +37,18 @@ public class EventEntity {
 
     /*@ManyToOne(cascade = CascadeType.ALL)*/
     @OneToOne
-    @JoinColumn(referencedColumnName = "id")
+    @JoinColumn(name = "organizerEntityId")
     private OrganizerEntity organizerEntity;
 
     private String active;
     private String descShort;
 
     @OneToOne/*(cascade = CascadeType.ALL)*/
-    @JoinColumn(referencedColumnName = "id")
+    @JoinColumn(name = "ticketEntityId")
     private TicketEntity ticketEntity;
+
+    private String picture;
+    private String timeOfAdding;
 
 
     public Integer getId() {
@@ -192,6 +195,22 @@ public class EventEntity {
         this.ticketEntity = ticketEntity;
     }
 
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public String getTimeOfAdding() {
+        return timeOfAdding;
+    }
+
+    public void setTimeOfAdding(String timeOfAdding) {
+        this.timeOfAdding = timeOfAdding;
+    }
+
     @Override
     public String toString() {
         return "EventEntity{" +
@@ -213,6 +232,8 @@ public class EventEntity {
                 ", active='" + active + '\'' +
                 ", descShort='" + descShort + '\'' +
                 ", ticketEntity=" + ticketEntity +
+                ", picture='" + picture + '\'' +
+                ", timeOfAdding='" + timeOfAdding + '\'' +
                 '}';
     }
 }

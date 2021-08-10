@@ -1,5 +1,8 @@
-package com.infoshareacademy.kulturalniweb.dto.eventDto;
+package com.infoshareacademy.kulturalniweb.dto;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class EventDto {
     private Integer id;
     private Integer sourceId;
@@ -21,8 +24,10 @@ public class EventDto {
     private String status;
     private String descShort;
     private String ticket;
+    private String picture;
+    private String timeOfAdding;
 
-    public EventDto(Integer id, Integer sourceId, Integer placeId, String placeName, String endDateDate, String endDateTime, String endDateLastTime, String name, String url, String attachment, String descLong, Integer categoryId, String startDateDate, String startDateTime, String startDateLastTime, Integer organizerId, String organizerName, String status, String descShort, String ticket) {
+    public EventDto(Integer id, Integer sourceId, Integer placeId, String placeName, String endDateDate, String endDateTime, String endDateLastTime, String name, String url, String attachment, String descLong, Integer categoryId, String startDateDate, String startDateTime, String startDateLastTime, Integer organizerId, String organizerName, String status, String descShort, String ticket, String  picture, String timeOfAdding) {
         this.id = id;
         this.sourceId = sourceId;
         this.placeId = placeId;
@@ -43,6 +48,8 @@ public class EventDto {
         this.status = status;
         this.descShort = descShort;
         this.ticket = ticket;
+        this.picture = picture;
+        this.timeOfAdding = timeOfAdding;
     }
 
     public EventDto() {
@@ -208,6 +215,22 @@ public class EventDto {
         this.ticket = ticket;
     }
 
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public String getTimeOfAdding() {
+        return timeOfAdding;
+    }
+
+    public void setTimeOfAdding(String timeOfAdding) {
+        this.timeOfAdding = timeOfAdding;
+    }
+
     @Override
     public String toString() {
         return "EventDto{" +
@@ -231,6 +254,8 @@ public class EventDto {
                 ", status='" + status + '\'' +
                 ", descShort='" + descShort + '\'' +
                 ", ticket='" + ticket + '\'' +
+                ", picture='" + picture + '\'' +
+                ", timeOfAdding='" + timeOfAdding + '\'' +
                 '}';
     }
 }
