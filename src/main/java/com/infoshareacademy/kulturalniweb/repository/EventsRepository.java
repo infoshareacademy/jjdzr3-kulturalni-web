@@ -11,6 +11,7 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 @Transactional
@@ -91,12 +92,12 @@ public class EventsRepository implements Dao<EventEntity> {
         return eventEntities.get(0);
     }
 
-    public List<EventEntity> createListOfSortedEventEntities() {
+    public List<EventEntity> createListOfSortedEventEntities(Map<String, String> sortingParameters) {
         final Query query = entityManager
-                .createQuery("SELECT e FROM EventEntity e WHERE e.id > 0", EventEntity.class)
+                .createQuery("SELECT e FROM EventEntity e WHERE e.placeEntity.name = :place", EventEntity.class)
                 .setFirstResult(10)
-                .setMaxResults(15);
-        //query.setParameter("numberOfEventsOnThePage", sortingServices.getNumberOfEventsOnThePage());
+                .setMaxResults(Integer.parseInt(sortingParameters.get("numberOfEventsOnThePage")));
+        query.setParameter("place", sortingParameters.get("eventFilterPlace"));
         List<EventEntity> eventEntities = query.getResultList();
 
         return eventEntities;

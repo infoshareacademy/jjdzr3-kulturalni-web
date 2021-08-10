@@ -20,6 +20,7 @@ public class SortingServices {
     private String eventFilterPlace = "all";
     private String eventSortType = "date";
     private String eventSortDirection = "descending";
+    private Integer numberOfEventsOnThePage = 10;
 
     EventSimpleMemory eventSimpleMemory;
     EventSimpleMemoryServiceClass eventSimpleMemoryServiceClass;
@@ -192,5 +193,13 @@ public class SortingServices {
 
     public void setEventSortDirection(String eventSortDirection) {
         this.eventSortDirection = eventSortDirection;
+    }
+
+    public Integer getNumberOfEventsOnThePage() {
+        return numberOfEventsOnThePage;
+    }
+
+    public void setNumberOfEventsOnThePage(Integer numberOfEventsOnThePage) {
+        this.numberOfEventsOnThePage = numberOfEventsOnThePage;
     }
 }

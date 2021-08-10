@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class AllEventsController {
@@ -36,6 +38,8 @@ public class AllEventsController {
     private Integer requestedPageChange = 0;
     private List<EventSimple> eventsToDisplay = new ArrayList<>();
 
+    private Map<String, String> sortingParameters = new HashMap<>();
+
 
     public AllEventsController(AppServiceClass appServiceClass, ListEventRepository listEventRepository, EventSimpleMemory eventSimpleMemory, RepositoryServiceClass repositoryServiceClass, EventSimpleMemoryServiceClass eventSimpleMemoryServiceClass, SortingServices sortingServices, PaginationServiceClass paginationServiceClass, EventService eventService) {
         this.appServiceClass = appServiceClass;
@@ -50,11 +54,20 @@ public class AllEventsController {
 
     @GetMapping("/alleventsindex")
     public String displayAllEventsFromIndex () {
-        sortingServices.setEventFilterType("all");
-        sortingServices.setEventFilterPlace("all");
-        sortingServices.setEventSortType("date");
-        sortingServices.setEventSortDirection("descending");
+                    sortingServices.setEventFilterType("all");
+                    sortingServices.setEventFilterPlace("all");
+                    sortingServices.setEventSortType("date");
+                    sortingServices.setEventSortDirection("descending");
+                    sortingServices.setNumberOfEventsOnThePage(15);
         paginationServiceClass.setVirtualDisplayedPageNumber(1);
+
+        sortingParameters.put("eventFilterType", "all");
+        sortingParameters.put("eventFilterPlace", "all");
+        sortingParameters.put("eventSortType", "date");
+        sortingParameters.put("eventSortDirection", "descending");
+        sortingParameters.put("numberOfEventsOnThePage", "15");
+        sortingParameters.put("pageOffset", "0");
+
 
         numberOfEventsOnThePage = 10;
         totalNumberOfEvents = eventsToDisplay.size();
@@ -95,8 +108,8 @@ public class AllEventsController {
         model.addAttribute("paginationDto", paginationDto);
         model.addAttribute("numberOfPageThatIsBeeingDisplayed", numberOfPageThatIsBeeingDisplayed);
 
-        List<EventSimple> paginatedEventsToDisplay = selectEventsForEachPage();
-        List<EventDto> eventDtos = eventService.createListOfSortedEventEntities();
+                List<EventSimple> paginatedEventsToDisplay = selectEventsForEachPage();
+        List<EventDto> eventDtos = eventService.createListOfSortedEventEntities(sortingParameters);
 
         //model.addAttribute("listOfEventSimple", paginatedEventsToDisplay);
         model.addAttribute("listOfEventDto", eventDtos);
@@ -110,10 +123,16 @@ public class AllEventsController {
 
         if (eventsPerPage == 10) {
             numberOfEventsOnThePage = 10;
+            sortingServices.setNumberOfEventsOnThePage(10);
+            sortingParameters.put("numberOfEventsOnThePage", "10");
         } else if (eventsPerPage == 30) {
             numberOfEventsOnThePage = 30;
+            sortingServices.setNumberOfEventsOnThePage(30);
+            sortingParameters.put("numberOfEventsOnThePage", "30");
         } else if (eventsPerPage == 50) {
             numberOfEventsOnThePage = 50;
+            sortingServices.setNumberOfEventsOnThePage(50);
+            sortingParameters.put("numberOfEventsOnThePage", "50");
         }
 
         return "redirect:allevents";
@@ -121,19 +140,22 @@ public class AllEventsController {
 
     @GetMapping("/eventFilterPlace")
     public String changeEventPlace (@RequestParam("eventFilterPlace") String eventFilterPlace) {
-        sortingServices.setEventFilterPlace(eventFilterPlace);
+                        sortingServices.setEventFilterPlace(eventFilterPlace);
+        sortingParameters.put("eventFilterPlace", eventFilterPlace);
         return "redirect:allevents";
     }
 
     @GetMapping("/eventSortType")
     public String changeEventSortType (@RequestParam("eventSortType") String eventSortType) {
-        sortingServices.setEventSortType(eventSortType);
+                        sortingServices.setEventSortType(eventSortType);
+        sortingParameters.put("eventSortType", eventSortType);
         return "redirect:allevents";
     }
 
     @GetMapping("/eventSortDirection")
     public String changeEventSortDirection (@RequestParam("eventSortDirection") String eventSortDirection) {
-        sortingServices.setEventSortDirection(eventSortDirection);
+                        sortingServices.setEventSortDirection(eventSortDirection);
+        sortingParameters.put("eventSortDirection", eventSortDirection);
         return "redirect:allevents";
     }
 
