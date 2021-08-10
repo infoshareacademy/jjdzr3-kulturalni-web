@@ -1,8 +1,11 @@
 package com.infoshareacademy.kulturalniweb.mappers;
 
+import com.infoshareacademy.kulturalniweb.dto.eventDto.EventDto;
 import com.infoshareacademy.kulturalniweb.entities.event.*;
 import com.infoshareacademy.kulturalniweb.jsonData.EventNew;
+import org.springframework.stereotype.Component;
 
+@Component
 public class EventMapper {
 
     public static EventEntity mapEventNewToEventEntity(EventNew eventNew) {
@@ -61,7 +64,74 @@ public class EventMapper {
         return  result;
     }
 
+    public static EventDto mapEventEntityToEventDto(EventEntity eventEntity) {
+        EventDto eventDto = new EventDto();
+        eventDto.setId(eventEntity.getId());
+        eventDto.setSourceId(eventEntity.getSourceId());
+        eventDto.setPlaceId(eventEntity.getPlaceEntity().getId());
+        eventDto.setPlaceName(eventEntity.getPlaceEntity().getName());
+        eventDto.setEndDateDate(eventEntity.getEndDateDate());
+        eventDto.setEndDateTime(eventEntity.getEndDateTime());
+        eventDto.setEndDateLastTime(eventEntity.getEndDateLastTime());
+        eventDto.setName(eventEntity.getName());
+        eventDto.setUrl(eventEntity.getUrlEntity().getUrl());
+        eventDto.setAttachment(eventEntity.getAttachmentEntity().getFileName());
+        eventDto.setDescLong(eventEntity.getDescLong());
+        eventDto.setCategoryId(eventEntity.getCategoryId());
+        eventDto.setStartDateDate(eventEntity.getStartDateDate());
+        eventDto.setStartDateTime(eventEntity.getStartDateTime());
+        eventDto.setStartDateLastTime(eventEntity.getStartDateLastTime());
+        eventDto.setOrganizerId(eventEntity.getOrganizerEntity().getId());
+        eventDto.setOrganizerName(eventEntity.getOrganizerEntity().getDesignation());
+        eventDto.setStatus(eventEntity.getActive());
+        eventDto.setDescShort(eventEntity.getDescShort());
+        eventDto.setTicket(eventEntity.getTicketEntity().getType());
 
+        return eventDto;
+    }
 
+    public static EventEntity mapEventDtoToEventEntity(EventDto eventDto) {
+        EventEntity eventEntity = new EventEntity();
 
+        eventEntity.setId(eventDto.getId());
+        eventEntity.setSourceId(eventDto.getSourceId());
+
+        PlaceEntity placeEntity = new PlaceEntity();
+        placeEntity.setSourceId(eventDto.getPlaceId());
+        placeEntity.setSubname(eventDto.getPlaceName());
+        eventEntity.setPlaceEntity(placeEntity);
+
+        eventEntity.setEndDateDate(eventDto.getEndDateDate());
+        eventEntity.setEndDateTime(eventDto.getEndDateTime());
+        eventEntity.setEndDateLastTime(eventDto.getEndDateLastTime());
+        eventEntity.setName(eventDto.getName());
+
+        UrlEntity urlEntity = new UrlEntity();
+        urlEntity.setUrl(eventDto.getUrl());
+        eventEntity.setUrlEntity(urlEntity);
+
+        AttachmentEntity attachmentEntity = new AttachmentEntity();
+        attachmentEntity.setFileName(eventDto.getAttachment());
+        eventEntity.setAttachmentEntity(attachmentEntity);
+
+        eventEntity.setDescLong(eventDto.getDescLong());
+        eventEntity.setCategoryId(eventDto.getCategoryId());
+        eventEntity.setStartDateDate(eventDto.getStartDateDate());
+        eventEntity.setStartDateTime(eventDto.getStartDateTime());
+        eventEntity.setStartDateLastTime(eventDto.getStartDateLastTime());
+
+        OrganizerEntity organizerEntity = new OrganizerEntity();
+        organizerEntity.setSourceid(eventDto.getOrganizerId());
+        organizerEntity.setDesignation(eventDto.getOrganizerName());
+        eventEntity.setOrganizerEntity(organizerEntity);
+
+        eventEntity.setActive(eventDto.getStatus());
+        eventEntity.setDescShort(eventDto.getDescShort());
+
+        TicketEntity ticketEntity = new TicketEntity();
+        ticketEntity.setType(eventDto.getTicket());
+        eventEntity.setTicketEntity(ticketEntity);
+
+        return eventEntity;
+    }
 }

@@ -10,7 +10,7 @@ public interface Dao<T> {
 
     void save(T t);
 
-    T update(T t);
+    T update(T t, Integer id);
 
     void delete(T t);
 }

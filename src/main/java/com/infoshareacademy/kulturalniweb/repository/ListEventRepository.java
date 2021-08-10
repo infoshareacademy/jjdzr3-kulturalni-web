@@ -1,9 +1,8 @@
 package com.infoshareacademy.kulturalniweb.repository;
 
 import com.google.gson.Gson;
-import com.infoshareacademy.kulturalniweb.entities.event.*;
 import com.infoshareacademy.kulturalniweb.jsonData.EventNew;
-import com.infoshareacademy.kulturalniweb.mappers.EventMapper;
+import com.infoshareacademy.kulturalniweb.services.EventService;
 import com.infoshareacademy.kulturalniweb.services.PictureService;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,14 +21,16 @@ public class ListEventRepository {
     private PictureService pictureService;
     private EventsRepository eventsRepository;
     private EntityManager entityManager;
+    private EventService eventService;
 
     private List<EventNew> eventsDB = new ArrayList<>();
     private Path path = Paths.get("src", "main", "resources", "data.json");
 
-    public ListEventRepository(PictureService pictureService, EventsRepository eventsRepository, EntityManager entityManager) {
+    public ListEventRepository(PictureService pictureService, EventsRepository eventsRepository, EntityManager entityManager, EventService eventService) {
         this.pictureService = pictureService;
         this.eventsRepository = eventsRepository;
         this.entityManager = entityManager;
+        this.eventService = eventService;
     }
 
     public void readEventsFromGsonToList() {
@@ -42,12 +43,12 @@ public class ListEventRepository {
             for (EventNew eventNew : eventList) {
                 eventsDB.add(eventNew);
 
-
-                System.out.println("NEW    " + eventNew.toString());
+                eventService.eventDtoSave(eventNew);
+/*                System.out.println("NEW    " + eventNew.toString());
                 EventEntity eventEntity = EventMapper.mapEventNewToEventEntity(eventNew);
-                System.out.println("ENTITY " + eventEntity.toString());
+                System.out.println("ENTITY " + eventEntity.toString());*/
 
-                entityManager.persist(eventEntity);
+/*                entityManager.persist(eventEntity);
                 TicketEntity ticketEntity = eventEntity.getTicketEntity();
                 entityManager.persist(ticketEntity);
                 OrganizerEntity organizerEntity = eventEntity.getOrganizerEntity();
@@ -57,7 +58,7 @@ public class ListEventRepository {
                 AttachmentEntity attachmentEntity = eventEntity.getAttachmentEntity();
                 entityManager.persist(attachmentEntity);
                 PlaceEntity placeEntity = eventEntity.getPlaceEntity();
-                entityManager.persist(placeEntity);
+                entityManager.persist(placeEntity);*/
             }
 
 

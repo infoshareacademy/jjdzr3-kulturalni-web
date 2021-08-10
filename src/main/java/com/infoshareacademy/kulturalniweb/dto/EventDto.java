@@ -1,52 +1,52 @@
-package com.infoshareacademy.kulturalniweb.entities.event;
+package com.infoshareacademy.kulturalniweb.dto.eventDto;
 
-import javax.persistence.*;
-
-@Entity
-public class EventEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class EventDto {
     private Integer id;
     private Integer sourceId;
-
-/*    @ManyToOne*/
-    @OneToOne
-    @JoinColumn(referencedColumnName = "id")
-    private PlaceEntity placeEntity;
-
+    private Integer placeId;
+    private String placeName;
     private String endDateDate;
     private String endDateTime;
     private String endDateLastTime;
     private String name;
-
-    @OneToOne
-    @JoinColumn(referencedColumnName = "id")
-    private UrlEntity urlEntity;
-
-    @OneToOne
-    @JoinColumn(referencedColumnName = "id")
-    private AttachmentEntity attachmentEntity;
-
-    @Column(length = 50000)
+    private String url;
+    private String attachment;
     private String descLong;
     private Integer categoryId;
     private String startDateDate;
     private String startDateTime;
     private String startDateLastTime;
-
-    /*@ManyToOne(cascade = CascadeType.ALL)*/
-    @OneToOne
-    @JoinColumn(referencedColumnName = "id")
-    private OrganizerEntity organizerEntity;
-
-    private String active;
+    private Integer organizerId;
+    private String organizerName;
+    private String status;
     private String descShort;
+    private String ticket;
 
-    @OneToOne/*(cascade = CascadeType.ALL)*/
-    @JoinColumn(referencedColumnName = "id")
-    private TicketEntity ticketEntity;
+    public EventDto(Integer id, Integer sourceId, Integer placeId, String placeName, String endDateDate, String endDateTime, String endDateLastTime, String name, String url, String attachment, String descLong, Integer categoryId, String startDateDate, String startDateTime, String startDateLastTime, Integer organizerId, String organizerName, String status, String descShort, String ticket) {
+        this.id = id;
+        this.sourceId = sourceId;
+        this.placeId = placeId;
+        this.placeName = placeName;
+        this.endDateDate = endDateDate;
+        this.endDateTime = endDateTime;
+        this.endDateLastTime = endDateLastTime;
+        this.name = name;
+        this.url = url;
+        this.attachment = attachment;
+        this.descLong = descLong;
+        this.categoryId = categoryId;
+        this.startDateDate = startDateDate;
+        this.startDateTime = startDateTime;
+        this.startDateLastTime = startDateLastTime;
+        this.organizerId = organizerId;
+        this.organizerName = organizerName;
+        this.status = status;
+        this.descShort = descShort;
+        this.ticket = ticket;
+    }
 
+    public EventDto() {
+    }
 
     public Integer getId() {
         return id;
@@ -64,12 +64,20 @@ public class EventEntity {
         this.sourceId = sourceId;
     }
 
-    public PlaceEntity getPlaceEntity() {
-        return placeEntity;
+    public Integer getPlaceId() {
+        return placeId;
     }
 
-    public void setPlaceEntity(PlaceEntity placeEntity) {
-        this.placeEntity = placeEntity;
+    public void setPlaceId(Integer placeId) {
+        this.placeId = placeId;
+    }
+
+    public String getPlaceName() {
+        return placeName;
+    }
+
+    public void setPlaceName(String placeName) {
+        this.placeName = placeName;
     }
 
     public String getEndDateDate() {
@@ -104,20 +112,20 @@ public class EventEntity {
         this.name = name;
     }
 
-    public UrlEntity getUrlEntity() {
-        return urlEntity;
+    public String getUrl() {
+        return url;
     }
 
-    public void setUrlEntity(UrlEntity urlEntity) {
-        this.urlEntity = urlEntity;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    public AttachmentEntity getAttachmentEntity() {
-        return attachmentEntity;
+    public String getAttachment() {
+        return attachment;
     }
 
-    public void setAttachmentEntity(AttachmentEntity attachmentEntity) {
-        this.attachmentEntity = attachmentEntity;
+    public void setAttachment(String attachment) {
+        this.attachment = attachment;
     }
 
     public String getDescLong() {
@@ -160,20 +168,28 @@ public class EventEntity {
         this.startDateLastTime = startDateLastTime;
     }
 
-    public OrganizerEntity getOrganizerEntity() {
-        return organizerEntity;
+    public Integer getOrganizerId() {
+        return organizerId;
     }
 
-    public void setOrganizerEntity(OrganizerEntity organizerEntity) {
-        this.organizerEntity = organizerEntity;
+    public void setOrganizerId(Integer organizerId) {
+        this.organizerId = organizerId;
     }
 
-    public String getActive() {
-        return active;
+    public String getOrganizerName() {
+        return organizerName;
     }
 
-    public void setActive(String active) {
-        this.active = active;
+    public void setOrganizerName(String organizerName) {
+        this.organizerName = organizerName;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getDescShort() {
@@ -184,35 +200,37 @@ public class EventEntity {
         this.descShort = descShort;
     }
 
-    public TicketEntity getTicketEntity() {
-        return ticketEntity;
+    public String getTicket() {
+        return ticket;
     }
 
-    public void setTicketEntity(TicketEntity ticketEntity) {
-        this.ticketEntity = ticketEntity;
+    public void setTicket(String ticket) {
+        this.ticket = ticket;
     }
 
     @Override
     public String toString() {
-        return "EventEntity{" +
+        return "EventDto{" +
                 "id=" + id +
                 ", sourceId=" + sourceId +
-                ", placeEntity=" + placeEntity +
+                ", placeId=" + placeId +
+                ", placeName='" + placeName + '\'' +
                 ", endDateDate='" + endDateDate + '\'' +
                 ", endDateTime='" + endDateTime + '\'' +
                 ", endDateLastTime='" + endDateLastTime + '\'' +
                 ", name='" + name + '\'' +
-                ", urlEntity=" + urlEntity +
-                ", attachmentEntity=" + attachmentEntity +
+                ", url='" + url + '\'' +
+                ", attachment='" + attachment + '\'' +
                 ", descLong='" + descLong + '\'' +
                 ", categoryId=" + categoryId +
                 ", startDateDate='" + startDateDate + '\'' +
                 ", startDateTime='" + startDateTime + '\'' +
                 ", startDateLastTime='" + startDateLastTime + '\'' +
-                ", organizerEntity=" + organizerEntity +
-                ", active='" + active + '\'' +
+                ", organizerId=" + organizerId +
+                ", organizerName='" + organizerName + '\'' +
+                ", status='" + status + '\'' +
                 ", descShort='" + descShort + '\'' +
-                ", ticketEntity=" + ticketEntity +
+                ", ticket='" + ticket + '\'' +
                 '}';
     }
 }
