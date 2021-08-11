@@ -61,10 +61,10 @@ public class AllEventsController {
                     sortingServices.setNumberOfEventsOnThePage(15);
         paginationServiceClass.setVirtualDisplayedPageNumber(1);
 
-        sortingParameters.put("eventFilterType", "all");
+        sortingParameters.put("eventFilterType", "> 0");
         sortingParameters.put("eventFilterPlace", "all");
-        sortingParameters.put("eventSortType", "date");
-        sortingParameters.put("eventSortDirection", "descending");
+        sortingParameters.put("eventSortType", "startDateDate");
+        sortingParameters.put("eventSortDirection", "DESC");
         sortingParameters.put("numberOfEventsOnThePage", "15");
         sortingParameters.put("pageOffset", "0");
 
@@ -98,10 +98,15 @@ public class AllEventsController {
         paginationServiceClass.setRequestedPageNumber(numberOfPageThatIsBeeingDisplayed);
         paginationServiceClass.setRequestedPageChange(requestedPageChange);
 
-        model.addAttribute("numberOfEventsPerPage", numberOfEventsOnThePage);
-        model.addAttribute("eventFilterPlace", sortingServices.getEventFilterPlace());
-        model.addAttribute("eventSortType", sortingServices.getEventSortType());
-        model.addAttribute("eventSortDirection", sortingServices.getEventSortDirection());
+        //model.addAttribute("numberOfEventsPerPage", numberOfEventsOnThePage);
+        model.addAttribute("numberOfEventsPerPage", sortingParameters.get("numberOfEventsOnThePage"));
+        model.addAttribute("eventFilterType", sortingParameters.get("eventFilterType"));
+        //model.addAttribute("eventFilterPlace", sortingServices.getEventFilterPlace());
+        model.addAttribute("eventFilterPlace", sortingParameters.get("eventFilterPlace"));
+        //model.addAttribute("eventSortType", sortingServices.getEventSortType());
+        model.addAttribute("eventSortType", sortingParameters.get("eventSortType"));
+        //model.addAttribute("eventSortDirection", sortingServices.getEventSortDirection());
+        model.addAttribute("eventSortDirection", sortingParameters.get("eventSortDirection"));
 
         PaginationDto paginationDto = paginationServiceClass.getPaginationDto();
 
@@ -122,40 +127,101 @@ public class AllEventsController {
     public String changeNumberOfEventsPerPage (@RequestParam("eventsPerPage") Integer eventsPerPage) {
 
         if (eventsPerPage == 10) {
-            numberOfEventsOnThePage = 10;
-            sortingServices.setNumberOfEventsOnThePage(10);
+                            //numberOfEventsOnThePage = 10;
+                            //sortingServices.setNumberOfEventsOnThePage(10);
             sortingParameters.put("numberOfEventsOnThePage", "10");
+            System.out.println("10");
         } else if (eventsPerPage == 30) {
-            numberOfEventsOnThePage = 30;
-            sortingServices.setNumberOfEventsOnThePage(30);
+                            //numberOfEventsOnThePage = 30;
+                            //sortingServices.setNumberOfEventsOnThePage(30);
             sortingParameters.put("numberOfEventsOnThePage", "30");
+            System.out.println("30");
         } else if (eventsPerPage == 50) {
-            numberOfEventsOnThePage = 50;
-            sortingServices.setNumberOfEventsOnThePage(50);
+                            //numberOfEventsOnThePage = 50;
+                            //sortingServices.setNumberOfEventsOnThePage(50);
             sortingParameters.put("numberOfEventsOnThePage", "50");
+            System.out.println("50");
         }
 
         return "redirect:allevents";
     }
 
+    @GetMapping("/eventFilterType")
+    public String changeEventType (@RequestParam("eventFilterType") String eventFilterType) {
+        switch (eventFilterType) {
+            case "1":
+                sortingParameters.put("eventFilterType", "= 1");
+                break;
+            case "19":
+                sortingParameters.put("eventFilterType", "= 19");
+                break;
+            case "51":
+                sortingParameters.put("eventFilterType", "= 51");
+                break;
+            case "35":
+                sortingParameters.put("eventFilterType", "= 35");
+                break;
+            case "83":
+                sortingParameters.put("eventFilterType", "= 83");
+                break;
+            case "61":
+                sortingParameters.put("eventFilterType", "= 61");
+                break;
+            case "69":
+                sortingParameters.put("eventFilterType", "= 69");
+                break;
+            case "77":
+                sortingParameters.put("eventFilterType", "= 77");
+                break;
+            case "96":
+                sortingParameters.put("eventFilterType", "= 96");
+                break;
+            case "999":
+                sortingParameters.put("eventFilterType", "> 0");
+                break;
+            default:
+                sortingParameters.put("eventFilterType", "> 0");
+        }
+        System.out.println(sortingParameters.get("eventFilterType"));
+        return "redirect:allevents";
+    }
+
+
     @GetMapping("/eventFilterPlace")
     public String changeEventPlace (@RequestParam("eventFilterPlace") String eventFilterPlace) {
-                        sortingServices.setEventFilterPlace(eventFilterPlace);
+                        //sortingServices.setEventFilterPlace(eventFilterPlace);
         sortingParameters.put("eventFilterPlace", eventFilterPlace);
+                        System.out.println(sortingParameters.get("eventFilterPlace"));
         return "redirect:allevents";
     }
 
     @GetMapping("/eventSortType")
     public String changeEventSortType (@RequestParam("eventSortType") String eventSortType) {
                         sortingServices.setEventSortType(eventSortType);
-        sortingParameters.put("eventSortType", eventSortType);
+        if (eventSortType.equals("date")) {
+                        //sortingServices.setEventSortType("startDateDate");
+            sortingParameters.put("eventSortType", "startDateDate");
+        } else if (eventSortType.equals("city")) {
+                        //sortingServices.setEventSortType("city");
+            sortingParameters.put("eventSortType", "city");
+        } else {
+                        //sortingServices.setEventSortType("name");
+            sortingParameters.put("eventSortType", "name");
+        }
+
+                        //sortingParameters.put("eventSortType", eventSortType);
         return "redirect:allevents";
     }
 
     @GetMapping("/eventSortDirection")
     public String changeEventSortDirection (@RequestParam("eventSortDirection") String eventSortDirection) {
-                        sortingServices.setEventSortDirection(eventSortDirection);
-        sortingParameters.put("eventSortDirection", eventSortDirection);
+                        //sortingServices.setEventSortDirection(eventSortDirection);
+                         //sortingParameters.put("eventSortDirection", eventSortDirection);
+        if(eventSortDirection.equals("ascending")) {
+            sortingParameters.put("eventSortDirection", "ASC");
+        } else {
+            sortingParameters.put("eventSortDirection", "DESC");
+        }
         return "redirect:allevents";
     }
 

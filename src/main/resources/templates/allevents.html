@@ -24,13 +24,28 @@
 
              <div class="col-md-3">
                 <form action="/eventFilterType">
-<!--                    <select class="dropdown-fields dropdown-field-type" name="eventFilterType" onchange="this.form.submit()">
-                        <option value="all" selected>Wszystkie rodzaje</option>
-                        <option value="cinema">kino</option>
-                        <option value="theatre">teatr</option>
-                        <option value="concert">koncert</option>
-                        <option value="other">inne</option>
-                    </select>-->
+                    <select class="dropdown-fields dropdown-field-type" name="eventFilterType" onchange="this.form.submit()">
+                        <option value="999" selected th:if="${eventFilterType == '> 0'}">Wszystkie rodzaje</option>
+                        <option value="999" th:if="${eventFilterType != '> 0'}">Wszystkie rodzaje</option>
+                        <option value="1" selected th:if="${eventFilterType == '= 1'}">kino</option>
+                        <option value="1" th:if="${eventFilterType != '= 1'}">kino</option>
+                        <option value="19" selected th:if="${eventFilterType == '= 19'}">teatr</option>
+                        <option value="19" th:if="${eventFilterType != '= 19'}">teatr</option>
+                        <option value="51" selected th:if="${eventFilterType == '= 51'}">sztuka</option>
+                        <option value="51" th:if="${eventFilterType != '= 51'}">sztuka</option>
+                        <option value="35" selected th:if="${eventFilterType == '= 35'}">muzyka</option>
+                        <option value="35" th:if="${eventFilterType != '= 35'}">muzyka</option>
+                        <option value="83" selected th:if="${eventFilterType == '= 83'}">nauka</option>
+                        <option value="83" th:if="${eventFilterType != '= 83'}">nauka</option>
+                        <option value="61" selected th:if="${eventFilterType == '= 61'}">literatura</option>
+                        <option value="61" th:if="${eventFilterType != '= 61'}">literatura</option>
+                        <option value="69" selected th:if="${eventFilterType == '= 69'}">rozrywka</option>
+                        <option value="69" th:if="${eventFilterType != '= 69'}">rozrywka</option>
+                        <option value="77" selected th:if="${eventFilterType == '= 77'}">rekreacja</option>
+                        <option value="77" th:if="${eventFilterType != '= 77'}">rekreacja</option>
+                        <option value="96" selected th:if="${eventFilterType == '= 96'}">inne</option>
+                        <option value="96" th:if="${eventFilterType != '= 96'}">inne</option>
+                    </select>
                 </form>
             </div>
 
@@ -52,8 +67,8 @@
             <div class="col-md-3">
                 <form action="/eventSortType">
                     <select class="dropdown-fields dropdown-field-city" name="eventSortType" onchange="this.form.submit()">
-                        <option value="date" selected th:if="${eventSortType == 'date'}">Sortuj po dacie</option>
-                        <option value="date" th:if="${eventSortType != 'date'}">Sortuj po dacie</option>
+                        <option value="date" selected th:if="${eventSortType == 'startDateDate'}">Sortuj po dacie</option>
+                        <option value="date" th:if="${eventSortType != 'startDateDate'}">Sortuj po dacie</option>
                         <option value="city" selected th:if="${eventSortType == 'city'}">Sortuj po miejscowości</option>
                         <option value="city" th:if="${eventSortType != 'city'}">Sortuj po miejscowości</option>
                         <option value="name" selected th:if="${eventSortType == 'name'}">Sortuj po tytule</option>
@@ -65,10 +80,10 @@
             <div class="col-md-3">
                 <form action="/eventSortDirection">
                     <select class="dropdown-fields dropdown-field-direction" name="eventSortDirection" onchange="this.form.submit()">
-                        <option value="ascending" selected th:if="${eventSortDirection == 'ascending'}">Sortuj rosnąco</option>
-                        <option value="ascending" th:if="${eventSortDirection != 'ascending'}">Sortuj rosnąco</option>
-                        <option value="descending" selected th:if="${eventSortDirection == 'descending'}">Sortuj malejąco</option>
-                        <option value="descending" th:if="${eventSortDirection != 'descending'}">Sortuj malejąco</option>
+                        <option value="ascending" selected th:if="${eventSortDirection == 'ASC'}">Sortuj rosnąco</option>
+                        <option value="ascending" th:if="${eventSortDirection != 'ASC'}">Sortuj rosnąco</option>
+                        <option value="descending" selected th:if="${eventSortDirection == 'DESC'}">Sortuj malejąco</option>
+                        <option value="descending" th:if="${eventSortDirection != 'DESC'}">Sortuj malejąco</option>
                     </select>
                 </form>
             </div>

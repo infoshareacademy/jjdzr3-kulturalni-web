@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -93,13 +94,24 @@ public class EventsRepository implements Dao<EventEntity> {
     }
 
     public List<EventEntity> createListOfSortedEventEntities(Map<String, String> sortingParameters) {
+        System.out.println("param: " + Integer.parseInt(sortingParameters.get("numberOfEventsOnThePage")));
+        System.out.println("date: " + sortingParameters.get("eventSortType"));
         final Query query = entityManager
-                .createQuery("SELECT e FROM EventEntity e WHERE e.placeEntity.name = :place", EventEntity.class)
-                .setFirstResult(10)
+                //.createQuery("SELECT e FROM EventEntity e WHERE e.placeEntity.name = :place", EventEntity.class)
+                //.createQuery("SELECT e FROM EventEntity e WHERE e.startDateDate > '2021-03-22'", EventEntity.class)
+                //.createQuery("SELECT e FROM EventEntity e WHERE e.id > 0 ORDER BY e.startDateTime DESC, e." + sortingParameters.get("eventSortType") + " DESC", EventEntity.class)
+                .createQuery("SELECT e FROM EventEntity e " +
+                        "WHERE e.categoryId " + sortingParameters.get("eventFilterType") + " " +
+                        "ORDER BY e.startDateDate " + sortingParameters.get("eventSortDirection") +
+                        ", e.startDateTime " + sortingParameters.get("eventSortDirection"), EventEntity.class)
+                .setFirstResult(1)
                 .setMaxResults(Integer.parseInt(sortingParameters.get("numberOfEventsOnThePage")));
-        query.setParameter("place", sortingParameters.get("eventFilterPlace"));
+
+        //query.setParameter("place", sortingParameters.get("eventFilterPlace"));
         List<EventEntity> eventEntities = query.getResultList();
 
         return eventEntities;
     }
 }
+
+// SELECT e FROM EventEntity e WHERE e.categoryId = , e.place.name = , ORDER BY :sortParam :directionParam

@@ -24,9 +24,9 @@ public class EventService {
     }
 
     public void eventEntityFromJsonSave(EventNew eventNew) {
-        System.out.println("DTO    " + eventNew.toString());
+        //System.out.println("DTO    " + eventNew.toString());
         EventEntity eventEntity = eventMapper.mapEventNewToEventEntity(eventNew);
-        System.out.println("ENTITY " + eventEntity.toString());
+        //System.out.println("ENTITY " + eventEntity.toString());
 
         eventsRepository.save(eventEntity);
     }
