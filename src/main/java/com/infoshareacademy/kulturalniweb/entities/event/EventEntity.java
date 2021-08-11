@@ -48,7 +48,7 @@ public class EventEntity {
     private TicketEntity ticketEntity;
 
     private String picture;
-    private String City;
+    private String city;
 
 
     public Integer getId() {
@@ -204,11 +204,11 @@ public class EventEntity {
     }
 
     public String getCity() {
-        return City;
+        return city;
     }
 
     public void setCity(String city) {
-        this.City = city;
+        this.city = city;
     }
 
     @Override
@@ -233,7 +233,7 @@ public class EventEntity {
                 ", descShort='" + descShort + '\'' +
                 ", ticketEntity=" + ticketEntity +
                 ", picture='" + picture + '\'' +
-                ", city='" + City + '\'' +
+                ", city='" + city + '\'' +
                 '}';
     }
 }

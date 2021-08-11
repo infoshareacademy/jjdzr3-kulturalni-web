@@ -96,18 +96,27 @@ public class EventsRepository implements Dao<EventEntity> {
     public List<EventEntity> createListOfSortedEventEntities(Map<String, String> sortingParameters) {
         System.out.println("param: " + Integer.parseInt(sortingParameters.get("numberOfEventsOnThePage")));
         System.out.println("date: " + sortingParameters.get("eventSortType"));
+
+        String orderDefinition = "";
+
+        if(sortingParameters.get("eventSortType").equals("startDateDate")) {
+            orderDefinition = "e.startDateDate " + sortingParameters.get("eventSortDirection") + ", e.startDateTime " + sortingParameters.get("eventSortDirection");
+        } else if(sortingParameters.get("eventSortType").equals("city")) {
+            orderDefinition = "e.city " + sortingParameters.get("eventSortDirection");
+        } else {
+            orderDefinition = "e.name " + sortingParameters.get("eventSortDirection");
+        }
+
         final Query query = entityManager
-                //.createQuery("SELECT e FROM EventEntity e WHERE e.placeEntity.name = :place", EventEntity.class)
-                //.createQuery("SELECT e FROM EventEntity e WHERE e.startDateDate > '2021-03-22'", EventEntity.class)
-                //.createQuery("SELECT e FROM EventEntity e WHERE e.id > 0 ORDER BY e.startDateTime DESC, e." + sortingParameters.get("eventSortType") + " DESC", EventEntity.class)
                 .createQuery("SELECT e FROM EventEntity e " +
                         "WHERE e.categoryId " + sortingParameters.get("eventFilterType") + " " +
-                        "ORDER BY e.startDateDate " + sortingParameters.get("eventSortDirection") +
-                        ", e.startDateTime " + sortingParameters.get("eventSortDirection"), EventEntity.class)
+/*                        "ORDER BY e.startDateDate " + sortingParameters.get("eventSortDirection") +
+                        ", e.startDateTime " + sortingParameters.get("eventSortDirection"), EventEntity.class)*/
+                        "ORDER BY " + orderDefinition, EventEntity.class)
                 .setFirstResult(1)
                 .setMaxResults(Integer.parseInt(sortingParameters.get("numberOfEventsOnThePage")));
 
-        //query.setParameter("place", sortingParameters.get("eventFilterPlace"));
+
         List<EventEntity> eventEntities = query.getResultList();
 
         return eventEntities;

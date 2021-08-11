@@ -61,7 +61,7 @@ public class EventMapper {
         eventEntity.setTicketEntity(ticketEntity);
 
         eventEntity.setPicture(pictureService.getPictureFilename());
-        eventEntity.setCity("Gdansk");
+        eventEntity.setCity("Gdańsk");
 
         return eventEntity;
     }
