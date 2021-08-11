@@ -67,6 +67,8 @@ public class AllEventsController {
         sortingParameters.put("eventSortDirection", "DESC");
         sortingParameters.put("numberOfEventsOnThePage", "15");
         sortingParameters.put("pageOffset", "0");
+        sortingParameters.put("numberOfResultPages", "1");
+
 
 
         numberOfEventsOnThePage = 10;
@@ -91,37 +93,34 @@ public class AllEventsController {
         sortingServices.sortBySelectedCriteria();
         sortingServices.filterByPlace();
 
-        totalNumberOfEvents = eventSimpleMemory.getListOfEventSimple().size();
+                    totalNumberOfEvents = eventSimpleMemory.getListOfEventSimple().size();
 
-        paginationServiceClass.setNumberOfEventsOnThePage(numberOfEventsOnThePage);
-        paginationServiceClass.setTotalNumberOfEvents(totalNumberOfEvents);
-        paginationServiceClass.setRequestedPageNumber(numberOfPageThatIsBeeingDisplayed);
-        paginationServiceClass.setRequestedPageChange(requestedPageChange);
+                    paginationServiceClass.setNumberOfEventsOnThePage(numberOfEventsOnThePage);
+                    paginationServiceClass.setTotalNumberOfEvents(totalNumberOfEvents);
+                    paginationServiceClass.setRequestedPageNumber(numberOfPageThatIsBeeingDisplayed);
+                    paginationServiceClass.setRequestedPageChange(requestedPageChange);
 
-        //model.addAttribute("numberOfEventsPerPage", numberOfEventsOnThePage);
         model.addAttribute("numberOfEventsPerPage", sortingParameters.get("numberOfEventsOnThePage"));
         model.addAttribute("eventFilterType", sortingParameters.get("eventFilterType"));
-        //model.addAttribute("eventFilterPlace", sortingServices.getEventFilterPlace());
         model.addAttribute("eventFilterPlace", sortingParameters.get("eventFilterPlace"));
-        //model.addAttribute("eventSortType", sortingServices.getEventSortType());
         model.addAttribute("eventSortType", sortingParameters.get("eventSortType"));
-        //model.addAttribute("eventSortDirection", sortingServices.getEventSortDirection());
         model.addAttribute("eventSortDirection", sortingParameters.get("eventSortDirection"));
 
-        PaginationDto paginationDto = paginationServiceClass.getPaginationDto();
+                    PaginationDto paginationDto = paginationServiceClass.getPaginationDto();
 
-        model.addAttribute("paginationDto", paginationDto);
-        model.addAttribute("numberOfPageThatIsBeeingDisplayed", numberOfPageThatIsBeeingDisplayed);
+                    model.addAttribute("paginationDto", paginationDto);
+                    model.addAttribute("numberOfPageThatIsBeeingDisplayed", numberOfPageThatIsBeeingDisplayed);
 
-                List<EventSimple> paginatedEventsToDisplay = selectEventsForEachPage();
+        Integer eventDtosSize = eventService.getSizeOfListOfSortedEventEntities(sortingParameters);
+        sortingParameters.put("numberOfResultPages", calculateNumberOfResultPages(eventDtosSize, sortingParameters.get("numberOfEventsOnThePage")));
         List<EventDto> eventDtos = eventService.createListOfSortedEventEntities(sortingParameters);
 
-        //model.addAttribute("listOfEventSimple", paginatedEventsToDisplay);
         model.addAttribute("listOfEventDto", eventDtos);
         model.addAttribute("favouriteEvent", favId);
- //       log();
         return "allevents";
     }
+
+
 
     @GetMapping("/eventsPerPage")
     public String changeNumberOfEventsPerPage (@RequestParam("eventsPerPage") Integer eventsPerPage) {
@@ -275,6 +274,16 @@ public class AllEventsController {
         favId = id;
         System.out.println(favId);
         return "redirect:allevents";
+    }
+
+    private String calculateNumberOfResultPages(Integer eventDtosSize, String numberOfEventsOnThePage) {
+        Integer pagesNumber = eventDtosSize / Integer.parseInt(numberOfEventsOnThePage);
+        Integer anythingLeft = eventDtosSize % Integer.parseInt(numberOfEventsOnThePage);
+        System.out.println("size: " + eventDtosSize + " pages nmbr: " + pagesNumber + " anythingLeft: " + anythingLeft);
+        if(anythingLeft >0) {
+            pagesNumber++;
+        }
+        return pagesNumber.toString();
     }
 
 

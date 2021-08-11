@@ -55,6 +55,8 @@ public class EventService {
     }
 
 
-
-
+    public Integer getSizeOfListOfSortedEventEntities(Map<String, String> sortingParameters) {
+        List<EventEntity> eventEntities = eventsRepository.getSizeOfListOfSortedEventEntities(sortingParameters);
+        return eventEntities.size();
+    }
 }

@@ -94,9 +94,6 @@ public class EventsRepository implements Dao<EventEntity> {
     }
 
     public List<EventEntity> createListOfSortedEventEntities(Map<String, String> sortingParameters) {
-        System.out.println("param: " + Integer.parseInt(sortingParameters.get("numberOfEventsOnThePage")));
-        System.out.println("date: " + sortingParameters.get("eventSortType"));
-
         String orderDefinition = "";
 
         if(sortingParameters.get("eventSortType").equals("startDateDate")) {
@@ -110,8 +107,6 @@ public class EventsRepository implements Dao<EventEntity> {
         final Query query = entityManager
                 .createQuery("SELECT e FROM EventEntity e " +
                         "WHERE e.categoryId " + sortingParameters.get("eventFilterType") + " " +
-/*                        "ORDER BY e.startDateDate " + sortingParameters.get("eventSortDirection") +
-                        ", e.startDateTime " + sortingParameters.get("eventSortDirection"), EventEntity.class)*/
                         "ORDER BY " + orderDefinition, EventEntity.class)
                 .setFirstResult(1)
                 .setMaxResults(Integer.parseInt(sortingParameters.get("numberOfEventsOnThePage")));
@@ -121,6 +116,26 @@ public class EventsRepository implements Dao<EventEntity> {
 
         return eventEntities;
     }
+
+
+    public List<EventEntity> getSizeOfListOfSortedEventEntities(Map<String, String> sortingParameters) {
+        String orderDefinition = "";
+
+        if(sortingParameters.get("eventSortType").equals("startDateDate")) {
+            orderDefinition = "e.startDateDate " + sortingParameters.get("eventSortDirection") + ", e.startDateTime " + sortingParameters.get("eventSortDirection");
+        } else if(sortingParameters.get("eventSortType").equals("city")) {
+            orderDefinition = "e.city " + sortingParameters.get("eventSortDirection");
+        } else {
+            orderDefinition = "e.name " + sortingParameters.get("eventSortDirection");
+        }
+
+        final Query query = entityManager
+                .createQuery("SELECT e FROM EventEntity e " +
+                        "WHERE e.categoryId " + sortingParameters.get("eventFilterType") + " " +
+                        "ORDER BY " + orderDefinition, EventEntity.class);
+
+        List<EventEntity> eventEntities = query.getResultList();
+        return eventEntities;
+    }
 }
 
-// SELECT e FROM EventEntity e WHERE e.categoryId = , e.place.name = , ORDER BY :sortParam :directionParam
