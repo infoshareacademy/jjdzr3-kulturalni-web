@@ -26,13 +26,12 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String register(Model model) {
-        model.addAttribute("user", new AppUser());
+    public String register() {
         return "register";
     }
 
     @PostMapping("/register")
-    public String signUp(AppUser appUser) {
+    public String register(AppUser appUser) {
         userService.addUser(appUser);
         return "sign-in";
     }
@@ -49,6 +48,6 @@ public class UserController {
         AppUser appUser = byValue.getAppUser();
         appUser.setEnabled(true);
         appUserRepository.save(appUser);
-        return "hello";
+        return "index";
     }
 }
