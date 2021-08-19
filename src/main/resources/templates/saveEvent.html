@@ -24,10 +24,11 @@
         <h4 class="mb-3 fw-normal text-warning" th:text="#{saveEvent.greeting}"></h4>
     </div>
 
-    <div class="container col-lg-4 dark" style="text-align: left; background-color: rgba(255,255,255,0.7); border-radius: 25px">
+    <div class="container col-lg-4 dark"
+         style="text-align: left; background-color: rgba(255,255,255,0.7); border-radius: 25px">
 
         <!-- idEvent -->
-        <div class="row event-description" >
+        <div class="row event-description">
             <div class="col-md-4">
                 <label>Id wydarzenia: </label>
             </div>
@@ -135,11 +136,7 @@
             </div>
         </footer>
     </div>
-    </div>
 </header>
-<!-- Bootstrap core JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Core theme JS-->
-<script src="js/scripts.js"></script>
+<div th:insert="index :: end-scripts"></div>
 </body>
 </html>

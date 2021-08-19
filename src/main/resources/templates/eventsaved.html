@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html xmlns: th="http://www.thymeleaf.org" lang="pl">
 <head>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta charset="UTF-8">
-      <title>Kulturalni - Dodaj wydarzenie</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Kulturalni - Dodaj wydarzenie</title>
 
-      <!-- Favicon-->
-      <link rel="icon" type="image/x-icon" sizes="32x32" href="images/favicon.ico">
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" sizes="32x32" href="images/favicon.ico">
 
-      <!-- Core theme CSS (includes Bootstrap)-->
+    <!-- Core theme CSS (includes Bootstrap)-->
 
-      <link href="css/styles.css" type="text/css" rel="stylesheet"/>
-      <link rel="stylesheet" type="text/css" href="css/additional.css">
+    <link href="css/styles.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/additional.css">
 </head>
 
 <body id="page-top">
 <!-- Navigation-->
 <div th:insert="index :: copy-header"></div>
 <!-- Masthead-->
-<header class="masthead text-dark" >
+<header class="masthead text-dark">
 
 
     <div class="container" style="text-align: center">
@@ -137,16 +137,8 @@
             </div>
         </div>
     </div>
-
-
 </header>
-
-
-<div th:insert="index :: copy-footer"></div>
-
-<!-- Bootstrap core JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Core theme JS-->
-<script src="js/scripts.js"></script>
+<div th:insert="sign-in :: copy-footer"></div>
+<div th:insert="index :: end-scripts"></div>
 </body>
 </html>

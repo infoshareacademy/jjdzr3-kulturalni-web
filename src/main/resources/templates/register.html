@@ -1,11 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
 <head>
-    <meta charset="UTF-8">
+    <div th:replace="index::header" th:remove="tag"></div>
     <title>Title</title>
 </head>
 <body>
+<!-- Navigation-->
+<div th:insert="index :: copy-header"></div>
+<!-- Masthead-->
+<header class="masthead text-dark">
+    <br><br><br>
+    <div class="form-signin">
+        <form th:action="@{/register}" method="post">
+            <img class="mb-4" src="images/img/logos/logo.png" alt="" width="150" height="145">
+            <h4 class="mb-3 fw-normal text-warning">Zarejestruj się</h4>
 
-</form>
+            <div class="form-floating text-muted">
+                <input type="text" name="username" class="form-control" id="floatingInput" placeholder="Email">
+                <label for="floatingInput" th:text="#{login.username}"></label>
+            </div>
+            <div class="form-floating text-muted">
+                <input type="text" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword" th:text="#{login.password}"></label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary text-dark " type="submit" th:text="#{register.button}"></button>
+        </form>
+    </div>
+    <div class="p-3 text-white">
+        <!-- Footer -->
+        <div th:insert="sign-in :: copy-footer"></div>
+    </div>
+</header>
+<div th:insert="index :: end-scripts"></div>
 </body>
 </html>
