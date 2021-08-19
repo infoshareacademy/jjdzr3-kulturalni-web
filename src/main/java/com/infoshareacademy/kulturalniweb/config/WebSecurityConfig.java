@@ -1,5 +1,6 @@
 package com.infoshareacademy.kulturalniweb.config;
 
+import com.infoshareacademy.kulturalniweb.services.UserDetailsServiceImplementation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -16,13 +17,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    UserDetailsServiceImplementation userDetailsService;
+
+    public WebSecurityConfig(UserDetailsServiceImplementation userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        super.configure(auth);
+        auth.userDetailsService(userDetailsService);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        super.configure(http);
+        http.csrf().disable();
+        http.headers().disable();
+        http.authorizeRequests()
+                .antMatchers("/favourites","/alleventsindex","/addEvent","/editEvent").authenticated()
+                .and()
+                .formLogin().loginPage("/sign-in").defaultSuccessUrl("/home");
+
+
+
     }
 }
