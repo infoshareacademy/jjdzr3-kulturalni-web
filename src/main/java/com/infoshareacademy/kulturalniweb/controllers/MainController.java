@@ -22,14 +22,12 @@ public class MainController {
         this.sortingServices = sortingServices;
     }
 
-    @GetMapping("/")
+    @GetMapping("/home")
     public String displayMainPage(Model model) {
 
         repositoryServiceClass.readEventsFromGsonToList();
         eventSimpleMemoryServiceClass.clearMemory();
         eventSimpleMemoryServiceClass.prepareSimpleEventsListFromRepository();
-
-
 
         List<EventSimple> closestEventsSimple = sortingServices.createListOfClosestEvents();
         model.addAttribute("firstClosestEventSimple", closestEventsSimple.get(0));
@@ -41,9 +39,10 @@ public class MainController {
         model.addAttribute("secondNewestEventSimple", newestEventsSimple.get(1));
         model.addAttribute("thirdNewestEventSimple", newestEventsSimple.get(2));
 
-
-
-
         return "index";
+    }
+    @GetMapping("/")
+    public String displayHomePage() {
+        return "redirect:home";
     }
 }
