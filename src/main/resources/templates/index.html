@@ -1,27 +1,30 @@
 <!DOCTYPE html>
-<html xmlns: th="http://www.thymeleaf.org" lang="pl">
+
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="UTF-8">
+    <th:block th:fragment="header">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" sizes="32x32" href="images/favicon.ico">
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"/>
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet"
+              type="text/css"/>
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" href="css/additional.css">
+    </th:block>
     <title>Kulturalni - Wyszukiwarka wydarzeń</title>
-
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" sizes="32x32" href="images/favicon.ico">
-    <!-- Font Awesome icons (free version)-->
-    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"/>
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css"/>
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="css/additional.css">
 </head>
-
 <body id="page-top">
 <!-- Navigation-->
 <nav th:fragment="copy-header" class="navbar navbar-expand-lg navbar-primary fixed-top" id="mainNav">
     <div class="container-lg">
-        <a class="navbar-brand" href="/"><img src="images/img/logos/navbar_logo.png" alt="Kulturalni - logotyp"/></a>
+        <a class="navbar-brand" href="/home"><img src="images/img/logos/navbar_logo.png"
+                                                  alt="Kulturalni - logotyp"/></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
@@ -29,17 +32,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0 ">
-                <li class="nav-item"><a class="nav-link" href="#page-top" >
+                <li class="nav-item"><a class="nav-link" href="#page-top">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                          class="bi bi-house-door" viewBox="0 0 16 16">
                         <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0
-                    .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z" />
+                    .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
                     </svg>
                     HOME</a></li>
+                <!--                <sec:authorize access="hasRole('ADMIN')">-->
                 <li class="nav-item"><a class="nav-link" href="/alleventsindex" th:text="#{menu.events}"></a></li>
-                <li class="nav-item"><a class="nav-link" href="#searchBar" th:text="#{menu.searchBar}"></a></li>
                 <li class="nav-item"><a class="nav-link" href="/favourites" th:text="#{menu.favourites}"></a></li>
-                <li class="nav-item"><a class="nav-link" href="/login" th:text="#{menu.login}"></a></li>
+
                 <!--<li class="nav-item"><a class="nav-link" href="/addEvent" th:text="#{menu.administrationPanel}"></a></li>-->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -47,11 +50,15 @@
                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     </a>
                     <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item text-color-#ffc800" th:href="@{/(menu.administrationPanel)}"></a></li>
+                        <li><a class="dropdown-item text-color-#ffc800" th:href="@{/(menu.administrationPanel)}"></a>
+                        </li>
                         <li class="nav-item"><a class="nav-link" href="/addEvent" th:text="#{menu.addEvent}"></a></li>
                         <li class="nav-item"><a class="nav-link" href="/editEvent" th:text="#{menu.editEvent}"></a></li>
                     </ul>
                 </li>
+                <!--                </sec:authorize>-->
+                <li class="nav-item"><a class="nav-link" href="/sign-in" th:text="#{menu.login}"></a></li>
+                <li class="nav-item"><a class="nav-link" href="/register" th:text="#{menu.register}"></a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1"
                        th:text="${#strings.toUpperCase(#locale)}"
@@ -94,21 +101,24 @@
                 <h4 class="my-3 text-uppercase" th:text="#{home.event.section.searchEngine}"></h4>
                 <hr>
                 <p class="text-muted " th:text="#{home.event.section.searchEngine.desc}"></p>
-                <a class="btn btn-primary btn-xl text-uppercase my-4" href="/alleventsindex" th:text="#{home.event.section.searchEngine.button}"></a>
+                <a class="btn btn-primary btn-xl text-uppercase my-4" href="/alleventsindex"
+                   th:text="#{home.event.section.searchEngine.button}"></a>
             </div>
             <div class="col-md-4">
                 <img src="images/img/icons/list-ol.svg" class="mb-4" width="150" height="150">
                 <h4 class="my-3 text-uppercase" th:text="#{home.event.section.allEventsList}"></h4>
                 <hr class="my-3">
                 <p class="text-muted" th:text="#{home.event.section.allEventsList.desc}"></p>
-                <a class="btn btn-primary btn-xl text-uppercase my-4" href="/alleventsindex" th:text="#{home.event.section.allEventsList.button}"></a>
+                <a class="btn btn-primary btn-xl text-uppercase my-4" href="/alleventsindex"
+                   th:text="#{home.event.section.allEventsList.button}"></a>
             </div>
             <div class="col-md-4">
                 <img src="images/img/icons/heart.svg" class="mb-4" width="150" height="150">
                 <h4 class="my-3 text-uppercase" th:text="#{home.event.section.favourites}"></h4>
                 <hr>
                 <p class="text-muted" th:text="#{home.event.section.favourites.desc}"></p>
-                <a class="btn btn-primary btn-xl text-uppercase my-4" href="/favourites" th:text="#{home.event.section.favourites.button}"></a>
+                <a class="btn btn-primary btn-xl text-uppercase my-4" href="/favourites"
+                   th:text="#{home.event.section.favourites.button}"></a>
             </div>
         </div>
     </div>
@@ -143,13 +153,17 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             <div class="col">
                 <div class="card shadow-sm">
-                    <img th:src="${firstClosestEventSimple.getEventSimplePicture()}" >
+                    <img th:src="${firstClosestEventSimple.getEventSimplePicture()}">
                     <div class="card-body">
-                        <p class="card-text" th:text="${firstClosestEventSimple.getEventSimpleName()}">This is a wider card with supporting text below as a natural lead-in to
+                        <p class="card-text" th:text="${firstClosestEventSimple.getEventSimpleName()}">This is a wider
+                            card with supporting text below as a natural lead-in to
                             additional content. This content is a little bit longer.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary"><a href=# th:href="@{/singleevent(id=${firstClosestEventSimple.getEventSimpleId()})}" style="text-decoration: none; color: #0f5132">Zobacz</a></button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary"><a href=#
+                                                                                                  th:href="@{/singleevent(id=${firstClosestEventSimple.getEventSimpleId()})}"
+                                                                                                  style="text-decoration: none; color: #0f5132">Zobacz</a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -157,13 +171,17 @@
             </div>
             <div class="col">
                 <div class="card shadow-sm">
-                    <img th:src="${secondClosestEventSimple.getEventSimplePicture()}" >
+                    <img th:src="${secondClosestEventSimple.getEventSimplePicture()}">
                     <div class="card-body">
-                        <p class="card-text" th:text="${secondClosestEventSimple.getEventSimpleName()}">This is a wider card with supporting text below as a natural lead-in to
+                        <p class="card-text" th:text="${secondClosestEventSimple.getEventSimpleName()}">This is a wider
+                            card with supporting text below as a natural lead-in to
                             additional content. This content is a little bit longer.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary"><a href=# th:href="@{/singleevent(id=${secondClosestEventSimple.getEventSimpleId()})}" style="text-decoration: none; color: #0f5132">Zobacz</a></button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary"><a href=#
+                                                                                                  th:href="@{/singleevent(id=${secondClosestEventSimple.getEventSimpleId()})}"
+                                                                                                  style="text-decoration: none; color: #0f5132">Zobacz</a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -171,13 +189,17 @@
             </div>
             <div class="col">
                 <div class="card shadow-sm">
-                    <img th:src="${thirdClosestEventSimple.getEventSimplePicture()}" >
+                    <img th:src="${thirdClosestEventSimple.getEventSimplePicture()}">
                     <div class="card-body">
-                        <p class="card-text" th:text="${thirdClosestEventSimple.getEventSimpleName()}">This is a wider card with supporting text below as a natural lead-in to
+                        <p class="card-text" th:text="${thirdClosestEventSimple.getEventSimpleName()}">This is a wider
+                            card with supporting text below as a natural lead-in to
                             additional content. This content is a little bit longer.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary"><a href=# th:href="@{/singleevent(id=${thirdClosestEventSimple.getEventSimpleId()})}" style="text-decoration: none; color: #0f5132">Zobacz</a></button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary"><a href=#
+                                                                                                  th:href="@{/singleevent(id=${thirdClosestEventSimple.getEventSimpleId()})}"
+                                                                                                  style="text-decoration: none; color: #0f5132">Zobacz</a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -202,13 +224,17 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             <div class="col">
                 <div class="card shadow-sm">
-                    <img th:src="${firstNewestEventSimple.getEventSimplePicture()}" >
+                    <img th:src="${firstNewestEventSimple.getEventSimplePicture()}">
                     <div class="card-body">
-                        <p class="card-text" th:text="${firstNewestEventSimple.getEventSimpleName()}">This is a wider card with supporting text below as a natural lead-in to
+                        <p class="card-text" th:text="${firstNewestEventSimple.getEventSimpleName()}">This is a wider
+                            card with supporting text below as a natural lead-in to
                             additional content. This content is a little bit longer.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary" ><a href=# th:href="@{/singleevent(id=${firstNewestEventSimple.getEventSimpleId()})}" style="text-decoration: none; color: #0f5132">Zobacz</a></button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary"><a href=#
+                                                                                                  th:href="@{/singleevent(id=${firstNewestEventSimple.getEventSimpleId()})}"
+                                                                                                  style="text-decoration: none; color: #0f5132">Zobacz</a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -216,13 +242,17 @@
             </div>
             <div class="col">
                 <div class="card shadow-sm">
-                    <img th:src="${secondNewestEventSimple.getEventSimplePicture()}" >
+                    <img th:src="${secondNewestEventSimple.getEventSimplePicture()}">
                     <div class="card-body">
-                        <p class="card-text" th:text="${secondNewestEventSimple.getEventSimpleName()}">This is a wider card with supporting text below as a natural lead-in to
+                        <p class="card-text" th:text="${secondNewestEventSimple.getEventSimpleName()}">This is a wider
+                            card with supporting text below as a natural lead-in to
                             additional content. This content is a little bit longer.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary"><a href=# th:href="@{/singleevent(id=${secondNewestEventSimple.getEventSimpleId()})}" style="text-decoration: none; color: #0f5132">Zobacz</a></button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary"><a href=#
+                                                                                                  th:href="@{/singleevent(id=${secondNewestEventSimple.getEventSimpleId()})}"
+                                                                                                  style="text-decoration: none; color: #0f5132">Zobacz</a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -230,13 +260,17 @@
             </div>
             <div class="col">
                 <div class="card shadow-sm">
-                    <img th:src="${thirdNewestEventSimple.getEventSimplePicture()}" >
+                    <img th:src="${thirdNewestEventSimple.getEventSimplePicture()}">
                     <div class="card-body">
-                        <p class="card-text" th:text="${thirdNewestEventSimple.getEventSimpleName()}">This is a wider card with supporting text below as a natural lead-in to
+                        <p class="card-text" th:text="${thirdNewestEventSimple.getEventSimpleName()}">This is a wider
+                            card with supporting text below as a natural lead-in to
                             additional content. This content is a little bit longer.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary"><a href=# th:href="@{/singleevent(id=${thirdNewestEventSimple.getEventSimpleId()})}" style="text-decoration: none; color: #0f5132">Zobacz</a></button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary"><a href=#
+                                                                                                  th:href="@{/singleevent(id=${thirdNewestEventSimple.getEventSimpleId()})}"
+                                                                                                  style="text-decoration: none; color: #0f5132">Zobacz</a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -246,17 +280,16 @@
         </div>
     </div>
 </div>
-</main>
-</div>
-
-
-<div th:fragment="copy-footer" class="p-3 bg-dark text-white">
-    <footer class="footer mt-5 mb-1 bg-light bg-dark text-white">
+<div class="p-3 bg-dark text-white">
+    <footer class="footer mt-5 mb-1 bg-dark text-white">
         <div class="container">
-            <span class="footer">&copy 2021, <a href="mailto: kontakt@xyz.pl" class="footer">kontakt@xyz.pl</a></span>
+            <span class="footer">&copy 2021,
+                <a href="mailto: aplikacjakulturalni@gmail.com" class="footer">aplikacjakulturalni@gmail.com</a>
+            </span>
         </div>
     </footer>
 </div>
+<div th:fragment="end-scripts">
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
@@ -266,5 +299,6 @@
         crossorigin="anonymous"></script>
 <!-- Core theme JS-->
 <script src="js/scripts.js"></script>
+</div>
 </body>
 </html>
