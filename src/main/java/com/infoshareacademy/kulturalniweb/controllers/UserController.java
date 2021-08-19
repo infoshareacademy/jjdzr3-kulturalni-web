@@ -18,15 +18,17 @@ public class UserController {
     private AppUserRepository appUserRepository;
     private UserService userService;
 
+
     public UserController(TokenRepository tokenRepository, AppUserRepository appUserRepository, UserService userService) {
         this.tokenRepository = tokenRepository;
         this.appUserRepository = appUserRepository;
         this.userService = userService;
     }
-    @GetMapping("/sign-in")
-    public String signUp(Model model) {
+
+    @GetMapping("/register")
+    public String register(Model model) {
         model.addAttribute("user", new AppUser());
-        return "sign-in";
+        return "register";
     }
 
     @PostMapping("/register")
@@ -35,6 +37,11 @@ public class UserController {
         return "sign-in";
     }
 
+    @GetMapping("/sign-in")
+    public String signIn(Model model) {
+        model.addAttribute("user", new AppUser());
+        return "sign-in";
+    }
 
     @GetMapping("/token")
     public String sendToken(@RequestParam String value) {

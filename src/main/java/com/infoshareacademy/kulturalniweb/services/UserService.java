@@ -4,7 +4,6 @@ import com.infoshareacademy.kulturalniweb.models.AppUser;
 import com.infoshareacademy.kulturalniweb.models.Token;
 import com.infoshareacademy.kulturalniweb.repository.AppUserRepository;
 import com.infoshareacademy.kulturalniweb.repository.TokenRepository;
-import org.springframework.mail.MailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
