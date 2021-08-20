@@ -33,13 +33,7 @@ public class UserController {
     @PostMapping("/register")
     public String register(AppUser appUser) {
         userService.addUser(appUser);
-        return "sign-in";
-    }
-
-    @GetMapping("/sign-in")
-    public String signIn(Model model) {
-        model.addAttribute("user", new AppUser());
-        return "sign-in";
+        return "loginPage";
     }
 
     @GetMapping("/token")
@@ -51,8 +45,14 @@ public class UserController {
         return "index";
     }
 
+    @GetMapping("/loginPage")
+    public String signIn(Model model) {
+        model.addAttribute("user", new AppUser());
+        return "loginPage";
+    }
     @GetMapping("/loginError")
-    public String loginError(){
+    public String loginError(Model model){
+        model.addAttribute("loginError", true);
         return "login-error";
     }
 }

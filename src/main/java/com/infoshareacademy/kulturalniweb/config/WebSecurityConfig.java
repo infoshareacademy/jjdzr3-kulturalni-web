@@ -36,9 +36,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/favourites", "/alleventsindex", "/addEvent", "/editEvent").authenticated()
                 .and()
-                .formLogin().loginPage("/sign-in").defaultSuccessUrl("/home").failureForwardUrl("/login-error")
+                .formLogin().loginPage("/loginPage").successForwardUrl("/home")
                 .and()
-                .logout().logoutSuccessUrl("/sign-in");
+                .logout().logoutSuccessUrl("/home");
 
 
 
