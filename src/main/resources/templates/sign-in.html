@@ -1,31 +1,21 @@
 <!DOCTYPE html>
 <html xmlns: th="http://www.thymeleaf.org" lang="pl">
 <head>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" sizes="32x32" href="images/favicon.ico">
-    <!-- Font Awesome icons (free version)-->
-    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"/>
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet"
-          type="text/css"/>
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="css/additional.css">
-    <link href="css/signin.css" rel="stylesheet">
+    <th:block th:insert="index :: copyhead"></th:block>
+    <link rel="stylesheet" th:href="@{/css/signin.css}" >
     <title>Kulturalni - Logowanie</title>
 </head>
-
 <body>
 <!-- Navigation-->
-<div th:insert="index :: copy-header"></div>
+<div th:insert="index :: copy-masthead"></div>
 <!-- Masthead-->
 <header class="masthead text-dark">
     <br><br><br>
     <div class="form-signin">
         <form>
             <img class="mb-4" src="images/img/logos/logo.png" alt="" width="150" height="145">
-            <h4 class="mb-3 fw-normal text-warning" th:text="#{login.greeting}"></h4>
+            <h3 class="mb-3 fw-normal  text-warning" th:text="#{login.greeting}"></h3>
+            <label class="h6 mb-3 fw-normal text-warning" th:text="#{login.greeting.sub}"></label>
 
             <div class="form-floating text-muted">
                 <input type="text" class="form-control" id="floatingInput" placeholder="Username">
@@ -35,10 +25,13 @@
                 <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
                 <label for="floatingPassword" th:text="#{login.password}"></label>
             </div>
-            <div class="mb-3 text-light">
-                <a href="/register">Nie masz jeszcze konta? Załóż je!</a>
+            <button class="w-100 btn btn-lg btn-primary text-dark " type="submit"
+                    th:text="#{login.button}"></button>
+            <div class="my-3 text-light">
+                <label class="h6 mb-3 fw-normal text-warning" th:text="#{login.register}"></label>
+                <br>
+                <a class="h6 mb-3 text-warning" href="/register" th:text="#{login.register.button}"></a>
             </div>
-            <button class="w-100 btn btn-lg btn-primary text-dark " type="submit" th:text="#{login.button}"></button>
         </form>
     </div>
     <footer th:fragment="copy-footer" class="footer mt-5 mb-1 text-white">
