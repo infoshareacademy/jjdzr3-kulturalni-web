@@ -9,4 +9,7 @@ target/
 *.iws
 *.iml
 *.ipr
-db/
+*.ibd
+*.frm
+
+**/db/*
