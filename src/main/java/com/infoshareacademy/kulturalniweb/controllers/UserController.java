@@ -50,4 +50,9 @@ public class UserController {
         appUserRepository.save(appUser);
         return "index";
     }
+
+    @GetMapping("/loginError")
+    public String loginError(){
+        return "login-error";
+    }
 }
