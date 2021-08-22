@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="pl">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="pl">
 <head>
-
     <th:block th:fragment="copyhead">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="UTF-8">
@@ -17,7 +17,9 @@
         <link rel="stylesheet" th:href="@{css/styles.css}"/>
         <link rel="stylesheet" th:href="@{/css/additional.css}">
     </th:block>
+
     <title>Kulturalni - Wyszukiwarka wydarzeń</title>
+
 </head>
 <body id="page-top">
 <!-- Navigation-->
@@ -31,13 +33,16 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0 ">
-                <li class="nav-item"><a class="nav-link" href="#page-top">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                         class="bi bi-house-door" viewBox="0 0 16 16">
-                        <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0
+                <li class="nav-item">
+                    <a class="nav-link" href="#page-top">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                             class="bi bi-house-door" viewBox="0 0 16 16">
+                            <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0
                     .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
-                    </svg>
-                    HOME</a></li>
+                        </svg>
+                        HOME
+                    </a>
+                </li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/alleventsindex}" th:text="#{menu.events}"></a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/favourites}" th:text="#{menu.favourites}"></a></li>
 
@@ -51,16 +56,24 @@
                             <li><a class="dropdown-item text-color-#ffc800"
                                    th:href="@{/(menu.administrationPanel)}"></a>
                             </li>
-                            <li class="nav-item"><a class="nav-link" th:href="@{/addEvent}"
-                                                    th:text="#{menu.addEvent}"></a></li>
-                            <li class="nav-item"><a class="nav-link" th:href="@{/editEvent}"
-                                                    th:text="#{menu.editEvent}"></a></li>
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/addEvent}" th:text="#{menu.addEvent}"></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/editEvent}" th:text="#{menu.editEvent}"></a>
+                            </li>
                         </ul>
                     </li>
                 </div>
-
-                <li class="nav-item"><a class="nav-link" th:href="@{/loginPage}" th:text="#{menu.login}"></a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/register}" th:text="#{menu.register}"></a></li>
+                <div sec:authorize="isAuthenticated()">
+                    <li class="nav-item"><a class="nav-link" th:href="@{/logout}" th:text="#{menu.logout}"></a></li>
+                </div>
+                <div sec:authorize="isAnonymous()">
+                    <li class="nav-item"><a class="nav-link" th:href="@{/loginPage}" th:text="#{menu.login}"></a></li>
+                </div>
+                <div sec:authorize="isAnonymous()">
+                    <li class="nav-item"><a class="nav-link" th:href="@{/register}" th:text="#{menu.register}"></a></li>
+                </div>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1"
                        th:text="${#strings.toUpperCase(#locale)}"
@@ -68,8 +81,8 @@
                     </a>
                     <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown1">
                         <li><a class="dropdown-item text-color-#ffc800" th:href="@{/(lang=pl)}"><img
-                                src="images/poland.png" width="20" height="20"> Polski</a></li>
-                        <li><a class="dropdown-item " th:href="@{/(lang=en)}"><img src="images/united-kingdom.png"
+                                th:src="@{/images/poland.png}" width="20" height="20"> Polski</a></li>
+                        <li><a class="dropdown-item " th:href="@{/(lang=en)}"><img th:src="@{/images/united-kingdom.png}"
                                                                                    width="20" height="20"> English</a>
                         </li>
                     </ul>
