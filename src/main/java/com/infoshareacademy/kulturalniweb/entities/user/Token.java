@@ -1,8 +1,9 @@
-package com.infoshareacademy.kulturalniweb.models;
+package com.infoshareacademy.kulturalniweb.entities.user;
 
 import javax.persistence.*;
 
 @Entity
+@Table(name = "tokens")
 public class Token {
 
     @Id
@@ -11,7 +12,7 @@ public class Token {
     private String value;
 
     @OneToOne
-    private AppUser appUser;
+    private User user;
 
     public Long getId() {
         return id;
@@ -29,11 +30,11 @@ public class Token {
         this.value = value;
     }
 
-    public AppUser getAppUser() {
-        return appUser;
+    public User getAppUser() {
+        return user;
     }
 
-    public void setAppUser(AppUser appUser) {
-        this.appUser = appUser;
+    public void setAppUser(User user) {
+        this.user = user;
     }
 }

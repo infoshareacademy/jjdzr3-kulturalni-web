@@ -1,13 +1,13 @@
 package com.infoshareacademy.kulturalniweb.repository;
 
-import com.infoshareacademy.kulturalniweb.models.AppUser;
+import com.infoshareacademy.kulturalniweb.entities.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface AppUserRepository extends JpaRepository<AppUser, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
-    Optional<AppUser> findByUsername(String username);
+    Optional<User> findByUsername(String username);
 }
