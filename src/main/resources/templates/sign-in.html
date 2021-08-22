@@ -12,7 +12,7 @@
 <header class="masthead text-dark">
     <br><br><br>
     <div class="form-signin">
-        <form>
+        <form action="loginPage" method="post">
             <img class="mb-4" th:src="@{/images/img/logos/logo.png}" alt="" width="150" height="145">
             <h3 class="mb-3 fw-normal  text-warning" th:text="#{login.greeting}"></h3>
             <label class="h6 mb-3 fw-normal text-warning" th:text="#{login.greeting.sub}"></label>
@@ -30,7 +30,7 @@
             <div class="my-3 text-light">
                 <label class="h6 mb-3 fw-normal text-warning" th:text="#{login.register}"></label>
                 <br>
-                <a class="h6 mb-3 text-warning" href="/register" th:text="#{login.register.button}"></a>
+                <a class="h6 mb-3 text-warning" type="submit" th:text="#{login.register.button}"></a>
             </div>
         </form>
     </div>
