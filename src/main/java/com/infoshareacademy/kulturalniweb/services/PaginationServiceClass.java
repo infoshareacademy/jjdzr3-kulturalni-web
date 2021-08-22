@@ -1,6 +1,6 @@
 package com.infoshareacademy.kulturalniweb.services;
 
-import com.infoshareacademy.kulturalniweb.dto.PaginationDto;
+import com.infoshareacademy.kulturalniweb.models.dto.PaginationDto;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

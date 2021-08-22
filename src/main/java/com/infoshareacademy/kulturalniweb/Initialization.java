@@ -1,29 +1,29 @@
 package com.infoshareacademy.kulturalniweb;
 
-import com.infoshareacademy.kulturalniweb.models.AppUser;
-import com.infoshareacademy.kulturalniweb.repository.AppUserRepository;
+import com.infoshareacademy.kulturalniweb.entities.user.User;
+import com.infoshareacademy.kulturalniweb.repository.UserRepository;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class Initialization {
 
-    public Initialization(AppUserRepository appUserRepository, PasswordEncoder passwordEncoder) {
-        AppUser appAdmin = new AppUser();
+    public Initialization(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        User appAdmin = new User();
         appAdmin.setUsername("Admin");
         appAdmin.setPassword(passwordEncoder.encode("Admin1"));
-        appAdmin.setRole("ROLE_ADMIN");
+        appAdmin.setRole("ADMIN");
         appAdmin.setEnabled(true);
 
 
-        AppUser appModerator = new AppUser();
+        User appModerator = new User();
         appModerator.setUsername("Moderator");
         appModerator.setPassword(passwordEncoder.encode("Moderator1"));
-        appModerator.setRole("ROLE_USER");
+        appModerator.setRole("MODERATOR");
         appModerator.setEnabled(true);
 
-        appUserRepository.save(appAdmin);
-        appUserRepository.save(appModerator);
+        userRepository.save(appAdmin);
+        userRepository.save(appModerator);
 
     }
 }

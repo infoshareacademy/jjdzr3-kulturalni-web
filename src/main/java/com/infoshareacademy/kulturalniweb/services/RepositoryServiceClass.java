@@ -2,6 +2,7 @@ package com.infoshareacademy.kulturalniweb.services;
 
 import com.infoshareacademy.kulturalniweb.jsonData.EventNew;
 import com.infoshareacademy.kulturalniweb.jsonData.EventSimple;
+import com.infoshareacademy.kulturalniweb.models.dto.NewEventDto;
 import com.infoshareacademy.kulturalniweb.repository.ListEventRepository;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +38,7 @@ public class RepositoryServiceClass {
         return eventSimple;
     }
 
-    public EventNew createEventNewFromNewEventDto(com.infoshareacademy.kulturalniweb.models.@Valid NewEventDto newEventDto) {
+    public EventNew createEventNewFromNewEventDto(@Valid NewEventDto newEventDto) {
         EventNew eventNew = new EventNew();
 
         //eventNew.setId(newEventDto.getNewEventID());
