@@ -11,19 +11,11 @@ public class Initialization {
     public Initialization(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         User appAdmin = new User();
         appAdmin.setUsername("Admin");
+        appAdmin.setEmail("aplikacjakulturalni@gmail.com");
         appAdmin.setPassword(passwordEncoder.encode("Admin1"));
         appAdmin.setRole("ADMIN");
         appAdmin.setEnabled(true);
 
-
-        User appModerator = new User();
-        appModerator.setUsername("Moderator");
-        appModerator.setPassword(passwordEncoder.encode("Moderator1"));
-        appModerator.setRole("MODERATOR");
-        appModerator.setEnabled(true);
-
         userRepository.save(appAdmin);
-        userRepository.save(appModerator);
-
     }
 }
