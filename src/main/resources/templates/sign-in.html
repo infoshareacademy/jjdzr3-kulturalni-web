@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns: th="http://www.thymeleaf.org" lang="pl">
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
 <head>
     <th:block th:insert="index :: copyhead"></th:block>
     <link rel="stylesheet" th:href="@{/css/signin.css}">
@@ -11,20 +11,29 @@
 <!-- Masthead-->
 <header class="masthead text-dark">
     <br><br><br>
-    <div class="form-signin">
-        <form action="loginPage" method="post">
+    <div class="container text-center">
+        <form class="form-signin" th:action="@{/sign-in}" method="post">
+
             <img class="mb-4" th:src="@{/images/img/logos/logo.png}" alt="" width="150" height="145">
-            <h3 class="mb-3 fw-normal  text-warning" th:text="#{login.greeting}"></h3>
+
+            <h3 class="h3 mb-3 fw-normal text-warning" th:text="#{login.greeting}"></h3>
+
             <label class="h6 mb-3 fw-normal text-warning" th:text="#{login.greeting.sub}"></label>
 
-            <div class="form-floating text-muted">
-                <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="username">
-                <label for="floatingInput" th:text="#{login.username}"></label>
+            <div th:if="${param.error}" class="alert alert-danger my-3">
+                ZŁA NAZWA UŻYTKOWNIKA LUB HASŁO
             </div>
+
             <div class="form-floating text-muted">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
-                <label for="floatingPassword" th:text="#{login.password}"></label>
+                <input type="text" class="form-control" id="username" placeholder="Username" name="username">
+                <label for="username" th:text="#{login.username}"></label>
             </div>
+
+            <div class="form-floating text-muted">
+                <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+                <label for="password" th:text="#{login.password}"></label>
+            </div>
+
             <button class="w-100 btn btn-lg btn-primary text-dark" type="submit"
                     th:text="#{login.button}"></button>
             <div class="my-3 text-light">
