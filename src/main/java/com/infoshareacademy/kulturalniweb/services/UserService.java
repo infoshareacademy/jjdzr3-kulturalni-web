@@ -29,6 +29,7 @@ public class UserService {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole("USER");
+        user.setEmail(user.getEmail());
         userRepository.save(user);
         sendToken(user);
     }
@@ -42,7 +43,7 @@ public class UserService {
         String url = "http://localhost:8080/token?value=" + tokenValue;
 
         try {
-            mailService.sendMail(user.getUsername(), "Aktywuj swoje konto",
+            mailService.sendMail(user.getEmail(), "Aktywuj swoje konto",
                     "Kliknij w podany link, aby aktywować konto: " + url, false);
         } catch (MessagingException e) {
             e.printStackTrace();
