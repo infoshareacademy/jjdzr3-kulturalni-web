@@ -1,18 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="pl">
 <head>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" sizes="32x32" href="images/favicon.ico">
-    <!-- Font Awesome icons (free version)-->
-    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"/>
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet"
-          type="text/css"/>
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="css/additional.css">
-    <link href="css/signin.css" rel="stylesheet">
+    <th:block th:insert="index :: copyhead"></th:block>
+    <link rel="stylesheet" th:href="@{/css/signin.css}">
     <title>Kulturalni - Rejestracja</title>
 </head>
 <body>
@@ -21,18 +11,22 @@
 <!-- Masthead-->
 <header class="masthead text-dark">
     <br><br><br>
-    <div class="form-signin">
+    <div class="form-signin ">
         <form th:action="@{/register}" method="post">
             <img class="mb-4" src="images/img/logos/logo.png" alt="" width="150" height="145">
 
             <h3 class="mb-3 fw-normal text-warning" th:text="#{register.greeting}"></h3>
             <label class="h6 mb-3 fw-normal text-warning" th:text="#{register.greeting.sub}"></label>
 
-            <div class="form-floating text-muted">
-                <input type="email" name="username" class="form-control" id="floatingInput" placeholder="Email">
+            <div class="form-floating text-muted mb-2">
+                <input type="email" name="email" class="form-control" id="floatingEmail" placeholder="Email">
+                <label for="floatingEmail" th:text="#{register.email}"></label>
+            </div>
+            <div class="form-floating text-muted mb-2">
+                <input type="text" name="username" class="form-control" id="floatingInput" placeholder="Username">
                 <label for="floatingInput" th:text="#{register.username}"></label>
             </div>
-            <div class="form-floating text-muted">
+            <div class="form-floating text-muted mb-2">
                 <input type="password" name="password" class="form-control" id="floatingPassword"
                        placeholder="Password">
                 <label for="floatingPassword" th:text="#{register.password}"></label>
