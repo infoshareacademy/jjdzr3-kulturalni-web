@@ -1,26 +1,22 @@
 <!DOCTYPE html>
-<html xmlns: th="http://www.thymeleaf.org" lang="pl">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="pl">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="UTF-8">
-    <title>Kulturalni - Wszystkie wydarzenia</title>
+    <th:block th:insert="index :: copyhead">CopiedFromIndex</th:block>
 
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" sizes="32x32" href="images/favicon.ico">
-
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="css/additional.css">
+    <title>Kulturalni - Wydarzenia</title>
 </head>
 <body id="page-top">
-<!-- Navigation-->
 <div th:insert="index :: copy-masthead"></div>
 <!-- Masthead-->
-<header class="masthead text-dark">
+<header class="masthead text-dark" style="padding-top:10rem">
+        <div class="masthead-heading text-uppercase text-warning mb-4" th:text="#{events.title}">
+    </div>
+    <h6 class="mb-3 fw-normal text-warning" th:text="#{events.subtitle}"></h6>
 
-    <div class="container bg-light rounded-3">
+
+    <div class="container bg-transparent rounded-3">
         <div class="row head-border">
-
             <div class="col-md-3">
                 <form action="/eventFilterType">
                     <!--                    <select class="dropdown-fields dropdown-field-type" name="eventFilterType" onchange="this.form.submit()">
@@ -86,7 +82,7 @@
 
         </div>
     </div>
-    <div class="container bg-light rounded-3 mb-2">
+    <div class="container bg-transparent rounded-3 mb-2">
         <div class="row head-border">
             <div class="col-md-6">
                 <input class="dropdown-fields event-name-input" type="text" value=""
@@ -112,7 +108,7 @@
 
         </div>
     </div>
-    <div class="container main-table">
+    <div class="container main-table bg-transparent">
         <div class="row">
             <div class="col-md-1 low-padding">
                 <p class="header-city-paragraph">Miasto</p>
@@ -132,28 +128,29 @@
         </div>
     </div>
 
-    <div th:each="eventSimple: ${listOfEventSimple}" class="container main-table">
-        <div class="row">
+    <div th:each="eventSimple: ${listOfEventSimple}" class="container main-table bg-transparent">
+        <div class="row bg-dark text-warning rounded-3">
             <div class="col-md-1 low-padding">
-                <p class="table-city-paragraph" th:text="${eventSimple.getEventSimpleCity()}">Miasto</p>
+                <p class="" th:text="${eventSimple.getEventSimpleCity()}">Miasto</p>
             </div>
             <div class="col-md-1">
-                <p class="table-city-paragraph table-date-paragraph" th:text="${eventSimple.getEventSimpleDate()}">
+                <p class="" th:text="${eventSimple.getEventSimpleDate()}">
                     Data</p>
             </div>
             <div class="col-md-1">
-                <p class="table-city-paragraph" th:text="${eventSimple.getEventSimpleStartTime()}">Godzina</p>
+                <p class="" th:text="${eventSimple.getEventSimpleStartTime()}">Godzina</p>
             </div>
             <div class="col-md-8">
                 <a href=# th:href="@{/singleevent(id=${eventSimple.getEventSimpleId()})}" style="text-decoration: none">
-                    <p class="table-city-paragraph" th:text="${eventSimple.getEventSimpleName()}">Nazwa wydarzenia</p>
+                    <p class="" th:text="${eventSimple.getEventSimpleName()}">Nazwa wydarzenia</p>
                 </a>
             </div>
             <div class="col-md-1">
-                <form action="/favselect">
+                <form class="" action="/favselect">
                     <a href=# th:href="@{/favselect(id=${eventSimple.getEventSimpleId()})}"><img
                             src="images/img/heart-bw.png" style="width: 32px; height: 32px; margin-top: 10px"></a>
-                    <!--<a href=# th:href="@{/favselect(id=${eventSimple.getEventSimpleId()})}" th:if="${eventSimple.getEventSimpleId() != favId}" ? 'img src="images/img/heart-bw.png"' : 'img src="images/img/heart-red.png"'" style="width: 32px; height: 32px; margin-top: 10px"></a>-->
+                    <!--<a href=# th:href="@{/favselect(id=${eventSimple.getEventSimpleId()})}"
+                    th:if="${eventSimple.getEventSimpleId() != favId}" ? 'img src="images/img/heart-bw.png"' : 'img src="images/img/heart-red.png"'" style="width: 32px; height: 32px; margin-top: 10px"></a>-->
                 </form>
             </div>
         </div>
@@ -202,7 +199,7 @@
         </div>
     </div>
 </header>
-<div th:insert="sign-in :: copy-footer"></div>
+<div th:insert="index :: copy-footer"></div>
 <div th:insert="index :: end-scripts"></div>
 </body>
 </html>

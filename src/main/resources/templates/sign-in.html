@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="pl">
 <head>
-    <th:block th:insert="index :: copyhead"></th:block>
+    <th:block th:insert="index :: copyhead">CopiedFromIndex</th:block>
     <link rel="stylesheet" th:href="@{/css/signin.css}">
     <title>Kulturalni - Logowanie</title>
 </head>
@@ -14,14 +14,14 @@
     <div class="container text-center">
         <form class="form-signin" th:action="@{/sign-in}" method="post">
 
-            <img class="mb-4" th:src="@{/images/img/logos/logo.png}" alt="" width="150" height="145">
+            <img class="mb-4" th:src="@{/images/img/logos/logo.png}" alt="" width="150" height="145" src="">
 
-            <h3 class="h3 mb-3 fw-normal text-warning" th:text="#{login.greeting}"></h3>
+            <h3 class="mb-3 fw-normal text-warning" th:text="#{login.greeting}"></h3>
 
-            <label class="h6 mb-3 fw-normal text-warning" th:text="#{login.greeting.sub}"></label>
+            <h6 class="mb-3 fw-normal text-warning" th:text="#{login.greeting.sub}"></h6>
 
             <div th:if="${param.error}" class="alert alert-danger my-3">
-                ZŁA NAZWA UŻYTKOWNIKA LUB HASŁO
+                <span th:text="#{login.error}">ZŁA NAZWA UŻYTKOWNIKA LUB HASŁO</span>
             </div>
 
             <div class="form-floating text-muted">
@@ -36,22 +36,22 @@
 
             <button class="w-100 btn btn-lg btn-primary text-dark" type="submit"
                     th:text="#{login.button}"></button>
-            <div class="my-3 text-light">
+            <div class="mt-3 text-light">
                 <label class="h6 mb-3 fw-normal text-warning" th:text="#{login.register}"></label>
                 <br>
                 <a class="h6 mb-3 text-warning" type="submit" th:text="#{login.register.button}"></a>
             </div>
         </form>
     </div>
-    <footer th:fragment="copy-footer" class="footer mt-5 mb-1 text-white">
+    <div th:insert="index :: copy-footer"></div>
+</header>
+    <!--<footer th:fragment="copy-footer" class="footer mt-5 mb-1 text-white">
         <div class="container">
             <span class="footer">&copy 2021,
                 <a href="mailto: aplikacjakulturalni@gmail.com" class="footer">aplikacjakulturalni@gmail.com</a>
             </span>
         </div>
-    </footer>
-</header>
-
+    </footer>-->
 <div th:insert="index :: end-scripts"></div>
 </body>
 </html>
