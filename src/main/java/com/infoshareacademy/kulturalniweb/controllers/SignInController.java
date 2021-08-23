@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class SignInController {
 
     @GetMapping("/sign-in")
-    public String signIn(Model model) {
-        model.addAttribute("user", new User());
-        return "sign-in.html";
+    public String signIn() {
+        return "sign-in";
     }
 
     @PostMapping("/sign-in")

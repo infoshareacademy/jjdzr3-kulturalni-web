@@ -22,6 +22,6 @@ public class RegisterUserController {
     @PostMapping("/register")
     public String registerSubmit(User user) {
         userService.addUser(user);
-        return "sign-in.html";
+        return "sign-in";
     }
 }
