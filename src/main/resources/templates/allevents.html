@@ -167,15 +167,15 @@
     <div class="container">
         <div class="row" style="margin-top: 15px">
             <div class="col-md-4" style="margin: 0 auto">
-                <nav th:if="${paginationDto.shouldBeDisplayed}">
+                <nav th:if="${newPaginationDto.shouldBeDisplayed}">
                     <ul class="pagination" >
-                        <li class="page-item" style="width: 100px" th:if="${(paginationDto.totalNumberOfPages > 1) && (numberOfPageThatIsBeeingDisplayed > 1)}"><a class="page-link" href="#"  th:href="@{/alleventsChangePage(page=${-1})}" style="color: deeppink">Previous</a></li>
-                        <li class="page-item" th:if="${paginationDto.totalNumberOfPages > 0}"><a class="page-link" href="#" th:href="@{/alleventsChangePage(page=${paginationDto.getFirstNavBarNumber()})}"><span th:text="${paginationDto.getFirstNavBarNumber()}" style="color: deeppink"></span></a></li>
-                        <li class="page-item" th:if="${paginationDto.totalNumberOfPages > 1}"><a class="page-link" href="#" th:href="@{/alleventsChangePage(page=${paginationDto.getSecondNavBarNumber()})}"><span th:text="${paginationDto.getSecondNavBarNumber()}" style="color: deeppink"></span></a></li>
-                        <li class="page-item" th:if="${paginationDto.totalNumberOfPages > 2}"><a class="page-link" href="#" th:href="@{/alleventsChangePage(page=${paginationDto.getThirdNavBarNumber()})}"><span th:text="${paginationDto.getThirdNavBarNumber()}" style="color: deeppink"></span></a></li>
-                        <li class="page-item" th:if="${paginationDto.totalNumberOfPages > 3}"><a class="page-link" href="#" th:href="@{/alleventsChangePage(page=${paginationDto.getFourthNavBarNumber()})}"><span th:text="${paginationDto.getFourthNavBarNumber()}" style="color: deeppink"></span></a></li>
-                        <li class="page-item" th:if="${paginationDto.totalNumberOfPages > 4}"><a class="page-link" href="#" th:href="@{/alleventsChangePage(page=${paginationDto.getFifthNavBarNumber()})}"><span th:text="${paginationDto.getFifthNavBarNumber()}" style="color: deeppink"></span></a></li>
-                        <li class="page-item" style="width: 100px" th:if="${paginationDto.totalNumberOfPages > numberOfPageThatIsBeeingDisplayed}"><a class="page-link" href="#" th:href="@{/alleventsChangePage(page=${-2})}" style="color: deeppink">Next</a></li>
+                        <li class="page-item" style="width: 100px" th:if="${newPaginationDto.sShouldLeftArrowNavBarNumberBeDisplayed()}"><a class="page-link" href="#"  th:href="@{/alleventsChangePage(page=${newPaginationDto.getLeftArrowNavBarNumber()})}" style="color: deeppink">Poprzednie</a></li>
+                        <li class="page-item" th:if="${newPaginationDto.shouldFirstNavBarNumberBeDisplayed()}"><a class="page-link" href="#" th:href="@{/alleventsChangePage(page=${newPaginationDto.getFirstNavBarNumber()})}"><span th:text="${newPaginationDto.getFirstNavBarNumber()}" style="color: deeppink"></span></a></li>
+                        <li class="page-item" th:if="${newPaginationDto.shouldSecondNavBarNumberBeDisplayed()}"><a class="page-link" href="#" th:href="@{/alleventsChangePage(page=${newPaginationDto.getSecondNavBarNumber()})}"><span th:text="${newPaginationDto.getSecondNavBarNumber()}" style="color: deeppink"></span></a></li>
+                        <li class="page-item" th:if="${newPaginationDto.shouldThirdNavBarNumberBeDisplayed()}"><a class="page-link" href="#" th:href="@{/alleventsChangePage(page=${newPaginationDto.getThirdNavBarNumber()})}"><span th:text="${newPaginationDto.getThirdNavBarNumber()}" style="color: deeppink"></span></a></li>
+                        <li class="page-item" th:if="${newPaginationDto.shouldFourthNavBarNumberBeDisplayed()}"><a class="page-link" href="#" th:href="@{/alleventsChangePage(page=${newPaginationDto.getFourthNavBarNumber()})}"><span th:text="${newPaginationDto.getFourthNavBarNumber()}" style="color: deeppink"></span></a></li>
+                        <li class="page-item" th:if="${newPaginationDto.shouldFifthNavBarNumberBeDisplayed()}"><a class="page-link" href="#" th:href="@{/alleventsChangePage(page=${newPaginationDto.getFifthNavBarNumber()})}"><span th:text="${newPaginationDto.getFifthNavBarNumber()}" style="color: deeppink"></span></a></li>
+                        <li class="page-item" style="width: 100px" th:if="${newPaginationDto.shouldRightArrowNavBarNumberBeDisplayed() }"><a class="page-link" href="#" th:href="@{/alleventsChangePage(page=${newPaginationDto.getRightArrowNavBarNumber()})}" style="color: deeppink">Następne</a></li>
                     </ul>
                 </nav>
             </div>

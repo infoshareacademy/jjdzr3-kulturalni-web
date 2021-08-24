@@ -1,6 +1,7 @@
 package com.infoshareacademy.kulturalniweb.controllers;
 
 import com.infoshareacademy.kulturalniweb.dto.EventDto;
+import com.infoshareacademy.kulturalniweb.dto.NewPaginationDto;
 import com.infoshareacademy.kulturalniweb.jsonData.EventSimple;
 import com.infoshareacademy.kulturalniweb.dto.PaginationDto;
 import com.infoshareacademy.kulturalniweb.repository.EventSimpleMemory;
@@ -26,6 +27,8 @@ public class AllEventsController {
     SortingServices sortingServices;
     PaginationServiceClass paginationServiceClass;
     EventService eventService;
+    NewPaginationServiceClass newPaginationServiceClass;
+    NewPaginationDto newPaginationDto;
 
 
     Boolean fileNotReadYet = true;
@@ -41,7 +44,7 @@ public class AllEventsController {
     private Map<String, String> sortingParameters = new HashMap<>();
 
 
-    public AllEventsController(AppServiceClass appServiceClass, ListEventRepository listEventRepository, EventSimpleMemory eventSimpleMemory, RepositoryServiceClass repositoryServiceClass, EventSimpleMemoryServiceClass eventSimpleMemoryServiceClass, SortingServices sortingServices, PaginationServiceClass paginationServiceClass, EventService eventService) {
+    public AllEventsController(AppServiceClass appServiceClass, ListEventRepository listEventRepository, EventSimpleMemory eventSimpleMemory, RepositoryServiceClass repositoryServiceClass, EventSimpleMemoryServiceClass eventSimpleMemoryServiceClass, SortingServices sortingServices, PaginationServiceClass paginationServiceClass, EventService eventService, NewPaginationServiceClass newPaginationServiceClass, NewPaginationDto newPaginationDto) {
         this.appServiceClass = appServiceClass;
         this.listEventRepository = listEventRepository;
         this.eventSimpleMemory = eventSimpleMemory;
@@ -50,6 +53,8 @@ public class AllEventsController {
         this.sortingServices = sortingServices;
         this.paginationServiceClass = paginationServiceClass;
         this.eventService = eventService;
+        this.newPaginationServiceClass = newPaginationServiceClass;
+        this.newPaginationDto = newPaginationDto;
     }
 
     @GetMapping("/alleventsindex")
@@ -59,21 +64,40 @@ public class AllEventsController {
                     sortingServices.setEventSortType("date");
                     sortingServices.setEventSortDirection("descending");
                     sortingServices.setNumberOfEventsOnThePage(15);
-        paginationServiceClass.setVirtualDisplayedPageNumber(1);
+                    paginationServiceClass.setVirtualDisplayedPageNumber(1);
 
         sortingParameters.put("eventFilterType", "> 0");
         sortingParameters.put("eventFilterPlace", "all");
         sortingParameters.put("eventSortType", "startDateDate");
         sortingParameters.put("eventSortDirection", "DESC");
-        sortingParameters.put("numberOfEventsOnThePage", "15");
-        sortingParameters.put("pageOffset", "0");
+        sortingParameters.put("numberOfEventsOnThePage", "10");
+        sortingParameters.put("pageOffset", "1");
         sortingParameters.put("numberOfResultPages", "1");
+        sortingParameters.put("totalNumberOfEvents", "0");
+        sortingParameters.put("requestedPageNumber", "1");
+
+        newPaginationDto.setShouldBeDisplayed(false);
+        newPaginationDto.setLeftArrowNavBarNumber(0);
+        newPaginationDto.setFirstNavBarNumber(1);
+        newPaginationDto.setSecondNavBarNumber(2);
+        newPaginationDto.setThirdNavBarNumber(3);
+        newPaginationDto.setFourthNavBarNumber(4);
+        newPaginationDto.setFifthNavBarNumber(5);
+        newPaginationDto.setRightArrowNavBarNumber(6);
+        newPaginationDto.setShouldLeftArrowNavBarNumberBeDisplayed(true);
+        newPaginationDto.setShouldFirstNavBarNumberBeDisplayed(true);
+        newPaginationDto.setShouldSecondNavBarNumberBeDisplayed(true);
+        newPaginationDto.setShouldThirdNavBarNumberBeDisplayed(true);
+        newPaginationDto.setShouldFourthNavBarNumberBeDisplayed(true);
+        newPaginationDto.setShouldFifthNavBarNumberBeDisplayed(true);
+        newPaginationDto.setShouldRightArrowNavBarNumberBeDisplayed(true);
 
 
 
-        numberOfEventsOnThePage = 10;
+                    numberOfEventsOnThePage = 10;
         totalNumberOfEvents = eventsToDisplay.size();
-        numberOfPageThatIsBeeingDisplayed = 1;
+        sortingParameters.put("totalNumberOfEvents", totalNumberOfEvents.toString());
+                    numberOfPageThatIsBeeingDisplayed = 1;
 
         return "redirect:allevents";
     }
@@ -100,16 +124,16 @@ public class AllEventsController {
                     paginationServiceClass.setRequestedPageNumber(numberOfPageThatIsBeeingDisplayed);
                     paginationServiceClass.setRequestedPageChange(requestedPageChange);
 
-        model.addAttribute("numberOfEventsPerPage", sortingParameters.get("numberOfEventsOnThePage"));
+        model.addAttribute("numberOfEventsPerPage", Integer.parseInt(sortingParameters.get("numberOfEventsOnThePage")));
         model.addAttribute("eventFilterType", sortingParameters.get("eventFilterType"));
         model.addAttribute("eventFilterPlace", sortingParameters.get("eventFilterPlace"));
         model.addAttribute("eventSortType", sortingParameters.get("eventSortType"));
         model.addAttribute("eventSortDirection", sortingParameters.get("eventSortDirection"));
 
-                    PaginationDto paginationDto = paginationServiceClass.getPaginationDto();
+                    //PaginationDto paginationDto = paginationServiceClass.getPaginationDto();
 
-                    model.addAttribute("paginationDto", paginationDto);
-                    model.addAttribute("numberOfPageThatIsBeeingDisplayed", numberOfPageThatIsBeeingDisplayed);
+                    //model.addAttribute("paginationDto", paginationDto);
+                    //model.addAttribute("numberOfPageThatIsBeeingDisplayed", numberOfPageThatIsBeeingDisplayed);
 
         Integer eventDtosSize = eventService.getSizeOfListOfSortedEventEntities(sortingParameters);
         sortingParameters.put("numberOfResultPages", calculateNumberOfResultPages(eventDtosSize, sortingParameters.get("numberOfEventsOnThePage")));
@@ -117,6 +141,10 @@ public class AllEventsController {
 
         model.addAttribute("listOfEventDto", eventDtos);
         model.addAttribute("favouriteEvent", favId);
+
+    sortingParameters.put("totalNumberOfEvents", eventDtosSize.toString());
+        NewPaginationDto newPaginationDto = newPaginationServiceClass.getNewPaginationDto(sortingParameters);
+        model.addAttribute("newPaginationDto", newPaginationDto);
         return "allevents";
     }
 
@@ -126,21 +154,14 @@ public class AllEventsController {
     public String changeNumberOfEventsPerPage (@RequestParam("eventsPerPage") Integer eventsPerPage) {
 
         if (eventsPerPage == 10) {
-                            //numberOfEventsOnThePage = 10;
-                            //sortingServices.setNumberOfEventsOnThePage(10);
             sortingParameters.put("numberOfEventsOnThePage", "10");
-            System.out.println("10");
         } else if (eventsPerPage == 30) {
-                            //numberOfEventsOnThePage = 30;
-                            //sortingServices.setNumberOfEventsOnThePage(30);
             sortingParameters.put("numberOfEventsOnThePage", "30");
-            System.out.println("30");
         } else if (eventsPerPage == 50) {
-                            //numberOfEventsOnThePage = 50;
-                            //sortingServices.setNumberOfEventsOnThePage(50);
             sortingParameters.put("numberOfEventsOnThePage", "50");
-            System.out.println("50");
         }
+
+        resetSortingparameters();
 
         return "redirect:allevents";
     }
@@ -182,6 +203,8 @@ public class AllEventsController {
                 sortingParameters.put("eventFilterType", "> 0");
         }
         System.out.println(sortingParameters.get("eventFilterType"));
+
+        resetSortingparameters();
         return "redirect:allevents";
     }
 
@@ -191,6 +214,7 @@ public class AllEventsController {
                         //sortingServices.setEventFilterPlace(eventFilterPlace);
         sortingParameters.put("eventFilterPlace", eventFilterPlace);
                         System.out.println(sortingParameters.get("eventFilterPlace"));
+        resetSortingparameters();
         return "redirect:allevents";
     }
 
@@ -226,19 +250,9 @@ public class AllEventsController {
 
     @GetMapping("/alleventsChangePage")
     public String changeNumberOfPageBeeingDisplayed(@RequestParam("page") Integer requestedPageNumber) {
+        sortingParameters.put("requestedPageNumber", requestedPageNumber.toString());
 
-
-        if (requestedPageNumber == -1) {
-            numberOfPageThatIsBeeingDisplayed = numberOfPageThatIsBeeingDisplayed - 1;
-            requestedPageChange = -1;
-        } else if (requestedPageNumber == -2) {
-            numberOfPageThatIsBeeingDisplayed = numberOfPageThatIsBeeingDisplayed + 1;
-            requestedPageChange = -2;
-        } else {
-            numberOfPageThatIsBeeingDisplayed = requestedPageNumber;
-            requestedPageChange = 0;
-        }
-        System.out.println("Req Page number: " + requestedPageNumber + "    newpagenum: " + numberOfPageThatIsBeeingDisplayed);
+        System.out.println("Req Page number: " + requestedPageNumber);
         return "redirect:allevents";
     }
 
@@ -284,6 +298,30 @@ public class AllEventsController {
             pagesNumber++;
         }
         return pagesNumber.toString();
+    }
+
+    private void resetSortingparameters() {
+        sortingParameters.put("pageOffset", "1");
+        sortingParameters.put("numberOfResultPages", "1");
+        sortingParameters.put("totalNumberOfEvents", "0");
+        sortingParameters.put("requestedPageNumber", "1");
+
+        newPaginationDto.setShouldBeDisplayed(false);
+        newPaginationDto.setLeftArrowNavBarNumber(0);
+        newPaginationDto.setFirstNavBarNumber(1);
+        newPaginationDto.setSecondNavBarNumber(2);
+        newPaginationDto.setThirdNavBarNumber(3);
+        newPaginationDto.setFourthNavBarNumber(4);
+        newPaginationDto.setFifthNavBarNumber(5);
+        newPaginationDto.setRightArrowNavBarNumber(6);
+        newPaginationDto.setShouldLeftArrowNavBarNumberBeDisplayed(false);
+        newPaginationDto.setShouldFirstNavBarNumberBeDisplayed(false);
+        newPaginationDto.setShouldSecondNavBarNumberBeDisplayed(false);
+        newPaginationDto.setShouldThirdNavBarNumberBeDisplayed(false);
+        newPaginationDto.setShouldFourthNavBarNumberBeDisplayed(false);
+        newPaginationDto.setShouldFifthNavBarNumberBeDisplayed(false);
+        newPaginationDto.setShouldRightArrowNavBarNumberBeDisplayed(false);
+
     }
 
 

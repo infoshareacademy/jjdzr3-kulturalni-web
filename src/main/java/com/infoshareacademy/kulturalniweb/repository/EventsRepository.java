@@ -94,6 +94,7 @@ public class EventsRepository implements Dao<EventEntity> {
     }
 
     public List<EventEntity> createListOfSortedEventEntities(Map<String, String> sortingParameters) {
+        System.out.println("    requestedPageNumber: " + sortingParameters.get("requestedPageNumber"));
         String orderDefinition = "";
 
         if(sortingParameters.get("eventSortType").equals("startDateDate")) {
@@ -104,19 +105,20 @@ public class EventsRepository implements Dao<EventEntity> {
             orderDefinition = "e.name " + sortingParameters.get("eventSortDirection");
         }
 
+        Integer requestedPageNumber = Integer.parseInt(sortingParameters.get("requestedPageNumber"));
+        Integer numberOfEventsOnThePage = Integer.parseInt(sortingParameters.get("numberOfEventsOnThePage"));
+        Integer firstResult = (requestedPageNumber * numberOfEventsOnThePage) - (numberOfEventsOnThePage - 1);
+
         final Query query = entityManager
                 .createQuery("SELECT e FROM EventEntity e " +
                         "WHERE e.categoryId " + sortingParameters.get("eventFilterType") + " " +
                         "ORDER BY " + orderDefinition, EventEntity.class)
-                .setFirstResult(1)
-                .setMaxResults(Integer.parseInt(sortingParameters.get("numberOfEventsOnThePage")));
-
+                .setFirstResult(firstResult)
+                .setMaxResults(numberOfEventsOnThePage);
 
         List<EventEntity> eventEntities = query.getResultList();
-
         return eventEntities;
     }
-
 
     public List<EventEntity> getSizeOfListOfSortedEventEntities(Map<String, String> sortingParameters) {
         String orderDefinition = "";
