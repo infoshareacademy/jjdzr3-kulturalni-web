@@ -17,5 +17,15 @@ public class Initialization {
         appAdmin.setEnabled(true);
 
         userRepository.save(appAdmin);
+
+        User testUser = new User();
+        testUser.setUsername("user");
+        testUser.setEmail("costam@costam.pl");
+        testUser.setPassword(passwordEncoder.encode("user"));
+        testUser.setRole("USER");
+        testUser.setEnabled(true);
+
+
+        userRepository.save(testUser);
     }
 }

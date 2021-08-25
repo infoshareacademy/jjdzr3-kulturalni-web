@@ -10,8 +10,6 @@ public class EditEventController {
 
     @GetMapping("/editEvent")
     public String editEvent(Model model) {
-
-
-        return "editevent";
+        return "editEvent";
     }
 }

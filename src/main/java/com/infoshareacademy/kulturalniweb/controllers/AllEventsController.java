@@ -44,7 +44,7 @@ public class AllEventsController {
         this.paginationServiceClass = paginationServiceClass;
     }
 
-    @GetMapping("/alleventsindex")
+    @GetMapping("/allEventsIndex")
     public String displayAllEventsFromIndex () {
         sortingServices.setEventFilterType("all");
         sortingServices.setEventFilterPlace("all");
@@ -56,10 +56,10 @@ public class AllEventsController {
         totalNumberOfEvents = eventsToDisplay.size();
         numberOfPageThatIsBeeingDisplayed = 1;
 
-        return "redirect:allevents";
+        return "redirect:allEvents";
     }
 
-    @GetMapping("/allevents")
+    @GetMapping("/allEvents")
     public String allEvents (Model model) {
 
         // Usunąć ifa - przy naprawieniu listy wydarzeń do bazy
@@ -96,7 +96,7 @@ public class AllEventsController {
         model.addAttribute("listOfEventSimple", paginatedEventsToDisplay);
         model.addAttribute("favouriteEvent", favId);
  //       log();
-        return "allevents";
+        return "allEvents";
     }
 
     @GetMapping("/eventsPerPage")
@@ -110,25 +110,25 @@ public class AllEventsController {
             numberOfEventsOnThePage = 50;
         }
 
-        return "redirect:allevents";
+        return "redirect:allEvents";
     }
 
     @GetMapping("/eventFilterPlace")
     public String changeEventPlace (@RequestParam("eventFilterPlace") String eventFilterPlace) {
         sortingServices.setEventFilterPlace(eventFilterPlace);
-        return "redirect:allevents";
+        return "redirect:allEvents";
     }
 
     @GetMapping("/eventSortType")
     public String changeEventSortType (@RequestParam("eventSortType") String eventSortType) {
         sortingServices.setEventSortType(eventSortType);
-        return "redirect:allevents";
+        return "redirect:allEvents";
     }
 
     @GetMapping("/eventSortDirection")
     public String changeEventSortDirection (@RequestParam("eventSortDirection") String eventSortDirection) {
         sortingServices.setEventSortDirection(eventSortDirection);
-        return "redirect:allevents";
+        return "redirect:allEvents";
     }
 
     @GetMapping("/alleventsChangePage")
@@ -146,7 +146,7 @@ public class AllEventsController {
             requestedPageChange = 0;
         }
         System.out.println("Req Page number: " + requestedPageNumber + "    newpagenum: " + numberOfPageThatIsBeeingDisplayed);
-        return "redirect:allevents";
+        return "redirect:allEvents";
     }
 
     private List<EventSimple> selectEventsForEachPage() {
@@ -180,7 +180,7 @@ public class AllEventsController {
     public String favSelect(@RequestParam("id") Integer id) {
         favId = id;
         System.out.println(favId);
-        return "redirect:allevents";
+        return "redirect:allEvents";
     }
 
 

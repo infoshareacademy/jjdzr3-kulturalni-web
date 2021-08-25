@@ -24,7 +24,7 @@ public class SingleEventController {
         model.addAttribute("singleEventSimpleModel", eventSimple);
         System.out.println("   Name: " + eventSimple.getEventSimpleName() + "   ID: " + eventSimple.getEventSimpleId());
 
-        return "singleevent";
+        return "singleEvent";
     }
 
     @PostMapping("/toggleFavourite")

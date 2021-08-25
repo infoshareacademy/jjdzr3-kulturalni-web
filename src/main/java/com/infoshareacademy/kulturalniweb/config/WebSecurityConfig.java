@@ -1,6 +1,6 @@
 package com.infoshareacademy.kulturalniweb.config;
 
-import com.infoshareacademy.kulturalniweb.services.UserDetailsServiceImplementation;
+import com.infoshareacademy.kulturalniweb.services.MyUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -24,9 +24,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    UserDetailsServiceImplementation userDetailsService;
+    MyUserDetailsService userDetailsService;
 
-    public WebSecurityConfig(UserDetailsServiceImplementation userDetailsService) {
+    public WebSecurityConfig(MyUserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
 
