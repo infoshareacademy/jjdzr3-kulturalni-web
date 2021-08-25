@@ -49,6 +49,7 @@ public class EventEntity {
 
     private String picture;
     private String city;
+    private Boolean isFavourite;
 
 
     public Integer getId() {
@@ -211,29 +212,11 @@ public class EventEntity {
         this.city = city;
     }
 
-    @Override
-    public String toString() {
-        return "EventEntity{" +
-                "id=" + id +
-                ", sourceId=" + sourceId +
-                ", placeEntity=" + placeEntity +
-                ", endDateDate='" + endDateDate + '\'' +
-                ", endDateTime='" + endDateTime + '\'' +
-                ", endDateLastTime='" + endDateLastTime + '\'' +
-                ", name='" + name + '\'' +
-                ", urlEntity=" + urlEntity +
-                ", attachmentEntity=" + attachmentEntity +
-                ", descLong='" + descLong + '\'' +
-                ", categoryId=" + categoryId +
-                ", startDateDate='" + startDateDate + '\'' +
-                ", startDateTime='" + startDateTime + '\'' +
-                ", startDateLastTime='" + startDateLastTime + '\'' +
-                ", organizerEntity=" + organizerEntity +
-                ", active='" + active + '\'' +
-                ", descShort='" + descShort + '\'' +
-                ", ticketEntity=" + ticketEntity +
-                ", picture='" + picture + '\'' +
-                ", city='" + city + '\'' +
-                '}';
+    public Boolean getFavourite() {
+        return isFavourite;
+    }
+
+    public void setFavourite(Boolean favourite) {
+        isFavourite = favourite;
     }
 }

@@ -6,6 +6,7 @@ import com.infoshareacademy.kulturalniweb.jsonData.EventNew;
 import com.infoshareacademy.kulturalniweb.mappers.EventMapper;
 import com.infoshareacademy.kulturalniweb.repository.EventsRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 import java.util.ArrayList;
@@ -58,5 +59,9 @@ public class EventService {
     public Integer getSizeOfListOfSortedEventEntities(Map<String, String> sortingParameters) {
         List<EventEntity> eventEntities = eventsRepository.getSizeOfListOfSortedEventEntities(sortingParameters);
         return eventEntities.size();
+    }
+
+    public void updateFavourite(Integer id, Boolean favStatus) {
+        eventsRepository.updateFavourite(id, favStatus);
     }
 }

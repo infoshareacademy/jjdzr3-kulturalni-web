@@ -26,8 +26,9 @@ public class EventDto {
     private String ticket;
     private String picture;
     private String city;
+    private Boolean isFavourite;
 
-    public EventDto(Integer id, Integer sourceId, Integer placeId, String placeName, String endDateDate, String endDateTime, String endDateLastTime, String name, String url, String attachment, String descLong, Integer categoryId, String startDateDate, String startDateTime, String startDateLastTime, Integer organizerId, String organizerName, String status, String descShort, String ticket, String  picture, String city) {
+    public EventDto(Integer id, Integer sourceId, Integer placeId, String placeName, String endDateDate, String endDateTime, String endDateLastTime, String name, String url, String attachment, String descLong, Integer categoryId, String startDateDate, String startDateTime, String startDateLastTime, Integer organizerId, String organizerName, String status, String descShort, String ticket, String  picture, String city, Boolean isFavourite) {
         this.id = id;
         this.sourceId = sourceId;
         this.placeId = placeId;
@@ -50,6 +51,7 @@ public class EventDto {
         this.ticket = ticket;
         this.picture = picture;
         this.city = city;
+        this.isFavourite = isFavourite;
     }
 
     public EventDto() {
@@ -231,31 +233,12 @@ public class EventDto {
         this.city = city;
     }
 
-    @Override
-    public String toString() {
-        return "EventDto{" +
-                "id=" + id +
-                ", sourceId=" + sourceId +
-                ", placeId=" + placeId +
-                ", placeName='" + placeName + '\'' +
-                ", endDateDate='" + endDateDate + '\'' +
-                ", endDateTime='" + endDateTime + '\'' +
-                ", endDateLastTime='" + endDateLastTime + '\'' +
-                ", name='" + name + '\'' +
-                ", url='" + url + '\'' +
-                ", attachment='" + attachment + '\'' +
-                ", descLong='" + descLong + '\'' +
-                ", categoryId=" + categoryId +
-                ", startDateDate='" + startDateDate + '\'' +
-                ", startDateTime='" + startDateTime + '\'' +
-                ", startDateLastTime='" + startDateLastTime + '\'' +
-                ", organizerId=" + organizerId +
-                ", organizerName='" + organizerName + '\'' +
-                ", status='" + status + '\'' +
-                ", descShort='" + descShort + '\'' +
-                ", ticket='" + ticket + '\'' +
-                ", picture='" + picture + '\'' +
-                ", city='" + city + '\'' +
-                '}';
+    public Boolean getFavourite() {
+        return isFavourite;
     }
+
+    public void setFavourite(Boolean favourite) {
+        isFavourite = favourite;
+    }
+
 }

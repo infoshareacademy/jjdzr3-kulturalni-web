@@ -157,8 +157,10 @@
             </div>
             <div class="col-md-1">
                 <form action="/favselect">
-                    <a href=# th:href="@{/favselect(id=${eventDto.getId})}" ><img src="images/img/heart-bw.png" style="width: 32px; height: 32px; margin-top: 10px"></a>
-                    <!--<a href=# th:href="@{/favselect(id=${eventSimple.getEventSimpleId()})}" th:if="${eventSimple.getEventSimpleId() != favId}" ? 'img src="images/img/heart-bw.png"' : 'img src="images/img/heart-red.png"'" style="width: 32px; height: 32px; margin-top: 10px"></a>-->
+                    <a href=# th:href="@{/favselect(id=${eventDto.getId()}, favStatus=${eventDto.getFavourite()})}" >
+                        <span th:if="${eventDto.getFavourite()}"><img src="images/img/heart-red.png" style="width: 32px; height: 32px; margin-top: 10px"></span>
+                        <span th:if="${!eventDto.getFavourite()}"><img src="images/img/heart-bw.png" style="width: 32px; height: 32px; margin-top: 10px"></span>
+                    </a>
                 </form>
             </div>
         </div>

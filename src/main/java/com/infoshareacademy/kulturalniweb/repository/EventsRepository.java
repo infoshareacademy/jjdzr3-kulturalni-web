@@ -139,5 +139,18 @@ public class EventsRepository implements Dao<EventEntity> {
         List<EventEntity> eventEntities = query.getResultList();
         return eventEntities;
     }
+
+    public void updateFavourite(Integer id, Boolean favStatus) {
+        final Query query = entityManager
+                .createQuery("update EventEntity e set e.isFavourite = :newStatus where e.id = :id")
+                .setParameter("id", id)
+                .setParameter("newStatus", !favStatus);
+
+        int result = query.executeUpdate();
+        System.out.println(result);
+    }
+
+
+
 }
 

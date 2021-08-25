@@ -119,21 +119,12 @@ public class AllEventsController {
 
                     totalNumberOfEvents = eventSimpleMemory.getListOfEventSimple().size();
 
-                    paginationServiceClass.setNumberOfEventsOnThePage(numberOfEventsOnThePage);
-                    paginationServiceClass.setTotalNumberOfEvents(totalNumberOfEvents);
-                    paginationServiceClass.setRequestedPageNumber(numberOfPageThatIsBeeingDisplayed);
-                    paginationServiceClass.setRequestedPageChange(requestedPageChange);
-
         model.addAttribute("numberOfEventsPerPage", Integer.parseInt(sortingParameters.get("numberOfEventsOnThePage")));
         model.addAttribute("eventFilterType", sortingParameters.get("eventFilterType"));
         model.addAttribute("eventFilterPlace", sortingParameters.get("eventFilterPlace"));
         model.addAttribute("eventSortType", sortingParameters.get("eventSortType"));
         model.addAttribute("eventSortDirection", sortingParameters.get("eventSortDirection"));
 
-                    //PaginationDto paginationDto = paginationServiceClass.getPaginationDto();
-
-                    //model.addAttribute("paginationDto", paginationDto);
-                    //model.addAttribute("numberOfPageThatIsBeeingDisplayed", numberOfPageThatIsBeeingDisplayed);
 
         Integer eventDtosSize = eventService.getSizeOfListOfSortedEventEntities(sortingParameters);
         sortingParameters.put("numberOfResultPages", calculateNumberOfResultPages(eventDtosSize, sortingParameters.get("numberOfEventsOnThePage")));
@@ -142,7 +133,7 @@ public class AllEventsController {
         model.addAttribute("listOfEventDto", eventDtos);
         model.addAttribute("favouriteEvent", favId);
 
-    sortingParameters.put("totalNumberOfEvents", eventDtosSize.toString());
+        sortingParameters.put("totalNumberOfEvents", eventDtosSize.toString());
         NewPaginationDto newPaginationDto = newPaginationServiceClass.getNewPaginationDto(sortingParameters);
         model.addAttribute("newPaginationDto", newPaginationDto);
         return "allevents";
@@ -202,7 +193,7 @@ public class AllEventsController {
             default:
                 sortingParameters.put("eventFilterType", "> 0");
         }
-        System.out.println(sortingParameters.get("eventFilterType"));
+       // System.out.println(sortingParameters.get("eventFilterType"));
 
         resetSortingparameters();
         return "redirect:allevents";
@@ -279,14 +270,13 @@ public class AllEventsController {
         return result;
     }
 
-    public void log() {
-        System.out.println("total liczba wydarzeń: " + totalNumberOfEvents + "  Wydarz na strone: " + numberOfEventsOnThePage + "   Numer wysw strony: " + numberOfPageThatIsBeeingDisplayed + "   Liczba stron: " + paginationServiceClass.getTotalNumberOfPages() + "   eventsToDisplay.size()=" + eventsToDisplay.size());
-    }
-
     @GetMapping(value = "/favselect")
-    public String favSelect(@RequestParam("id") Integer id) {
-        favId = id;
-        System.out.println(favId);
+    public String favSelect(@RequestParam("id") Integer id,
+                            @RequestParam("favStatus") Boolean favStatus) {
+        //favId = id;
+        //System.out.println(favId);
+        eventService.updateFavourite(id, favStatus);
+
         return "redirect:allevents";
     }
 
@@ -321,8 +311,5 @@ public class AllEventsController {
         newPaginationDto.setShouldFourthNavBarNumberBeDisplayed(false);
         newPaginationDto.setShouldFifthNavBarNumberBeDisplayed(false);
         newPaginationDto.setShouldRightArrowNavBarNumberBeDisplayed(false);
-
     }
-
-
 }

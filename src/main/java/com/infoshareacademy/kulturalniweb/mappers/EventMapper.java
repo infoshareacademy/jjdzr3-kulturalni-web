@@ -62,6 +62,7 @@ public class EventMapper {
 
         eventEntity.setPicture(pictureService.getPictureFilename());
         eventEntity.setCity("Gdańsk");
+        eventEntity.setFavourite(false);
 
         return eventEntity;
     }
@@ -98,6 +99,7 @@ public class EventMapper {
         eventDto.setTicket(eventEntity.getTicketEntity().getType());
         eventDto.setPicture(eventEntity.getPicture());
         eventDto.setCity(eventEntity.getCity());
+        eventDto.setFavourite(eventEntity.getFavourite());
         return eventDto;
     }
 
@@ -145,6 +147,7 @@ public class EventMapper {
 
         eventEntity.setPicture(eventDto.getPicture());
         eventEntity.setCity(eventDto.getCity());
+        eventEntity.setFavourite(eventDto.getFavourite());
 
         return eventEntity;
     }

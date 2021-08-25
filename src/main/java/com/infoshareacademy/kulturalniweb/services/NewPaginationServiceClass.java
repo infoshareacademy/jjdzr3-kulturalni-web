@@ -94,8 +94,6 @@ public class NewPaginationServiceClass {
         Integer pageOffset = Integer.parseInt(sortingParameters.get("pageOffset"));
         Integer numberOfResultPages = Integer.parseInt(sortingParameters.get("numberOfResultPages"));
 
-        System.out.println("setVisibilityOfArrows:  pageOffset" + pageOffset + "  numberOfResultPages: " + numberOfResultPages);
-
         if (pageOffset == 1) {
             newPaginationDto.setShouldLeftArrowNavBarNumberBeDisplayed(false);
         } else {
