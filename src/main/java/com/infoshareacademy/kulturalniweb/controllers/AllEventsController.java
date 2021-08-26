@@ -96,7 +96,7 @@ public class AllEventsController {
         model.addAttribute("listOfEventSimple", paginatedEventsToDisplay);
         model.addAttribute("favouriteEvent", favId);
  //       log();
-        return "allEvents";
+        return "allevents";
     }
 
     @GetMapping("/eventsPerPage")
