@@ -1,9 +1,9 @@
-package com.infoshareacademy.kulturalniweb.jsonData;
+package com.infoshareacademy.kulturalniweb.event;
 
-public class Tickets {
+public class Ticket {
     private String type;
 
-    public Tickets (String type) {
+    public Ticket (String type) {
         this.type = type;
     }
 

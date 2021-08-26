@@ -1,9 +1,9 @@
-package com.infoshareacademy.kulturalniweb.jsonData;
+package com.infoshareacademy.kulturalniweb.event;
 
-public class Urls {
+public class Url {
     private String www;
 
-    public Urls (String www) {
+    public Url (String www) {
         this.www = www;
     }
 
@@ -13,7 +13,7 @@ public class Urls {
 
     @Override
     public String toString() {
-        return "Urls{" +
+        return "Url{" +
                 "www='" + www + '\'' +
                 '}';
     }

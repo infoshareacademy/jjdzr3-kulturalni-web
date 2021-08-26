@@ -1,8 +1,11 @@
 package com.infoshareacademy.kulturalniweb.services;
 
+import com.infoshareacademy.kulturalniweb.dto.EventDto;
 import com.infoshareacademy.kulturalniweb.jsonData.EventSimple;
 import com.infoshareacademy.kulturalniweb.repository.EventSimpleMemory;
+import com.infoshareacademy.kulturalniweb.repository.EventsRepository;
 import org.springframework.stereotype.Service;
+
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -17,13 +20,16 @@ public class SortingServices {
     private String eventFilterPlace = "all";
     private String eventSortType = "date";
     private String eventSortDirection = "descending";
+    private Integer numberOfEventsOnThePage = 10;
 
     EventSimpleMemory eventSimpleMemory;
     EventSimpleMemoryServiceClass eventSimpleMemoryServiceClass;
+    private EventsRepository eventsRepository;
 
-    public SortingServices(EventSimpleMemory eventSimpleMemory, EventSimpleMemoryServiceClass eventSimpleMemoryServiceClass) {
+    public SortingServices(EventSimpleMemory eventSimpleMemory, EventSimpleMemoryServiceClass eventSimpleMemoryServiceClass, EventsRepository eventsRepository) {
         this.eventSimpleMemory = eventSimpleMemory;
         this.eventSimpleMemoryServiceClass = eventSimpleMemoryServiceClass;
+        this.eventsRepository = eventsRepository;
     }
 
     public List<EventSimple> sortByType() {
@@ -116,7 +122,11 @@ public class SortingServices {
         return listOfEventSimple;
     }
 
-    public List<EventSimple> createListOfClosestEvents() {
+    public List<EventDto> createListOfNewestEvents() {
+        return eventsRepository.createListOfNewestEvents();
+    }
+
+/*    public List<EventSimple> createListOfClosestEvents() {
         List<EventSimple> listOfEventSimple = eventSimpleMemory.getListOfEventSimple();
 
         Comparator<EventSimple> comparator;
@@ -143,7 +153,14 @@ public class SortingServices {
 
         System.out.println(resultShortList.size());
         return resultShortList;
+    }*/
+
+    public List<EventDto> createListOfClosestEvents() {
+        return eventsRepository.createListOfClosestEvents();
     }
+
+
+
 
 
     public String getEventFilterType() {
@@ -176,5 +193,13 @@ public class SortingServices {
 
     public void setEventSortDirection(String eventSortDirection) {
         this.eventSortDirection = eventSortDirection;
+    }
+
+    public Integer getNumberOfEventsOnThePage() {
+        return numberOfEventsOnThePage;
+    }
+
+    public void setNumberOfEventsOnThePage(Integer numberOfEventsOnThePage) {
+        this.numberOfEventsOnThePage = numberOfEventsOnThePage;
     }
 }
