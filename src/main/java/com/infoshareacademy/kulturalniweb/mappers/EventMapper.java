@@ -3,6 +3,7 @@ package com.infoshareacademy.kulturalniweb.mappers;
 import com.infoshareacademy.kulturalniweb.dto.EventDto;
 import com.infoshareacademy.kulturalniweb.entities.event.*;
 import com.infoshareacademy.kulturalniweb.jsonData.EventNew;
+import com.infoshareacademy.kulturalniweb.models.EditEventDto;
 import com.infoshareacademy.kulturalniweb.services.PictureService;
 import org.springframework.stereotype.Component;
 
@@ -150,5 +151,20 @@ public class EventMapper {
         eventEntity.setFavourite(eventDto.getFavourite());
 
         return eventEntity;
+    }
+
+    public EditEventDto mapEditEventDtoReceivedToEditEventDtoForTemplate(EditEventDto editEventDto) {
+        EditEventDto resultEditEventDto = new EditEventDto();
+        EventDto resultEventDto = new EventDto();
+
+        resultEventDto.setId(editEventDto.getNewEventId());
+        resultEventDto.setName(editEventDto.getNewEventName());
+        //resultEventDto.setPlaceName();
+
+
+
+
+
+        return resultEditEventDto;
     }
 }

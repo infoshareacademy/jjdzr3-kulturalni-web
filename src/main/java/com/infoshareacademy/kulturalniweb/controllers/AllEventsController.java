@@ -273,8 +273,8 @@ public class AllEventsController {
     @GetMapping(value = "/favselect")
     public String favSelect(@RequestParam("id") Integer id,
                             @RequestParam("favStatus") Boolean favStatus) {
-        //favId = id;
-        //System.out.println(favId);
+        favId = id;
+        System.out.println(favId);
         eventService.updateFavourite(id, favStatus);
 
         return "redirect:allevents";

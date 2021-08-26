@@ -149,8 +149,5 @@ public class EventsRepository implements Dao<EventEntity> {
         int result = query.executeUpdate();
         System.out.println(result);
     }
-
-
-
 }
 
