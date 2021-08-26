@@ -1,4 +1,4 @@
-package com.infoshareacademy.kulturalniweb.models;
+package com.infoshareacademy.kulturalniweb.models.dto;
 
 import com.infoshareacademy.kulturalniweb.dto.EventDto;
 
