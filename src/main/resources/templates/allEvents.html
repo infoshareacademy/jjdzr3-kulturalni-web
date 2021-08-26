@@ -205,14 +205,15 @@
                 </a>
             </div>
             <div class="col-md-1" sec:authorize="hasAuthority('USER')">
-                <form th:action="#{/favselect}">
-                    <a href=# th:href="@{/favselect(id=${eventSimple.getEventSimpleId()})}">
-                        <img th:src="@{images/img/heart-bw.png}" style="width: 32px; height: 32px; margin-top: 10px"
-                             alt="" src=""></a>
-                    <!--<a href=# th:href="@{/favselect(id=${eventSimple.getEventSimpleId()})}"
-                    th:if="${eventSimple.getEventSimpleId() != favId}" ? 'img src="images/img/heart-bw.png"' : 'img src="images/img/heart-red.png"'" style="width: 32px; height: 32px; margin-top: 10px"></a>-->
-                </form>
-            </div>
+                    <form action="/favselect">
+                        <a href=# th:href="@{/favselect(id=${eventDto.getId()}, favStatus=${eventDto.getFavourite()})}" >
+                            <span th:if="${eventDto.getFavourite()}">
+                                <img src="images/img/heart-red.png" style="width: 32px; height: 32px; margin-top: 10px"></span>
+                            <span th:if="${!eventDto.getFavourite()}">
+                                <img src="images/img/heart-bw.png" style="width: 32px; height: 32px; margin-top: 10px"></span>
+                        </a>
+                    </form>
+                </div>
             <div class="col-md-1 p-2 m-0" sec:authorize="hasAuthority('ADMIN')">
                     <a th:action="@{/editEvent(id=${eventSimple.getEventSimpleId()})}" class="btn btn-outline-info"
                             th:href="@{/editEvent(id=${eventSimple.getEventSimpleId()})}">
