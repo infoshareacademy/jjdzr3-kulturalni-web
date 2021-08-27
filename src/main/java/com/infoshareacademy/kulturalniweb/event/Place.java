@@ -1,6 +1,7 @@
-package com.infoshareacademy.kulturalniweb.jsonData;
+package com.infoshareacademy.kulturalniweb.event;
 
 public class Place {
+
     private Integer id;
     private String subname;
     private String name;

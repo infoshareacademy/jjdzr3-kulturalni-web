@@ -80,6 +80,7 @@ public class EventNew {
     public List<FileName> getAttachments() {
         return attachments;
     }
+
     public FileName getAttachment() {
         if (attachments.isEmpty()) {
             FileName fileName = new FileName("-");
@@ -148,6 +149,22 @@ public class EventNew {
         this.tickets = tickets;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "EventNew{" +
+                "id=" + id +
+                ", place=" + place +
+                ", endDate='" + endDate + '\'' +
+                ", name='" + name + '\'' +
+                ", urls=" + urls +
+                ", attachments=" + attachments +
+                ", descLong='" + descLong + '\'' +
+                ", categoryId=" + categoryId +
+                ", startDate='" + startDate + '\'' +
+                ", organizer=" + organizer +
+                ", active='" + active + '\'' +
+                ", descShort='" + descShort + '\'' +
+                ", tickets=" + tickets +
+                '}';
+    }
 }

@@ -1,20 +1,12 @@
-package com.infoshareacademy.kulturalniweb.jsonData;
+package com.infoshareacademy.kulturalniweb.event;
 
 public class Organizer {
     private Integer id;
     private String designation;
 
-    private Organizer (Integer id, String designation) {
+    public Organizer(Integer id, String designation) {
         this.id = id;
         this.designation = designation;
-    }
-
-    public String getName() {
-        return designation;
-    }
-
-    public void setName(String string) {
-        this.designation = string;
     }
 
     public Integer getId() {
@@ -23,6 +15,14 @@ public class Organizer {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getDesignation() {
+        return designation;
+    }
+
+    public void setDesignation(String designation) {
+        this.designation = designation;
     }
 
     @Override
