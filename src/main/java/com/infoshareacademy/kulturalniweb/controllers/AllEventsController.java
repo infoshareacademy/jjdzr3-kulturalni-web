@@ -106,12 +106,12 @@ public class AllEventsController {
     public String allEvents (Model model) {
 
         // Usunąć ifa - przy naprawieniu listy wydarzeń do bazy
-        if (fileNotReadYet) {
+/*        if (fileNotReadYet) {
             repositoryServiceClass.readEventsFromGsonToList();
             eventSimpleMemoryServiceClass.clearMemory();
             eventSimpleMemoryServiceClass.prepareSimpleEventsListFromRepository();
             fileNotReadYet = false;
-        }
+        }*/
 
 
         sortingServices.sortBySelectedCriteria();
@@ -127,6 +127,11 @@ public class AllEventsController {
 
 
         Integer eventDtosSize = eventService.getSizeOfListOfSortedEventEntities(sortingParameters);
+
+/*        Integer sizeNew = eventService.getSizeOfDB();
+        System.out.println("size new = " + sizeNew);*/
+
+        System.out.println("Liczba rekordów: " + eventDtosSize);
         sortingParameters.put("numberOfResultPages", calculateNumberOfResultPages(eventDtosSize, sortingParameters.get("numberOfEventsOnThePage")));
         List<EventDto> eventDtos = eventService.createListOfSortedEventEntities(sortingParameters);
 

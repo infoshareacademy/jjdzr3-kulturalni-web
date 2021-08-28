@@ -64,4 +64,8 @@ public class EventService {
     public void updateFavourite(Integer id, Boolean favStatus) {
         eventsRepository.updateFavourite(id, favStatus);
     }
+
+/*    public Integer getSizeOfDB() {
+        return eventsRepository.getSizeOfDB();
+    }*/
 }

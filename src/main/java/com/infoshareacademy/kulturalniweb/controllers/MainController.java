@@ -17,6 +17,8 @@ public class MainController {
     RepositoryServiceClass repositoryServiceClass;
     SortingServices sortingServices;
 
+    Boolean fileNotReadYet = true;
+
     public MainController(EventSimpleMemoryServiceClass eventSimpleMemoryServiceClass, RepositoryServiceClass repositoryServiceClass, SortingServices sortingServices) {
         this.eventSimpleMemoryServiceClass = eventSimpleMemoryServiceClass;
         this.repositoryServiceClass = repositoryServiceClass;
@@ -26,9 +28,17 @@ public class MainController {
     @GetMapping("/")
     public String displayMainPage(Model model) {
 
-        repositoryServiceClass.readEventsFromGsonToList();
-        eventSimpleMemoryServiceClass.clearMemory();
-        eventSimpleMemoryServiceClass.prepareSimpleEventsListFromRepository();
+        // Usunąć ifa - przy naprawieniu listy wydarzeń do bazy
+        if (fileNotReadYet) {
+            repositoryServiceClass.readEventsFromGsonToList();
+
+            fileNotReadYet = false;
+        }
+
+
+        //repositoryServiceClass.readEventsFromGsonToList();
+        //eventSimpleMemoryServiceClass.clearMemory();
+        //eventSimpleMemoryServiceClass.prepareSimpleEventsListFromRepository();
 
         List<EventDto> closestEvents = sortingServices.createListOfClosestEvents();
         model.addAttribute("firstClosestEvent", closestEvents.get(0));

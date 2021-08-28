@@ -27,21 +27,21 @@
     <div class="container col-lg-4 dark" style="text-align: left; background-color: rgba(255,255,255,0.7); border-radius: 25px">
 
         <!-- idEvent -->
-        <div class="row event-description" >
+<!--        <div class="row event-description" >
             <div class="col-md-4">
                 <label>Id wydarzenia: </label>
             </div>
             <div class="col-md-1">
                 <p th:text="${newEventDto.getNewEventId()}"></p>
             </div>
-        </div>
+        </div>-->
         <!-- nameEvent -->
         <div class="row event-description">
             <div class="col-md-4">
                 <label>Nazwa wydarzenia: </label>
             </div>
             <div class="col-md-1">
-                <p th:text="${newEventDto.getNewEventName()}"></p>
+                <p th:text="${eventDto.getName()}"></p>
             </div>
         </div>
         <!-- placeEvent -->
@@ -50,7 +50,7 @@
                 <label>Miejsca wydarzenia: </label>
             </div>
             <div class="col-md-1">
-                <p th:text="${newEventDto.getNewEventPlace()}"></p>
+                <p th:text="${eventDto.getPlaceName()}"></p>
             </div>
         </div>
         <!-- cityEvent -->
@@ -59,7 +59,7 @@
                 <label>Miejsca wydarzenia: </label>
             </div>
             <div class="col-md-1">
-                <p th:text="${newEventDto.getNewEventCity()}"></p>
+                <p th:text="${eventDto.getCity()}"></p>
             </div>
         </div>
         <!-- startEvent -->
@@ -68,10 +68,10 @@
                 <label>Początek wydarzenia:</label>
             </div>
             <div class="col-md-3">
-                <p th:text="${newEventDto.getNewEventStartDate()}"></p>
+                <p th:text="${eventDto.getStartDateDate()}"></p>
             </div>
             <div class="col-md-2">
-                <p th:text="${newEventDto.getNewEventStartTime()}"></p>
+                <p th:text="${eventDto.getStartDateTime()}"></p>
             </div>
         </div>
         <!-- endEvent input -->
@@ -80,10 +80,10 @@
                 <label>Koniec wydarzenia</label>
             </div>
             <div class="col-md-3">
-                <p th:text="${newEventDto.getNewEventEndDate()}"></p>
+                <p th:text="${eventDto.getEndDateDate()}"></p>
             </div>
             <div class="col-md-2">
-                <p th:text="${newEventDto.getNewEventEndTime()}"></p>
+                <p th:text="${eventDto.getEndDateTime()}"></p>
             </div>
         </div>
         <!-- priceEvent  -->
@@ -92,8 +92,8 @@
                 <label>Cena wydarzenia: </label>
             </div>
             <div class="col-md-1" style="width: 185px">
-                <span th:text="${newEventDto.getNewEventPrice()}"></span>
-                <span th:if="${newEventDto.getNewEventPriceFree()}">Wydarzenie Bezpłatne</span>
+                <span th:text="${eventDto.getTicket()}"></span>
+                <!--<span th:if="${addEventDto.getTicketFree()}">Wydarzenie Bezpłatne</span>-->
             </div>
         </div>
         <!-- urlAddress -->
@@ -102,7 +102,7 @@
                 <label>Adres Strony: </label>
             </div>
             <div class="col-md-1">
-                <p th:text="${newEventDto.getNewEventUrl()}"></p>
+                <p th:text="${eventDto.getUrl()}"></p>
             </div>
         </div>
         <!-- descriptionEvent input -->
@@ -113,16 +113,16 @@
             <div class="col-md-1 text-dark">
                 <p style="overflow: auto; overflow-wrap: break-word; width: 300px; height: 150px; border: 1px solid #000;
   float: left; margin-left: auto; margin-right: auto; background-color:white;"
-                   th:text="${newEventDto.getNewEventDescription()}"></p>
+                   th:text="${eventDto.getDescLong()}"></p>
             </div>
         </div>
         <!-- imageEvent input -->
         <div class="row event-description">
             <div class="col-md-4">
-                <label>Image: </label>
+                <label>Zdjęcie: </label>
             </div>
             <div class="col-md-1">
-                <img th:img="${newEventDto.getNewEventImage()}" style="margin-bottom: 50px">
+                <img th:src="${eventDto.getPicture()}" style="margin-bottom: 50px">
             </div>
         </div>
     </div>

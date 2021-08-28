@@ -53,6 +53,7 @@ public class EventsRepository implements Dao<EventEntity> {
         entityManager.persist(attachmentEntity);
         PlaceEntity placeEntity = eventEntity.getPlaceEntity();
         entityManager.persist(placeEntity);
+
     }
 
     // Czy można zrobić od razu update całego obiektu czy tez trzeba podac po kolei wszystkie kolumny?
@@ -94,7 +95,6 @@ public class EventsRepository implements Dao<EventEntity> {
     }
 
     public List<EventEntity> createListOfSortedEventEntities(Map<String, String> sortingParameters) {
-        System.out.println("    requestedPageNumber: " + sortingParameters.get("requestedPageNumber"));
         String orderDefinition = "";
 
         if(sortingParameters.get("eventSortType").equals("startDateDate")) {
@@ -140,14 +140,35 @@ public class EventsRepository implements Dao<EventEntity> {
         return eventEntities;
     }
 
+/*    public Integer getSizeOfDB() {
+        final Query query = entityManager
+                .createQuery("SELECT COUNT(distinct e.id) FROM EventEntity e");
+
+        int result = query.getFirstResult();
+        System.out.println("result A: " + result);
+
+        return (Integer) query.getFirstResult();
+    }*/
+
+
     public void updateFavourite(Integer id, Boolean favStatus) {
         final Query query = entityManager
-                .createQuery("update EventEntity e set e.isFavourite = :newStatus where e.id = :id")
+                .createQuery("UPDATE EventEntity e SET e.isFavourite = :newStatus WHERE e.id = :id")
                 .setParameter("id", id)
                 .setParameter("newStatus", !favStatus);
 
         int result = query.executeUpdate();
         System.out.println(result);
+    }
+
+    public Integer getMaximumId() {
+        final Query query = entityManager
+                .createQuery("SELECT MAX(id) FROM EventEntity");
+
+        List<Integer> result = query.getResultList();
+        Integer maximumId = result.get(0);
+
+        return maximumId;
     }
 }
 
