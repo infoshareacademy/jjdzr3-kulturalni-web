@@ -34,9 +34,9 @@
         <div class="bg-transparent">
             <div class="container  rounded-3">
                 <div class="row">
-                    <div class="col-auto" style="width: 265px">
+                    <div class="col-auto">
                         <form th:action="#{/eventFilterType}">
-                            <label>
+                            <label style="width: 245px">
                                 <select class="form-select" name="eventFilterType"
                                         onchange="this.form.submit()">
                                     <option value="999" selected th:if="${eventFilterType == '> 0'}">Wszystkie rodzaje
@@ -64,9 +64,9 @@
                             </label>
                         </form>
                     </div>
-                    <div class="col-auto" style="width: 265px">
+                    <div class="col-auto">
                         <form th:action="#{/eventFilterPlace}">
-                            <label>
+                            <label style="width: 245px">
                                 <select class="form-select" name="eventFilterPlace"
                                         onchange="this.form.submit()">
                                     <option value="all" selected th:if="${eventFilterPlace == 'all'}">Wszystkie miejsca
@@ -96,9 +96,9 @@
                             </label>
                         </form>
                     </div>
-                    <div class="col-auto" style="width: 260px">
+                    <div class="col-auto">
                         <form th:action="#{/eventSortType}">
-                            <label>
+                            <label style="width: 245px">
                                 <select class="form-select" name="eventSortType"
                                         onchange="this.form.submit()">
                                     <option value="date" selected th:if="${eventSortType == 'startDateDate'}">Sortuj po
@@ -118,9 +118,9 @@
                             </label>
                         </form>
                     </div>
-                    <div class="col-auto" style="width: 265px">
+                    <div class="col-auto">
                         <form th:action="#{/eventSortDirection}">
-                            <label>
+                            <label style="width: 245px">
                                 <select class="form-select" name="eventSortDirection"
                                         onchange="this.form.submit()">
                                     <option value="ascending" selected th:if="${eventSortDirection == 'ASC'}">Sortuj
@@ -137,9 +137,9 @@
                             </label>
                         </form>
                     </div>
-                    <div class="col-auto" style=" width: 265px">
+                    <div class="col-auto">
                         <form th:action="#{/eventsPerPage}">
-                            <label>
+                            <label style=" width: 220px">
                                 <select class="form-select" name="eventsPerPage"
                                         onchange="this.form.submit()">
                                     <option value="10" selected th:if="${numberOfEventsPerPage.equals(10)}">10 wyników
@@ -247,7 +247,7 @@
                     </svg>
                 </a>
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                <div class="modal fade text-dark" id="exampleModal" tabindex="-1" role="dialog"
                      aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -275,10 +275,7 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
-    </div>
     </div>
     <!--PAGINATION-->
     <div class="container">
