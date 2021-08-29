@@ -37,7 +37,7 @@
         <div class="text-warning">
           <label for="nameEvent"></label>
           <span th:if="${#fields.hasErrors('newEventName')}" th:errors="*{newEventName}"></span>
-          <p>Nazwa wydarzenia <input type="text" class="form-control" id="nameEvent" th:value="${editEventDto.getName()}" th:name="*{newEventName}" ></p>
+          <p>Nazwa wydarzenia <input type="text" class="form-control" id="nameEvent" th:value="${editEventDto.getName()}" name="newEventName" ></p>
         </div>
       </div>
       <!-- placeEvent input -->
@@ -45,7 +45,7 @@
         <div class="text-warning">
           <label for="placeEvent"></label>
           <span th:if="${#fields.hasErrors('newEventPlace')}" th:errors="*{newEventPlace}"></span>
-          <p>Miejsce <input type="text" class="form-control" id="placeEvent" th:value="${editEventDto.getPlaceName()}" th:field="*{newEventPlace}" ></p>
+          <p>Miejsce <input type="text" class="form-control" id="placeEvent" th:value="${editEventDto.getPlaceName()}" name="newEventPlace" ></p>
         </div>
       </div>
       <!-- cityEvent input -->
@@ -53,29 +53,29 @@
         <div class="text-warning">
           <label for="cityEvent"></label>
           <span th:if="${#fields.hasErrors('newEventCity')}" th:errors="*{newEventCity}"></span>
-          <p>Miejscowość <input type="text" class="form-control" id="cityEvent" th:value="${editEventDto.getCity()}" th:field="*{newEventCity}"></p>
+          <p>Miejscowość <input type="text" class="form-control" id="cityEvent" th:value="${editEventDto.getCity()}" name="newEventCity"></p>
         </div>
       </div>
       <!-- startEvent input -->
       <div class="row event-description">
         <div class="col">
           <label for="sortEventsDateStart" class="text-warning">Początek wydarzenia</label>
-          <p class="text-warning">Data rozpoczęcia <input type="date" class="form-control" id="sortEventsDateStart" th:value="${editEventDto.getStartDateDate()}" th:field="*{newEventStartDate}"></p>
+          <p class="text-warning">Data rozpoczęcia <input type="date" class="form-control" id="sortEventsDateStart" th:value="${editEventDto.getStartDateDate()}" name="newEventStartDate"></p>
         </div>
         <div class="col">
           <label for="startEventTimeStart"></label>
-          <p class="text-warning">Godzina rozpoczęcia <input type="time" class="form-control" id="startEventTimeStart" th:value="${editEventDto.getStartDateTime()}" th:field="*{newEventStartTime}"></p>
+          <p class="text-warning">Godzina rozpoczęcia <input type="time" class="form-control" id="startEventTimeStart" th:value="${editEventDto.getStartDateTime()}" name="newEventStartTime"></p>
         </div>
       </div>
       <!-- endEvent input -->
       <div class="row event-description">
         <div class="col">
           <label for="sortEventsDateEnd" class="text-warning">Koniec wydarzenia</label>
-          <p class="text-warning">Data zakończenia <input type="date" class="form-control" id="sortEventsDateEnd" th:value="${editEventDto.getEndDateDate()}" th:field="*{newEventEndDate}" ></p>
+          <p class="text-warning">Data zakończenia <input type="date" class="form-control" id="sortEventsDateEnd" th:value="${editEventDto.getEndDateDate()}" name="newEventEndDate" ></p>
         </div>
         <div class="col">
           <label for="startEventTimeEnd"></label>
-          <p class="text-warning">Godzina zakończenia <input type="time" class="form-control" id="startEventTimeEnd" th:value="${editEventDto.getEndDateTime()}" th:field="*{newEventEndTime}" ></p>
+          <p class="text-warning">Godzina zakończenia <input type="time" class="form-control" id="startEventTimeEnd" th:value="${editEventDto.getEndDateTime()}" name="newEventEndTime" ></p>
         </div>
       </div>
       <!-- priceEvent input -->
@@ -83,12 +83,12 @@
         <div class="col text-warning">
           <label for="priceEvent"></label>
           <span th:if="${#fields.hasErrors('newEventPrice')}" th:errors="*{newEventPrice}"></span>
-          <p>Cena <input type="text" class="form-control" id="priceEvent" th:value="${editEventDto.getTicket()}" th:field="*{newEventPrice}"></p>
+          <p>Cena <input type="text" class="form-control" id="priceEvent" th:value="${editEventDto.getTicket()}" name="newEventPrice"></p>
         </div>
         <div class="col text-warning">
           <br><p></p>
           <input class="form-check-input" type="checkbox" id="priceEventFree"
-                 onclick="this.form.elements['priceEvent'].disabled = this.checked" th:fname="*{newEventPriceFree}">
+                 onclick="this.form.elements['priceEvent'].disabled = this.checked" fname="newEventPriceFree">
           <label class="form-check-label text-warning" for="priceEventFree">Wydarzenie Bezpłatne</label>
         </div>
       </div>
@@ -96,7 +96,7 @@
       <div class="row event-description">
         <div class="col text-warning">
           <label for="urlAddress"></label>
-          <p>URL <input type="text" class="form-control" id="urlAddress" th:value="${editEventDto.getUrl()}" th:field="*{newEventUrl}"></p>
+          <p>URL <input type="text" class="form-control" id="urlAddress" th:value="${editEventDto.getUrl()}" name="newEventUrl"></p>
         </div>
       </div>
       <!-- descriptionEvent input -->
@@ -105,7 +105,7 @@
           <label for="descriptionEvent"></label>
           <span th:if="${#fields.hasErrors('newEventDescription')}" th:errors="*{newEventDescription}"></span>
           <p>Opis wydarzenia (długi) <textarea class="form-control" id="descriptionEvent"
-                    rows="3" th:name="*{newEventDescription}"></textarea></p>
+                    rows="3" name="newEventDescription"></textarea></p>
         </div>
       </div>
       <!-- imageEvent display -->
@@ -119,7 +119,7 @@
       <div class="row event-description">
         <div class="col text-warning">
           <p>Obsługiwane typy plików (JPG, PNG, GIF, RAW)"</p>
-          <p><input type="file" class="form-control-file text-warning" value="Wybierz plik" id="imageEvent" th:field="*{newEventImage}"></p>
+          <p><input type="file" class="form-control-file text-warning" value="Wybierz plik" id="imageEvent" name="newEventImage"></p>
         </div>
       </div>
       <br>

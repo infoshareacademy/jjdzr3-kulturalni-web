@@ -29,7 +29,7 @@ public class EditEventController {
 
     @GetMapping("/editEvent")
     public String editEvent(Model model) {
-        Integer id = 117117;
+        Integer id = 127053;
         EventDto eventDto = eventService.getSingleEvent(id);
 
         EditEventDto editEventDto = eventMapper.mapEventDtoToEditEventDto(eventDto);

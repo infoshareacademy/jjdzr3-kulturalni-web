@@ -95,6 +95,7 @@ public class EventsRepository implements Dao<EventEntity> {
         return eventEntities.get(0);
     }
 
+    @Modifying(flushAutomatically = true)
     public List<EventEntity> createListOfSortedEventEntities(Map<String, String> sortingParameters) {
         String orderDefinition = "";
 
@@ -111,9 +112,9 @@ public class EventsRepository implements Dao<EventEntity> {
         Integer firstResult = (requestedPageNumber * numberOfEventsOnThePage) - (numberOfEventsOnThePage - 1);
 
         final Query query = entityManager
-                .createQuery("SELECT e FROM EventEntity e " +
+                .createQuery("SELECT e FROM EventEntity e " /*+
                         "WHERE e.categoryId " + sortingParameters.get("eventFilterType") + " " +
-                        "ORDER BY " + orderDefinition, EventEntity.class)
+                        "ORDER BY " + orderDefinition, EventEntity.class*/)
                 .setFirstResult(firstResult)
                 .setMaxResults(numberOfEventsOnThePage);
 
