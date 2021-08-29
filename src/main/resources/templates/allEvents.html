@@ -39,27 +39,27 @@
                             <label style="width: 245px">
                                 <select class="form-select" name="eventFilterType"
                                         onchange="this.form.submit()">
-                                    <option value="999" selected th:if="${eventFilterType == '> 0'}">Wszystkie rodzaje
+                                    <option value="999" selected th:if="${eventFilterType == '> 0'}" th:text="#{filters.type.all}">Wszystkie rodzaje
                                     </option>
-                                    <option value="999" th:if="${eventFilterType != '> 0'}">Wszystkie rodzaje</option>
-                                    <option value="1" selected th:if="${eventFilterType == '= 1'}">kino</option>
-                                    <option value="1" th:if="${eventFilterType != '= 1'}">kino</option>
-                                    <option value="19" selected th:if="${eventFilterType == '= 19'}">teatr</option>
-                                    <option value="19" th:if="${eventFilterType != '= 19'}">teatr</option>
-                                    <option value="51" selected th:if="${eventFilterType == '= 51'}">sztuka</option>
-                                    <option value="51" th:if="${eventFilterType != '= 51'}">sztuka</option>
-                                    <option value="35" selected th:if="${eventFilterType == '= 35'}">muzyka</option>
-                                    <option value="35" th:if="${eventFilterType != '= 35'}">muzyka</option>
-                                    <option value="83" selected th:if="${eventFilterType == '= 83'}">nauka</option>
-                                    <option value="83" th:if="${eventFilterType != '= 83'}">nauka</option>
-                                    <option value="61" selected th:if="${eventFilterType == '= 61'}">literatura</option>
-                                    <option value="61" th:if="${eventFilterType != '= 61'}">literatura</option>
-                                    <option value="69" selected th:if="${eventFilterType == '= 69'}">rozrywka</option>
-                                    <option value="69" th:if="${eventFilterType != '= 69'}">rozrywka</option>
-                                    <option value="77" selected th:if="${eventFilterType == '= 77'}">rekreacja</option>
-                                    <option value="77" th:if="${eventFilterType != '= 77'}">rekreacja</option>
-                                    <option value="96" selected th:if="${eventFilterType == '= 96'}">inne</option>
-                                    <option value="96" th:if="${eventFilterType != '= 96'}">inne</option>
+                                    <option value="999" th:if="${eventFilterType != '> 0'}" th:text="#{filters.type.all}">Wszystkie rodzaje</option>
+                                    <option value="1" selected th:if="${eventFilterType == '= 1'}" th:text="#{filters.type.cinema}">kino</option>
+                                    <option value="1" th:if="${eventFilterType != '= 1'}" th:text="#{filters.type.cinema}">kino</option>
+                                    <option value="19" selected th:if="${eventFilterType == '= 19'}" th:text="#{filters.type.theater}">teatr</option>
+                                    <option value="19" th:if="${eventFilterType != '= 19'}" th:text="#{filters.type.theater}">teatr</option>
+                                    <option value="51" selected th:if="${eventFilterType == '= 51'}" th:text="#{filters.type.art}">sztuka</option>
+                                    <option value="51" th:if="${eventFilterType != '= 51'}" th:text="#{filters.type.art}">sztuka</option>
+                                    <option value="35" selected th:if="${eventFilterType == '= 35'}" th:text="#{filters.type.music}">muzyka</option>
+                                    <option value="35" th:if="${eventFilterType != '= 35'}" th:text="#{filters.type.music}">muzyka</option>
+                                    <option value="83" selected th:if="${eventFilterType == '= 83'}" th:text="#{filters.type.science}">nauka</option>
+                                    <option value="83" th:if="${eventFilterType != '= 83'}" th:text="#{filters.type.science}">nauka</option>
+                                    <option value="61" selected th:if="${eventFilterType == '= 61'}" th:text="#{filters.type.literature}">literatura</option>
+                                    <option value="61" th:if="${eventFilterType != '= 61'}" th:text="#{filters.type.literature}">literatura</option>
+                                    <option value="69" selected th:if="${eventFilterType == '= 69'}" th:text="#{filters.type.entertainment}">rozrywka</option>
+                                    <option value="69" th:if="${eventFilterType != '= 69'}" th:text="#{filters.type.entertainment}">rozrywka</option>
+                                    <option value="77" selected th:if="${eventFilterType == '= 77'}" th:text="#{filters.type.recreation}">rekreacja</option>
+                                    <option value="77" th:if="${eventFilterType != '= 77'}" th:text="#{filters.type.recreation}">rekreacja</option>
+                                    <option value="96" selected th:if="${eventFilterType == '= 96'}" th:text="#{filters.type.others}">inne</option>
+                                    <option value="96" th:if="${eventFilterType != '= 96'}" th:text="#{filters.type.others}">inne</option>
                                 </select>
                             </label>
                         </form>
@@ -69,29 +69,29 @@
                             <label style="width: 245px">
                                 <select class="form-select" name="eventFilterPlace"
                                         onchange="this.form.submit()">
-                                    <option value="all" selected th:if="${eventFilterPlace == 'all'}">Wszystkie miejsca
+                                    <option value="all" selected th:if="${eventFilterPlace == 'all'}" th:text="#{filters.place.all}">Wszystkie miejsca
                                     </option>
-                                    <option value="all" th:if="${eventFilterPlace != 'all'}">Wszystkie miejsca</option>
+                                    <option value="all" th:if="${eventFilterPlace != 'all'}" th:text="#{filters.place.all}">Wszystkie miejsca</option>
                                     <option value="Miejski Teatr MINIATURA" selected
-                                            th:if="${eventFilterPlace == 'Miejski Teatr MINIATURA'}">Miejski Teatr
+                                            th:if="${eventFilterPlace == 'Miejski Teatr MINIATURA'}" th:text="#{filters.place.MTM}">Miejski Teatr
                                         MINIATURA
                                     </option>
                                     <option value="Miejski Teatr MINIATURA"
-                                            th:if="${eventFilterPlace != 'Miejski Teatr MINIATURA'}">Miejski Teatr
+                                            th:if="${eventFilterPlace != 'Miejski Teatr MINIATURA'}" th:text="#{filters.place.MTM}">Miejski Teatr
                                         MINIATURA
                                     </option>
                                     <option value="Gdański Archipelag Kultury" selected
-                                            th:if="${eventFilterPlace == 'Gdański Archipelag Kultury'}">Gdański
+                                            th:if="${eventFilterPlace == 'Gdański Archipelag Kultury'}" th:text="#{filters.place.GAK}">Gdański
                                         Archipelag
                                         Kultury
                                     </option>
                                     <option value="Gdański Archipelag Kultury"
-                                            th:if="${eventFilterPlace != 'Gdański Archipelag Kultury'}">Gdański
+                                            th:if="${eventFilterPlace != 'Gdański Archipelag Kultury'}" th:text="#{filters.place.GAK}">Gdański
                                         Archipelag
                                         Kultury
                                     </option>
-                                    <option value="other" selected th:if="${eventFilterPlace == 'other'}">inne</option>
-                                    <option value="other" th:if="${eventFilterPlace != 'other'}">inne</option>
+                                    <option value="other" selected th:if="${eventFilterPlace == 'other'}" th:text="#{filters.place.others}">inne</option>
+                                    <option value="other" th:if="${eventFilterPlace != 'other'}" th:text="#{filters.place.others}">inne</option>
                                 </select>
                             </label>
                         </form>
@@ -101,19 +101,19 @@
                             <label style="width: 245px">
                                 <select class="form-select" name="eventSortType"
                                         onchange="this.form.submit()">
-                                    <option value="date" selected th:if="${eventSortType == 'startDateDate'}">Sortuj po
+                                    <option value="date" selected th:if="${eventSortType == 'startDateDate'}" th:text="#{filters.date}">Sortuj po
                                         dacie
                                     </option>
-                                    <option value="date" th:if="${eventSortType != 'startDateDate'}">Sortuj po dacie
+                                    <option value="date" th:if="${eventSortType != 'startDateDate'}" th:text="#{filters.date}">Sortuj po dacie
                                     </option>
-                                    <option value="city" selected th:if="${eventSortType == 'city'}">Sortuj po
+                                    <option value="city" selected th:if="${eventSortType == 'city'}" th:text="#{filters.city}">Sortuj po
                                         miejscowości
                                     </option>
-                                    <option value="city" th:if="${eventSortType != 'city'}">Sortuj po miejscowości
+                                    <option value="city" th:if="${eventSortType != 'city'}" th:text="#{filters.city}">Sortuj po miejscowości
                                     </option>
-                                    <option value="name" selected th:if="${eventSortType == 'name'}">Sortuj po tytule
+                                    <option value="name" selected th:if="${eventSortType == 'name'}" th:text="#{filters.tittle}">Sortuj po tytule
                                     </option>
-                                    <option value="name" th:if="${eventSortType != 'name'}">Sortuj po tytule</option>
+                                    <option value="name" th:if="${eventSortType != 'name'}" th:text="#{filters.tittle}">Sortuj po tytule</option>
                                 </select>
                             </label>
                         </form>
@@ -123,15 +123,15 @@
                             <label style="width: 245px">
                                 <select class="form-select" name="eventSortDirection"
                                         onchange="this.form.submit()">
-                                    <option value="ascending" selected th:if="${eventSortDirection == 'ASC'}">Sortuj
+                                    <option value="ascending" selected th:if="${eventSortDirection == 'ASC'}" th:text="#{filters.asce}">Sortuj
                                         rosnąco
                                     </option>
-                                    <option value="ascending" th:if="${eventSortDirection != 'ASC'}">Sortuj rosnąco
+                                    <option value="ascending" th:if="${eventSortDirection != 'ASC'}" th:text="#{filters.asce}">Sortuj rosnąco
                                     </option>
-                                    <option value="descending" selected th:if="${eventSortDirection == 'DESC'}">Sortuj
+                                    <option value="descending" selected th:if="${eventSortDirection == 'DESC'}" th:text="#{filters.desc}">Sortuj
                                         malejąco
                                     </option>
-                                    <option value="descending" th:if="${eventSortDirection != 'DESC'}">Sortuj malejąco
+                                    <option value="descending" th:if="${eventSortDirection != 'DESC'}" th:text="#{filters.desc}">Sortuj malejąco
                                     </option>
                                 </select>
                             </label>
@@ -142,17 +142,17 @@
                             <label style=" width: 220px">
                                 <select class="form-select" name="eventsPerPage"
                                         onchange="this.form.submit()">
-                                    <option value="10" selected th:if="${numberOfEventsPerPage.equals(10)}">10 wyników
+                                    <option value="10" selected th:if="${numberOfEventsPerPage.equals(10)}" th:text="#{filters.page.ten}">10 wyników
                                     </option>
-                                    <option value="10" th:if="${not numberOfEventsPerPage.equals(10)}">10 wyników
+                                    <option value="10" th:if="${not numberOfEventsPerPage.equals(10)}" th:text="#{filters.page.ten}">10 wyników
                                     </option>
-                                    <option value="30" selected th:if="${numberOfEventsPerPage.equals(30)}">30 wyników
+                                    <option value="30" selected th:if="${numberOfEventsPerPage.equals(30)}" th:text="#{filters.page.thirty}">30 wyników
                                     </option>
-                                    <option value="30" th:if="${not numberOfEventsPerPage.equals(30)}">30 wyników
+                                    <option value="30" th:if="${not numberOfEventsPerPage.equals(30)}" th:text="#{filters.page.thirty}">30 wyników
                                     </option>
-                                    <option value="50" selected th:if="${numberOfEventsPerPage.equals(50)}">50 wyników
+                                    <option value="50" selected th:if="${numberOfEventsPerPage.equals(50)}" th:text="#{filters.page.fifty}">50 wyników
                                     </option>
-                                    <option value="50" th:if="${not numberOfEventsPerPage.equals(50)}">50 wyników
+                                    <option value="50" th:if="${not numberOfEventsPerPage.equals(50)}" th:text="#{filters.page.fifty}">50 wyników
                                     </option>
                                 </select>
                             </label>
@@ -166,8 +166,8 @@
     <div class="container my-3">
         <form class="d-flex">
             <input class="form-control me-2" style="width:85%" type="search"
-                   placeholder="Wpisz tytuł wydarzenia" aria-label="Search">
-            <button class="col-md-2 btn btn-warning text-dark" type="submit">
+                   th:placeholder="#{filters.search.placeholder}" aria-label="Search">
+            <button class="col-md-2 btn btn-warning text-dark" type="submit" th:text="#{filters.search.button}">
                 SZUKAJ
             </button>
         </form>
