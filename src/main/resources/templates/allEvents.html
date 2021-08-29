@@ -96,7 +96,7 @@
                             </label>
                         </form>
                     </div>
-                    <div class="col-auto" style="width: 265px">
+                    <div class="col-auto" style="width: 260px">
                         <form th:action="#{/eventSortType}">
                             <label>
                                 <select class="form-select" name="eventSortType"
@@ -137,9 +137,27 @@
                             </label>
                         </form>
                     </div>
+                    <div class="col-auto" style=" width: 265px">
+                    <form th:action="#{/eventsPerPage}">
+                        <label>
+                            <select class="form-select" name="eventsPerPage"
+                                    onchange="this.form.submit()">
+                                <option value="10" selected th:if="${numberOfEventsPerPage.equals(10)}">10 wyników
+                                </option>
+                                <option value="10" th:if="${not numberOfEventsPerPage.equals(10)}">10 wyników</option>
+                                <option value="30" selected th:if="${numberOfEventsPerPage.equals(30)}">30 wyników
+                                </option>
+                                <option value="30" th:if="${not numberOfEventsPerPage.equals(30)}">30 wyników</option>
+                                <option value="50" selected th:if="${numberOfEventsPerPage.equals(50)}">50 wyników
+                                </option>
+                                <option value="50" th:if="${not numberOfEventsPerPage.equals(50)}">50 wyników</option>
+                            </select>
+                        </label>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <!--SEARCH BAR-->
     <div class="container my-3">

@@ -251,7 +251,7 @@ public class AllEventsController {
         List<EventSimple> eventSimpleMemoryList = eventSimpleMemoryServiceClass.getListOfEventSimpleFromMemory();
         List<EventSimple> result = new ArrayList<>();
 
-        if (numberOfPageThatIsBeeingDisplayed < paginationServiceClass.getTotalNumberOfPages()) {
+        if (numberOfPageThatIsBeeingDisplayed <paginationServiceClass.getTotalNumberOfPages()) {
             Integer startIndex = (numberOfPageThatIsBeeingDisplayed - 1) * numberOfEventsOnThePage;
             Integer endIndex = (startIndex + (numberOfEventsOnThePage -1));
 
