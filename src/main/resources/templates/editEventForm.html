@@ -29,7 +29,7 @@
       <!-- idEvent input -->
       <div class="row event-description">
         <div class="text-warning">
-          <p>Id wydarzenia <input type="text" class="form-control" th:value="${editEventDto.getEventDto().getId()}" readonly></p>
+          <p>Id wydarzenia <input type="text" class="form-control" th:value="${editEventDto.getId()}" readonly></p>
         </div>
       </div>
       <!-- nameEvent input -->
@@ -37,7 +37,7 @@
         <div class="text-warning">
           <label for="nameEvent"></label>
           <span th:if="${#fields.hasErrors('newEventName')}" th:errors="*{newEventName}"></span>
-          <p>Nazwa wydarzenia <input type="text" class="form-control" id="nameEvent" th:value="${editEventDto.getEventDto().getName()}" th:name="*{newEventName}" ></p>
+          <p>Nazwa wydarzenia <input type="text" class="form-control" id="nameEvent" th:value="${editEventDto.getName()}" th:name="*{newEventName}" ></p>
         </div>
       </div>
       <!-- placeEvent input -->
@@ -45,7 +45,7 @@
         <div class="text-warning">
           <label for="placeEvent"></label>
           <span th:if="${#fields.hasErrors('newEventPlace')}" th:errors="*{newEventPlace}"></span>
-          <p>Miejsce <input type="text" class="form-control" id="placeEvent" th:value="${editEventDto.getEventDto().getPlaceName()}" th:name="*{newEventPlace}" ></p>
+          <p>Miejsce <input type="text" class="form-control" id="placeEvent" th:value="${editEventDto.getPlaceName()}" th:field="*{newEventPlace}" ></p>
         </div>
       </div>
       <!-- cityEvent input -->
@@ -53,29 +53,29 @@
         <div class="text-warning">
           <label for="cityEvent"></label>
           <span th:if="${#fields.hasErrors('newEventCity')}" th:errors="*{newEventCity}"></span>
-          <p>Miejscowość <input type="text" class="form-control" id="cityEvent" th:value="${editEventDto.getEventDto().getCity()}" th:name="*{newEventCity}"></p>
+          <p>Miejscowość <input type="text" class="form-control" id="cityEvent" th:value="${editEventDto.getCity()}" th:field="*{newEventCity}"></p>
         </div>
       </div>
       <!-- startEvent input -->
       <div class="row event-description">
         <div class="col">
           <label for="sortEventsDateStart" class="text-warning">Początek wydarzenia</label>
-          <p class="text-warning">Data rozpoczęcia <input type="date" class="form-control" id="sortEventsDateStart" th:value="${editEventDto.getEventDto().getStartDateDate()}" th:name="*{newEventStartDate}"></p>
+          <p class="text-warning">Data rozpoczęcia <input type="date" class="form-control" id="sortEventsDateStart" th:value="${editEventDto.getStartDateDate()}" th:field="*{newEventStartDate}"></p>
         </div>
         <div class="col">
           <label for="startEventTimeStart"></label>
-          <p class="text-warning">Godzina rozpoczęcia <input type="time" class="form-control" id="startEventTimeStart" th:value="${editEventDto.getEventDto().getStartDateTime()}" th:name="*{newEventStartTime}"></p>
+          <p class="text-warning">Godzina rozpoczęcia <input type="time" class="form-control" id="startEventTimeStart" th:value="${editEventDto.getStartDateTime()}" th:field="*{newEventStartTime}"></p>
         </div>
       </div>
       <!-- endEvent input -->
       <div class="row event-description">
         <div class="col">
           <label for="sortEventsDateEnd" class="text-warning">Koniec wydarzenia</label>
-          <p class="text-warning">Data zakończenia <input type="date" class="form-control" id="sortEventsDateEnd" th:value="${editEventDto.getEventDto().getEndDateDate()}" th:name="*{newEventEndDate}" ></p>
+          <p class="text-warning">Data zakończenia <input type="date" class="form-control" id="sortEventsDateEnd" th:value="${editEventDto.getEndDateDate()}" th:field="*{newEventEndDate}" ></p>
         </div>
         <div class="col">
           <label for="startEventTimeEnd"></label>
-          <p class="text-warning">Godzina zakończenia <input type="time" class="form-control" id="startEventTimeEnd" th:value="${editEventDto.getEventDto().getEndDateTime()}" th:name="*{newEventEndTime}" ></p>
+          <p class="text-warning">Godzina zakończenia <input type="time" class="form-control" id="startEventTimeEnd" th:value="${editEventDto.getEndDateTime()}" th:field="*{newEventEndTime}" ></p>
         </div>
       </div>
       <!-- priceEvent input -->
@@ -83,7 +83,7 @@
         <div class="col text-warning">
           <label for="priceEvent"></label>
           <span th:if="${#fields.hasErrors('newEventPrice')}" th:errors="*{newEventPrice}"></span>
-          <p>Cena <input type="text" class="form-control" id="priceEvent" th:value="${editEventDto.getEventDto().getTicket()}" th:name="*{newEventPrice}"></p>
+          <p>Cena <input type="text" class="form-control" id="priceEvent" th:value="${editEventDto.getTicket()}" th:field="*{newEventPrice}"></p>
         </div>
         <div class="col text-warning">
           <br><p></p>
@@ -96,7 +96,7 @@
       <div class="row event-description">
         <div class="col text-warning">
           <label for="urlAddress"></label>
-          <p>URL <input type="text" class="form-control" id="urlAddress" th:value="${editEventDto.getEventDto().getUrl()}" th:name="*{newEventUrl}"></p>
+          <p>URL <input type="text" class="form-control" id="urlAddress" th:value="${editEventDto.getUrl()}" th:field="*{newEventUrl}"></p>
         </div>
       </div>
       <!-- descriptionEvent input -->
@@ -112,14 +112,14 @@
       <div class="row event-description">
         <div class="col text-warning">
           <p>Obrazek przypisany do wydarzenia</p>
-          <p><img th:src="${editEventDto.getEventDto().getPicture()}" style="margin-bottom: 30px"></p>
+          <p><img th:src="${editEventDto.getPicture()}" style="margin-bottom: 30px"></p>
         </div>
       </div>
       <!-- imageEvent input -->
       <div class="row event-description">
         <div class="col text-warning">
           <p>Obsługiwane typy plików (JPG, PNG, GIF, RAW)"</p>
-          <p><input type="file" class="form-control-file text-warning" value="Wybierz plik" id="imageEvent" th:name="*{newEventImage}"></p>
+          <p><input type="file" class="form-control-file text-warning" value="Wybierz plik" id="imageEvent" th:field="*{newEventImage}"></p>
         </div>
       </div>
       <br>

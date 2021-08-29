@@ -3,6 +3,7 @@ package com.infoshareacademy.kulturalniweb.repository;
 import com.infoshareacademy.kulturalniweb.dto.EventDto;
 import com.infoshareacademy.kulturalniweb.entities.event.*;
 import com.infoshareacademy.kulturalniweb.mappers.EventMapper;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

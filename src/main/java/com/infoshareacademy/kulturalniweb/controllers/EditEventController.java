@@ -29,10 +29,10 @@ public class EditEventController {
 
     @GetMapping("/editEvent")
     public String editEvent(Model model) {
-        Integer id = 71005;
+        Integer id = 117117;
         EventDto eventDto = eventService.getSingleEvent(id);
-        EditEventDto editEventDto = new EditEventDto();
-        editEventDto.setEventDto(eventDto);
+
+        EditEventDto editEventDto = eventMapper.mapEventDtoToEditEventDto(eventDto);
 
         model.addAttribute("editEventDto", editEventDto);
 
@@ -42,8 +42,9 @@ public class EditEventController {
     @PostMapping("/updateEvent")
     public String updateEvent(@ModelAttribute @Valid EditEventDto editEventDto, BindingResult result, Model model) {
 
-        EditEventDto editEventDtoForTemplate = eventMapper.mapEditEventDtoReceivedToEditEventDtoForTemplate(editEventDto);
-        System.out.println(editEventDto.getNewEventPlace());
+        System.out.println(editEventDto.getNewEventName());
+        //EditEventDto editEventDtoForTemplate = eventMapper.mapEditEventDtoReceivedToEditEventDtoForTemplate(editEventDto);
+        //System.out.println(editEventDto.getNewEventPlace());
 
  /*       model.addAttribute("newEventDto", newEventDto);
         if (result.hasFieldErrors()) {

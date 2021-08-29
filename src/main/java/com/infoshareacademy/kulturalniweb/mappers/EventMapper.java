@@ -167,8 +167,10 @@ public class EventMapper {
         EditEventDto resultEditEventDto = new EditEventDto();
         EventDto resultEventDto = new EventDto();
 
-        resultEventDto.setId(editEventDto.getNewEventId());
-        resultEventDto.setName(editEventDto.getNewEventName());
+        System.out.println(editEventDto.getNewEventName());
+
+        //resultEventDto.setId(editEventDto.getNewEventId());
+        //resultEventDto.setName(editEventDto.getNewEventName());
         //resultEventDto.setPlaceName();
 
 
@@ -227,4 +229,35 @@ public class EventMapper {
 
         return eventEntity;
     }
+
+    public EditEventDto mapEventDtoToEditEventDto(EventDto eventDto) {
+        EditEventDto editEventDto = new EditEventDto();
+
+        editEventDto.setId(eventDto.getId());
+        editEventDto.setPlaceName(eventDto.getPlaceName());
+        editEventDto.setEndDateDate(eventDto.getEndDateDate());
+        editEventDto.setEndDateTime(eventDto.getEndDateTime());
+        editEventDto.setEndDateLastTime(eventDto.getEndDateLastTime());
+        editEventDto.setName(eventDto.getName());
+        editEventDto.setUrl(eventDto.getUrl());
+        editEventDto.setAttachment(eventDto.getAttachment());
+        editEventDto.setDescLong(eventDto.getDescLong());
+        editEventDto.setCategoryId(eventDto.getCategoryId());
+        editEventDto.setStartDateDate(eventDto.getStartDateDate());
+        editEventDto.setStartDateTime(eventDto.getStartDateDate());
+        editEventDto.setStartDateLastTime(eventDto.getStartDateLastTime());
+        editEventDto.setOrganizerId(eventDto.getOrganizerId());
+        editEventDto.setOrganizerName(eventDto.getOrganizerName());
+        editEventDto.setStatus(eventDto.getStatus());
+        editEventDto.setDescShort(eventDto.getDescShort());
+        editEventDto.setTicket(eventDto.getTicket());
+        editEventDto.setPicture(eventDto.getPicture());
+        editEventDto.setCity(eventDto.getCity());
+        editEventDto.setFavourite(eventDto.getFavourite());
+
+        return editEventDto;
+    }
+
+
+
 }
