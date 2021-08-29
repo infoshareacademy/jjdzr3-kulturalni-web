@@ -6,6 +6,7 @@ import com.infoshareacademy.kulturalniweb.jsonData.EventNew;
 import com.infoshareacademy.kulturalniweb.mappers.EventMapper;
 import com.infoshareacademy.kulturalniweb.models.EditEventDto;
 import com.infoshareacademy.kulturalniweb.models.NewEventDto;
+import com.infoshareacademy.kulturalniweb.services.EditEventService;
 import com.infoshareacademy.kulturalniweb.services.EventService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,16 +22,18 @@ public class EditEventController {
 
     EventService eventService;
     EventMapper eventMapper;
+    EditEventService editEventService;
 
-    public EditEventController(EventService eventService, EventMapper eventMapper) {
+    public EditEventController(EventService eventService, EventMapper eventMapper, EditEventService editEventService) {
         this.eventService = eventService;
         this.eventMapper = eventMapper;
+        this.editEventService = editEventService;
     }
 
     @GetMapping("/editEvent")
     public String editEvent(Model model) {
-        Integer id = 127053;
-        EventDto eventDto = eventService.getSingleEvent(id);
+        Integer id = 140469;
+        EventDto eventDto = editEventService.getSingleEvent(id);
 
         EditEventDto editEventDto = eventMapper.mapEventDtoToEditEventDto(eventDto);
 
@@ -42,20 +45,23 @@ public class EditEventController {
     @PostMapping("/updateEvent")
     public String updateEvent(@ModelAttribute @Valid EditEventDto editEventDto, BindingResult result, Model model) {
 
-        System.out.println(editEventDto.getNewEventName());
-        //EditEventDto editEventDtoForTemplate = eventMapper.mapEditEventDtoReceivedToEditEventDtoForTemplate(editEventDto);
-        //System.out.println(editEventDto.getNewEventPlace());
+        editEventService.saveEditedEvent(editEventDto);
+        System.out.println(editEventDto.getNewEventId() + "  id");
+        EventDto eventDto = editEventService.getSingleEvent(editEventDto.getNewEventId());
 
- /*       model.addAttribute("newEventDto", newEventDto);
-        if (result.hasFieldErrors()) {
-            return "addEventForm";
+        model.addAttribute("eventDto", eventDto);
+
+        return "editEventSavedForm";
+
+/*        if (result.hasFieldErrors()) {
+            model.addAttribute("editEventDto", editEventDto);
+            return "editEventForm";
         } else {
-            EventNew eventNew = repositoryServiceClass.createEventNewFromNewEventDto(newEventDto);
-            repositoryServiceClass.saveEventNew(eventNew);
-            model.addAttribute("newEventDto", newEventDto);
-            return "saveEvent";
-        }*/
+            editEventService.saveEditedEvent(editEventDto);
+            EventDto eventDto = editEventService.getSingleEvent(editEventDto.getId());
+            model.addAttribute("eventDto", eventDto);
 
-        return "updateEvent";
+            return "editEventSavedForm";
+        }*/
     }
 }

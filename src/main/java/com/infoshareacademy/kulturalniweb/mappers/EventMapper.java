@@ -8,6 +8,8 @@ import com.infoshareacademy.kulturalniweb.models.EditEventDto;
 import com.infoshareacademy.kulturalniweb.services.PictureService;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class EventMapper {
 
@@ -259,5 +261,54 @@ public class EventMapper {
     }
 
 
+    public EventEntity mapEditEventDtoToEventEntity(EditEventDto editEventDto) {
+        EventEntity eventEntity = new EventEntity();
 
+        eventEntity.setName(editEventDto.getNewEventName());
+
+        PlaceEntity placeEntity = new PlaceEntity();
+        placeEntity.setName(editEventDto.getNewEventPlace());
+        eventEntity.setPlaceEntity(placeEntity);
+
+        eventEntity.setCity(editEventDto.getNewEventCity());
+        eventEntity.setStartDateDate(editEventDto.getNewEventStartDate());
+        eventEntity.setStartDateTime(editEventDto.getNewEventStartTime() + ":00");
+        eventEntity.setStartDateLastTime("00:00");
+        eventEntity.setEndDateDate(editEventDto.getNewEventEndDate());
+        eventEntity.setEndDateTime(editEventDto.getNewEventEndTime() + ":00");
+        eventEntity.setEndDateLastTime("00:00");
+
+        String ticket = "?";
+
+/*        if(editEventDto.getNewEventPriceFree().equals(null)) {
+            ticket = "Impreza darmowa";
+        } else {
+            ticket = editEventDto.getNewEventPrice();
+        }*/
+
+        TicketEntity ticketEntity = new TicketEntity();
+        ticketEntity.setType(ticket);
+        eventEntity.setTicketEntity(ticketEntity);
+
+        UrlEntity urlEntity = new UrlEntity();
+        urlEntity.setUrl(editEventDto.getNewEventUrl());
+        eventEntity.setUrlEntity(urlEntity);
+
+        eventEntity.setDescLong("brak - do zroienia input");
+        eventEntity.setPicture(GRAPHICS_PATH + editEventDto.getNewEventImage());
+        eventEntity.setFavourite(false);
+
+        AttachmentEntity attachmentEntity = new AttachmentEntity();
+        attachmentEntity.setFileName("no file");
+        eventEntity.setAttachmentEntity(attachmentEntity);
+
+        OrganizerEntity organizerEntity = new OrganizerEntity();
+        organizerEntity.setDesignation("org");
+        //organizerEntity.setId(14);
+        eventEntity.setOrganizerEntity(organizerEntity);
+
+        eventEntity.setActive("1");
+
+        return eventEntity;
+    }
 }

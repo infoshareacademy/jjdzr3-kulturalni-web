@@ -40,7 +40,7 @@ public class AddEventService {
 
     public void saveAddedEvent(AddEventDto addEventDto) {
         EventEntity eventEntity = eventMapper.mapAddEventDtoToEventEntity(addEventDto);
-        eventsRepository.save(eventEntity);
+        eventsRepository.updateEvent(eventEntity);
     }
 
 

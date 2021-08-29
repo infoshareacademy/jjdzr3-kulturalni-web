@@ -38,14 +38,10 @@ public class AddEventController {
 
             addEventService.saveAddedEvent(addEventDto);
 
-            //String filePath = GRAPHICS_PATH + addEventDto.getPicture();
-            //addEventDto.setPicture(filePath);
-
             Integer maximumId = addEventService.getMaximumId();
             EventDto eventDtoFromDB = addEventService.getSingleEvent(maximumId);
 
             model.addAttribute("eventDto", eventDtoFromDB);
-
 
             return "saveEvent";
         }

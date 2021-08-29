@@ -95,7 +95,7 @@ public class EventsRepository implements Dao<EventEntity> {
         return eventEntities.get(0);
     }
 
-    @Modifying(flushAutomatically = true)
+    //@Modifying(flushAutomatically = true)
     public List<EventEntity> createListOfSortedEventEntities(Map<String, String> sortingParameters) {
         String orderDefinition = "";
 
@@ -151,6 +151,55 @@ public class EventsRepository implements Dao<EventEntity> {
 
         return (Integer) query.getFirstResult();
     }*/
+
+
+    public void updateEvent(EventEntity eventEntity) {
+        final Query query = entityManager
+                .createQuery("UPDATE EventEntity e SET " +
+                        "e.placeEntity = :placeEntity, " +
+                        "e.endDateDate = :endDateDate," +
+                        "e.endDateTime = :endDateTime," +
+                        "e.endDateLastTime = :endDateLastTime," +
+                        "e.name = :name," +
+                        "e.urlEntity = :urlEntity," +
+                        "e.attachmentEntity = :attachmentEntity," +
+                        "e.descLong = :descLong," +
+                        "e.categoryId = :categoryId," +
+                        "e.startDateDate =: startDateDate," +
+                        "e.startDateTime =: startDateTime," +
+                        "e.startDateLastTime =: startDateLastTime," +
+                        "e.organizerEntity =: organizerEntity," +
+                        "e.active = :active," +
+                        "e.descShort = :descShort," +
+                        "e.ticketEntity = :ticketEntity," +
+                        "e.picture = :picture," +
+                        "e.city = :city," +
+                        "e.isFavourite = :isFavourite  WHERE e.id = :id")
+                .setParameter("placeEntity", eventEntity.getPlaceEntity())
+                .setParameter("endDateDate", eventEntity.getEndDateDate())
+                .setParameter("endDateTime", eventEntity.getEndDateTime())
+                .setParameter("endDateLastTime", eventEntity.getEndDateLastTime())
+                .setParameter("name", eventEntity.getName())
+                .setParameter("urlEntity", eventEntity.getUrlEntity())
+                .setParameter("attachmentEntity", eventEntity.getAttachmentEntity())
+                .setParameter("descLong", eventEntity.getDescLong())
+                .setParameter("categoryId", eventEntity.getCategoryId())
+                .setParameter("startDateDate", eventEntity.getStartDateDate())
+                .setParameter("startDateTime", eventEntity.getStartDateTime())
+                .setParameter("startDateLastTime", eventEntity.getStartDateLastTime())
+                .setParameter("organizerEntity", eventEntity.getOrganizerEntity())
+                .setParameter("active", eventEntity.getActive())
+                .setParameter("descShort", eventEntity.getDescShort())
+                .setParameter("ticketEntity", eventEntity.getTicketEntity())
+                .setParameter("picture", eventEntity.getPicture())
+                .setParameter("city", eventEntity.getCity())
+                .setParameter("isFavourite", eventEntity.getFavourite())
+                .setParameter("id", eventEntity.getId());
+
+        int result = query.executeUpdate();
+        System.out.println(result);
+    }
+
 
 
     public void updateFavourite(Integer id, Boolean favStatus) {
