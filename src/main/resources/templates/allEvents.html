@@ -138,26 +138,29 @@
                         </form>
                     </div>
                     <div class="col-auto" style=" width: 265px">
-                    <form th:action="#{/eventsPerPage}">
-                        <label>
-                            <select class="form-select" name="eventsPerPage"
-                                    onchange="this.form.submit()">
-                                <option value="10" selected th:if="${numberOfEventsPerPage.equals(10)}">10 wyników
-                                </option>
-                                <option value="10" th:if="${not numberOfEventsPerPage.equals(10)}">10 wyników</option>
-                                <option value="30" selected th:if="${numberOfEventsPerPage.equals(30)}">30 wyników
-                                </option>
-                                <option value="30" th:if="${not numberOfEventsPerPage.equals(30)}">30 wyników</option>
-                                <option value="50" selected th:if="${numberOfEventsPerPage.equals(50)}">50 wyników
-                                </option>
-                                <option value="50" th:if="${not numberOfEventsPerPage.equals(50)}">50 wyników</option>
-                            </select>
-                        </label>
-                    </form>
+                        <form th:action="#{/eventsPerPage}">
+                            <label>
+                                <select class="form-select" name="eventsPerPage"
+                                        onchange="this.form.submit()">
+                                    <option value="10" selected th:if="${numberOfEventsPerPage.equals(10)}">10 wyników
+                                    </option>
+                                    <option value="10" th:if="${not numberOfEventsPerPage.equals(10)}">10 wyników
+                                    </option>
+                                    <option value="30" selected th:if="${numberOfEventsPerPage.equals(30)}">30 wyników
+                                    </option>
+                                    <option value="30" th:if="${not numberOfEventsPerPage.equals(30)}">30 wyników
+                                    </option>
+                                    <option value="50" selected th:if="${numberOfEventsPerPage.equals(50)}">50 wyników
+                                    </option>
+                                    <option value="50" th:if="${not numberOfEventsPerPage.equals(50)}">50 wyników
+                                    </option>
+                                </select>
+                            </label>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <!--SEARCH BAR-->
     <div class="container my-3">
@@ -199,7 +202,7 @@
     <div th:each="eventDto: ${listOfEventDto}" class="container-lg main-table bg-transparent">
         <div class="row bg-dark border border-warning border-1 text-warning rounded-3">
             <div class="col-md-1 low-padding" sec:authorize="hasAuthority('ADMIN')">
-                <p class="" th:text="${eventDto.getId()}">Miasto</p>
+                <p class="" th:text="${eventDto.getId()}">ID</p>
             </div>
             <div class="col-md-1 low-padding">
                 <p class="" th:utext="${eventDto.getCity()}">Miasto</p>
@@ -230,22 +233,52 @@
                 </form>
             </div>
             <div class="col-md-1 p-2 m-0" sec:authorize="hasAuthority('ADMIN')">
-                <a th:action="@{/editEvent(id=${eventDto.getId()})}" class="btn btn-outline-info"
+                <a class="btn btn-outline-info"
                    th:href="@{/editEvent(id=${eventDto.getId()})}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                          class="bi bi-pencil-fill" viewBox="0 0 16 16">
                         <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
                     </svg>
                 </a>
-                <a class="btn btn-outline-danger"
-                   th:href="@{/deleteEvent(id=${eventDto.getId()})}">
+                <a class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                          class="bi bi-trash-fill" viewBox="0 0 16 16">
                         <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
                     </svg>
                 </a>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel"
+                                    th:text="#{events.edit.delete.modalTittle}">
+                                    Modal title</h5>
+                                <button type="button" class="btn-close" data-bs-target="#my-modal"
+                                        data-bs-dismiss="modal" aria-label="Close">
+                                </button>
+                            </div>
+                            <div class="modal-body" th:text="#{events.edit.delete.modalBody}">
+                                ...
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                                        th:text="#{events.edit.delete.decline}">No
+                                </button>
+
+                                <button type="button" class="btn btn-success" th:text="#{events.edit.delete.confirm}"
+                                        th:href="@{/deleteEvent(id=${eventDto.getId()})}">Yes
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+
         </div>
+    </div>
     </div>
     <!--PAGINATION-->
     <div class="container">
