@@ -1,7 +1,6 @@
 package com.infoshareacademy.kulturalniweb.controllers;
 
-import com.infoshareacademy.kulturalniweb.dto.EventDto;
-import com.infoshareacademy.kulturalniweb.jsonData.EventSimple;
+import com.infoshareacademy.kulturalniweb.models.dto.EventDto;
 import com.infoshareacademy.kulturalniweb.services.EventSimpleMemoryServiceClass;
 import com.infoshareacademy.kulturalniweb.services.RepositoryServiceClass;
 import com.infoshareacademy.kulturalniweb.services.SortingServices;

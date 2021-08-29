@@ -1,9 +1,8 @@
 package com.infoshareacademy.kulturalniweb.controllers;
 
-import com.infoshareacademy.kulturalniweb.dto.EventDto;
-import com.infoshareacademy.kulturalniweb.dto.NewPaginationDto;
+import com.infoshareacademy.kulturalniweb.models.dto.EventDto;
+import com.infoshareacademy.kulturalniweb.models.dto.NewPaginationDto;
 import com.infoshareacademy.kulturalniweb.jsonData.EventSimple;
-import com.infoshareacademy.kulturalniweb.models.dto.PaginationDto;
 import com.infoshareacademy.kulturalniweb.repository.EventSimpleMemory;
 import com.infoshareacademy.kulturalniweb.repository.ListEventRepository;
 import com.infoshareacademy.kulturalniweb.services.*;
@@ -64,7 +63,6 @@ public class AllEventsController {
                     sortingServices.setEventSortType("date");
                     sortingServices.setEventSortDirection("descending");
                     sortingServices.setNumberOfEventsOnThePage(15);
-                    paginationServiceClass.setVirtualDisplayedPageNumber(1);
 
         sortingParameters.put("eventFilterType", "> 0");
         sortingParameters.put("eventFilterPlace", "all");

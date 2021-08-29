@@ -1,6 +1,6 @@
 package com.infoshareacademy.kulturalniweb.controllers;
 
-import com.infoshareacademy.kulturalniweb.dto.EventDto;
+import com.infoshareacademy.kulturalniweb.models.dto.EventDto;
 import com.infoshareacademy.kulturalniweb.mappers.EventMapper;
 import com.infoshareacademy.kulturalniweb.models.dto.EditEventDto;
 import com.infoshareacademy.kulturalniweb.services.EventService;
