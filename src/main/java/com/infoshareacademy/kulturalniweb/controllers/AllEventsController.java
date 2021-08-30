@@ -3,7 +3,6 @@ package com.infoshareacademy.kulturalniweb.controllers;
 import com.infoshareacademy.kulturalniweb.dto.EventDto;
 import com.infoshareacademy.kulturalniweb.dto.NewPaginationDto;
 import com.infoshareacademy.kulturalniweb.jsonData.EventSimple;
-import com.infoshareacademy.kulturalniweb.dto.PaginationDto;
 import com.infoshareacademy.kulturalniweb.repository.EventSimpleMemory;
 import com.infoshareacademy.kulturalniweb.repository.ListEventRepository;
 import com.infoshareacademy.kulturalniweb.services.*;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,7 +29,7 @@ public class AllEventsController {
     NewPaginationDto newPaginationDto;
 
 
-    Boolean fileNotReadYet = true;
+/*    Boolean fileNotReadYet = true;*/
     Integer favId = 0;
 
     private Integer totalNumberOfEvents = 0;
@@ -59,12 +57,12 @@ public class AllEventsController {
 
     @GetMapping("/alleventsindex")
     public String displayAllEventsFromIndex () {
-                    sortingServices.setEventFilterType("all");
+/*                    sortingServices.setEventFilterType("all");
                     sortingServices.setEventFilterPlace("all");
                     sortingServices.setEventSortType("date");
                     sortingServices.setEventSortDirection("descending");
                     sortingServices.setNumberOfEventsOnThePage(15);
-                    paginationServiceClass.setVirtualDisplayedPageNumber(1);
+                    paginationServiceClass.setVirtualDisplayedPageNumber(1);*/
 
         sortingParameters.put("eventFilterType", "> 0");
         sortingParameters.put("eventFilterPlace", "all");
@@ -94,10 +92,10 @@ public class AllEventsController {
 
 
 
-                    numberOfEventsOnThePage = 10;
+            /*        numberOfEventsOnThePage = 10;*/
         totalNumberOfEvents = eventsToDisplay.size();
         sortingParameters.put("totalNumberOfEvents", totalNumberOfEvents.toString());
-                    numberOfPageThatIsBeeingDisplayed = 1;
+                   /* numberOfPageThatIsBeeingDisplayed = 1;*/
 
         return "redirect:allevents";
     }
@@ -105,19 +103,10 @@ public class AllEventsController {
     @GetMapping("/allevents")
     public String allEvents (Model model) {
 
-        // Usunąć ifa - przy naprawieniu listy wydarzeń do bazy
-/*        if (fileNotReadYet) {
-            repositoryServiceClass.readEventsFromGsonToList();
-            eventSimpleMemoryServiceClass.clearMemory();
-            eventSimpleMemoryServiceClass.prepareSimpleEventsListFromRepository();
-            fileNotReadYet = false;
-        }*/
-
-
         sortingServices.sortBySelectedCriteria();
         sortingServices.filterByPlace();
 
-                    totalNumberOfEvents = eventSimpleMemory.getListOfEventSimple().size();
+                  /*  totalNumberOfEvents = eventSimpleMemory.getListOfEventSimple().size();*/
 
         model.addAttribute("numberOfEventsPerPage", Integer.parseInt(sortingParameters.get("numberOfEventsOnThePage")));
         model.addAttribute("eventFilterType", sortingParameters.get("eventFilterType"));
@@ -128,12 +117,11 @@ public class AllEventsController {
 
         Integer eventDtosSize = eventService.getSizeOfListOfSortedEventEntities(sortingParameters);
 
-/*        Integer sizeNew = eventService.getSizeOfDB();
-        System.out.println("size new = " + sizeNew);*/
-
-        System.out.println("Liczba rekordów: " + eventDtosSize);
+/*        System.out.println("Liczba rekordów: " + eventDtosSize);*/
         sortingParameters.put("numberOfResultPages", calculateNumberOfResultPages(eventDtosSize, sortingParameters.get("numberOfEventsOnThePage")));
         List<EventDto> eventDtos = eventService.createListOfSortedEventEntities(sortingParameters);
+/*        System.out.println("sorting parameters" );
+        System.out.println("eventDtos size = " + eventDtos.size());*/
 
         model.addAttribute("listOfEventDto", eventDtos);
         model.addAttribute("favouriteEvent", favId);

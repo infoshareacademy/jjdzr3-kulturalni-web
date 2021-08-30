@@ -31,7 +31,7 @@ public class SingleEventController {
 
         model.addAttribute("singleEvent", eventDto);
 
-        return "singleevent";
+        return "singleEvent";
     }
 
     @PostMapping("/toggleFavourite")

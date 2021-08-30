@@ -69,5 +69,7 @@ public class EventService {
         eventsRepository.updateEvent(eventEntity);
     }
 
-
+    public Integer getSizeOfDB() {
+        return eventsRepository.getSizeOfDB();
+    }
 }

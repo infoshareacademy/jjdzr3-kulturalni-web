@@ -3,12 +3,9 @@ package com.infoshareacademy.kulturalniweb.services;
 import com.infoshareacademy.kulturalniweb.dto.AddEventDto;
 import com.infoshareacademy.kulturalniweb.dto.EventDto;
 import com.infoshareacademy.kulturalniweb.entities.event.EventEntity;
-import com.infoshareacademy.kulturalniweb.jsonData.EventSimple;
 import com.infoshareacademy.kulturalniweb.mappers.EventMapper;
 import com.infoshareacademy.kulturalniweb.repository.EventsRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class AddEventService {
@@ -22,7 +19,7 @@ public class AddEventService {
         this.eventsRepository = eventsRepository;
     }
 
-    public Integer getHighestEventId() {
+/*    public Integer getHighestEventId() {
         Integer highestId = 0;
         List<EventSimple> list = eventSimpleMemoryServiceClass.getListOfEventSimpleFromMemory();
 
@@ -32,22 +29,24 @@ public class AddEventService {
             }
         }
         return highestId;
-    }
+    }*/
 
-    public void saveEventSimpleToMemory(EventSimple eventSimple) {
+/*    public void saveEventSimpleToMemory(EventSimple eventSimple) {
         eventSimpleMemoryServiceClass.saveEventSimpleToMemory(eventSimple);
     }
 
     public void saveAddedEvent(AddEventDto addEventDto) {
         EventEntity eventEntity = eventMapper.mapAddEventDtoToEventEntity(addEventDto);
         eventsRepository.updateEvent(eventEntity);
+    }*/
+
+    public void save(AddEventDto addEventDto) {
+        EventEntity eventEntity = eventMapper.mapAddEventDtoToEventEntity(addEventDto);
+        eventsRepository.save(eventEntity);
     }
 
-
     public Integer getMaximumId() {
-        Integer maximumId = eventsRepository.getMaximumId();
-
-        return maximumId;
+        return eventsRepository.getMaximumId();
     }
 
     public EventDto  getSingleEvent(Integer maximumId) {

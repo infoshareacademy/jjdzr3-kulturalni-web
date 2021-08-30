@@ -25,63 +25,63 @@
     </div>
 
     <div class="container col-lg-6">
-        <!--    <form action="#" th:action="@{/updateEvent}" th:object="${eventDto}" method="post">-->
-        <!-- idEvent input -->
+        <!-- imageEvent display -->
         <div class="row event-description">
-            <div class="text-warning">
-                <p>Id wydarzenia <input type="text" class="form-control" th:value="${eventDto.getId()}" readonly style="background-color: #20c997"></p>
+            <div class="col text-warning">
+                <p>Obrazek przypisany do wydarzenia</p>
+                <p><img th:src="${singleEvent.getPicture()}" ></p>
             </div>
         </div>
         <!-- nameEvent input -->
         <div class="row event-description">
             <div class="text-warning">
                 <label for="nameEvent"></label>
-                <p>Nazwa wydarzenia <input type="text" class="form-control" id="nameEvent" th:value="${eventDto.getName()}" readonly style="background-color: #20c997"></p>
+                <p>Nazwa wydarzenia <input type="text" class="form-control" id="nameEvent" th:value="${singleEvent.getName()}" readonly style="background-color: #20c997"></p>
             </div>
         </div>
         <!-- placeEvent input -->
         <div class="row event-description">
             <div class="text-warning">
                 <label for="placeEvent"></label>
-                <p>Miejsce <input type="text" class="form-control" id="placeEvent" th:value="${eventDto.getPlaceName()}" readonly style="background-color: #20c997"></p>
+                <p>Miejsce <input type="text" class="form-control" id="placeEvent" th:value="${singleEvent.getPlaceName()}" readonly style="background-color: #20c997"></p>
             </div>
         </div>
         <!-- cityEvent input -->
         <div class="row event-description">
             <div class="text-warning">
                 <label for="cityEvent"></label>
-                <p>Miejscowość <input type="text" class="form-control" id="cityEvent" th:value="${eventDto.getCity()}" readonly style="background-color: #20c997"></p>
+                <p>Miejscowość <input type="text" class="form-control" id="cityEvent" th:value="${singleEvent.getCity()}" readonly style="background-color: #20c997"></p>
             </div>
         </div>
         <!-- startEvent input -->
         <div class="row event-description">
             <div class="col">
                 <label for="sortEventsDateStart" class="text-warning">Początek wydarzenia</label>
-                <p class="text-warning">Data rozpoczęcia <input type="date" class="form-control" id="sortEventsDateStart" th:value="${eventDto.getStartDateDate()}" readonly style="background-color: #20c997"></p>
+                <p class="text-warning">Data rozpoczęcia <input type="date" class="form-control" id="sortEventsDateStart" th:value="${singleEvent.getStartDateDate()}" readonly style="background-color: #20c997"></p>
             </div>
             <div class="col">
                 <label for="startEventTimeStart"></label>
-                <p class="text-warning">Godzina rozpoczęcia <input type="time" class="form-control" id="startEventTimeStart" th:value="${eventDto.getStartDateTime()}" readonly style="background-color: #20c997"></p>
+                <p class="text-warning">Godzina rozpoczęcia <input type="time" class="form-control" id="startEventTimeStart" th:value="${singleEvent.getStartDateTime()}" readonly style="background-color: #20c997"></p>
             </div>
         </div>
         <!-- endEvent input -->
         <div class="row event-description">
             <div class="col">
                 <label for="sortEventsDateEnd" class="text-warning">Koniec wydarzenia</label>
-                <p class="text-warning">Data zakończenia <input type="date" class="form-control" id="sortEventsDateEnd" th:value="${eventDto.getEndDateDate()}" readonly style="background-color: #20c997"></p>
+                <p class="text-warning">Data zakończenia <input type="date" class="form-control" id="sortEventsDateEnd" th:value="${singleEvent.getEndDateDate()}" readonly style="background-color: #20c997"></p>
             </div>
             <div class="col">
                 <label for="startEventTimeEnd"></label>
-                <p class="text-warning">Godzina zakończenia <input type="time" class="form-control" id="startEventTimeEnd" th:value="${eventDto.getEndDateTime()}" readonly style="background-color: #20c997"></p>
+                <p class="text-warning">Godzina zakończenia <input type="time" class="form-control" id="startEventTimeEnd" th:value="${singleEvent.getEndDateTime()}" readonly style="background-color: #20c997"></p>
             </div>
         </div>
         <!-- priceEvent input -->
         <div class="row event-description">
             <div class="col text-warning">
                 <label for="priceEvent"></label>
-                <p>Cena <input type="text" class="form-control" id="priceEvent" th:value="${eventDto.getTicket()}" readonly style="background-color: #20c997"></p>
+                <p>Cena <input type="text" class="form-control" id="priceEvent" th:value="${singleEvent.getTicket()}" readonly style="background-color: #20c997"></p>
             </div>
-<!--            <div class="col text-warning">
+     <!--       <div class="col text-warning">
                 <br><p></p>
                 <input class="form-check-input" type="checkbox" id="priceEventFree"
                        onclick="this.form.elements['priceEvent'].disabled = this.checked" fname="newEventPriceFree">
@@ -92,7 +92,7 @@
         <div class="row event-description">
             <div class="col text-warning">
                 <label for="urlAddress"></label>
-                <p>URL <input type="text" class="form-control" id="urlAddress" th:value="${eventDto.getUrl()}" readonly style="background-color: #20c997"></p>
+                <p>URL <input type="text" class="form-control" id="urlAddress" th:value="${singleEvent.getUrl()}" readonly style="background-color: #20c997"></p>
             </div>
         </div>
         <!-- descriptionEvent input -->
@@ -103,13 +103,7 @@
                                                      rows="3" name="newEventDescription"></textarea></p>
             </div>
         </div>
-        <!-- imageEvent display -->
-        <div class="row event-description">
-            <div class="col text-warning">
-                <p>Obrazek przypisany do wydarzenia</p>
-                <p><img th:src="${eventDto.getPicture()}" ></p>
-            </div>
-        </div>
+
 
         <!--    </form>-->
     </div>

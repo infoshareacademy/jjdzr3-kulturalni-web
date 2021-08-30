@@ -215,7 +215,7 @@ public class EventMapper {
         eventEntity.setUrlEntity(urlEntity);
 
         eventEntity.setDescLong(addEventDto.getDescLong());
-        eventEntity.setPicture(GRAPHICS_PATH + addEventDto.getPicture());
+        eventEntity.setPicture(addEventDto.getPicture());
         eventEntity.setFavourite(false);
 
         AttachmentEntity attachmentEntity = new AttachmentEntity();

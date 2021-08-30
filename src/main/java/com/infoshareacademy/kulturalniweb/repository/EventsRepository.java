@@ -68,7 +68,7 @@ public class EventsRepository implements Dao<EventEntity> {
     }
 
     public List<EventDto> createListOfClosestEvents() {
-        final Query query = entityManager.createQuery("SELECT e FROM EventEntity e ORDER BY e.startDateTime DESC, e.startDateDate DESC", EventEntity.class);
+        final Query query = entityManager.createQuery("SELECT e FROM EventEntity e ORDER BY e.startDateDate DESC, e.startDateTime DESC", EventEntity.class);
         List<EventEntity> queryResult = query.getResultList();
         List<EventDto> eventDtos = new ArrayList<>();
         for(int i = 0; i < queryResult.size(); i++) {
@@ -109,16 +109,29 @@ public class EventsRepository implements Dao<EventEntity> {
 
         Integer requestedPageNumber = Integer.parseInt(sortingParameters.get("requestedPageNumber"));
         Integer numberOfEventsOnThePage = Integer.parseInt(sortingParameters.get("numberOfEventsOnThePage"));
-        Integer firstResult = (requestedPageNumber * numberOfEventsOnThePage) - (numberOfEventsOnThePage - 1);
+/*        Integer firstResult = (requestedPageNumber * numberOfEventsOnThePage) - (numberOfEventsOnThePage - 1);*/
+        Integer firstResult = ((requestedPageNumber -1) * numberOfEventsOnThePage);
+
+/*        final Query query = entityManager
+                .createQuery("SELECT e FROM EventEntity e " +
+                        "WHERE e.categoryId " + sortingParameters.get("eventFilterType") + " " +
+                        "ORDER BY " + orderDefinition, EventEntity.class)
+                .setFirstResult(firstResult)
+                .setMaxResults(numberOfEventsOnThePage);*/
 
         final Query query = entityManager
-                .createQuery("SELECT e FROM EventEntity e " /*+
-                        "WHERE e.categoryId " + sortingParameters.get("eventFilterType") + " " +
-                        "ORDER BY " + orderDefinition, EventEntity.class*/)
+                .createQuery("SELECT e FROM EventEntity e " +
+                        "WHERE e.active=1 and e.categoryId " + sortingParameters.get("eventFilterType") + " " +
+                        "ORDER BY " + orderDefinition, EventEntity.class)
                 .setFirstResult(firstResult)
                 .setMaxResults(numberOfEventsOnThePage);
 
+        /*"WHERE e.active=1 " +
+                "ORDER BY " + orderDefinition, EventEntity.class)*/
+        /*and e.categoryId " + sortingParameters.get("eventFilterType") + " */
+
         List<EventEntity> eventEntities = query.getResultList();
+        System.out.println("create list size = " + eventEntities.size());
         return eventEntities;
     }
 
@@ -135,22 +148,30 @@ public class EventsRepository implements Dao<EventEntity> {
 
         final Query query = entityManager
                 .createQuery("SELECT e FROM EventEntity e " +
-                        "WHERE e.categoryId " + sortingParameters.get("eventFilterType") + " " +
+                        "WHERE e.active=1 " + " " +
                         "ORDER BY " + orderDefinition, EventEntity.class);
+
+      /*  and e.categoryId " + sortingParameters.get("eventFilterType") + " */
+
+/*        final Query query = entityManager
+                .createQuery("SELECT e FROM EventEntity e " +
+                        "WHERE e.categoryId " + sortingParameters.get("eventFilterType") + " " +
+                        "ORDER BY " + orderDefinition, EventEntity.class);*/
 
         List<EventEntity> eventEntities = query.getResultList();
         return eventEntities;
     }
 
-/*    public Integer getSizeOfDB() {
+    public Integer getSizeOfDB() {
         final Query query = entityManager
-                .createQuery("SELECT COUNT(distinct e.id) FROM EventEntity e");
+                .createQuery("SELECT e FROM EventEntity e WHERE e.id > 0");
 
-        int result = query.getFirstResult();
-        System.out.println("result A: " + result);
+        List<EventEntity> result = query.getResultList();
 
-        return (Integer) query.getFirstResult();
-    }*/
+        Integer size = result.size();
+        System.out.println("result A: " + size);
+        return size;
+    }
 
 
     public void updateEvent(EventEntity eventEntity) {
