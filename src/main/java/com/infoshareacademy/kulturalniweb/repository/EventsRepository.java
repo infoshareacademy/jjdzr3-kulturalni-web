@@ -148,7 +148,7 @@ public class EventsRepository implements Dao<EventEntity> {
 
         final Query query = entityManager
                 .createQuery("SELECT e FROM EventEntity e " +
-                        "WHERE e.active=1 " + " " +
+                        "WHERE e.active=1 and e.categoryId " + sortingParameters.get("eventFilterType") + " " +
                         "ORDER BY " + orderDefinition, EventEntity.class);
 
       /*  and e.categoryId " + sortingParameters.get("eventFilterType") + " */
