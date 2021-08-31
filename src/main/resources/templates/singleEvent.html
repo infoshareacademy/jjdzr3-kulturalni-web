@@ -46,6 +46,13 @@
                 <p>Miejsce <input type="text" class="form-control" id="placeEvent" th:value="${singleEvent.getPlaceName()}" readonly style="background-color: #20c997"></p>
             </div>
         </div>
+        <!-- categoryId input -->
+        <div class="row event-description">
+            <div class="text-warning">
+                <label for="placeEvent"></label>
+                <p>Kategoria wydarzenia <input type="text" class="form-control" id="categoryid" th:value="${singleEvent.getCategoryId()}" readonly style="background-color: #20c997"></p>
+            </div>
+        </div>
         <!-- cityEvent input -->
         <div class="row event-description">
             <div class="text-warning">

@@ -29,7 +29,9 @@ public class SingleEventController {
             eventDto.setTicket("Brak informacji");
         }
 
-        model.addAttribute("singleEvent", eventDto);
+        EventDto resultDto = recodecategoryId(eventDto);
+
+        model.addAttribute("singleEvent", resultDto);
 
         return "singleEvent";
     }
@@ -37,6 +39,35 @@ public class SingleEventController {
     @PostMapping("/toggleFavourite")
     public String toggleFavourite() {
         return "toggleFavourite";
+    }
+
+    private EventDto recodecategoryId(EventDto eventDtoFromDB) {
+        EventDto result = eventDtoFromDB;
+        String code = result.getCategoryId();
+
+        if(code.equals("1")) {
+            result.setCategoryId("Kino");
+        } else if(code.equals("19")) {
+            result.setCategoryId("Teatr");
+        } else if(code.equals("1")) {
+            result.setCategoryId("Kino");
+        } else if(code.equals("51")) {
+            result.setCategoryId("Sztuka");
+        } else if(code.equals("35")) {
+            result.setCategoryId("Muzyka");
+        } else if(code.equals("83")) {
+            result.setCategoryId("Nauka");
+        } else if(code.equals("61")) {
+            result.setCategoryId("Literatura");
+        } else if(code.equals("69")) {
+            result.setCategoryId("Rozrywka");
+        } else if(code.equals("77")) {
+            result.setCategoryId("Rekreacja");
+        } else {
+            result.setCategoryId("Inne");
+        }
+
+        return result;
     }
 
 
