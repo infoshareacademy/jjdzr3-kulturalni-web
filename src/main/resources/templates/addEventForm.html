@@ -48,6 +48,24 @@
                     <input type="text" class="form-control" id="placeEvent" placeholder="Miejsce wydarzenia" th:field="*{placeName}">
                 </div>
             </div>
+            <!-- categoryId input -->
+            <div class="row event-description">
+                <div class="text-warning">
+                    <label for="placeEvent"></label>
+                    <select class="dropdown-fields dropdown-field-type form-control" th:field="*{categoryId}">
+                        <option value="999" selected>Wszystkie rodzaje</option>
+                        <option value="1">Kino</option>
+                        <option value="19">Teatr</option>
+                        <option value="51">Sztuka</option>
+                        <option value="35">Muzyka</option>
+                        <option value="83">Nauka</option>
+                        <option value="61">Literatura</option>
+                        <option value="69">Rozrywka</option>
+                        <option value="77">Rekreacja</option>
+                        <option value="96">Inne</option>
+                    </select>
+                </div>
+            </div>
             <!-- cityEvent input -->
             <div class="row event-description">
                 <div class="text-warning">

@@ -27,21 +27,7 @@ public class AddEventDto {
     @Size(min = 3, max =500,  message = "Wprowadź co najmniej 3 znaki")
     private String descLong;
     private String picture;
-
-    public AddEventDto(String name, String placeName, String city, String startDateDate, String startDateTime, String endDateDate, String endDateTime, String ticket, Boolean ticketFree, String url, String descLong, String picture) {
-        this.name = name;
-        this.placeName = placeName;
-        this.city = city;
-        this.startDateDate = startDateDate;
-        this.startDateTime = startDateTime;
-        this.endDateDate = endDateDate;
-        this.endDateTime = endDateTime;
-        this.ticket = ticket;
-        this.ticketFree = ticketFree;
-        this.url = url;
-        this.descLong = descLong;
-        this.picture = picture;
-    }
+    private String categoryId;
 
     public AddEventDto() {
     }
@@ -140,6 +126,14 @@ public class AddEventDto {
 
     public void setPicture(String picture) {
         this.picture = picture;
+    }
+
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
     }
 }
 

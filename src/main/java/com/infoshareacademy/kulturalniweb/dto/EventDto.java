@@ -18,7 +18,7 @@ public class EventDto {
     private String url;
     private String attachment;
     private String descLong;
-    private Integer categoryId;
+    private String categoryId;
     private String startDateDate;
     private String startDateTime;
     private String startDateLastTime;
@@ -31,7 +31,7 @@ public class EventDto {
     private String city;
     private Boolean isFavourite;
 
-    public EventDto(Integer id, Integer sourceId, Integer placeId, String placeName, String endDateDate, String endDateTime, String endDateLastTime, String name, String url, String attachment, String descLong, Integer categoryId, String startDateDate, String startDateTime, String startDateLastTime, Integer organizerId, String organizerName, String status, String descShort, String ticket, String  picture, String city, Boolean isFavourite) {
+    public EventDto(Integer id, Integer sourceId, Integer placeId, String placeName, String endDateDate, String endDateTime, String endDateLastTime, String name, String url, String attachment, String descLong, String categoryId, String startDateDate, String startDateTime, String startDateLastTime, Integer organizerId, String organizerName, String status, String descShort, String ticket, String  picture, String city, Boolean isFavourite) {
         this.id = id;
         this.sourceId = sourceId;
         this.placeId = placeId;
@@ -148,11 +148,11 @@ public class EventDto {
         this.descLong = descLong;
     }
 
-    public Integer getCategoryId() {
+    public String getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(Integer categoryId) {
+    public void setCategoryId(String categoryId) {
         this.categoryId = categoryId;
     }
 

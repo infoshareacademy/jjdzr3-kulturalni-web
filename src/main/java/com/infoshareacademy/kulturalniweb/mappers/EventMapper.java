@@ -228,6 +228,7 @@ public class EventMapper {
         eventEntity.setOrganizerEntity(organizerEntity);
 
         eventEntity.setActive("1");
+        eventEntity.setCategoryId(addEventDto.getCategoryId());
 
         return eventEntity;
     }

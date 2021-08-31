@@ -11,28 +11,12 @@ public class EventNew {
     private Urls urls;
     private List<FileName> attachments;
     private String descLong;
-    private Integer categoryId;
+    private String categoryId;
     private String startDate;
     private Organizer organizer;
     private String active;
     private String descShort;
     private Tickets tickets;
-
-    public EventNew(Integer id, Place place, String endDate, String name, Urls urls, List<FileName> attachments, String descLong, Integer categoryId, String startDate, Organizer organizer, String active, String descShort, Tickets tickets) {
-        this.id = id;
-        this.place = place;
-        this.endDate = endDate;
-        this.name = name;
-        this.urls = urls;
-        this.attachments = attachments;
-        this.descLong = descLong;
-        this.categoryId = categoryId;
-        this.startDate = startDate;
-        this.organizer = organizer;
-        this.active = active;
-        this.descShort = descShort;
-        this.tickets = tickets;
-    }
 
     public EventNew() {
     }
@@ -101,11 +85,11 @@ public class EventNew {
         this.descLong = descLong;
     }
 
-    public Integer getCategoryId() {
+    public String getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(Integer categoryId) {
+    public void setCategoryId(String categoryId) {
         this.categoryId = categoryId;
     }
 

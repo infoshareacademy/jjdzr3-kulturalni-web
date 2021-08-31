@@ -48,6 +48,36 @@
           <p>Miejsce <input type="text" class="form-control" id="placeEvent" th:value="${editEventDto.getPlaceName()}" name="newEventPlace" ></p>
         </div>
       </div>
+      <!-- categoryId input -->
+      <div class="row event-description">
+        <div class="text-warning">
+          <p>Kategoria wydarzenia
+            <label for="placeEvent"></label>
+            <select class="dropdown-fields dropdown-field-type form-control" name="categoryId">
+              <option value="999" selected th:if="${editEventDto.getCategoryId() == '999'}">Wszystkie rodzaje</option>
+              <option value="999" th:if="${editEventDto.getCategoryId() != '999'}">Wszystkie rodzaje</option>
+              <option value="1" selected th:if="${editEventDto.getCategoryId() == '1'}">Kino</option>
+              <option value="1" th:if="${editEventDto.getCategoryId() != '1'}">Kino</option>
+              <option value="19" selected th:if="${editEventDto.getCategoryId() == '19'}">Teatr</option>
+              <option value="19" th:if="${editEventDto.getCategoryId() != '19'}">Teatr</option>
+              <option value="51" selected th:if="${editEventDto.getCategoryId() == '51'}">Sztuka</option>
+              <option value="51" th:if="${editEventDto.getCategoryId() != '51'}">Sztuka</option>
+              <option value="35" selected th:if="${editEventDto.getCategoryId() == '35'}">Muzyka</option>
+              <option value="35" th:if="${editEventDto.getCategoryId() != '35'}">Muzyka</option>
+              <option value="83" selected th:if="${editEventDto.getCategoryId() == '83'}">Nauka</option>
+              <option value="83" th:if="${editEventDto.getCategoryId() != '83'}">Nauka</option>
+              <option value="61" selected th:if="${editEventDto.getCategoryId() == '61'}">Literatura</option>
+              <option value="61" th:if="${editEventDto.getCategoryId() != '61'}">Literatura</option>
+              <option value="69" selected th:if="${editEventDto.getCategoryId() == '69'}">Rozrywka</option>
+              <option value="69" th:if="${editEventDto.getCategoryId() != '69'}">Rozrywka</option>
+              <option value="77" selected th:if="${editEventDto.getCategoryId() == '77'}">Rekreacja</option>
+              <option value="77" th:if="${editEventDto.getCategoryId() != '77'}">Rekreacja</option>
+              <option value="96" selected th:if="${editEventDto.getCategoryId() == '96'}">Inne</option>
+              <option value="96" th:if="${editEventDto.getCategoryId() != '96'}">Inne</option>
+            </select>
+          </p>
+        </div>
+      </div>
       <!-- cityEvent input -->
       <div class="row event-description">
         <div class="text-warning">
