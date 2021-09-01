@@ -233,6 +233,17 @@ public class EventsRepository implements Dao<EventEntity> {
         System.out.println(result);
     }
 
+    public void deleteEvent(Integer id) {
+
+        final Query query = entityManager
+                .createQuery("UPDATE EventEntity e SET e.active = 9 WHERE e.id = :id")
+                .setParameter("id", id);
+
+        int result = query.executeUpdate();
+        System.out.println(result);
+
+    }
+
     public Integer getMaximumId() {
         final Query query = entityManager
                 .createQuery("SELECT MAX(id) FROM EventEntity");

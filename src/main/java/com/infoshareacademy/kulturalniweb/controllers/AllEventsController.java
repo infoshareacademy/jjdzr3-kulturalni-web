@@ -240,6 +240,14 @@ public class AllEventsController {
         return "redirect:allevents";
     }
 
+    @GetMapping("/searchByText")
+    public String searchByText(@RequestParam("text") String text) {
+        System.out.println(text);
+
+        return text;
+    }
+
+
     private List<EventSimple> selectEventsForEachPage() {
         List<EventSimple> eventSimpleMemoryList = eventSimpleMemoryServiceClass.getListOfEventSimpleFromMemory();
         List<EventSimple> result = new ArrayList<>();

@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
@@ -31,8 +32,8 @@ public class EditEventController {
     }
 
     @GetMapping("/editEvent")
-    public String editEvent(Model model) {
-        Integer id = 151005;
+    public String editEvent(@RequestParam("id") Integer id, Model model) {
+        //Integer id = 151005;
         EventDto eventDto = editEventService.getSingleEvent(id);
 
         EditEventDto editEventDto = eventMapper.mapEventDtoToEditEventDto(eventDto);
