@@ -16,7 +16,6 @@ import java.util.Locale;
 
         @Bean
         public LocaleResolver localeResolver() {
-
             SessionLocaleResolver localeResolver = new SessionLocaleResolver();
             Locale polishLocale = new Locale("pl");
             localeResolver.setDefaultLocale(polishLocale);

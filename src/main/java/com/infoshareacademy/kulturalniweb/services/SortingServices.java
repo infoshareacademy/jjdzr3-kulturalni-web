@@ -1,13 +1,12 @@
 package com.infoshareacademy.kulturalniweb.services;
 
-import com.infoshareacademy.kulturalniweb.dto.EventDto;
+import com.infoshareacademy.kulturalniweb.models.dto.EventDto;
 import com.infoshareacademy.kulturalniweb.jsonData.EventSimple;
 import com.infoshareacademy.kulturalniweb.repository.EventSimpleMemory;
 import com.infoshareacademy.kulturalniweb.repository.EventsRepository;
 import org.springframework.stereotype.Service;
 
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;

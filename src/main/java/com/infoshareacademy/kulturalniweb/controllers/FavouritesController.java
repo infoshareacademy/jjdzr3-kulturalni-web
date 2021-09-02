@@ -12,7 +12,7 @@ public class FavouritesController {
         return "favourites";
     }
 
-    @PostMapping("/favouritesAdd")
+    /*@PostMapping("/favouritesAdd")
     public String favouritesAdd() {
 
         return "favourites";
@@ -22,5 +22,5 @@ public class FavouritesController {
     public String favouritesRemove() {
 
         return "favourites";
-    }
+    }*/
 }

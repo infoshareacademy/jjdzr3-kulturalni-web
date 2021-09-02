@@ -1,6 +1,6 @@
 package com.infoshareacademy.kulturalniweb.services;
 
-import com.infoshareacademy.kulturalniweb.dto.NewPaginationDto;
+import com.infoshareacademy.kulturalniweb.models.dto.NewPaginationDto;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;

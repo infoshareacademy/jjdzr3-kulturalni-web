@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<head>
+    <th:block th:insert="index :: copyhead">CopiedFromIndex</th:block>
+    <link rel="stylesheet" th:href="@{/css/signin.css}">
+    <title>Kulturalni - Rejestracja</title>
+</head>
+<body>
+<!-- Navigation-->
+<div th:insert="index :: copy-masthead"></div>
+<!-- Masthead-->
+<header class="masthead text-dark">
+    <br><br><br>
+    <div class="form-signin ">
+        <form th:action="@{/register}" method="post">
+            <img class="mb-4" th:src="@{images/img/logos/logo.png}" alt="" width="150" height="145" src="">
+
+            <h3 class="mb-3 fw-normal text-warning" th:text="#{register.greeting}"></h3>
+            <label class="h6 mb-3 fw-normal text-warning" th:text="#{register.greeting.sub}"></label>
+
+            <div class="form-floating text-muted">
+                <input type="email" name="email" class="form-control" id="floatingEmail" placeholder="Email">
+                <label for="floatingEmail" th:text="#{register.email}"></label>
+            </div>
+            <div class="form-floating text-muted">
+                <input type="text" name="username" class="form-control" id="floatingInput" placeholder="Username">
+                <label for="floatingInput" th:text="#{register.username}"></label>
+            </div>
+            <div class="form-floating text-muted">
+                <input type="password" name="password" class="form-control" id="floatingPassword"
+                       placeholder="Password">
+                <label for="floatingPassword" th:text="#{register.password}"></label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary text-dark " type="submit"
+                    th:text="#{register.button}">
+            </button>
+        </form>
+    </div>
+    <div th:insert="index :: copy-footer"></div>
+</header>
+<div th:insert="index :: end-scripts"></div>
+</body>
+</html>

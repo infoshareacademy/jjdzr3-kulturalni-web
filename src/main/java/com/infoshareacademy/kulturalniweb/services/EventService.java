@@ -1,12 +1,11 @@
 package com.infoshareacademy.kulturalniweb.services;
 
-import com.infoshareacademy.kulturalniweb.dto.EventDto;
+import com.infoshareacademy.kulturalniweb.models.dto.EventDto;
 import com.infoshareacademy.kulturalniweb.entities.event.EventEntity;
 import com.infoshareacademy.kulturalniweb.jsonData.EventNew;
 import com.infoshareacademy.kulturalniweb.mappers.EventMapper;
 import com.infoshareacademy.kulturalniweb.repository.EventsRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 import java.util.ArrayList;

@@ -1,6 +1,4 @@
-package com.infoshareacademy.kulturalniweb.models;
-
-import com.infoshareacademy.kulturalniweb.dto.EventDto;
+package com.infoshareacademy.kulturalniweb.models.dto;
 
 public class EditEventDto extends NewEventDto{
     private EventDto eventDto;

@@ -1,13 +1,12 @@
 package com.infoshareacademy.kulturalniweb.repository;
 
-import com.infoshareacademy.kulturalniweb.dto.EventDto;
+import com.infoshareacademy.kulturalniweb.models.dto.EventDto;
 import com.infoshareacademy.kulturalniweb.entities.event.*;
 import com.infoshareacademy.kulturalniweb.mappers.EventMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;

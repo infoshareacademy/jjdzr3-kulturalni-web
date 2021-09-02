@@ -1,4 +1,4 @@
-package com.infoshareacademy.kulturalniweb.models;
+package com.infoshareacademy.kulturalniweb.models.dto;
 
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Future;

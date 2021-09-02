@@ -1,7 +1,6 @@
 package com.infoshareacademy.kulturalniweb.controllers;
 
-import com.infoshareacademy.kulturalniweb.dto.EventDto;
-import com.infoshareacademy.kulturalniweb.jsonData.EventSimple;
+import com.infoshareacademy.kulturalniweb.models.dto.EventDto;
 import com.infoshareacademy.kulturalniweb.services.EventSimpleMemoryServiceClass;
 import com.infoshareacademy.kulturalniweb.services.RepositoryServiceClass;
 import com.infoshareacademy.kulturalniweb.services.SortingServices;
@@ -23,7 +22,7 @@ public class MainController {
         this.sortingServices = sortingServices;
     }
 
-    @GetMapping("/")
+    @GetMapping("/home")
     public String displayMainPage(Model model) {
 
         repositoryServiceClass.readEventsFromGsonToList();
@@ -41,5 +40,9 @@ public class MainController {
         model.addAttribute("thirdNewestEvent", newestEvents.get(2));
 
         return "index";
+    }
+    @GetMapping("/")
+    public String displayHomePage() {
+        return "redirect:home";
     }
 }

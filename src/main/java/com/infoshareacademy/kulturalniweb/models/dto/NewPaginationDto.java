@@ -1,4 +1,4 @@
-package com.infoshareacademy.kulturalniweb.dto;
+package com.infoshareacademy.kulturalniweb.models.dto;
 
 import org.springframework.stereotype.Component;
 

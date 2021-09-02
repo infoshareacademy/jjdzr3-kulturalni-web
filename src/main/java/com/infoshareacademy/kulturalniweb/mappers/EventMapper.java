@@ -1,9 +1,9 @@
 package com.infoshareacademy.kulturalniweb.mappers;
 
-import com.infoshareacademy.kulturalniweb.dto.EventDto;
+import com.infoshareacademy.kulturalniweb.models.dto.EventDto;
 import com.infoshareacademy.kulturalniweb.entities.event.*;
 import com.infoshareacademy.kulturalniweb.jsonData.EventNew;
-import com.infoshareacademy.kulturalniweb.models.EditEventDto;
+import com.infoshareacademy.kulturalniweb.models.dto.EditEventDto;
 import com.infoshareacademy.kulturalniweb.services.PictureService;
 import org.springframework.stereotype.Component;
 

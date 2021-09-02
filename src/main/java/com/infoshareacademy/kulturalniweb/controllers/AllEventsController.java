@@ -1,9 +1,8 @@
 package com.infoshareacademy.kulturalniweb.controllers;
 
-import com.infoshareacademy.kulturalniweb.dto.EventDto;
-import com.infoshareacademy.kulturalniweb.dto.NewPaginationDto;
+import com.infoshareacademy.kulturalniweb.models.dto.EventDto;
+import com.infoshareacademy.kulturalniweb.models.dto.NewPaginationDto;
 import com.infoshareacademy.kulturalniweb.jsonData.EventSimple;
-import com.infoshareacademy.kulturalniweb.dto.PaginationDto;
 import com.infoshareacademy.kulturalniweb.repository.EventSimpleMemory;
 import com.infoshareacademy.kulturalniweb.repository.ListEventRepository;
 import com.infoshareacademy.kulturalniweb.services.*;
@@ -57,14 +56,13 @@ public class AllEventsController {
         this.newPaginationDto = newPaginationDto;
     }
 
-    @GetMapping("/alleventsindex")
+    @GetMapping("/allEventsIndex")
     public String displayAllEventsFromIndex () {
                     sortingServices.setEventFilterType("all");
                     sortingServices.setEventFilterPlace("all");
                     sortingServices.setEventSortType("date");
                     sortingServices.setEventSortDirection("descending");
                     sortingServices.setNumberOfEventsOnThePage(15);
-                    paginationServiceClass.setVirtualDisplayedPageNumber(1);
 
         sortingParameters.put("eventFilterType", "> 0");
         sortingParameters.put("eventFilterPlace", "all");
@@ -99,10 +97,10 @@ public class AllEventsController {
         sortingParameters.put("totalNumberOfEvents", totalNumberOfEvents.toString());
                     numberOfPageThatIsBeeingDisplayed = 1;
 
-        return "redirect:allevents";
+        return "redirect:allEvents";
     }
 
-    @GetMapping("/allevents")
+    @GetMapping("/allEvents")
     public String allEvents (Model model) {
 
         // Usunąć ifa - przy naprawieniu listy wydarzeń do bazy
@@ -136,7 +134,7 @@ public class AllEventsController {
         sortingParameters.put("totalNumberOfEvents", eventDtosSize.toString());
         NewPaginationDto newPaginationDto = newPaginationServiceClass.getNewPaginationDto(sortingParameters);
         model.addAttribute("newPaginationDto", newPaginationDto);
-        return "allevents";
+        return "allEvents";
     }
 
 
@@ -154,7 +152,7 @@ public class AllEventsController {
 
         resetSortingparameters();
 
-        return "redirect:allevents";
+        return "redirect:allEvents";
     }
 
     @GetMapping("/eventFilterType")
@@ -206,7 +204,7 @@ public class AllEventsController {
         sortingParameters.put("eventFilterPlace", eventFilterPlace);
                         System.out.println(sortingParameters.get("eventFilterPlace"));
         resetSortingparameters();
-        return "redirect:allevents";
+        return "redirect:allEvents";
     }
 
     @GetMapping("/eventSortType")
@@ -224,7 +222,7 @@ public class AllEventsController {
         }
 
                         //sortingParameters.put("eventSortType", eventSortType);
-        return "redirect:allevents";
+        return "redirect:allEvents";
     }
 
     @GetMapping("/eventSortDirection")
@@ -236,7 +234,7 @@ public class AllEventsController {
         } else {
             sortingParameters.put("eventSortDirection", "DESC");
         }
-        return "redirect:allevents";
+        return "redirect:allEvents";
     }
 
     @GetMapping("/alleventsChangePage")
@@ -244,14 +242,14 @@ public class AllEventsController {
         sortingParameters.put("requestedPageNumber", requestedPageNumber.toString());
 
         System.out.println("Req Page number: " + requestedPageNumber);
-        return "redirect:allevents";
+        return "redirect:allEvents";
     }
 
     private List<EventSimple> selectEventsForEachPage() {
         List<EventSimple> eventSimpleMemoryList = eventSimpleMemoryServiceClass.getListOfEventSimpleFromMemory();
         List<EventSimple> result = new ArrayList<>();
 
-        if (numberOfPageThatIsBeeingDisplayed < paginationServiceClass.getTotalNumberOfPages()) {
+        if (numberOfPageThatIsBeeingDisplayed <paginationServiceClass.getTotalNumberOfPages()) {
             Integer startIndex = (numberOfPageThatIsBeeingDisplayed - 1) * numberOfEventsOnThePage;
             Integer endIndex = (startIndex + (numberOfEventsOnThePage -1));
 
@@ -277,7 +275,7 @@ public class AllEventsController {
         System.out.println(favId);
         eventService.updateFavourite(id, favStatus);
 
-        return "redirect:allevents";
+        return "redirect:allEvents";
     }
 
     private String calculateNumberOfResultPages(Integer eventDtosSize, String numberOfEventsOnThePage) {

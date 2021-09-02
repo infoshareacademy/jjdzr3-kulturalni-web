@@ -1,21 +1,21 @@
 package com.infoshareacademy.kulturalniweb.controllers;
 
+import com.infoshareacademy.kulturalniweb.entities.user.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class LoginController {
+public class SignInController {
 
-    @GetMapping("/login")
-    public String login(Model model) {
-        return "login";
+    @GetMapping("/sign-in")
+    public String signIn() {
+        return "sign-in";
     }
 
-    @PostMapping("/loginSubmit")
-    public String loginSubmit() {
-
-        return "main";
+    @PostMapping("/sign-in")
+    public String signInSubmit() {
+        return "index";
     }
 }

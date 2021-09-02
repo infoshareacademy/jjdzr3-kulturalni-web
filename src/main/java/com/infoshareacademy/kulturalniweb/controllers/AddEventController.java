@@ -1,7 +1,7 @@
 package com.infoshareacademy.kulturalniweb.controllers;
 
 import com.infoshareacademy.kulturalniweb.jsonData.EventNew;
-import com.infoshareacademy.kulturalniweb.models.NewEventDto;
+import com.infoshareacademy.kulturalniweb.models.dto.NewEventDto;
 import com.infoshareacademy.kulturalniweb.services.RepositoryServiceClass;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
