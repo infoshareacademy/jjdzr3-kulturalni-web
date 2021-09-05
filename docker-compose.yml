@@ -10,19 +10,10 @@ services:
       MYSQL_DATABASE: $DB_NAME
       MYSQL_USER: $DB_USER
       MYSQL_PASSWORD: $DB_PASSWORD
+      MYSQL_COLLATION_SERVER: utf8_polish_ci
     ports:
       - "3306:3306"
     volumes:
       - ./db/mysql:/var/lib/mysql
 #      - ./db/dump.sql:/docker-entrypoint-initdb.d/dump.sql
 
-  adminer:
-    container_name: "${PROJECT_NAME}_adminer"
-    image: wodby/adminer:$ADMINER_TAG
-    environment:
-      # For PostgreSQL:
-      #      ADMINER_DEFAULT_DB_DRIVER: pgsql
-      ADMINER_DEFAULT_DB_HOST: $DB_HOST
-      ADMINER_DEFAULT_DB_NAME: $DB_NAME
-    labels:
-      - "traefik.http.routers.${PROJECT_NAME}_adminer.rule=Host(`adminer.${PROJECT_BASE_URL}`)"

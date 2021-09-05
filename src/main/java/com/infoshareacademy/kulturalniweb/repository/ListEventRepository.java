@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class ListEventRepository {
         clearList();
         Gson gson = new Gson();
         try {
-            FileReader reader = new FileReader(String.valueOf(path));
+            FileReader reader = new FileReader(String.valueOf(path), StandardCharsets.UTF_8);
             EventNew[] eventList = gson.fromJson(reader, EventNew[].class);
 
             for (EventNew eventNew : eventList) {
