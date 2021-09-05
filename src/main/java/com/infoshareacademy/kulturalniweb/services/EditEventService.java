@@ -20,7 +20,7 @@ public class EditEventService {
 
     public void saveEditedEvent(EditEventDto editEventDto) {
         EventEntity eventEntity = eventMapper.mapEditEventDtoToEventEntity(editEventDto);
-        //eventService.saveEditedEvent(eventEntity);
+        eventService.saveEditedEvent(eventEntity);
 
 
 

@@ -266,6 +266,7 @@ public class EventMapper {
         EventEntity eventEntity = new EventEntity();
 
         eventEntity.setName(editEventDto.getNewEventName());
+        eventEntity.setId(editEventDto.getNewEventId());
 
         PlaceEntity placeEntity = new PlaceEntity();
         placeEntity.setName(editEventDto.getNewEventPlace());
@@ -295,7 +296,7 @@ public class EventMapper {
         urlEntity.setUrl(editEventDto.getNewEventUrl());
         eventEntity.setUrlEntity(urlEntity);
 
-        eventEntity.setDescLong("brak - do zroienia input");
+        eventEntity.setDescLong("brak - do zrobienia input");
         eventEntity.setPicture(GRAPHICS_PATH + editEventDto.getNewEventImage());
         eventEntity.setFavourite(false);
 

@@ -47,7 +47,6 @@ public class EditEventController {
     public String updateEvent(@ModelAttribute @Valid EditEventDto editEventDto, BindingResult result, Model model) {
 
         editEventService.saveEditedEvent(editEventDto);
-        System.out.println(editEventDto.getNewEventId() + "  id");
         EventDto eventDto = editEventService.getSingleEvent(editEventDto.getNewEventId());
         EventDto resultDto = recodecategoryId(eventDto);
 
