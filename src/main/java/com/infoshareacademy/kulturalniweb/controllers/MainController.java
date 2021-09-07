@@ -38,9 +38,9 @@ public class MainController {
         }
 
         List<EventDto> closestEvents = sortingServices.createListOfClosestEvents();
-        model.addAttribute("firstClosestEvent", closestEvents.get(0));
-        model.addAttribute("secondClosestEvent", closestEvents.get(1));
-        model.addAttribute("thirdClosestEvent", closestEvents.get(2));
+        model.addAttribute("firstClosestEvent", closestEvents.get(closestEvents.size() - 1));
+        model.addAttribute("secondClosestEvent", closestEvents.get(closestEvents.size() - 2));
+        model.addAttribute("thirdClosestEvent", closestEvents.get(closestEvents.size() - 3));
 
         List<EventDto> newestEvents = sortingServices.createListOfNewestEvents();
         model.addAttribute("firstNewestEvent", newestEvents.get(0));
