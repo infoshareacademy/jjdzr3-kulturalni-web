@@ -247,7 +247,7 @@ public class EventMapper {
         editEventDto.setDescLong(eventDto.getDescLong());
         editEventDto.setCategoryId(eventDto.getCategoryId());
         editEventDto.setStartDateDate(eventDto.getStartDateDate());
-        editEventDto.setStartDateTime(eventDto.getStartDateDate());
+        editEventDto.setStartDateTime(eventDto.getStartDateTime());
         editEventDto.setStartDateLastTime(eventDto.getStartDateLastTime());
         editEventDto.setOrganizerId(eventDto.getOrganizerId());
         editEventDto.setOrganizerName(eventDto.getOrganizerName());
@@ -274,10 +274,10 @@ public class EventMapper {
 
         eventEntity.setCity(editEventDto.getNewEventCity());
         eventEntity.setStartDateDate(editEventDto.getNewEventStartDate());
-        eventEntity.setStartDateTime(editEventDto.getNewEventStartTime() + ":00");
+        eventEntity.setStartDateTime(editEventDto.getNewEventStartTime());//+ ":00"
         eventEntity.setStartDateLastTime("00:00");
         eventEntity.setEndDateDate(editEventDto.getNewEventEndDate());
-        eventEntity.setEndDateTime(editEventDto.getNewEventEndTime() + ":00");
+        eventEntity.setEndDateTime(editEventDto.getNewEventEndTime());//+ ":00"
         eventEntity.setEndDateLastTime("00:00");
 
         String ticket = "?";
@@ -296,7 +296,8 @@ public class EventMapper {
         urlEntity.setUrl(editEventDto.getNewEventUrl());
         eventEntity.setUrlEntity(urlEntity);
 
-        eventEntity.setDescLong("brak - do zrobienia input");
+        //eventEntity.setDescLong("brak - do zrobienia input");
+        eventEntity.setDescLong(editEventDto.getDescLong());
         eventEntity.setPicture(GRAPHICS_PATH + editEventDto.getNewEventImage());
         eventEntity.setFavourite(false);
 
@@ -310,6 +311,7 @@ public class EventMapper {
         eventEntity.setOrganizerEntity(organizerEntity);
 
         eventEntity.setActive("1");
+        eventEntity.setCategoryId(editEventDto.getCategoryId());
 
         return eventEntity;
     }

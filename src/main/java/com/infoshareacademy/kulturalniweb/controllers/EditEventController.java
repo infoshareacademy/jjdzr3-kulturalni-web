@@ -37,6 +37,7 @@ public class EditEventController {
         EventDto eventDto = editEventService.getSingleEvent(id);
 
         EditEventDto editEventDto = eventMapper.mapEventDtoToEditEventDto(eventDto);
+        System.out.println(editEventDto.getPicture() + "  picture");
 
         model.addAttribute("editEventDto", editEventDto);
 
@@ -69,7 +70,7 @@ public class EditEventController {
     private EventDto recodecategoryId(EventDto eventDtoFromDB) {
         EventDto result = eventDtoFromDB;
         String code = result.getCategoryId();
-
+        System.out.println("aaa " + code);
         if(code.equals("1")) {
             result.setCategoryId("Kino");
         } else if(code.equals("19")) {
