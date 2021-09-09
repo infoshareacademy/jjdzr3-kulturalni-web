@@ -134,7 +134,7 @@ public class AllEventsController {
         sortingParameters.put("totalNumberOfEvents", eventDtosSize.toString());
         NewPaginationDto newPaginationDto = newPaginationServiceClass.getNewPaginationDto(sortingParameters);
         model.addAttribute("newPaginationDto", newPaginationDto);
-        return "allEvents";
+        return "allevents";
     }
 
 
