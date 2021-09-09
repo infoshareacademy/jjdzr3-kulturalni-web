@@ -1,14 +1,19 @@
 package com.infoshareacademy.kulturalniweb.mappers;
 
-import com.infoshareacademy.kulturalniweb.models.dto.EventDto;
+import com.infoshareacademy.kulturalniweb.dto.AddEventDto;
+import com.infoshareacademy.kulturalniweb.dto.EventDto;
 import com.infoshareacademy.kulturalniweb.entities.event.*;
 import com.infoshareacademy.kulturalniweb.jsonData.EventNew;
-import com.infoshareacademy.kulturalniweb.models.dto.EditEventDto;
+import com.infoshareacademy.kulturalniweb.models.EditEventDto;
 import com.infoshareacademy.kulturalniweb.services.PictureService;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class EventMapper {
+
+    private final String GRAPHICS_PATH = "images/img/events/";
 
     PictureService pictureService;
 
@@ -58,7 +63,14 @@ public class EventMapper {
         eventEntity.setDescShort(eventNew.getDescShort());
 
         TicketEntity ticketEntity = new TicketEntity();
-        ticketEntity.setType(eventNew.getTickets().getType());
+
+        try {
+            Integer price = Integer.parseInt(eventNew.getTickets().getType());
+            ticketEntity.setType(price.toString());
+        } catch (Exception e) {
+            ticketEntity.setType("Impreza darmowa");
+        }
+
         eventEntity.setTicketEntity(ticketEntity);
 
         eventEntity.setPicture(pictureService.getPictureFilename());
@@ -157,8 +169,10 @@ public class EventMapper {
         EditEventDto resultEditEventDto = new EditEventDto();
         EventDto resultEventDto = new EventDto();
 
-        resultEventDto.setId(editEventDto.getNewEventId());
-        resultEventDto.setName(editEventDto.getNewEventName());
+        System.out.println(editEventDto.getNewEventName());
+
+        //resultEventDto.setId(editEventDto.getNewEventId());
+        //resultEventDto.setName(editEventDto.getNewEventName());
         //resultEventDto.setPlaceName();
 
 
@@ -166,5 +180,137 @@ public class EventMapper {
 
 
         return resultEditEventDto;
+    }
+
+    public EventEntity mapAddEventDtoToEventEntity(AddEventDto addEventDto) {
+        EventEntity eventEntity = new EventEntity();
+
+        eventEntity.setName(addEventDto.getName());
+
+        PlaceEntity placeEntity = new PlaceEntity();
+        placeEntity.setName(addEventDto.getPlaceName());
+        eventEntity.setPlaceEntity(placeEntity);
+
+        eventEntity.setCity(addEventDto.getCity());
+        eventEntity.setStartDateDate(addEventDto.getStartDateDate());
+        eventEntity.setStartDateTime(addEventDto.getStartDateTime() + ":00");
+        eventEntity.setStartDateLastTime("00:00");
+        eventEntity.setEndDateDate(addEventDto.getEndDateDate());
+        eventEntity.setEndDateTime(addEventDto.getEndDateTime() + ":00");
+        eventEntity.setEndDateLastTime("00:00");
+
+        String ticket;
+        if(addEventDto.getTicketFree()) {
+            ticket = "Impreza darmowa";
+        } else {
+            ticket = addEventDto.getTicket();
+        }
+
+        TicketEntity ticketEntity = new TicketEntity();
+        ticketEntity.setType(ticket);
+        eventEntity.setTicketEntity(ticketEntity);
+
+        UrlEntity urlEntity = new UrlEntity();
+        urlEntity.setUrl(addEventDto.getUrl());
+        eventEntity.setUrlEntity(urlEntity);
+
+        eventEntity.setDescLong(addEventDto.getDescLong());
+        eventEntity.setPicture(addEventDto.getPicture());
+        eventEntity.setFavourite(false);
+
+        AttachmentEntity attachmentEntity = new AttachmentEntity();
+        attachmentEntity.setFileName("no file");
+        eventEntity.setAttachmentEntity(attachmentEntity);
+
+        OrganizerEntity organizerEntity = new OrganizerEntity();
+        organizerEntity.setDesignation("org");
+        //organizerEntity.setId(14);
+        eventEntity.setOrganizerEntity(organizerEntity);
+
+        eventEntity.setActive("1");
+        eventEntity.setCategoryId(addEventDto.getCategoryId());
+
+        return eventEntity;
+    }
+
+    public EditEventDto mapEventDtoToEditEventDto(EventDto eventDto) {
+        EditEventDto editEventDto = new EditEventDto();
+
+        editEventDto.setId(eventDto.getId());
+        editEventDto.setPlaceName(eventDto.getPlaceName());
+        editEventDto.setEndDateDate(eventDto.getEndDateDate());
+        editEventDto.setEndDateTime(eventDto.getEndDateTime());
+        editEventDto.setEndDateLastTime(eventDto.getEndDateLastTime());
+        editEventDto.setName(eventDto.getName());
+        editEventDto.setUrl(eventDto.getUrl());
+        editEventDto.setAttachment(eventDto.getAttachment());
+        editEventDto.setDescLong(eventDto.getDescLong());
+        editEventDto.setCategoryId(eventDto.getCategoryId());
+        editEventDto.setStartDateDate(eventDto.getStartDateDate());
+        editEventDto.setStartDateTime(eventDto.getStartDateDate());
+        editEventDto.setStartDateLastTime(eventDto.getStartDateLastTime());
+        editEventDto.setOrganizerId(eventDto.getOrganizerId());
+        editEventDto.setOrganizerName(eventDto.getOrganizerName());
+        editEventDto.setStatus(eventDto.getStatus());
+        editEventDto.setDescShort(eventDto.getDescShort());
+        editEventDto.setTicket(eventDto.getTicket());
+        editEventDto.setPicture(eventDto.getPicture());
+        editEventDto.setCity(eventDto.getCity());
+        editEventDto.setFavourite(eventDto.getFavourite());
+
+        return editEventDto;
+    }
+
+
+    public EventEntity mapEditEventDtoToEventEntity(EditEventDto editEventDto) {
+        EventEntity eventEntity = new EventEntity();
+
+        eventEntity.setName(editEventDto.getNewEventName());
+        eventEntity.setId(editEventDto.getNewEventId());
+
+        PlaceEntity placeEntity = new PlaceEntity();
+        placeEntity.setName(editEventDto.getNewEventPlace());
+        eventEntity.setPlaceEntity(placeEntity);
+
+        eventEntity.setCity(editEventDto.getNewEventCity());
+        eventEntity.setStartDateDate(editEventDto.getNewEventStartDate());
+        eventEntity.setStartDateTime(editEventDto.getNewEventStartTime() + ":00");
+        eventEntity.setStartDateLastTime("00:00");
+        eventEntity.setEndDateDate(editEventDto.getNewEventEndDate());
+        eventEntity.setEndDateTime(editEventDto.getNewEventEndTime() + ":00");
+        eventEntity.setEndDateLastTime("00:00");
+
+        String ticket = "?";
+
+/*        if(editEventDto.getNewEventPriceFree().equals(null)) {
+            ticket = "Impreza darmowa";
+        } else {
+            ticket = editEventDto.getNewEventPrice();
+        }*/
+
+        TicketEntity ticketEntity = new TicketEntity();
+        ticketEntity.setType(ticket);
+        eventEntity.setTicketEntity(ticketEntity);
+
+        UrlEntity urlEntity = new UrlEntity();
+        urlEntity.setUrl(editEventDto.getNewEventUrl());
+        eventEntity.setUrlEntity(urlEntity);
+
+        eventEntity.setDescLong("brak - do zrobienia input");
+        eventEntity.setPicture(GRAPHICS_PATH + editEventDto.getNewEventImage());
+        eventEntity.setFavourite(false);
+
+        AttachmentEntity attachmentEntity = new AttachmentEntity();
+        attachmentEntity.setFileName("no file");
+        eventEntity.setAttachmentEntity(attachmentEntity);
+
+        OrganizerEntity organizerEntity = new OrganizerEntity();
+        organizerEntity.setDesignation("org");
+        //organizerEntity.setId(14);
+        eventEntity.setOrganizerEntity(organizerEntity);
+
+        eventEntity.setActive("1");
+
+        return eventEntity;
     }
 }

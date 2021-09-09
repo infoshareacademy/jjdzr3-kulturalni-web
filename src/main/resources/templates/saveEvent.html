@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
-    <title>Kulturalni - Formularz dodania wydarzenia </title>
+    <title>Kulturalni - Formularz edycji wydarzenia </title>
 
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" sizes="32x32" href="images/favicon.ico">
@@ -21,109 +21,100 @@
 <header class="masthead text-dark">
     <div class="container" id="greeting">
         <img class="mb-4" src="images/img/logos/logo.png" alt="" width="150" height="145">
-        <h4 class="mb-3 fw-normal text-warning" th:text="#{saveEvent.greeting}"></h4>
+        <h4 class="mb-3 fw-normal text-warning" th:text="#{editEvent.greeting}"></h4>
     </div>
 
-    <div class="container col-lg-4 dark"
-         style="text-align: left; background-color: rgba(255,255,255,0.7); border-radius: 25px">
-
-        <!-- idEvent -->
+    <div class="container col-lg-6">
+        <!--    <form action="#" th:action="@{/updateEvent}" th:object="${eventDto}" method="post">-->
+        <!-- idEvent input -->
         <div class="row event-description">
-            <div class="col-md-4">
-                <label>Id wydarzenia: </label>
-            </div>
-            <div class="col-md-1">
-                <p th:text="${newEventDto.getNewEventId()}"></p>
+            <div class="text-warning">
+                <p>Id wydarzenia <input type="text" class="form-control" th:value="${eventDto.getId()}" readonly style="background-color: #20c997"></p>
             </div>
         </div>
-        <!-- nameEvent -->
+        <!-- nameEvent input -->
         <div class="row event-description">
-            <div class="col-md-4">
-                <label>Nazwa wydarzenia: </label>
-            </div>
-            <div class="col-md-1">
-                <p th:text="${newEventDto.getNewEventName()}"></p>
+            <div class="text-warning">
+                <label for="nameEvent"></label>
+                <p>Nazwa wydarzenia <input type="text" class="form-control" id="nameEvent" th:value="${eventDto.getName()}" readonly style="background-color: #20c997"></p>
             </div>
         </div>
-        <!-- placeEvent -->
+        <!-- placeEvent input -->
         <div class="row event-description">
-            <div class="col-md-4">
-                <label>Miejsca wydarzenia: </label>
-            </div>
-            <div class="col-md-1">
-                <p th:text="${newEventDto.getNewEventPlace()}"></p>
+            <div class="text-warning">
+                <label for="placeEvent"></label>
+                <p>Miejsce <input type="text" class="form-control" id="placeEvent" th:value="${eventDto.getPlaceName()}" readonly style="background-color: #20c997"></p>
             </div>
         </div>
-        <!-- cityEvent -->
+        <!-- categoryId input -->
         <div class="row event-description">
-            <div class="col-md-4">
-                <label>Miejsca wydarzenia: </label>
-            </div>
-            <div class="col-md-1">
-                <p th:text="${newEventDto.getNewEventCity()}"></p>
+            <div class="text-warning">
+                <label for="placeEvent"></label>
+                <p>Kategoria wydarzenia <input type="text" class="form-control" id="categoryid" th:value="${eventDto.getCategoryId()}" readonly style="background-color: #20c997"></p>
             </div>
         </div>
-        <!-- startEvent -->
+        <!-- cityEvent input -->
         <div class="row event-description">
-            <div class="col-md-4">
-                <label>Początek wydarzenia:</label>
+            <div class="text-warning">
+                <label for="cityEvent"></label>
+                <p>Miejscowość <input type="text" class="form-control" id="cityEvent" th:value="${eventDto.getCity()}" readonly style="background-color: #20c997"></p>
             </div>
-            <div class="col-md-3">
-                <p th:text="${newEventDto.getNewEventStartDate()}"></p>
+        </div>
+        <!-- startEvent input -->
+        <div class="row event-description">
+            <div class="col">
+                <label for="sortEventsDateStart" class="text-warning">Początek wydarzenia</label>
+                <p class="text-warning">Data rozpoczęcia <input type="date" class="form-control" id="sortEventsDateStart" th:value="${eventDto.getStartDateDate()}" readonly style="background-color: #20c997"></p>
             </div>
-            <div class="col-md-2">
-                <p th:text="${newEventDto.getNewEventStartTime()}"></p>
+            <div class="col">
+                <label for="startEventTimeStart"></label>
+                <p class="text-warning">Godzina rozpoczęcia <input type="time" class="form-control" id="startEventTimeStart" th:value="${eventDto.getStartDateTime()}" readonly style="background-color: #20c997"></p>
             </div>
         </div>
         <!-- endEvent input -->
         <div class="row event-description">
-            <div class="col-md-4">
-                <label>Koniec wydarzenia</label>
+            <div class="col">
+                <label for="sortEventsDateEnd" class="text-warning">Koniec wydarzenia</label>
+                <p class="text-warning">Data zakończenia <input type="date" class="form-control" id="sortEventsDateEnd" th:value="${eventDto.getEndDateDate()}" readonly style="background-color: #20c997"></p>
             </div>
-            <div class="col-md-3">
-                <p th:text="${newEventDto.getNewEventEndDate()}"></p>
-            </div>
-            <div class="col-md-2">
-                <p th:text="${newEventDto.getNewEventEndTime()}"></p>
-            </div>
-        </div>
-        <!-- priceEvent  -->
-        <div class="row event-description">
-            <div class="col-md-4">
-                <label>Cena wydarzenia: </label>
-            </div>
-            <div class="col-md-1" style="width: 185px">
-                <span th:text="${newEventDto.getNewEventPrice()}"></span>
-                <span th:if="${newEventDto.getNewEventPriceFree()}">Wydarzenie Bezpłatne</span>
+            <div class="col">
+                <label for="startEventTimeEnd"></label>
+                <p class="text-warning">Godzina zakończenia <input type="time" class="form-control" id="startEventTimeEnd" th:value="${eventDto.getEndDateTime()}" readonly style="background-color: #20c997"></p>
             </div>
         </div>
-        <!-- urlAddress -->
+        <!-- priceEvent input -->
         <div class="row event-description">
-            <div class="col-md-4">
-                <label>Adres Strony: </label>
+            <div class="col text-warning">
+                <label for="priceEvent"></label>
+                <p>Cena <input type="text" class="form-control" id="priceEvent" th:value="${eventDto.getTicket()}" readonly style="background-color: #20c997"></p>
             </div>
-            <div class="col-md-1">
-                <p th:text="${newEventDto.getNewEventUrl()}"></p>
+<!--            <div class="col text-warning">
+                <br><p></p>
+                <input class="form-check-input" type="checkbox" id="priceEventFree"
+                       onclick="this.form.elements['priceEvent'].disabled = this.checked" fname="newEventPriceFree">
+                <label class="form-check-label text-warning" for="priceEventFree">Wydarzenie Bezpłatne</label>
+            </div>-->
+        </div>
+        <!-- urlAddress input -->
+        <div class="row event-description">
+            <div class="col text-warning">
+                <label for="urlAddress"></label>
+                <p>URL <input type="text" class="form-control" id="urlAddress" th:value="${eventDto.getUrl()}" readonly style="background-color: #20c997"></p>
             </div>
         </div>
         <!-- descriptionEvent input -->
-        <div class="row event-description ">
-            <div class="col-md-4">
-                <label>Opis: </label>
-            </div>
-            <div class="col-md-1 text-dark">
-                <p style="overflow: auto; overflow-wrap: break-word; width: 300px; height: 150px; border: 1px solid #000;
-  float: left; margin-left: auto; margin-right: auto; background-color:white;"
-                   th:text="${newEventDto.getNewEventDescription()}"></p>
+        <div class="row event-description">
+            <div class="col text-warning">
+                <label for="descriptionEvent"></label>
+                <p>Opis wydarzenia (długi) <textarea class="form-control" id="descriptionEvent"
+                                                     rows="3" name="newEventDescription"></textarea></p>
             </div>
         </div>
-        <!-- imageEvent input -->
+        <!-- imageEvent display -->
         <div class="row event-description">
-            <div class="col-md-4">
-                <label>Image: </label>
-            </div>
-            <div class="col-md-1">
-                <img th:img="${newEventDto.getNewEventImage()}" style="margin-bottom: 50px">
+            <div class="col text-warning">
+                <p>Obrazek przypisany do wydarzenia</p>
+                <p><img th:src="${eventDto.getPicture()}" ></p>
             </div>
         </div>
     </div>

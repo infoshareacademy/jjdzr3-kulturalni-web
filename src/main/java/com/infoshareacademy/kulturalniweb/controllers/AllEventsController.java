@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,7 +29,6 @@ public class AllEventsController {
     NewPaginationDto newPaginationDto;
 
 
-    Boolean fileNotReadYet = true;
     Integer favId = 0;
 
     private Integer totalNumberOfEvents = 0;
@@ -58,11 +56,12 @@ public class AllEventsController {
 
     @GetMapping("/allEventsIndex")
     public String displayAllEventsFromIndex () {
-                    sortingServices.setEventFilterType("all");
+/*                    sortingServices.setEventFilterType("all");
                     sortingServices.setEventFilterPlace("all");
                     sortingServices.setEventSortType("date");
                     sortingServices.setEventSortDirection("descending");
                     sortingServices.setNumberOfEventsOnThePage(15);
+                    paginationServiceClass.setVirtualDisplayedPageNumber(1);*/
 
         sortingParameters.put("eventFilterType", "> 0");
         sortingParameters.put("eventFilterPlace", "all");
@@ -92,10 +91,10 @@ public class AllEventsController {
 
 
 
-                    numberOfEventsOnThePage = 10;
+            /*        numberOfEventsOnThePage = 10;*/
         totalNumberOfEvents = eventsToDisplay.size();
         sortingParameters.put("totalNumberOfEvents", totalNumberOfEvents.toString());
-                    numberOfPageThatIsBeeingDisplayed = 1;
+                   /* numberOfPageThatIsBeeingDisplayed = 1;*/
 
         return "redirect:allEvents";
     }
@@ -103,19 +102,10 @@ public class AllEventsController {
     @GetMapping("/allEvents")
     public String allEvents (Model model) {
 
-        // Usunąć ifa - przy naprawieniu listy wydarzeń do bazy
-        if (fileNotReadYet) {
-            repositoryServiceClass.readEventsFromGsonToList();
-            eventSimpleMemoryServiceClass.clearMemory();
-            eventSimpleMemoryServiceClass.prepareSimpleEventsListFromRepository();
-            fileNotReadYet = false;
-        }
-
-
         sortingServices.sortBySelectedCriteria();
         sortingServices.filterByPlace();
 
-                    totalNumberOfEvents = eventSimpleMemory.getListOfEventSimple().size();
+                  /*  totalNumberOfEvents = eventSimpleMemory.getListOfEventSimple().size();*/
 
         model.addAttribute("numberOfEventsPerPage", Integer.parseInt(sortingParameters.get("numberOfEventsOnThePage")));
         model.addAttribute("eventFilterType", sortingParameters.get("eventFilterType"));
@@ -125,8 +115,12 @@ public class AllEventsController {
 
 
         Integer eventDtosSize = eventService.getSizeOfListOfSortedEventEntities(sortingParameters);
+
+/*        System.out.println("Liczba rekordów: " + eventDtosSize);*/
         sortingParameters.put("numberOfResultPages", calculateNumberOfResultPages(eventDtosSize, sortingParameters.get("numberOfEventsOnThePage")));
         List<EventDto> eventDtos = eventService.createListOfSortedEventEntities(sortingParameters);
+/*        System.out.println("sorting parameters" );
+        System.out.println("eventDtos size = " + eventDtos.size());*/
 
         model.addAttribute("listOfEventDto", eventDtos);
         model.addAttribute("favouriteEvent", favId);
@@ -244,6 +238,14 @@ public class AllEventsController {
         System.out.println("Req Page number: " + requestedPageNumber);
         return "redirect:allEvents";
     }
+
+    @GetMapping("/searchByText")
+    public String searchByText(@RequestParam("text") String text) {
+        System.out.println(text);
+
+        return text;
+    }
+
 
     private List<EventSimple> selectEventsForEachPage() {
         List<EventSimple> eventSimpleMemoryList = eventSimpleMemoryServiceClass.getListOfEventSimpleFromMemory();
