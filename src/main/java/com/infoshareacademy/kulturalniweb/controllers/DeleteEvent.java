@@ -20,6 +20,6 @@ public class DeleteEvent {
 
         deleteEventService.deleteEvent(id);
 
-        return "redirect:allevents";
+        return "redirect:allEvents";
     }
 }

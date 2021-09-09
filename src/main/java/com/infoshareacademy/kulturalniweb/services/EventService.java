@@ -29,7 +29,7 @@ public class EventService {
     public void eventEntityFromJsonSave(EventNew eventNew) {
         //System.out.println("DTO    " + eventNew.toString());
         EventEntity eventEntity = eventMapper.mapEventNewToEventEntity(eventNew);
-dateMapper.map(eventEntity);
+        dateMapper.map(eventEntity);
         //System.out.println("ENTITY " + eventEntity.toString());
 
         eventsRepository.save(eventEntity);
@@ -37,7 +37,7 @@ dateMapper.map(eventEntity);
 
     public List<EventNew> eventDtoFindAll() {
         List<EventEntity> list = (List<EventEntity>) eventsRepository.findAll();
-       // List<EventDto> result = eventMapper.
+        // List<EventDto> result = eventMapper.
         return null;
     }
 
@@ -47,11 +47,11 @@ dateMapper.map(eventEntity);
         return eventMapper.mapEventEntityToEventDto(eventEntity);
     }
 
-    public  List<EventDto> createListOfSortedEventEntities(Map<String, String> sortingParameters) {
+    public List<EventDto> createListOfSortedEventEntities(Map<String, String> sortingParameters) {
         List<EventEntity> eventEntities = eventsRepository.createListOfSortedEventEntities(sortingParameters);
         List<EventDto> eventDtos = new ArrayList<>();
 
-        for(EventEntity eventEntity : eventEntities) {
+        for (EventEntity eventEntity : eventEntities) {
             eventDtos.add(eventMapper.mapEventEntityToEventDto(eventEntity));
         }
 

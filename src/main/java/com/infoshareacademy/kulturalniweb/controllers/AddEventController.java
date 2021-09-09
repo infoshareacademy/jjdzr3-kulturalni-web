@@ -25,14 +25,14 @@ public class AddEventController {
     public String addEvent(Model model) {
         AddEventDto addEventDto = new AddEventDto();
         model.addAttribute("addEventDto", addEventDto);
-        return "addEventForm1";
+        return "addEventForm";
     }
 
     @PostMapping(value = "/saveEvent")
     public String addEvent(@ModelAttribute @Valid AddEventDto addEventDto, BindingResult result, Model model) {
         model.addAttribute("addEventDto", addEventDto);
         if (result.hasFieldErrors()) {
-            return "addEventForm1";
+            return "addEventForm";
         } else {
             String path = "images/img/events/" + addEventDto.getPicture();
             addEventDto.setPicture(path);
