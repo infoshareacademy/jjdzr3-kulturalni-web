@@ -8,7 +8,7 @@
     <link rel="icon" type="image/x-icon" sizes="32x32" href="images/favicon.ico">
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" type="text/css" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="css/additional.css">
+
 </head>
 
 <body id="page-top">
@@ -22,80 +22,82 @@
     </div>
 
     <div class="container col-lg-4">
-        <form action="#" th:action="@{/saveEvent}" th:object="${newEventDto}" method="post">
-            <!-- idEvent input -->
-            <div class="row event-description">
-                <div class="col">
-                    <input type="text" readonly class="form-control" value="Id Wydarzenia: 336695_640">
-                </div>
-            </div>
+        <form action="#" th:action="@{/saveEvent}" th:object="${addEventDto}" method="post">
             <!-- nameEvent input -->
             <div class="row event-description">
                 <div class="text-warning">
                     <label for="nameEvent"></label>
-                    <span th:if="${#fields.hasErrors('newEventName')}" th:errors="*{newEventName}"></span>
-                    <input type="text" class="form-control" id="nameEvent" placeholder="Nazwa wydarzenia"
-                           th:field="*{newEventName}">
+                    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                    <input type="text" class="form-control" id="nameEvent" placeholder="Nazwa wydarzenia" th:field="*{name}">
                 </div>
             </div>
             <!-- placeEvent input -->
             <div class="row event-description">
                 <div class="text-warning">
                     <label for="placeEvent"></label>
-                    <span th:if="${#fields.hasErrors('newEventPlace')}" th:errors="*{newEventPlace}"></span>
-                    <input type="text" class="form-control" id="placeEvent" placeholder="Miejsce wydarzenia"
-                           th:field="*{newEventPlace}">
+                    <span th:if="${#fields.hasErrors('placeName')}" th:errors="*{placeName}"></span>
+                    <input type="text" class="form-control" id="placeEvent" placeholder="Miejsce wydarzenia" th:field="*{placeName}">
+                </div>
+            </div>
+            <!-- categoryId input -->
+            <div class="row event-description">
+                <div class="text-warning">
+                    <label for="placeEvent"></label>
+                    <select class="dropdown-fields dropdown-field-type form-control" th:field="*{categoryId}">
+                        <option value="999" selected>Wszystkie rodzaje</option>
+                        <option value="1">Kino</option>
+                        <option value="19">Teatr</option>
+                        <option value="51">Sztuka</option>
+                        <option value="35">Muzyka</option>
+                        <option value="83">Nauka</option>
+                        <option value="61">Literatura</option>
+                        <option value="69">Rozrywka</option>
+                        <option value="77">Rekreacja</option>
+                        <option value="96">Inne</option>
+                    </select>
                 </div>
             </div>
             <!-- cityEvent input -->
             <div class="row event-description">
                 <div class="text-warning">
                     <label for="cityEvent"></label>
-                    <span th:if="${#fields.hasErrors('newEventCity')}" th:errors="*{newEventCity}"></span>
-                    <input type="text" class="form-control" id="cityEvent" placeholder="Miasto wydarzenia"
-                           th:field="*{newEventCity}">
+                    <span th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></span>
+                    <input type="text" class="form-control" id="cityEvent" placeholder="Miasto wydarzenia" th:field="*{city}">
                 </div>
             </div>
             <!-- startEvent input -->
             <div class="row event-description">
                 <div class="col">
                     <label for="sortEventsDateStart" class="text-warning">Początek wydarzenia</label>
-                    <input type="date" class="form-control" id="sortEventsDateStart" placeholder="Początek wydarzenia"
-                           th:field="*{newEventStartDate}">
+                    <input type="date" class="form-control" id="sortEventsDateStart" placeholder="Początek wydarzenia" th:field="*{startDateDate}">
                 </div>
                 <div class="col">
                     <label for="startEventTimeStart"></label>
-                    <input type="time" class="form-control" id="startEventTimeStart" placeholder="Początek wydarzenia"
-                           th:field="*{newEventStartTime}">
+                    <input type="time" class="form-control" id="startEventTimeStart" placeholder="Początek wydarzenia" th:field="*{startDateTime}">
                 </div>
             </div>
             <!-- endEvent input -->
             <div class="row event-description">
                 <div class="col">
                     <label for="sortEventsDateEnd" class="text-warning">Koniec wydarzenia</label>
-                    <input type="date" class="form-control" id="sortEventsDateEnd" placeholder="Koniec  wydarzenia"
-                           th:field="*{newEventEndDate}">
+                    <input type="date" class="form-control" id="sortEventsDateEnd" placeholder="Koniec  wydarzenia" th:field="*{endDateDate}" >
                 </div>
                 <div class="col">
                     <label for="startEventTimeEnd"></label>
-                    <input type="time" class="form-control" id="startEventTimeEnd" placeholder="Koniec wydarzenia"
-                           th:field="*{newEventEndTime}">
+                    <input type="time" class="form-control" id="startEventTimeEnd" placeholder="Koniec wydarzenia" th:field="*{endDateTime}" >
                 </div>
             </div>
             <!-- priceEvent input -->
             <div class="row event-description">
                 <div class="col text-warning">
                     <label for="priceEvent"></label>
-                    <span th:if="${#fields.hasErrors('newEventPrice')}" th:errors="*{newEventPrice}"></span>
-                    <input type="text" class="form-control" id="priceEvent" placeholder="Cena wydarzenia"
-                           th:field="*{newEventPrice}">
+                    <span th:if="${#fields.hasErrors('ticket')}" th:errors="*{ticket}"></span>
+                    <input type="text" class="form-control" id="priceEvent" placeholder="Cena wydarzenia" th:field="*{ticket}">
                 </div>
                 <div class="col text-warning">
-                    <br>
-                    <p></p>
+                    <br><p></p>
                     <input class="form-check-input" type="checkbox" id="priceEventFree"
-                           onclick="this.form.elements['priceEvent'].disabled = this.checked"
-                           th:field="*{newEventPriceFree}">
+                           onclick="this.form.elements['ticketFree'].disabled = this.checked" th:field="*{ticketFree}">
                     <label class="form-check-label text-warning" for="priceEventFree">Wydarzenie Bezpłatne</label>
                 </div>
             </div>
@@ -103,25 +105,23 @@
             <div class="row event-description">
                 <div class="col text-warning">
                     <label for="urlAddress"></label>
-                    <input type="text" class="form-control" id="urlAddress" placeholder="Adres strony"
-                           th:field="*{newEventUrl}">
+                    <input type="text" class="form-control" id="urlAddress" placeholder="Adres strony" th:field="*{url}">
                 </div>
             </div>
             <!-- descriptionEvent input -->
             <div class="row event-description">
                 <div class="col text-warning">
                     <label for="descriptionEvent"></label>
-                    <span th:if="${#fields.hasErrors('newEventDescription')}" th:errors="*{newEventDescription}"></span>
+                    <span th:if="${#fields.hasErrors('descLong')}" th:errors="*{descLong}"></span>
                     <textarea class="form-control" id="descriptionEvent" placeholder="Opis Wydarzenia"
-                              rows="3" th:field="*{newEventDescription}"></textarea>
+                              rows="3" th:field="*{descLong}"></textarea>
                 </div>
             </div>
             <!-- imageEvent input -->
             <div class="row event-description">
                 <div class="col text-warning">
-                    <input type="text" readonly class="form-control" value="Dodaj plik (JPG, PNG, GIF, RAW)"/>
-                    <input type="file" class="form-control-file text-warning" id="imageEvent"
-                           th:field="*{newEventImage}">
+                    <input type="text" readonly class="form-control" value="Dodaj plik (JPG, PNG, GIF, RAW)">
+                    <input type="file" class="form-control-file text-warning" id="imageEvent" th:field="*{picture}">
                 </div>
             </div>
             <!-- saveBottom -->
