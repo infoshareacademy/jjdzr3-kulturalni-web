@@ -25,14 +25,14 @@ public class AddEventController {
     public String addEvent(Model model) {
         NewEventDto newEventDto = new NewEventDto();
         model.addAttribute("newEventDto", newEventDto);
-        return "addEventForm";
+        return "addEventForm1";
     }
 
     @PostMapping(value = "/saveEvent")
     public String addEvent(@ModelAttribute @Valid NewEventDto newEventDto, BindingResult result, Model model) {
         model.addAttribute("newEventDto", newEventDto);
         if (result.hasFieldErrors()) {
-            return "addEventForm";
+            return "addEventForm1";
         } else {
             EventNew eventNew = repositoryServiceClass.createEventNewFromNewEventDto(newEventDto);
             repositoryServiceClass.saveEventNew(eventNew);
