@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -67,7 +69,16 @@ public class EventsRepository implements Dao<EventEntity> {
     }
 
     public List<EventDto> createListOfClosestEvents() {
-        final Query query = entityManager.createQuery("SELECT e FROM EventEntity e ORDER BY e.startDateDate DESC, e.startDateTime DESC", EventEntity.class);
+        LocalDate localDate = LocalDate.now();
+        LocalTime localTime = LocalTime.now();
+/*        String time = localTime.toString();
+        String[] timeTable = time.split(".");
+
+        System.out.println("date: " + localDate.toString() + "   time: " + timeTable[0] + "   time: " + time);*/
+
+        final Query query = entityManager.createQuery("SELECT e FROM EventEntity e WHERE e.startDateDate >= :dateNow ORDER BY e.startDateDate DESC, e.startDateTime DESC", EventEntity.class)
+                .setParameter("dateNow", localDate.toString());
+               // .setParameter("timeNow", timeTable[0]);  AND e.startDateDate >= :dateNow
         List<EventEntity> queryResult = query.getResultList();
         List<EventDto> eventDtos = new ArrayList<>();
         for(int i = 0; i < queryResult.size(); i++) {

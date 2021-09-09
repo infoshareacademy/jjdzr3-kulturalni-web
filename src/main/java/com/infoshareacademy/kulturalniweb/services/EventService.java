@@ -3,6 +3,7 @@ package com.infoshareacademy.kulturalniweb.services;
 import com.infoshareacademy.kulturalniweb.models.dto.EventDto;
 import com.infoshareacademy.kulturalniweb.entities.event.EventEntity;
 import com.infoshareacademy.kulturalniweb.jsonData.EventNew;
+import com.infoshareacademy.kulturalniweb.mappers.DateMapper;
 import com.infoshareacademy.kulturalniweb.mappers.EventMapper;
 import com.infoshareacademy.kulturalniweb.repository.EventsRepository;
 import org.springframework.stereotype.Service;
@@ -17,15 +18,18 @@ public class EventService {
 
     EventsRepository eventsRepository;
     EventMapper eventMapper;
+    DateMapper dateMapper;
 
-    public EventService(EventsRepository eventsRepository, EventMapper eventMapper) {
+    public EventService(EventsRepository eventsRepository, EventMapper eventMapper, DateMapper dateMapper) {
         this.eventsRepository = eventsRepository;
         this.eventMapper = eventMapper;
+        this.dateMapper = dateMapper;
     }
 
     public void eventEntityFromJsonSave(EventNew eventNew) {
         //System.out.println("DTO    " + eventNew.toString());
         EventEntity eventEntity = eventMapper.mapEventNewToEventEntity(eventNew);
+dateMapper.map(eventEntity);
         //System.out.println("ENTITY " + eventEntity.toString());
 
         eventsRepository.save(eventEntity);
