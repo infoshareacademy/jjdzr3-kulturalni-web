@@ -129,6 +129,7 @@ public class AllEventsController {
         sortingParameters.put("totalNumberOfEvents", eventDtosSize.toString());
         NewPaginationDto newPaginationDto = newPaginationServiceClass.getNewPaginationDto(sortingParameters);
         model.addAttribute("newPaginationDto", newPaginationDto);
+        System.out.println("filterType: " + sortingParameters.get("eventFilterType"));
         return "allEvents";
     }
 
