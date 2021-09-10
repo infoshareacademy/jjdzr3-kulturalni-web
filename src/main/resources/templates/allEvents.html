@@ -39,27 +39,66 @@
                             <label style="width: 245px">
                                 <select class="form-select" name="eventFilterType"
                                         onchange="this.form.submit()">
-                                    <option value="999" selected th:if="${eventFilterType == '> 0'}" th:text="#{filters.type.all}">Wszystkie rodzaje
+                                    <option value="999" selected th:if="${eventFilterType == '> 0'}"
+                                            th:text="#{filters.type.all}">Wszystkie rodzaje
                                     </option>
-                                    <option value="999" th:if="${eventFilterType != '> 0'}" th:text="#{filters.type.all}">Wszystkie rodzaje</option>
-                                    <option value="1" selected th:if="${eventFilterType == '= 1'}" th:text="#{filters.type.cinema}">kino</option>
-                                    <option value="1" th:if="${eventFilterType != '= 1'}" th:text="#{filters.type.cinema}">kino</option>
-                                    <option value="19" selected th:if="${eventFilterType == '= 19'}" th:text="#{filters.type.theater}">teatr</option>
-                                    <option value="19" th:if="${eventFilterType != '= 19'}" th:text="#{filters.type.theater}">teatr</option>
-                                    <option value="51" selected th:if="${eventFilterType == '= 51'}" th:text="#{filters.type.art}">sztuka</option>
-                                    <option value="51" th:if="${eventFilterType != '= 51'}" th:text="#{filters.type.art}">sztuka</option>
-                                    <option value="35" selected th:if="${eventFilterType == '= 35'}" th:text="#{filters.type.music}">muzyka</option>
-                                    <option value="35" th:if="${eventFilterType != '= 35'}" th:text="#{filters.type.music}">muzyka</option>
-                                    <option value="83" selected th:if="${eventFilterType == '= 83'}" th:text="#{filters.type.science}">nauka</option>
-                                    <option value="83" th:if="${eventFilterType != '= 83'}" th:text="#{filters.type.science}">nauka</option>
-                                    <option value="61" selected th:if="${eventFilterType == '= 61'}" th:text="#{filters.type.literature}">literatura</option>
-                                    <option value="61" th:if="${eventFilterType != '= 61'}" th:text="#{filters.type.literature}">literatura</option>
-                                    <option value="69" selected th:if="${eventFilterType == '= 69'}" th:text="#{filters.type.entertainment}">rozrywka</option>
-                                    <option value="69" th:if="${eventFilterType != '= 69'}" th:text="#{filters.type.entertainment}">rozrywka</option>
-                                    <option value="77" selected th:if="${eventFilterType == '= 77'}" th:text="#{filters.type.recreation}">rekreacja</option>
-                                    <option value="77" th:if="${eventFilterType != '= 77'}" th:text="#{filters.type.recreation}">rekreacja</option>
-                                    <option value="96" selected th:if="${eventFilterType == '= 96'}" th:text="#{filters.type.others}">inne</option>
-                                    <option value="96" th:if="${eventFilterType != '= 96'}" th:text="#{filters.type.others}">inne</option>
+                                    <option value="999" th:if="${eventFilterType != '> 0'}"
+                                            th:text="#{filters.type.all}">Wszystkie rodzaje
+                                    </option>
+                                    <option value="1" selected th:if="${eventFilterType == '= 1'}"
+                                            th:text="#{filters.type.cinema}">kino
+                                    </option>
+                                    <option value="1" th:if="${eventFilterType != '= 1'}"
+                                            th:text="#{filters.type.cinema}">kino
+                                    </option>
+                                    <option value="19" selected th:if="${eventFilterType == '= 19'}"
+                                            th:text="#{filters.type.theater}">teatr
+                                    </option>
+                                    <option value="19" th:if="${eventFilterType != '= 19'}"
+                                            th:text="#{filters.type.theater}">teatr
+                                    </option>
+                                    <option value="51" selected th:if="${eventFilterType == '= 51'}"
+                                            th:text="#{filters.type.art}">sztuka
+                                    </option>
+                                    <option value="51" th:if="${eventFilterType != '= 51'}"
+                                            th:text="#{filters.type.art}">sztuka
+                                    </option>
+                                    <option value="35" selected th:if="${eventFilterType == '= 35'}"
+                                            th:text="#{filters.type.music}">muzyka
+                                    </option>
+                                    <option value="35" th:if="${eventFilterType != '= 35'}"
+                                            th:text="#{filters.type.music}">muzyka
+                                    </option>
+                                    <option value="83" selected th:if="${eventFilterType == '= 83'}"
+                                            th:text="#{filters.type.science}">nauka
+                                    </option>
+                                    <option value="83" th:if="${eventFilterType != '= 83'}"
+                                            th:text="#{filters.type.science}">nauka
+                                    </option>
+                                    <option value="61" selected th:if="${eventFilterType == '= 61'}"
+                                            th:text="#{filters.type.literature}">literatura
+                                    </option>
+                                    <option value="61" th:if="${eventFilterType != '= 61'}"
+                                            th:text="#{filters.type.literature}">literatura
+                                    </option>
+                                    <option value="69" selected th:if="${eventFilterType == '= 69'}"
+                                            th:text="#{filters.type.entertainment}">rozrywka
+                                    </option>
+                                    <option value="69" th:if="${eventFilterType != '= 69'}"
+                                            th:text="#{filters.type.entertainment}">rozrywka
+                                    </option>
+                                    <option value="77" selected th:if="${eventFilterType == '= 77'}"
+                                            th:text="#{filters.type.recreation}">rekreacja
+                                    </option>
+                                    <option value="77" th:if="${eventFilterType != '= 77'}"
+                                            th:text="#{filters.type.recreation}">rekreacja
+                                    </option>
+                                    <option value="96" selected th:if="${eventFilterType == '= 96'}"
+                                            th:text="#{filters.type.others}">inne
+                                    </option>
+                                    <option value="96" th:if="${eventFilterType != '= 96'}"
+                                            th:text="#{filters.type.others}">inne
+                                    </option>
                                 </select>
                             </label>
                         </form>
@@ -69,29 +108,40 @@
                             <label style="width: 245px">
                                 <select class="form-select" name="eventFilterPlace"
                                         onchange="this.form.submit()">
-                                    <option value="all" selected th:if="${eventFilterPlace == 'all'}" th:text="#{filters.place.all}">Wszystkie miejsca
+                                    <option value="all" selected th:if="${eventFilterPlace == 'all'}"
+                                            th:text="#{filters.place.all}">Wszystkie miejsca
                                     </option>
-                                    <option value="all" th:if="${eventFilterPlace != 'all'}" th:text="#{filters.place.all}">Wszystkie miejsca</option>
+                                    <option value="all" th:if="${eventFilterPlace != 'all'}"
+                                            th:text="#{filters.place.all}">Wszystkie miejsca
+                                    </option>
                                     <option value="Miejski Teatr MINIATURA" selected
-                                            th:if="${eventFilterPlace == 'Miejski Teatr MINIATURA'}" th:text="#{filters.place.MTM}">Miejski Teatr
+                                            th:if="${eventFilterPlace == 'Miejski Teatr MINIATURA'}"
+                                            th:text="#{filters.place.MTM}">Miejski Teatr
                                         MINIATURA
                                     </option>
                                     <option value="Miejski Teatr MINIATURA"
-                                            th:if="${eventFilterPlace != 'Miejski Teatr MINIATURA'}" th:text="#{filters.place.MTM}">Miejski Teatr
+                                            th:if="${eventFilterPlace != 'Miejski Teatr MINIATURA'}"
+                                            th:text="#{filters.place.MTM}">Miejski Teatr
                                         MINIATURA
                                     </option>
                                     <option value="Gdański Archipelag Kultury" selected
-                                            th:if="${eventFilterPlace == 'Gdański Archipelag Kultury'}" th:text="#{filters.place.GAK}">Gdański
+                                            th:if="${eventFilterPlace == 'Gdański Archipelag Kultury'}"
+                                            th:text="#{filters.place.GAK}">Gdański
                                         Archipelag
                                         Kultury
                                     </option>
                                     <option value="Gdański Archipelag Kultury"
-                                            th:if="${eventFilterPlace != 'Gdański Archipelag Kultury'}" th:text="#{filters.place.GAK}">Gdański
+                                            th:if="${eventFilterPlace != 'Gdański Archipelag Kultury'}"
+                                            th:text="#{filters.place.GAK}">Gdański
                                         Archipelag
                                         Kultury
                                     </option>
-                                    <option value="other" selected th:if="${eventFilterPlace == 'other'}" th:text="#{filters.place.others}">inne</option>
-                                    <option value="other" th:if="${eventFilterPlace != 'other'}" th:text="#{filters.place.others}">inne</option>
+                                    <option value="other" selected th:if="${eventFilterPlace == 'other'}"
+                                            th:text="#{filters.place.others}">inne
+                                    </option>
+                                    <option value="other" th:if="${eventFilterPlace != 'other'}"
+                                            th:text="#{filters.place.others}">inne
+                                    </option>
                                 </select>
                             </label>
                         </form>
@@ -101,19 +151,26 @@
                             <label style="width: 245px">
                                 <select class="form-select" name="eventSortType"
                                         onchange="this.form.submit()">
-                                    <option value="date" selected th:if="${eventSortType == 'startDateDate'}" th:text="#{filters.date}">Sortuj po
+                                    <option value="date" selected th:if="${eventSortType == 'startDateDate'}"
+                                            th:text="#{filters.date}">Sortuj po
                                         dacie
                                     </option>
-                                    <option value="date" th:if="${eventSortType != 'startDateDate'}" th:text="#{filters.date}">Sortuj po dacie
+                                    <option value="date" th:if="${eventSortType != 'startDateDate'}"
+                                            th:text="#{filters.date}">Sortuj po dacie
                                     </option>
-                                    <option value="city" selected th:if="${eventSortType == 'city'}" th:text="#{filters.city}">Sortuj po
+                                    <option value="city" selected th:if="${eventSortType == 'city'}"
+                                            th:text="#{filters.city}">Sortuj po
                                         miejscowości
                                     </option>
-                                    <option value="city" th:if="${eventSortType != 'city'}" th:text="#{filters.city}">Sortuj po miejscowości
+                                    <option value="city" th:if="${eventSortType != 'city'}" th:text="#{filters.city}">
+                                        Sortuj po miejscowości
                                     </option>
-                                    <option value="name" selected th:if="${eventSortType == 'name'}" th:text="#{filters.tittle}">Sortuj po tytule
+                                    <option value="name" selected th:if="${eventSortType == 'name'}"
+                                            th:text="#{filters.tittle}">Sortuj po tytule
                                     </option>
-                                    <option value="name" th:if="${eventSortType != 'name'}" th:text="#{filters.tittle}">Sortuj po tytule</option>
+                                    <option value="name" th:if="${eventSortType != 'name'}" th:text="#{filters.tittle}">
+                                        Sortuj po tytule
+                                    </option>
                                 </select>
                             </label>
                         </form>
@@ -123,15 +180,19 @@
                             <label style="width: 245px">
                                 <select class="form-select" name="eventSortDirection"
                                         onchange="this.form.submit()">
-                                    <option value="ascending" selected th:if="${eventSortDirection == 'ASC'}" th:text="#{filters.asce}">Sortuj
+                                    <option value="ascending" selected th:if="${eventSortDirection == 'ASC'}"
+                                            th:text="#{filters.asce}">Sortuj
                                         rosnąco
                                     </option>
-                                    <option value="ascending" th:if="${eventSortDirection != 'ASC'}" th:text="#{filters.asce}">Sortuj rosnąco
+                                    <option value="ascending" th:if="${eventSortDirection != 'ASC'}"
+                                            th:text="#{filters.asce}">Sortuj rosnąco
                                     </option>
-                                    <option value="descending" selected th:if="${eventSortDirection == 'DESC'}" th:text="#{filters.desc}">Sortuj
+                                    <option value="descending" selected th:if="${eventSortDirection == 'DESC'}"
+                                            th:text="#{filters.desc}">Sortuj
                                         malejąco
                                     </option>
-                                    <option value="descending" th:if="${eventSortDirection != 'DESC'}" th:text="#{filters.desc}">Sortuj malejąco
+                                    <option value="descending" th:if="${eventSortDirection != 'DESC'}"
+                                            th:text="#{filters.desc}">Sortuj malejąco
                                     </option>
                                 </select>
                             </label>
@@ -142,17 +203,23 @@
                             <label style=" width: 220px">
                                 <select class="form-select" name="eventsPerPage"
                                         onchange="this.form.submit()">
-                                    <option value="10" selected th:if="${numberOfEventsPerPage.equals(10)}" th:text="#{filters.page.ten}">10 wyników
+                                    <option value="10" selected th:if="${numberOfEventsPerPage.equals(10)}"
+                                            th:text="#{filters.page.ten}">10 wyników
                                     </option>
-                                    <option value="10" th:if="${not numberOfEventsPerPage.equals(10)}" th:text="#{filters.page.ten}">10 wyników
+                                    <option value="10" th:if="${not numberOfEventsPerPage.equals(10)}"
+                                            th:text="#{filters.page.ten}">10 wyników
                                     </option>
-                                    <option value="30" selected th:if="${numberOfEventsPerPage.equals(30)}" th:text="#{filters.page.thirty}">30 wyników
+                                    <option value="30" selected th:if="${numberOfEventsPerPage.equals(30)}"
+                                            th:text="#{filters.page.thirty}">30 wyników
                                     </option>
-                                    <option value="30" th:if="${not numberOfEventsPerPage.equals(30)}" th:text="#{filters.page.thirty}">30 wyników
+                                    <option value="30" th:if="${not numberOfEventsPerPage.equals(30)}"
+                                            th:text="#{filters.page.thirty}">30 wyników
                                     </option>
-                                    <option value="50" selected th:if="${numberOfEventsPerPage.equals(50)}" th:text="#{filters.page.fifty}">50 wyników
+                                    <option value="50" selected th:if="${numberOfEventsPerPage.equals(50)}"
+                                            th:text="#{filters.page.fifty}">50 wyników
                                     </option>
-                                    <option value="50" th:if="${not numberOfEventsPerPage.equals(50)}" th:text="#{filters.page.fifty}">50 wyników
+                                    <option value="50" th:if="${not numberOfEventsPerPage.equals(50)}"
+                                            th:text="#{filters.page.fifty}">50 wyników
                                     </option>
                                 </select>
                             </label>
@@ -165,15 +232,15 @@
     <!--SEARCH BAR-->
     <div class="container my-3">
         <form class="d-flex">
-<!--            <input class="form-control me-2" style="width:85%" type="search"
-                   th:placeholder="#{filters.search.placeholder}" aria-label="Search">
-            <button class="col-md-2 btn btn-warning text-dark" type="submit" th:text="#{filters.search.button}">
-                SZUKAJ
-            </button>-->
+            <!--            <input class="form-control me-2" style="width:85%" type="search"
+                               th:placeholder="#{filters.search.placeholder}" aria-label="Search">
+                        <button class="col-md-2 btn btn-warning text-dark" type="submit" th:text="#{filters.search.button}">
+                            SZUKAJ
+                        </button>-->
         </form>
     </div>
     <!--TABLE HEADERS-->
-    <div class="container-lg bg-dark border border-warning border-1 text-warning">
+    <div class="container-lg bg-dark border border-warning border-3 text-warning mb-3">
         <div class="row">
             <div class="col-md-1" sec:authorize="hasAuthority('ADMIN')">
                 <p class="header-city-paragraph">ID</p>
@@ -236,19 +303,23 @@
             <div class="col-md-1 p-2 m-0" sec:authorize="hasAuthority('ADMIN')">
                 <a class="btn btn-outline-info"
                    th:href="@{/editEvent(id=${eventDto.getId()})}">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                          class="bi bi-pencil-fill" viewBox="0 0 16 16">
                         <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
                     </svg>
                 </a>
-                <a class="btn btn-outline-danger" data-bs-toggle="modal" th:attr="data-bs-target=${'#exampleModal' + eventDto.getId()}" type="button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+
+                <a class="btn btn-outline-danger" data-bs-toggle="modal"
+                   th:attr="data-bs-target=${'#exampleModal' + eventDto.getId()}" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                          class="bi bi-trash-fill" viewBox="0 0 16 16">
                         <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
                     </svg>
                 </a>
+
                 <!-- Modal -->
-                <div class="modal fade text-dark" th:id="'exampleModal' + ${eventDto.getId()}" tabindex="-1" role="dialog"
+                <div class="modal fade text-dark" th:id="'exampleModal' + ${eventDto.getId()}" tabindex="-1"
+                     role="dialog"
                      aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -264,7 +335,8 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">NIE</button>
 
-                                <a href=# th:href="@{/deleteEvent(id=${eventDto.getId()})}" style="text-decoration: none">
+                                <a href=# th:href="@{/deleteEvent(id=${eventDto.getId()})}"
+                                   style="text-decoration: none">
                                     <button type="button" class="btn btn-success" text="TAK">TAK
                                     </button>
                                 </a>
@@ -321,10 +393,6 @@
             </div>
         </div>
     </div>
-
-
-
-
 
 
 </header>
