@@ -172,6 +172,16 @@ public class EventsRepository implements Dao<EventEntity> {
         return eventEntities;
     }
 
+
+    public List<EventEntity> getFavourites() {
+        final Query query = entityManager
+                .createQuery("SELECT e FROM EventEntity e WHERE e.isFavourite = true ORDER BY e.startDateDate DESC");
+
+        List<EventEntity> eventEntities = query.getResultList();
+        System.out.println("eventRepository.getFavourites().size() = " + eventEntities.size());
+        return eventEntities;
+    }
+
     public Integer getSizeOfDB() {
         final Query query = entityManager
                 .createQuery("SELECT e FROM EventEntity e WHERE e.id > 0");

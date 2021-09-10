@@ -106,8 +106,8 @@
         <div class="row event-description">
             <div class="col text-warning">
                 <label for="descriptionEvent"></label>
-                <p>Opis wydarzenia (długi) <textarea class="form-control" id="descriptionEvent"
-                                                     rows="3" name="newEventDescription"></textarea></p>
+                <p>Opis wydarzenia (długi) <textarea class="form-control" th:utext="${eventDto.getDescLong()}" id="descriptionEvent"
+                                                     rows="15" name="newEventDescription" style="background-color: #20c997"></textarea></p>
             </div>
         </div>
         <!-- imageEvent display -->

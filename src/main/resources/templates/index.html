@@ -43,7 +43,7 @@
                     </a>
                 </li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/allEventsIndex}" th:text="#{menu.events}"></a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/favourites}" th:text="#{menu.favourites}"></a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/favour}" th:text="#{menu.favourites}"></a></li>
 
                 <div sec:authorize="hasAuthority('ADMIN')">
                     <li class="nav-item dropdown">
@@ -134,7 +134,7 @@
                 <h4 class="my-3 text-uppercase" th:text="#{home.event.section.favourites}"></h4>
                 <hr>
                 <p class="text-muted" th:text="#{home.event.section.favourites.desc}"></p>
-                <a class="btn btn-primary btn-xl text-uppercase my-4" th:href="@{/favourites}"
+                <a class="btn btn-primary btn-xl text-uppercase my-4" th:href="@{/favour}"
                    th:text="#{home.event.section.favourites.button}"></a>
             </div>
         </div>

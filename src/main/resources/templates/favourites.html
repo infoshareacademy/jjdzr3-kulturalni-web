@@ -33,7 +33,7 @@
       <div class="col-md-7">
         <p class="header-city-paragraph" th:text="#{events.header.name}">Nazwa wydarzenia</p>
       </div>
-      <div class="col-md-1" sec:authorize="hasAuthority('USER')">
+      <div class="col-md-1" >
         <p class="header-city-paragraph" th:text="#{events.header.favourites}">Ulubione</p>
       </div>
       <div class="col-md-1" sec:authorize="hasAuthority('ADMIN')">
@@ -62,9 +62,9 @@
           <p class="" th:utext="${eventDto.getName()}">Nazwa wydarzenia</p>
         </a>
       </div>
-      <div class="col-md-1" sec:authorize="hasAuthority('USER')">
-        <form th:action="@{/favselect}">
-          <a th:href="@{/favselect(id=${eventDto.getId()}, favStatus=${eventDto.getFavourite()})}">
+      <div class="col-md-1" >
+        <form th:action="@{/favselectFav}">
+          <a th:href="@{/favselectFav(id=${eventDto.getId()}, favStatus=${eventDto.getFavourite()})}">
                                 <span th:if="${eventDto.getFavourite()}">
                                     <img th:src="@{images/img/heart-red.png}"
                                          style="width: 32px; height: 32px; margin-top: 10px" alt="" src="">
@@ -119,51 +119,7 @@
     </div>
   </div>
   <!--PAGINATION-->
-  <div class="container">
-    <div class="row" style="margin-top: 15px">
-      <div class="col-md-4" style="margin: 0 auto">
-        <nav th:if="${newPaginationDto.shouldBeDisplayed}">
-          <ul class="pagination">
-            <li class="page-item" style="width: 100px"
-                th:if="${newPaginationDto.sShouldLeftArrowNavBarNumberBeDisplayed()}"><a
-                    class="page-link" href="#"
-                    th:href="@{/alleventsChangePage(page=${newPaginationDto.getLeftArrowNavBarNumber()})}"
-                    style="color: deeppink">Poprzednie</a></li>
-            <li class="page-item" th:if="${newPaginationDto.shouldFirstNavBarNumberBeDisplayed()}">
-              <a class="page-link" href="#"
-                 th:href="@{/alleventsChangePage(page=${newPaginationDto.getFirstNavBarNumber()})}"><span
-                      th:text="${newPaginationDto.getFirstNavBarNumber()}"
-                      style="color: deeppink"></span></a></li>
-            <li class="page-item" th:if="${newPaginationDto.shouldSecondNavBarNumberBeDisplayed()}">
-              <a class="page-link" href="#"
-                 th:href="@{/alleventsChangePage(page=${newPaginationDto.getSecondNavBarNumber()})}"><span
-                      th:text="${newPaginationDto.getSecondNavBarNumber()}"
-                      style="color: deeppink"></span></a></li>
-            <li class="page-item" th:if="${newPaginationDto.shouldThirdNavBarNumberBeDisplayed()}">
-              <a class="page-link" href="#"
-                 th:href="@{/alleventsChangePage(page=${newPaginationDto.getThirdNavBarNumber()})}"><span
-                      th:text="${newPaginationDto.getThirdNavBarNumber()}"
-                      style="color: deeppink"></span></a></li>
-            <li class="page-item" th:if="${newPaginationDto.shouldFourthNavBarNumberBeDisplayed()}">
-              <a class="page-link" href="#"
-                 th:href="@{/alleventsChangePage(page=${newPaginationDto.getFourthNavBarNumber()})}"><span
-                      th:text="${newPaginationDto.getFourthNavBarNumber()}"
-                      style="color: deeppink"></span></a></li>
-            <li class="page-item" th:if="${newPaginationDto.shouldFifthNavBarNumberBeDisplayed()}">
-              <a class="page-link" href="#"
-                 th:href="@{/alleventsChangePage(page=${newPaginationDto.getFifthNavBarNumber()})}"><span
-                      th:text="${newPaginationDto.getFifthNavBarNumber()}"
-                      style="color: deeppink"></span></a></li>
-            <li class="page-item" style="width: 100px"
-                th:if="${newPaginationDto.shouldRightArrowNavBarNumberBeDisplayed() }"><a
-                    class="page-link" href="#"
-                    th:href="@{/alleventsChangePage(page=${newPaginationDto.getRightArrowNavBarNumber()})}"
-                    style="color: deeppink">Następne</a></li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </div>
+
 
 
 

@@ -119,8 +119,8 @@
                 <div class="col text-warning">
                     <label for="descriptionEvent"></label>
                     <span th:if="${#fields.hasErrors('descLong')}" th:errors="*{descLong}"></span>
-                    <textarea class="form-control" id="descriptionEvent" placeholder="Opis Wydarzenia"
-                              rows="3" th:field="*{descLong}"></textarea>
+                    <textarea class="form-control" id="descriptionEvent" th:field="*{descLong}" placeholder="Opis Wydarzenia"
+                              rows="15" th:field="*{descLong}"></textarea>
                 </div>
             </div>
             <!-- imageEvent input -->

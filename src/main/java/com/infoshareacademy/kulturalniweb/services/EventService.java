@@ -31,7 +31,6 @@ public class EventService {
         EventEntity eventEntity = eventMapper.mapEventNewToEventEntity(eventNew);
         dateMapper.map(eventEntity);
         //System.out.println("ENTITY " + eventEntity.toString());
-
         eventsRepository.save(eventEntity);
     }
 
