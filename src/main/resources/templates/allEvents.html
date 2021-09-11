@@ -350,11 +350,11 @@
         </div>
     </div>
     <!--PAGINATION-->
-    <div class="container">
+    <div class="container text-center">
         <div class="row" style="margin-top: 15px">
             <div class="col-md-4" style="margin: 0 auto">
-                <nav th:if="${newPaginationDto.shouldBeDisplayed}">
-                    <ul class="pagination">
+                <div th:if="${newPaginationDto.shouldBeDisplayed}">
+                    <ul class="pagination justify-content-center">
                         <li class="page-item" style="width: 100px"
                             th:if="${newPaginationDto.sShouldLeftArrowNavBarNumberBeDisplayed()}"><a
                                 class="page-link" href="#"
@@ -391,7 +391,7 @@
                                 th:href="@{/alleventsChangePage(page=${newPaginationDto.getRightArrowNavBarNumber()})}"
                                 style="color: deeppink">Następne</a></li>
                     </ul>
-                </nav>
+                </div>
             </div>
         </div>
     </div>
