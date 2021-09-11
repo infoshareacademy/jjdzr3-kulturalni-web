@@ -12,11 +12,11 @@
 
 <!-- Masthead-->
 <header class="masthead text-dark" style="padding-top:10rem">
-  <div class="masthead-heading text-uppercase text-warning mb-4" th:text="#{events.title}"></div>
-  <h6 class="mb-3 fw-normal text-warning" th:text="#{events.subtitle}"></h6>
+  <div class="masthead-heading text-uppercase text-warning mb-4" th:text="#{favourites.title}"></div>
+  <h6 class="mb-3 fw-normal text-warning" th:text="#{favourites.subtitle}"></h6>
 
   <!--TABLE HEADERS-->
-  <div class="container-lg bg-dark border border-warning border-1 text-warning">
+  <div class="container-lg bg-dark border border-warning border-3 text-warning mb-3">
     <div class="row">
       <div class="col-md-1" sec:authorize="hasAuthority('ADMIN')">
         <p class="header-city-paragraph">ID</p>
@@ -120,9 +120,10 @@
   </div>
   <!-- Back to top button -->
   <div th:insert="index :: copy-topButton"></div>
-  <!--    Footer-->
-  <div th:insert="index :: copy-footer"></div>
+  <br><br><br><br><br><br><br><br><br><br><br><br>
 </header>
+<!--    Footer-->
+<div th:insert="index :: copy-footer"></div>
 <!--SCRIPTS-->
 <div th:insert="index :: end-scripts"></div>
 </body>

@@ -20,7 +20,7 @@ public class FavouritesController {
         this.favouritesService = favouritesService;
     }
 
-    @GetMapping("/favour")
+    @GetMapping("/favourites")
     public String favourites(Model model) {
 
         List<EventDto> eventDtos = favouritesService.getFavourites();
@@ -40,6 +40,6 @@ public class FavouritesController {
         System.out.println(favId);
         favouritesService.updateFavourite(id, favStatus);
 
-        return "redirect:favour";
+        return "redirect:favourites";
     }
 }

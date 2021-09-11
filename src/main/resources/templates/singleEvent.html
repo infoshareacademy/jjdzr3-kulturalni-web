@@ -1,17 +1,9 @@
 <!DOCTYPE html>
 <html xmlns: th="http://www.thymeleaf.org" lang="pl">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="UTF-8">
-    <title>Kulturalni - Formularz edycji wydarzenia </title>
+    <th:block th:insert="index :: copyhead">CopiedFromIndex</th:block>
 
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" sizes="32x32" href="images/favicon.ico">
-
-    <!-- Core theme CSS (includes Bootstrap)-->
-
-    <link href="css/styles.css" type="text/css" rel="stylesheet"/>
-
+    <title>Kulturalni - Wydarzenie</title>
 </head>
 
 <body>
@@ -20,7 +12,7 @@
 <!-- Masthead-->
 <header class="masthead text-dark">
     <div class="container" id="greeting">
-        <img class="mb-4" src="images/img/logos/logo.png" alt="" width="150" height="145">
+        <img class="mb-4" th:src="@{images/img/logos/logo.png}" alt="" width="150" height="145">
         <h4 class="mb-3 fw-normal text-warning" th:text="#{editEvent.greeting}"></h4>
     </div>
 
@@ -127,17 +119,20 @@
         <div class="row event-description">
             <div class="col text-warning">
                 <label for="descriptionEvent"></label>
-                <p>Opis wydarzenia (długi) <textarea class="form-control" th:utext="${singleEvent.getDescLong()}" id="descriptionEvent"
-                                                     rows="15" name="newEventDescription" style="background-color: #20c997"></textarea></p>
+                <p>Opis wydarzenia (długi) <textarea class="form-control" th:utext="${singleEvent.getDescLong()}"
+                                                     id="descriptionEvent"
+                                                     rows="15" name="newEventDescription"
+                                                     style="background-color: #20c997"></textarea></p>
             </div>
         </div>
     </div>
     <!-- Back to top button -->
     <div th:insert="index :: copy-topButton"></div>
-    <!--    Footer-->
-    <div th:insert="index :: copy-footer"></div>
 </header>
+
+</body>
+<!--    Footer-->
+<div th:insert="index :: copy-footer"></div>
 <!--SCRIPTS-->
 <div th:insert="index :: end-scripts"></div>
-</body>
 </html>
