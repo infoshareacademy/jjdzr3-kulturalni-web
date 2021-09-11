@@ -1,10 +1,8 @@
 package com.infoshareacademy.kulturalniweb.mappers;
 
 import com.infoshareacademy.kulturalniweb.models.dto.AddEventDto;
-
 import com.infoshareacademy.kulturalniweb.entities.event.*;
 import com.infoshareacademy.kulturalniweb.jsonData.EventNew;
-
 import com.infoshareacademy.kulturalniweb.models.dto.EditEventDto;
 import com.infoshareacademy.kulturalniweb.models.dto.EventDto;
 import com.infoshareacademy.kulturalniweb.services.PictureService;
@@ -85,7 +83,7 @@ public class EventMapper {
         String[] lastTime = dateAndTime[1].split("-");
         String[] result = {dateAndTime[0], lastTime[0], lastTime[1]};
 
-        return  result;
+        return result;
     }
 
     public EventDto mapEventEntityToEventDto(EventEntity eventEntity) {
@@ -176,9 +174,6 @@ public class EventMapper {
         //resultEventDto.setPlaceName();
 
 
-
-
-
         return resultEditEventDto;
     }
 
@@ -200,7 +195,7 @@ public class EventMapper {
         eventEntity.setEndDateLastTime("00:00");
 
         String ticket;
-        if(addEventDto.getTicketFree()) {
+        if (addEventDto.getTicketFree()) {
             ticket = "Impreza darmowa";
         } else {
             ticket = addEventDto.getTicket();
