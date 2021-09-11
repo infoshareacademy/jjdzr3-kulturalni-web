@@ -304,7 +304,7 @@
                 </form>
             </div>
 
-            <div class="col-md-1 p-2 m-0" sec:authorize="hasAuthority('ADMIN')">
+            <div class="col-md-1 p-1" sec:authorize="hasAuthority('ADMIN')">
                 <a class="btn btn-outline-info"
                    th:href="@{/editEvent(id=${eventDto.getId()})}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
