@@ -55,7 +55,6 @@ public class EventsRepository implements Dao<EventEntity> {
         entityManager.persist(attachmentEntity);
         PlaceEntity placeEntity = eventEntity.getPlaceEntity();
         entityManager.persist(placeEntity);
-
     }
 
     // Czy można zrobić od razu update całego obiektu czy tez trzeba podac po kolei wszystkie kolumny?
