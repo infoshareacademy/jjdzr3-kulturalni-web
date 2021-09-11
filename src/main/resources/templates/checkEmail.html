@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<head>
+    <th:block th:insert="index :: copyhead">CopiedFromIndex</th:block>
+    <link rel="stylesheet" th:href="@{/css/signin.css}">
+    <title>Kulturalni - Logowanie</title>
+</head>
+<body>
+<!-- Navigation-->
+<div th:insert="index :: copy-masthead"></div>
+<!-- Masthead-->
+<header class="masthead text-dark">
+    <br><br>
+    <div class="container text-center">
+        <img class="mb-4" th:src="@{/images/img/logos/logo.png}" alt="" width="150" height="145" src="">
+
+        <h1 class="mb-3 fw-normal text-warning text-uppercase" th:text="#{register.checkEmail.greeting}"></h1>
+
+        <h5 class="mb-3 fw-normal text-warning" th:text="#{register.checkEmail.sub}"></h5>
+
+        <a class="mt-5 btn btn-primary btn-xl text-uppercase text-dark my-4" th:href="@{/sign-in}"
+           th:text="#{login.button}"></a>
+
+        <!-- Back to top button -->
+        <div th:insert="index :: copy-topButton"></div>
+    </div>
+
+</header>
+</body>
+<!--    Footer -->
+<div th:insert="index :: copy-footer"></div>
+<div th:insert="index :: end-scripts"></div>
+</html>
