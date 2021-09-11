@@ -9,12 +9,10 @@
 </head>
 <body id="page-top">
 <div th:insert="index :: copy-masthead"></div>
-
 <!-- Masthead-->
 <header class="masthead text-dark" style="padding-top:10rem">
     <div class="masthead-heading text-uppercase text-warning mb-4" th:text="#{events.title}"></div>
     <h6 class="mb-3 fw-normal text-warning" th:text="#{events.subtitle}"></h6>
-
     <!--FILTERS-->
     <button class="btn text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters"
             aria-expanded="false" aria-controls="collapseFilters">
@@ -324,7 +322,8 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel" th:text="#{events.edit.delete.modalTittle}">USUWANIE WYDARZENIA</h5>
+                                <h5 class="modal-title" id="exampleModalLabel"
+                                    th:text="#{events.edit.delete.modalTittle}">USUWANIE WYDARZENIA</h5>
                                 <button type="button" class="btn-close" data-bs-target="#my-modal"
                                         data-bs-dismiss="modal" aria-label="Close">
                                 </button>
@@ -333,11 +332,14 @@
                                 Czy na pewno chcesz usunąć to wydarzenie?
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" th:text="#{events.edit.delete.decline}">NIE</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                                        th:text="#{events.edit.delete.decline}">NIE
+                                </button>
 
                                 <a href=# th:href="@{/deleteEvent(id=${eventDto.getId()})}"
                                    style="text-decoration: none">
-                                    <button type="button" class="btn btn-success" th:text="#{events.edit.delete.confirm}">TAK
+                                    <button type="button" class="btn btn-success"
+                                            th:text="#{events.edit.delete.confirm}">TAK
                                     </button>
                                 </a>
                             </div>
@@ -393,8 +395,8 @@
             </div>
         </div>
     </div>
-
-
+    <!-- Back to top button -->
+    <div th:insert="index :: copy-topButton"></div>
 </header>
 <!--FOOTER-->
 <div th:insert="index :: copy-footer"></div>
