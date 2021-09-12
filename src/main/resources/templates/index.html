@@ -18,7 +18,6 @@
     </th:block>
 
     <title>Kulturalni - Wyszukiwarka wydarzeń</title>
-
 </head>
 <body id="page-top">
 <!-- Navigation-->
@@ -31,28 +30,31 @@
             <i class="fas fa-bars ms-1"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0 ">
-
-                <li class="nav-item"><a class="nav-link" th:href="@{/allEventsIndex}" th:text="#{menu.events}"></a></li>
+            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                <li class="nav-item m-0 px-3"><a class="nav-link" th:href="@{/allEventsIndex}"
+                                                 th:text="#{menu.events}"></a></li>
                 <div sec:authorize="hasAuthority('USER')">
                     <li class="nav-item"><a class="nav-link" th:href="@{/favourites}" th:text="#{menu.favourites}"></a>
                     </li>
                 </div>
                 <div sec:authorize="hasAuthority('ADMIN')">
-                            <li class="nav-item">
-                                <a class="nav-link" th:href="@{/addEvent}" th:text="#{menu.addEvent}"></a>
-                            </li>
+                    <li class="nav-item m-0 px-3">
+                        <a class="nav-link" th:href="@{/addEvent}" th:text="#{menu.addEvent}"></a>
+                    </li>
                 </div>
                 <div sec:authorize="isAuthenticated()">
-                    <li class="nav-item"><a class="nav-link" th:href="@{/sign-out}" th:text="#{menu.logout}"></a></li>
+                    <li class="nav-item m-0 px-3"><a class="nav-link" th:href="@{/sign-out}"
+                                                     th:text="#{menu.logout}"></a></li>
                 </div>
                 <div sec:authorize="isAnonymous()">
-                    <li class="nav-item"><a class="nav-link" th:href="@{/sign-in}" th:text="#{menu.login}"></a></li>
+                    <li class="nav-item m-0 px-3"><a class="nav-link" th:href="@{/sign-in}" th:text="#{menu.login}"></a>
+                    </li>
                 </div>
                 <div sec:authorize="isAnonymous()">
-                    <li class="nav-item"><a class="nav-link" th:href="@{/register}" th:text="#{menu.register}"></a></li>
+                    <li class="nav-item m-0 px-3"><a class="nav-link" th:href="@{/register}"
+                                                     th:text="#{menu.register}"></a></li>
                 </div>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown m-0 px-3">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown1"
                        th:text="${#strings.toUpperCase(#locale)}"
                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -60,15 +62,15 @@
                     <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown1">
                         <li>
                             <a class="dropdown-item" th:href="@{/(lang=pl)}">
-                                <img class="me-4" th:src="@{/images/poland.png}" width="20" height="20" alt="" src="">
-                                Polski
+                                <img class="me-4" th:src="@{/images/poland.png}" width="20" height="20" alt="" src=""
+                                     th:text="#{language.pl}">
                             </a>
                         </li>
-                        <li><a class="dropdown-item" th:href="@{/(lang=en)}">
-                            <img class="me-4" th:src="@{/images/united-kingdom.png}" width="20" height="20" src=""
-                                 alt="">
-                            English
-                        </a>
+                        <li>
+                            <a class="dropdown-item" th:href="@{/(lang=en)}">
+                                <img class="me-4" th:src="@{/images/united-kingdom.png}" width="20" height="20" src=""
+                                     alt="" th:text="#{language.en}">
+                            </a>
                         </li>
                     </ul>
                 </li>
@@ -89,183 +91,127 @@
     </div>
 </header>
 <!-- Events-->
-<section class="page-section bg-danger" id="events">
-    <div class="container">
-        <div class="text-center">
-            <h2 class="section-heading text-uppercase" th:text="#{home.event.tittle}"></h2>
-            <h3 class="section-subheading text-muted" th:text="#{home.event.tittle.desc}"></h3>
-        </div>
-        <div class="row text-center">
-            <div class="col-md-4">
-                <img th:src="@{images/img/icons/search.svg}" class="mb-4" width="150" height="150" alt="" src="">
-                <h4 class="my-3 text-uppercase" th:text="#{home.event.section.searchEngine}"></h4>
-                <hr>
-                <p class="text-muted " th:text="#{home.event.section.searchEngine.desc}"></p>
-                <a class="btn btn-primary btn-xl text-uppercase my-4" th:href="@{/allEventsIndex}"
-                   th:text="#{home.event.section.searchEngine.button}"></a>
+<div class="masthead3" id="mainPage">
+    <section class="page-section" id="events">
+        <div class="container blurred" style="border-radius: 20px">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase text-light pt-5" th:text="#{home.event.tittle}"></h2>
+                <h3 class="section-subheading text-light" th:text="#{home.event.tittle.desc}"></h3>
             </div>
-            <div class="col-md-4">
-                <img th:src="@{images/img/icons/list-ol.svg}" class="mb-4" width="150" height="150" alt="" src="">
-                <h4 class="my-3 text-uppercase" th:text="#{home.event.section.allEventsList}"></h4>
-                <hr class="my-3">
-                <p class="text-muted" th:text="#{home.event.section.allEventsList.desc}"></p>
-                <a class="btn btn-primary btn-xl text-uppercase my-4" th:href="@{/allEventsIndex}"
-                   th:text="#{home.event.section.allEventsList.button}"></a>
-            </div>
-            <div class="col-md-4">
-                <img th:src="@{images/img/icons/heart.svg}" class="mb-4" width="150" height="150" alt="" src="">
-                <h4 class="my-3 text-uppercase" th:text="#{home.event.section.favourites}"></h4>
-                <hr>
-                <p class="text-muted" th:text="#{home.event.section.favourites.desc}"></p>
-                <a class="btn btn-primary btn-xl text-uppercase my-4" th:href="@{/favourites}"
-                   th:text="#{home.event.section.favourites.button}"></a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Closest events-->
-<section class="page-section bg-success" id="eventss">
-    <div class="mx-5 my-2 text-center">
-        <div class="py-3">
-            <div class="mx-auto">
-                <h1 class="fw-light" style="font-size: 25px; font-weight: bold">Najbliższe imprezy</h1>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="album py-1 bg-light">
-        <div class="container">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img th:src="${firstClosestEvent.getPicture()}">
-                        <div class="card-body">
-                            <p class="card-text" th:text="${firstClosestEvent.getName()}">Nazwa wydarzenia</p>
-                            <p class="card-text" th:text="${firstClosestEvent.getStartDateDate()}">Data wydarzenia</p>
-                            <p class="card-text" th:text="${firstClosestEvent.getStartDateTime()}">Godzina
-                                wydarzenia</p>
-                            <p class="card-text" th:text="${firstClosestEvent.getPlaceName()}">Miejsce wydarzenia</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary"><a href=#
-                                                                                                      th:href="@{/singleevent(id=${firstClosestEvent.getId()})}"
-                                                                                                      style="text-decoration: none; color: #0f5132">Zobacz</a>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="row text-center text-light px-3">
+                <div class="col-md-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="currentColor"
+                         class="bi bi-file-lock-fill" viewBox="0 0 16 16">
+                        <path d="M7 6a1 1 0 0 1 2 0v1H7V6zM6 8.3c0-.042.02-.107.105-.175A.637.637 0 0 1 6.5 8h3a.64.64 0 0 1 .395.125c.085.068.105.133.105.175v2.4c0 .042-.02.107-.105.175A.637.637 0 0 1 9.5 11h-3a.637.637 0 0 1-.395-.125C6.02 10.807 6 10.742 6 10.7V8.3z"/>
+                        <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm-2 6v1.076c.54.166 1 .597 1 1.224v2.4c0 .816-.781 1.3-1.5 1.3h-3c-.719 0-1.5-.484-1.5-1.3V8.3c0-.627.46-1.058 1-1.224V6a2 2 0 1 1 4 0z"/>
+                    </svg>
+                    <h4 class="my-3 text-uppercase " th:text="#{home.event.register.title}"></h4>
+                    <hr>
+                    <p th:text="#{home.event.register}"></p>
+                    <a class="btn btn-primary btn-xl text-uppercase text-dark my-4" th:href="@{/register}"
+                       th:text="#{home.event.register.button}"></a>
                 </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img th:src="${secondClosestEvent.getPicture()}">
-                        <div class="card-body">
-                            <p class="card-text" th:text="${secondClosestEvent.getName()}">Nazwa wydarzenia</p>
-                            <p class="card-text" th:text="${secondClosestEvent.getStartDateDate()}">Data wydarzenia</p>
-                            <p class="card-text" th:text="${secondClosestEvent.getStartDateTime()}">Godzina
-                                wydarzenia</p>
-                            <p class="card-text" th:text="${secondClosestEvent.getPlaceName()}">Miejsce wydarzenia</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary"><a href=#
-                                                                                                      th:href="@{/singleevent(id=${secondClosestEvent.getId()})}"
-                                                                                                      style="text-decoration: none; color: #0f5132">Zobacz</a>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-md-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="currentColor"
+                         class="bi bi-calendar-date-fill" viewBox="0 0 16 16">
+                        <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zm5.402 9.746c.625 0 1.184-.484 1.184-1.18 0-.832-.527-1.23-1.16-1.23-.586 0-1.168.387-1.168 1.21 0 .817.543 1.2 1.144 1.2z"/>
+                        <path d="M16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zm-6.664-1.21c-1.11 0-1.656-.767-1.703-1.407h.683c.043.37.387.82 1.051.82.844 0 1.301-.848 1.305-2.164h-.027c-.153.414-.637.79-1.383.79-.852 0-1.676-.61-1.676-1.77 0-1.137.871-1.809 1.797-1.809 1.172 0 1.953.734 1.953 2.668 0 1.805-.742 2.871-2 2.871zm-2.89-5.435v5.332H5.77V8.079h-.012c-.29.156-.883.52-1.258.777V8.16a12.6 12.6 0 0 1 1.313-.805h.632z"/>
+                    </svg>
+                    <h4 class="my-3 text-uppercase" th:text="#{home.event.section.allEventsList}"></h4>
+                    <hr class="my-3">
+                    <p th:text="#{home.event.section.allEventsList.desc}"></p>
+                    <a class="btn btn-primary btn-xl text-uppercase text-dark my-4" th:href="@{/allEventsIndex}"
+                       th:text="#{home.event.section.allEventsList.button}"></a>
                 </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img th:src="${thirdClosestEvent.getPicture()}">
-                        <div class="card-body">
-                            <p class="card-text" th:text="${thirdClosestEvent.getName()}">Nazwa wydarzenia</p>
-                            <p class="card-text" th:text="${thirdClosestEvent.getStartDateDate()}">Data wydarzenia</p>
-                            <p class="card-text" th:text="${thirdClosestEvent.getStartDateTime()}">Godzina
-                                wydarzenia</p>
-                            <p class="card-text" th:text="${thirdClosestEvent.getPlaceName()}">Miejsce wydarzenia</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary"><a href=#
-                                                                                                      th:href="@{/singleevent(id=${thirdClosestEvent.getId()})}"
-                                                                                                      style="text-decoration: none; color: #0f5132">Zobacz</a>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-md-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="currentColor"
+                         class="bi bi-bookmark-heart-fill" viewBox="0 0 16 16">
+                        <path d="M2 15.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v13.5zM8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"/>
+                    </svg>
+                    <h4 class="my-3 text-uppercase" th:text="#{home.event.section.favourites}"></h4>
+                    <hr>
+                    <p th:text="#{home.event.section.favourites.desc}"></p>
+                    <a class="btn btn-primary btn-xl text-uppercase text-dark my-4" th:href="@{/favourites}"
+                       th:text="#{home.event.section.favourites.button}"></a>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="mx-5 my-2 text-center">
-        <div class="py-3">
-            <div class="mx-auto mt-4">
-                <h1 class="fw-light" style="font-size: 25px; font-weight: bold">Ostatnio dodane wydarzenia</h1>
+    </section>
+    <!-- Closest events-->
+    <section class="page-section" id="closestEvents">
+        <div class="container blurred py-3" style="border-radius: 20px">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase text-light pt-5" th:text="#{home.closestEvent.title}"></h2>
             </div>
-        </div>
-    </div>
-
-    <div class="album py-1 bg-light">
-        <div class="container">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img th:src="${firstNewestEvent.getPicture()}">
-                        <div class="card-body">
-                            <p class="card-text" th:text="${firstNewestEvent.getName()}">Nazwa wydarzenia</p>
-                            <p class="card-text" th:text="${firstNewestEvent.getStartDateDate()}">Data wydarzenia</p>
-                            <p class="card-text" th:text="${firstNewestEvent.getStartDateTime()}">Godzina wydarzenia</p>
-                            <p class="card-text" th:text="${firstNewestEvent.getPlaceName()}">Miejsce wydarzenia</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary"><a href=#
-                                                                                                      th:href="@{/singleevent(id=${firstNewestEvent.getId()})}"
-                                                                                                      style="text-decoration: none; color: #0f5132">Zobacz</a>
-                                    </button>
+            <div class="album p-4">
+                <div class="container">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <img th:src="${firstClosestEvent.getPicture()}" alt="" src="">
+                                <div class="card-body">
+                                    <p class="card-text" th:text="${firstClosestEvent.getName()}">Nazwa wydarzenia</p>
+                                    <p class="card-text" th:text="${firstClosestEvent.getStartDateDate()}">Data
+                                        wydarzenia</p>
+                                    <p class="card-text" th:text="${firstClosestEvent.getStartDateTime()}">Godzina
+                                        wydarzenia</p>
+                                    <p class="card-text" th:text="${firstClosestEvent.getPlaceName()}">Miejsce
+                                        wydarzenia</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary">
+                                                <a href=#
+                                                   th:href="@{/singleevent(id=${firstClosestEvent.getId()})}"
+                                                   style="text-decoration: none; color: #0f5132">Zobacz</a>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img th:src="${secondNewestEvent.getPicture()}">
-                        <div class="card-body">
-                            <p class="card-text" th:text="${secondNewestEvent.getName()}">Nazwa wydarzenia</p>
-                            <p class="card-text" th:text="${secondNewestEvent.getStartDateDate()}">Data wydarzenia</p>
-                            <p class="card-text" th:text="${secondNewestEvent.getStartDateTime()}">Godzina
-                                wydarzenia</p>
-                            <p class="card-text" th:text="${secondNewestEvent.getPlaceName()}">Miejsce wydarzenia</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary"><a href=#
-                                                                                                      th:href="@{/singleevent(id=${secondNewestEvent.getId()})}"
-                                                                                                      style="text-decoration: none; color: #0f5132">Zobacz</a>
-                                    </button>
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <img th:src="${secondClosestEvent.getPicture()}" alt="" src="">
+                                <div class="card-body">
+                                    <p class="card-text" th:text="${secondClosestEvent.getName()}">Nazwa wydarzenia</p>
+                                    <p class="card-text" th:text="${secondClosestEvent.getStartDateDate()}">Data
+                                        wydarzenia</p>
+                                    <p class="card-text" th:text="${secondClosestEvent.getStartDateTime()}">Godzina
+                                        wydarzenia</p>
+                                    <p class="card-text" th:text="${secondClosestEvent.getPlaceName()}">Miejsce
+                                        wydarzenia</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary">
+                                                <a href=#
+                                                   th:href="@{/singleevent(id=${secondClosestEvent.getId()})}"
+                                                   style="text-decoration: none; color: #0f5132">Zobacz</a>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img th:src="${thirdNewestEvent.getPicture()}">
-                        <div class="card-body">
-                            <p class="card-text" th:text="${thirdNewestEvent.getName()}">Nazwa wydarzenia</p>
-                            <p class="card-text" th:text="${thirdNewestEvent.getStartDateDate()}">Data wydarzenia</p>
-                            <p class="card-text" th:text="${thirdNewestEvent.getStartDateTime()}">Godzina wydarzenia</p>
-                            <p class="card-text" th:text="${thirdNewestEvent.getPlaceName()}">Miejsce wydarzenia</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary"><a href=#
-                                                                                                      th:href="@{/singleevent(id=${thirdNewestEvent.getId()})}"
-                                                                                                      style="text-decoration: none; color: #0f5132">Zobacz</a>
-                                    </button>
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <img th:src="${thirdClosestEvent.getPicture()}" alt="" src="">
+                                <div class="card-body">
+                                    <p class="card-text" th:text="${thirdClosestEvent.getName()}">Nazwa wydarzenia</p>
+                                    <p class="card-text" th:text="${thirdClosestEvent.getStartDateDate()}">Data
+                                        wydarzenia</p>
+                                    <p class="card-text" th:text="${thirdClosestEvent.getStartDateTime()}">Godzina
+                                        wydarzenia</p>
+                                    <p class="card-text" th:text="${thirdClosestEvent.getPlaceName()}">Miejsce
+                                        wydarzenia</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary">
+                                                <a href=#
+                                                   th:href="@{/singleevent(id=${thirdClosestEvent.getId()})}"
+                                                   style="text-decoration: none; color: #0f5132">Zobacz</a>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -273,14 +219,95 @@
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Back to top button -->
-    <button th:fragment="copy-topButton" type="button"
-            class="btn btn-warning border border-dark btn-floating btn-lg text-dark" id="btn-back-to-top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-</section>
-
+    </section>
+    <section class="page-section" id="lastAddedEvents">
+        <div class="container blurred py-4" style="border-radius: 20px">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase text-light pt-5" th:text="#{home.lastAddedEvent.title}"></h2>
+            </div>
+            <div class="album p-4">
+                <div class="container">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <img th:src="${firstNewestEvent.getPicture()}" alt="" src="">
+                                <div class="card-body">
+                                    <p class="card-text" th:text="${firstNewestEvent.getName()}">Nazwa wydarzenia</p>
+                                    <p class="card-text" th:text="${firstNewestEvent.getStartDateDate()}">Data
+                                        wydarzenia</p>
+                                    <p class="card-text" th:text="${firstNewestEvent.getStartDateTime()}">Godzina
+                                        wydarzenia</p>
+                                    <p class="card-text" th:text="${firstNewestEvent.getPlaceName()}">Miejsce
+                                        wydarzenia</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary">
+                                                <a href=#
+                                                   th:href="@{/singleevent(id=${firstNewestEvent.getId()})}"
+                                                   style="text-decoration: none; color: #0f5132">Zobacz</a>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <img th:src="${secondNewestEvent.getPicture()}" alt="" src="">
+                                <div class="card-body">
+                                    <p class="card-text" th:text="${secondNewestEvent.getName()}">Nazwa wydarzenia</p>
+                                    <p class="card-text" th:text="${secondNewestEvent.getStartDateDate()}">Data
+                                        wydarzenia</p>
+                                    <p class="card-text" th:text="${secondNewestEvent.getStartDateTime()}">Godzina
+                                        wydarzenia</p>
+                                    <p class="card-text" th:text="${secondNewestEvent.getPlaceName()}">Miejsce
+                                        wydarzenia</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary">
+                                                <a href=#
+                                                   th:href="@{/singleevent(id=${secondNewestEvent.getId()})}"
+                                                   style="text-decoration: none; color: #0f5132">Zobacz</a>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <img th:src="${thirdNewestEvent.getPicture()}" alt="" src="">
+                                <div class="card-body">
+                                    <p class="card-text" th:text="${thirdNewestEvent.getName()}">Nazwa wydarzenia</p>
+                                    <p class="card-text" th:text="${thirdNewestEvent.getStartDateDate()}">Data
+                                        wydarzenia</p>
+                                    <p class="card-text" th:text="${thirdNewestEvent.getStartDateTime()}">Godzina
+                                        wydarzenia</p>
+                                    <p class="card-text" th:text="${thirdNewestEvent.getPlaceName()}">Miejsce
+                                        wydarzenia</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary">
+                                                <a href=#
+                                                   th:href="@{/singleevent(id=${thirdNewestEvent.getId()})}"
+                                                   style="text-decoration: none; color: #0f5132">Zobacz</a>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Back to top button -->
+            <button th:fragment="copy-topButton" type="button"
+                    class="btn btn-warning border border-dark btn-floating btn-lg text-dark" id="btn-back-to-top">
+                <i class="fas fa-arrow-up"></i>
+            </button>
+        </div>
+    </section>
+</div>
 <div th:fragment="copy-footer" class="p-3 bg-dark text-white">
     <footer class="footer mt-5 mb-1 bg-light bg-dark text-white">
         <div class="container">
@@ -292,10 +319,10 @@
 </div>
 <div th:fragment="end-scripts">
     <!-- Bootstrap core JS-->
-    <script th:src="@{https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js}"
+    <script th:src="@{'https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js'}"
             integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
             crossorigin="anonymous"></script>
-    <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js}"
+    <script th:src="@{'https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js'}"
             integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
             crossorigin="anonymous"></script>
     <!-- Core theme JS-->
