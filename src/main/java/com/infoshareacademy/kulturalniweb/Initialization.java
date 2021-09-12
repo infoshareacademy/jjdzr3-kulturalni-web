@@ -11,7 +11,7 @@ public class Initialization {
     public Initialization(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         User appAdmin = new User();
         appAdmin.setUsername("Admin");
-        appAdmin.setEmail("aplikacjakulturalni@gmail.com");
+        appAdmin.setEmail("email@buziaczek.pl");
         appAdmin.setPassword(passwordEncoder.encode("Admin1"));
         appAdmin.setRole("ADMIN");
         appAdmin.setEnabled(true);

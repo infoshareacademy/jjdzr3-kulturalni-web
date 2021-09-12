@@ -25,7 +25,7 @@ public class ListEventRepository {
     private EventService eventService;
 
     private List<EventNew> eventsDB = new ArrayList<>();
-    private Path path = Paths.get("src", "main", "resources", "data1.json");
+    private Path path = Paths.get("src", "main", "resources", "data.json");
 
     public ListEventRepository(PictureService pictureService, EventsRepository eventsRepository, EntityManager entityManager, EventService eventService) {
         this.pictureService = pictureService;

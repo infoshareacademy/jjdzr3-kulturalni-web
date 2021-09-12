@@ -29,6 +29,4 @@ public class TokenController {
         userRepository.save(user);
         return "sign-in";
     }
-
-
 }
