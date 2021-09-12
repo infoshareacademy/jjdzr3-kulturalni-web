@@ -43,8 +43,8 @@ public class UserService {
         String url = "http://localhost:8080/token?value=" + tokenValue;
 
         try {
-            mailService.sendMail(user.getEmail(), "Aktywuj swoje konto",
-                    "Kliknij w podany link, aby aktywować konto: " + url, false);
+            mailService.sendMail(user.getEmail(), "Cześć " + user.getUsername() + "! Aktywuj swoje konto",
+                    "Dziękujemy za rejestrację w naszej aplikacji! \nKliknij w podany link, aby aktywować konto: " + url, false);
         } catch (MessagingException e) {
             e.printStackTrace();
         }
