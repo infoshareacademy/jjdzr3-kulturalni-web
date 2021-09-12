@@ -1,6 +1,5 @@
 package com.infoshareacademy.kulturalniweb.controllers;
 
-
 import com.infoshareacademy.kulturalniweb.mappers.EventMapper;
 import com.infoshareacademy.kulturalniweb.models.dto.EditEventDto;
 import com.infoshareacademy.kulturalniweb.models.dto.EventDto;
@@ -31,37 +30,19 @@ public class EditEventController {
 
     @GetMapping("/editEvent")
     public String editEvent(@RequestParam("id") Integer id, Model model) {
-        //Integer id = 151005;
         EventDto eventDto = editEventService.getSingleEvent(id);
-
         EditEventDto editEventDto = eventMapper.mapEventDtoToEditEventDto(eventDto);
-
         model.addAttribute("editEventDto", editEventDto);
-
         return "editEventForm";
     }
 
     @PostMapping("/updateEvent")
     public String updateEvent(@ModelAttribute @Valid EditEventDto editEventDto, BindingResult result, Model model) {
-
         editEventService.saveEditedEvent(editEventDto);
         EventDto eventDto = editEventService.getSingleEvent(editEventDto.getNewEventId());
         EventDto resultDto = recodecategoryId(eventDto);
-
         model.addAttribute("eventDto", resultDto);
-
         return "editEventSavedForm";
-
-/*        if (result.hasFieldErrors()) {
-            model.addAttribute("editEventDto", editEventDto);
-            return "editEventForm";
-        } else {
-            editEventService.saveEditedEvent(editEventDto);
-            EventDto eventDto = editEventService.getSingleEvent(editEventDto.getId());
-            model.addAttribute("eventDto", eventDto);
-
-            return "editEventSavedForm";
-        }*/
     }
 
     private EventDto recodecategoryId(EventDto eventDtoFromDB) {
@@ -92,5 +73,4 @@ public class EditEventController {
 
         return result;
     }
-
 }

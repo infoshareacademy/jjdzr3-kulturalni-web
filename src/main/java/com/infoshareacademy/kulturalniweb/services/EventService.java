@@ -27,22 +27,18 @@ public class EventService {
     }
 
     public void eventEntityFromJsonSave(EventNew eventNew) {
-        //System.out.println("DTO    " + eventNew.toString());
         EventEntity eventEntity = eventMapper.mapEventNewToEventEntity(eventNew);
         dateMapper.map(eventEntity);
-        //System.out.println("ENTITY " + eventEntity.toString());
         eventsRepository.save(eventEntity);
     }
 
-    public List<EventNew> eventDtoFindAll() {
+/*    public List<EventNew> eventDtoFindAll() {
         List<EventEntity> list = (List<EventEntity>) eventsRepository.findAll();
-        // List<EventDto> result = eventMapper.
         return null;
-    }
+    }*/
 
     public EventDto getSingleEvent(Integer id) {
         EventEntity eventEntity = eventsRepository.getSingleEvent(id);
-
         return eventMapper.mapEventEntityToEventDto(eventEntity);
     }
 

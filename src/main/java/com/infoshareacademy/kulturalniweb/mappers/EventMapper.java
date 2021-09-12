@@ -169,11 +169,6 @@ public class EventMapper {
 
         System.out.println(editEventDto.getNewEventName());
 
-        //resultEventDto.setId(editEventDto.getNewEventId());
-        //resultEventDto.setName(editEventDto.getNewEventName());
-        //resultEventDto.setPlaceName();
-
-
         return resultEditEventDto;
     }
 
@@ -219,7 +214,6 @@ public class EventMapper {
 
         OrganizerEntity organizerEntity = new OrganizerEntity();
         organizerEntity.setDesignation("org");
-        //organizerEntity.setId(14);
         eventEntity.setOrganizerEntity(organizerEntity);
 
         eventEntity.setActive("1");
@@ -277,12 +271,6 @@ public class EventMapper {
 
         String ticket = "?";
 
-/*        if(editEventDto.getNewEventPriceFree().equals(null)) {
-            ticket = "Impreza darmowa";
-        } else {
-            ticket = editEventDto.getNewEventPrice();
-        }*/
-
         TicketEntity ticketEntity = new TicketEntity();
         ticketEntity.setType(ticket);
         eventEntity.setTicketEntity(ticketEntity);
@@ -291,8 +279,7 @@ public class EventMapper {
         urlEntity.setUrl(editEventDto.getNewEventUrl());
         eventEntity.setUrlEntity(urlEntity);
 
-        //eventEntity.setDescLong("brak - do zrobienia input");
-        eventEntity.setDescLong(editEventDto.getDescLong());
+        eventEntity.setDescLong(editEventDto.getNewEventDescription());
         eventEntity.setPicture(GRAPHICS_PATH + editEventDto.getNewEventImage());
         eventEntity.setFavourite(false);
 
@@ -302,7 +289,6 @@ public class EventMapper {
 
         OrganizerEntity organizerEntity = new OrganizerEntity();
         organizerEntity.setDesignation("org");
-        //organizerEntity.setId(14);
         eventEntity.setOrganizerEntity(organizerEntity);
 
         eventEntity.setActive("1");

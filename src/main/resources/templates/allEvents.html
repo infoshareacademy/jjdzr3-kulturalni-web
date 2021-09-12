@@ -229,7 +229,10 @@
     </div>
     <!--SEARCH BAR-->
     <div class="container my-3">
-        <form class="d-flex">
+        <form action="/searchByText" class="d-flex">
+            <input class="form-control me-2" style="width:85%" type="text"
+                   th:placeholder="#{filters.search.placeholder}" th:value="${searchText}" name="searchText" id="searchText">
+            <button class="col-md-2 btn btn-warning text-dark" type="submit" th:text="#{filters.search.button}">SZUKAJ</button>
         </form>
     </div>
     <!--TABLE HEADERS-->
