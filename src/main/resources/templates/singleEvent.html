@@ -1,128 +1,132 @@
 <!DOCTYPE html>
-<html xmlns: th="http://www.thymeleaf.org" lang="pl">
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
 <head>
     <th:block th:insert="index :: copyhead">CopiedFromIndex</th:block>
 
-    <title>Kulturalni - Wydarzenie</title>
+    <title>Kulturalni - Wybrane wydarzenie</title>
 </head>
-
 <body>
 <!-- Navigation-->
 <div th:insert="index :: copy-masthead"></div>
 <!-- Masthead-->
-<header class="masthead text-dark">
+<header class="masthead text-dark" style="padding-top: 120px">
     <div class="container" id="greeting">
-        <img class="mb-4" th:src="@{images/img/logos/logo.png}" alt="" width="150" height="145">
-        <h4 class="mb-3 fw-normal text-warning" th:text="#{editEvent.greeting}"></h4>
+        <img class="mb-4" th:src="@{images/img/logos/logo.png}" alt="" width="300" height="280" src="">
+        <h1 class="mb-3 fw-normal text-warning" th:text="#{singleEvent.greeting}"></h1>
     </div>
 
     <div class="container col-lg-6">
         <!-- imageEvent display -->
         <div class="row event-description">
-            <div class="col text-warning">
-                <p>Obrazek przypisany do wydarzenia</p>
-                <p><img th:src="${singleEvent.getPicture()}"></p>
+            <div class="text-warning bg-dark pb-3 border-warning border rounded-3">
+                <label for="imageEvent"></label>
+                <div class="mb-2" th:text="#{singleEvent.image}">Obrazek wydarzenia</div>
+                <img th:src="${singleEvent.getPicture()}" src="" id="imageEvent" alt="">
             </div>
         </div>
         <!-- nameEvent input -->
         <div class="row event-description">
-            <div class="text-warning">
+            <div class="text-warning bg-dark pb-3 border-warning border rounded-3">
                 <label for="nameEvent"></label>
-                <p>Nazwa wydarzenia <input type="text" class="form-control" id="nameEvent"
-                                           th:value="${singleEvent.getName()}" readonly
-                                           style="background-color: #20c997"></p>
+                <div class="mb-2" th:text="#{singleEvent.name}">Nazwa wydarzenia</div>
+                <input type="text" class="form-control" id="nameEvent" th:value="${singleEvent.getName()}" readonly>
             </div>
         </div>
         <!-- placeEvent input -->
         <div class="row event-description">
-            <div class="text-warning">
+            <div class="text-warning bg-dark pb-3 border-warning border rounded-3">
                 <label for="placeEvent"></label>
-                <p>Miejsce <input type="text" class="form-control" id="placeEvent"
-                                  th:value="${singleEvent.getPlaceName()}" readonly style="background-color: #20c997">
-                </p>
+                <div class="mb-2" th:text="#{singleEvent.place}">Miejsce</div>
+                <input type="text" class="form-control" id="placeEvent" th:value="${singleEvent.getPlaceName()}"
+                       readonly>
             </div>
         </div>
         <!-- categoryId input -->
         <div class="row event-description">
-            <div class="text-warning">
-                <label for="placeEvent"></label>
-                <p>Kategoria wydarzenia <input type="text" class="form-control" id="categoryid"
-                                               th:value="${singleEvent.getCategoryId()}" readonly
-                                               style="background-color: #20c997"></p>
+            <div class="text-warning bg-dark pb-3 border-warning border rounded-3">
+                <label for="categoryid"></label>
+                <div class="mb-2" th:text="#{singleEvent.category}">Kategoria wydarzenia</div>
+                <input type="text" class="form-control" id="categoryid" th:value="${singleEvent.getCategoryId()}"
+                       readonly>
             </div>
         </div>
         <!-- cityEvent input -->
         <div class="row event-description">
-            <div class="text-warning">
+            <div class="text-warning bg-dark pb-3 border-warning border rounded-3">
                 <label for="cityEvent"></label>
-                <p>Miejscowość <input type="text" class="form-control" id="cityEvent"
-                                      th:value="${singleEvent.getCity()}" readonly style="background-color: #20c997">
-                </p>
+                <div class="mb-2" th:text="#{singleEvent.city}">Miejscowość</div>
+                <input type="text" class="form-control" id="cityEvent" th:value="${singleEvent.getCity()}"
+                       readonly>
             </div>
         </div>
         <!-- startEvent input -->
         <div class="row event-description">
-            <div class="col">
-                <label for="sortEventsDateStart" class="text-warning">Początek wydarzenia</label>
-                <p class="text-warning">Data rozpoczęcia <input type="date" class="form-control"
-                                                                id="sortEventsDateStart"
-                                                                th:value="${singleEvent.getStartDateDate()}" readonly
-                                                                style="background-color: #20c997"></p>
+            <!-- startEvent DATE -->
+            <div class="col-6 text-warning bg-dark pb-3 border-warning border rounded-3">
+                <div class="col-12">
+                    <label for="sortEventsDateStart" class="text-warning mb-3" th:text="#{singleEvent.eventStart}">Początek
+                        wydarzenia</label>
+                    <div class="text-warning mb-2" th:text="#{singleEvent.startDate}">Data rozpoczęcia</div>
+                    <input type="date" class="form-control"
+                           id="sortEventsDateStart"
+                           th:value="${singleEvent.getStartDateDate()}" readonly>
+                </div>
+                <!-- startEvent TIME -->
+                <div class="col-12">
+                    <label for="startEventTimeStart"></label>
+                    <div class="text-warning mb-2" th:text="#{singleEvent.startTime}">Godzina rozpoczęcia</div>
+                    <input type="time" class="form-control"
+                           id="startEventTimeStart"
+                           th:value="${singleEvent.getStartDateTime()}" readonly>
+                </div>
             </div>
-            <div class="col">
-                <label for="startEventTimeStart"></label>
-                <p class="text-warning">Godzina rozpoczęcia <input type="time" class="form-control"
-                                                                   id="startEventTimeStart"
-                                                                   th:value="${singleEvent.getStartDateTime()}" readonly
-                                                                   style="background-color: #20c997"></p>
+            <!-- endEvent input -->
+            <div class="col-6 text-warning bg-dark pb-3 border-warning border rounded-3">
+                <div class="col-12">
+                    <label for="sortEventsDateEnd" class="text-warning mb-3" th:text="#{singleEvent.eventEnd}">Koniec
+                        wydarzenia</label>
+                    <div class="text-warning mb-2" th:text="#{singleEvent.endDate}">Data zakończenia</div>
+                    <input type="date" class="form-control"
+                           id="sortEventsDateEnd"
+                           th:value="${singleEvent.getEndDateDate()}" readonly>
+                </div>
+                <div class="col-12">
+                    <label for="endEventTimeEnd"></label>
+                    <div class="text-warning mb-2" th:text="#{singleEvent.endTime}">Godzina zakończenia</div>
+                    <input type="time"
+                           class="form-control"
+                           id="endEventTimeEnd"
+                           th:value="${singleEvent.getEndDateTime()}" readonly>
+                </div>
             </div>
         </div>
-        <!-- endEvent input -->
-        <div class="row event-description">
-            <div class="col">
-                <label for="sortEventsDateEnd" class="text-warning">Koniec wydarzenia</label>
-                <p class="text-warning">Data zakończenia <input type="date" class="form-control" id="sortEventsDateEnd"
-                                                                th:value="${singleEvent.getEndDateDate()}" readonly
-                                                                style="background-color: #20c997"></p>
-            </div>
-            <div class="col">
-                <label for="startEventTimeEnd"></label>
-                <p class="text-warning">Godzina zakończenia <input type="time" class="form-control"
-                                                                   id="startEventTimeEnd"
-                                                                   th:value="${singleEvent.getEndDateTime()}" readonly
-                                                                   style="background-color: #20c997"></p>
-            </div>
-        </div>
+
         <!-- priceEvent input -->
         <div class="row event-description">
-            <div class="col text-warning">
+            <div class="text-warning bg-dark pb-3 border-warning border rounded-3">
                 <label for="priceEvent"></label>
-                <p>Cena <input type="text" class="form-control" id="priceEvent" th:value="${singleEvent.getTicket()}"
-                               readonly style="background-color: #20c997"></p>
+                <div class="mb-2" th:text="#{singleEvent.price}">CENA</div>
+                <input type="text" class="form-control" id="priceEvent"
+                       th:value="${singleEvent.getTicket()}" readonly>
             </div>
-            <!--       <div class="col text-warning">
-                       <br><p></p>
-                       <input class="form-check-input" type="checkbox" id="priceEventFree"
-                              onclick="this.form.elements['priceEvent'].disabled = this.checked" fname="newEventPriceFree">
-                       <label class="form-check-label text-warning" for="priceEventFree">Wydarzenie Bezpłatne</label>
-                   </div>-->
         </div>
         <!-- urlAddress input -->
         <div class="row event-description">
-            <div class="col text-warning">
+            <div class="text-warning bg-dark pb-3 border-warning border rounded-3">
                 <label for="urlAddress"></label>
-                <p>URL <input type="text" class="form-control" id="urlAddress" th:value="${singleEvent.getUrl()}"
-                              readonly style="background-color: #20c997"></p>
+                <div class="mb-2" th:text="#{singleEvent.url}">Adres strony</div>
+                <input type="text" class="form-control" id="urlAddress"
+                       th:value="${singleEvent.getUrl()}" readonly>
             </div>
         </div>
         <!-- descriptionEvent input -->
         <div class="row event-description">
-            <div class="col text-warning">
+            <div class="text-warning bg-dark pb-3 border-warning border rounded-3">
                 <label for="descriptionEvent"></label>
-                <p>Opis wydarzenia (długi) <textarea class="form-control" th:utext="${singleEvent.getDescLong()}"
-                                                     id="descriptionEvent"
-                                                     rows="15" name="newEventDescription"
-                                                     style="background-color: #20c997"></textarea></p>
+                <div class="mb-2" th:text="#{singleEvent.description}">Opis wydarzenia</div>
+                <textarea type="text" class="form-control" id="descriptionEvent"
+                          th:utext="${singleEvent.getDescLong()}" readonly rows="15">
+                </textarea>
             </div>
         </div>
     </div>
