@@ -25,7 +25,6 @@ public class NewPaginationServiceClass {
     private Boolean shouldBeDisplayed(String totalNumberOfEvents, String numberOfEventsOnThePage) {
         Integer totalNumberOfEventsInteger = Integer.parseInt(totalNumberOfEvents);
         Integer numberOfEventsOnThePageInteger = Integer.parseInt(numberOfEventsOnThePage);
-        System.out.println(totalNumberOfEventsInteger + "   " + numberOfEventsOnThePageInteger);
         return (totalNumberOfEventsInteger > numberOfEventsOnThePageInteger);
     }
 

@@ -1,14 +1,17 @@
 package com.infoshareacademy.kulturalniweb.controllers;
 
+import com.infoshareacademy.kulturalniweb.jsonData.EventSimple;
+import com.infoshareacademy.kulturalniweb.models.dto.EditEventDto;
 import com.infoshareacademy.kulturalniweb.models.dto.EventDto;
 import com.infoshareacademy.kulturalniweb.models.dto.NewPaginationDto;
-import com.infoshareacademy.kulturalniweb.jsonData.EventSimple;
 import com.infoshareacademy.kulturalniweb.repository.EventSimpleMemory;
 import com.infoshareacademy.kulturalniweb.repository.ListEventRepository;
 import com.infoshareacademy.kulturalniweb.services.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
@@ -30,7 +33,6 @@ public class AllEventsController {
     NewPaginationDto newPaginationDto;
 
 
-    Boolean fileNotReadYet = true;
     Integer favId = 0;
 
     private Integer totalNumberOfEvents = 0;
@@ -57,13 +59,7 @@ public class AllEventsController {
     }
 
     @GetMapping("/allEventsIndex")
-    public String displayAllEventsFromIndex () {
-                    sortingServices.setEventFilterType("all");
-                    sortingServices.setEventFilterPlace("all");
-                    sortingServices.setEventSortType("date");
-                    sortingServices.setEventSortDirection("descending");
-                    sortingServices.setNumberOfEventsOnThePage(15);
-
+    public String displayAllEventsFromIndex() {
         sortingParameters.put("eventFilterType", "> 0");
         sortingParameters.put("eventFilterPlace", "all");
         sortingParameters.put("eventSortType", "startDateDate");
@@ -73,6 +69,7 @@ public class AllEventsController {
         sortingParameters.put("numberOfResultPages", "1");
         sortingParameters.put("totalNumberOfEvents", "0");
         sortingParameters.put("requestedPageNumber", "1");
+        sortingParameters.put("searchText", "");
 
         newPaginationDto.setShouldBeDisplayed(false);
         newPaginationDto.setLeftArrowNavBarNumber(0);
@@ -90,46 +87,33 @@ public class AllEventsController {
         newPaginationDto.setShouldFifthNavBarNumberBeDisplayed(true);
         newPaginationDto.setShouldRightArrowNavBarNumberBeDisplayed(true);
 
-
-
-                    numberOfEventsOnThePage = 10;
         totalNumberOfEvents = eventsToDisplay.size();
         sortingParameters.put("totalNumberOfEvents", totalNumberOfEvents.toString());
-                    numberOfPageThatIsBeeingDisplayed = 1;
 
         return "redirect:allEvents";
     }
 
     @GetMapping("/allEvents")
-    public String allEvents (Model model) {
+    public String allEvents(Model model) {
 
-        // Usunąć ifa - przy naprawieniu listy wydarzeń do bazy
-        if (fileNotReadYet) {
-            repositoryServiceClass.readEventsFromGsonToList();
-            eventSimpleMemoryServiceClass.clearMemory();
-            eventSimpleMemoryServiceClass.prepareSimpleEventsListFromRepository();
-            fileNotReadYet = false;
-        }
-
-
-        sortingServices.sortBySelectedCriteria();
-        sortingServices.filterByPlace();
-
-                    totalNumberOfEvents = eventSimpleMemory.getListOfEventSimple().size();
+        //sortingServices.sortBySelectedCriteria();
+        //sortingServices.filterByPlace();
 
         model.addAttribute("numberOfEventsPerPage", Integer.parseInt(sortingParameters.get("numberOfEventsOnThePage")));
         model.addAttribute("eventFilterType", sortingParameters.get("eventFilterType"));
         model.addAttribute("eventFilterPlace", sortingParameters.get("eventFilterPlace"));
         model.addAttribute("eventSortType", sortingParameters.get("eventSortType"));
         model.addAttribute("eventSortDirection", sortingParameters.get("eventSortDirection"));
-
+        model.addAttribute("searchText", sortingParameters.get("searchText"));
 
         Integer eventDtosSize = eventService.getSizeOfListOfSortedEventEntities(sortingParameters);
+
         sortingParameters.put("numberOfResultPages", calculateNumberOfResultPages(eventDtosSize, sortingParameters.get("numberOfEventsOnThePage")));
         List<EventDto> eventDtos = eventService.createListOfSortedEventEntities(sortingParameters);
 
         model.addAttribute("listOfEventDto", eventDtos);
         model.addAttribute("favouriteEvent", favId);
+        model.addAttribute("searchText", sortingParameters.get("searchText"));
 
         sortingParameters.put("totalNumberOfEvents", eventDtosSize.toString());
         NewPaginationDto newPaginationDto = newPaginationServiceClass.getNewPaginationDto(sortingParameters);
@@ -138,10 +122,8 @@ public class AllEventsController {
     }
 
 
-
     @GetMapping("/eventsPerPage")
-    public String changeNumberOfEventsPerPage (@RequestParam("eventsPerPage") Integer eventsPerPage) {
-
+    public String changeNumberOfEventsPerPage(@RequestParam("eventsPerPage") Integer eventsPerPage) {
         if (eventsPerPage == 10) {
             sortingParameters.put("numberOfEventsOnThePage", "10");
         } else if (eventsPerPage == 30) {
@@ -151,12 +133,11 @@ public class AllEventsController {
         }
 
         resetSortingparameters();
-
         return "redirect:allEvents";
     }
 
     @GetMapping("/eventFilterType")
-    public String changeEventType (@RequestParam("eventFilterType") String eventFilterType) {
+    public String changeEventType(@RequestParam("eventFilterType") String eventFilterType) {
         switch (eventFilterType) {
             case "1":
                 sortingParameters.put("eventFilterType", "= 1");
@@ -191,45 +172,37 @@ public class AllEventsController {
             default:
                 sortingParameters.put("eventFilterType", "> 0");
         }
-       // System.out.println(sortingParameters.get("eventFilterType"));
 
         resetSortingparameters();
-        return "redirect:allevents";
+        return "redirect:allEvents";
     }
 
 
     @GetMapping("/eventFilterPlace")
-    public String changeEventPlace (@RequestParam("eventFilterPlace") String eventFilterPlace) {
-                        //sortingServices.setEventFilterPlace(eventFilterPlace);
+    public String changeEventPlace(@RequestParam("eventFilterPlace") String eventFilterPlace) {
         sortingParameters.put("eventFilterPlace", eventFilterPlace);
-                        System.out.println(sortingParameters.get("eventFilterPlace"));
+        System.out.println(sortingParameters.get("eventFilterPlace"));
         resetSortingparameters();
         return "redirect:allEvents";
     }
 
     @GetMapping("/eventSortType")
-    public String changeEventSortType (@RequestParam("eventSortType") String eventSortType) {
-                        sortingServices.setEventSortType(eventSortType);
+    public String changeEventSortType(@RequestParam("eventSortType") String eventSortType) {
+        sortingServices.setEventSortType(eventSortType);
         if (eventSortType.equals("date")) {
-                        //sortingServices.setEventSortType("startDateDate");
             sortingParameters.put("eventSortType", "startDateDate");
         } else if (eventSortType.equals("city")) {
-                        //sortingServices.setEventSortType("city");
             sortingParameters.put("eventSortType", "city");
         } else {
-                        //sortingServices.setEventSortType("name");
             sortingParameters.put("eventSortType", "name");
         }
 
-                        //sortingParameters.put("eventSortType", eventSortType);
         return "redirect:allEvents";
     }
 
     @GetMapping("/eventSortDirection")
-    public String changeEventSortDirection (@RequestParam("eventSortDirection") String eventSortDirection) {
-                        //sortingServices.setEventSortDirection(eventSortDirection);
-                         //sortingParameters.put("eventSortDirection", eventSortDirection);
-        if(eventSortDirection.equals("ascending")) {
+    public String changeEventSortDirection(@RequestParam("eventSortDirection") String eventSortDirection) {
+        if (eventSortDirection.equals("ascending")) {
             sortingParameters.put("eventSortDirection", "ASC");
         } else {
             sortingParameters.put("eventSortDirection", "DESC");
@@ -240,18 +213,22 @@ public class AllEventsController {
     @GetMapping("/alleventsChangePage")
     public String changeNumberOfPageBeeingDisplayed(@RequestParam("page") Integer requestedPageNumber) {
         sortingParameters.put("requestedPageNumber", requestedPageNumber.toString());
-
-        System.out.println("Req Page number: " + requestedPageNumber);
         return "redirect:allEvents";
     }
 
-    private List<EventSimple> selectEventsForEachPage() {
+    @GetMapping("/searchByText")
+    public String searchByText(@RequestParam("searchText") String searchText) {
+        sortingParameters.put("searchText", searchText);
+        return "redirect:allEvents";
+    }
+
+/*    private List<EventSimple> selectEventsForEachPage() {
         List<EventSimple> eventSimpleMemoryList = eventSimpleMemoryServiceClass.getListOfEventSimpleFromMemory();
         List<EventSimple> result = new ArrayList<>();
 
-        if (numberOfPageThatIsBeeingDisplayed <paginationServiceClass.getTotalNumberOfPages()) {
+        if (numberOfPageThatIsBeeingDisplayed < paginationServiceClass.getTotalNumberOfPages()) {
             Integer startIndex = (numberOfPageThatIsBeeingDisplayed - 1) * numberOfEventsOnThePage;
-            Integer endIndex = (startIndex + (numberOfEventsOnThePage -1));
+            Integer endIndex = (startIndex + (numberOfEventsOnThePage - 1));
 
             for (int i = startIndex; i <= endIndex; i++) {
                 result.add(eventSimpleMemoryList.get(i));
@@ -266,13 +243,12 @@ public class AllEventsController {
         }
 
         return result;
-    }
+    }*/
 
     @GetMapping(value = "/favselect")
     public String favSelect(@RequestParam("id") Integer id,
                             @RequestParam("favStatus") Boolean favStatus) {
         favId = id;
-        System.out.println(favId);
         eventService.updateFavourite(id, favStatus);
 
         return "redirect:allEvents";
@@ -281,8 +257,7 @@ public class AllEventsController {
     private String calculateNumberOfResultPages(Integer eventDtosSize, String numberOfEventsOnThePage) {
         Integer pagesNumber = eventDtosSize / Integer.parseInt(numberOfEventsOnThePage);
         Integer anythingLeft = eventDtosSize % Integer.parseInt(numberOfEventsOnThePage);
-        System.out.println("size: " + eventDtosSize + " pages nmbr: " + pagesNumber + " anythingLeft: " + anythingLeft);
-        if(anythingLeft >0) {
+        if (anythingLeft > 0) {
             pagesNumber++;
         }
         return pagesNumber.toString();

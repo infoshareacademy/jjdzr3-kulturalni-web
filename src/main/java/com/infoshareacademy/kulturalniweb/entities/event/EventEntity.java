@@ -30,7 +30,7 @@ public class EventEntity {
 
     @Column(length = 50000)
     private String descLong;
-    private Integer categoryId;
+    private String categoryId;
     private String startDateDate;
     private String startDateTime;
     private String startDateLastTime;
@@ -132,11 +132,11 @@ public class EventEntity {
         this.descLong = descLong;
     }
 
-    public Integer getCategoryId() {
+    public String getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(Integer categoryId) {
+    public void setCategoryId(String categoryId) {
         this.categoryId = categoryId;
     }
 

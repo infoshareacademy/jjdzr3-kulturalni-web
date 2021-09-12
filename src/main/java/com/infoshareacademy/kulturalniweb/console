@@ -1,0 +1,6 @@
+DELETE FROM AttachmentEntity WHERE id > 0
+DELETE FROM EventEntity WHERE id > 0
+DELETE FROM OrganizerEntity WHERE id > 0
+DELETE FROM PlaceEntity WHERE id > 0
+DELETE FROM TicketEntity WHERE id > 0
+DELETE FROM UrlEntity WHERE id > 0

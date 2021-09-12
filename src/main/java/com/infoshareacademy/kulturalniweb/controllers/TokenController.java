@@ -27,7 +27,7 @@ public class TokenController {
         User user = byValue.getAppUser();
         user.setEnabled(true);
         userRepository.save(user);
-        return "index";
+        return "sign-in";
     }
 
 

@@ -3,11 +3,14 @@ package com.infoshareacademy.kulturalniweb.repository;
 import com.infoshareacademy.kulturalniweb.models.dto.EventDto;
 import com.infoshareacademy.kulturalniweb.entities.event.*;
 import com.infoshareacademy.kulturalniweb.mappers.EventMapper;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -54,7 +57,6 @@ public class EventsRepository implements Dao<EventEntity> {
         entityManager.persist(placeEntity);
     }
 
-    // Czy można zrobić od razu update całego obiektu czy tez trzeba podac po kolei wszystkie kolumny?
     @Override
     public EventEntity update(EventEntity eventEntity, Integer id) {
         return null;
@@ -65,7 +67,11 @@ public class EventsRepository implements Dao<EventEntity> {
     }
 
     public List<EventDto> createListOfClosestEvents() {
-        final Query query = entityManager.createQuery("SELECT e FROM EventEntity e ORDER BY e.startDateTime DESC, e.startDateDate DESC", EventEntity.class);
+        LocalDate localDate = LocalDate.now();
+        LocalTime localTime = LocalTime.now();
+
+        final Query query = entityManager.createQuery("SELECT e FROM EventEntity e WHERE e.startDateDate >= :dateNow ORDER BY e.startDateDate DESC, e.startDateTime DESC", EventEntity.class)
+                .setParameter("dateNow", localDate.toString());
         List<EventEntity> queryResult = query.getResultList();
         List<EventDto> eventDtos = new ArrayList<>();
         for(int i = 0; i < queryResult.size(); i++) {
@@ -93,7 +99,6 @@ public class EventsRepository implements Dao<EventEntity> {
     }
 
     public List<EventEntity> createListOfSortedEventEntities(Map<String, String> sortingParameters) {
-        System.out.println("    requestedPageNumber: " + sortingParameters.get("requestedPageNumber"));
         String orderDefinition = "";
 
         if(sortingParameters.get("eventSortType").equals("startDateDate")) {
@@ -106,16 +111,17 @@ public class EventsRepository implements Dao<EventEntity> {
 
         Integer requestedPageNumber = Integer.parseInt(sortingParameters.get("requestedPageNumber"));
         Integer numberOfEventsOnThePage = Integer.parseInt(sortingParameters.get("numberOfEventsOnThePage"));
-        Integer firstResult = (requestedPageNumber * numberOfEventsOnThePage) - (numberOfEventsOnThePage - 1);
+        Integer firstResult = ((requestedPageNumber -1) * numberOfEventsOnThePage);
 
         final Query query = entityManager
                 .createQuery("SELECT e FROM EventEntity e " +
-                        "WHERE e.categoryId " + sortingParameters.get("eventFilterType") + " " +
+                        "WHERE e.active=1 and e.categoryId " + sortingParameters.get("eventFilterType") + " and e.name LIKE '%" + sortingParameters.get("searchText") + "%' " +
                         "ORDER BY " + orderDefinition, EventEntity.class)
                 .setFirstResult(firstResult)
                 .setMaxResults(numberOfEventsOnThePage);
 
         List<EventEntity> eventEntities = query.getResultList();
+        System.out.println("create list size = " + eventEntities.size());
         return eventEntities;
     }
 
@@ -132,21 +138,91 @@ public class EventsRepository implements Dao<EventEntity> {
 
         final Query query = entityManager
                 .createQuery("SELECT e FROM EventEntity e " +
-                        "WHERE e.categoryId " + sortingParameters.get("eventFilterType") + " " +
+                        "WHERE e.active=1 and e.categoryId " + sortingParameters.get("eventFilterType") + " and e.name LIKE '%" + sortingParameters.get("searchText") + "%' " +
                         "ORDER BY " + orderDefinition, EventEntity.class);
 
         List<EventEntity> eventEntities = query.getResultList();
         return eventEntities;
     }
 
+
+    public List<EventEntity> getFavourites() {
+        final Query query = entityManager
+                .createQuery("SELECT e FROM EventEntity e WHERE e.isFavourite = true ORDER BY e.startDateDate DESC");
+
+        List<EventEntity> eventEntities = query.getResultList();
+        System.out.println("eventRepository.getFavourites().size() = " + eventEntities.size());
+        return eventEntities;
+    }
+
+    public Integer getSizeOfDB() {
+        final Query query = entityManager
+                .createQuery("SELECT e FROM EventEntity e WHERE e.id > 0");
+
+        List<EventEntity> result = query.getResultList();
+
+        Integer size = result.size();
+        System.out.println("result A: " + size);
+        return size;
+    }
+
+    public void updateEvent(EventEntity eventEntity) {
+        final Query query = entityManager
+                .createQuery("UPDATE EventEntity e SET " +
+                        "e.name = :name," +
+                        "e.endDateDate = :endDateDate," +
+                        "e.endDateTime = :endDateTime," +
+                        "e.descLong = :descLong," +
+                        "e.categoryId = :categoryId," +
+                        "e.startDateDate =: startDateDate," +
+                        "e.startDateTime =: startDateTime," +
+                        "e.descShort = :descShort," +
+                        "e.picture = :picture," +
+                        "e.city = :city WHERE e.id = :eventId")
+                .setParameter("name", eventEntity.getName())
+                .setParameter("endDateDate", eventEntity.getEndDateDate())
+                .setParameter("endDateTime", eventEntity.getEndDateTime())
+                .setParameter("descLong", eventEntity.getDescLong())
+                .setParameter("categoryId", eventEntity.getCategoryId())
+                .setParameter("startDateDate", eventEntity.getStartDateDate())
+                .setParameter("startDateTime", eventEntity.getStartDateTime())
+                .setParameter("descShort", eventEntity.getDescShort())
+                .setParameter("picture", eventEntity.getPicture())
+                .setParameter("city", eventEntity.getCity())
+                .setParameter("eventId", eventEntity.getId());
+
+        query.executeUpdate();
+    }
+
     public void updateFavourite(Integer id, Boolean favStatus) {
         final Query query = entityManager
-                .createQuery("update EventEntity e set e.isFavourite = :newStatus where e.id = :id")
+                .createQuery("UPDATE EventEntity e SET e.isFavourite = :newStatus WHERE e.id = :id")
                 .setParameter("id", id)
                 .setParameter("newStatus", !favStatus);
 
         int result = query.executeUpdate();
         System.out.println(result);
+    }
+
+    public void deleteEvent(Integer id) {
+
+        final Query query = entityManager
+                .createQuery("UPDATE EventEntity e SET e.active = 9 WHERE e.id = :id")
+                .setParameter("id", id);
+
+        int result = query.executeUpdate();
+        System.out.println(result);
+
+    }
+
+    public Integer getMaximumId() {
+        final Query query = entityManager
+                .createQuery("SELECT MAX(id) FROM EventEntity");
+
+        List<Integer> result = query.getResultList();
+        Integer maximumId = result.get(0);
+
+        return maximumId;
     }
 }
 

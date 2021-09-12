@@ -41,7 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers().disable();
         http
                 .authorizeRequests()
-                .antMatchers("/favourites", "/addEvent", "/editEvent")
+                .antMatchers("/favourites","/addEvent", "/editEvent")
                 .authenticated()
                 .and()
                 .formLogin()
@@ -52,7 +52,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutUrl(LOGOUT_PAGE)
                 .logoutSuccessUrl(HOME_PAGE)
                 .deleteCookies("JSESSIONID");
-
 
 
     }

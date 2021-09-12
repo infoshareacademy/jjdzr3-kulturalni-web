@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class ListEventRepository {
     private EventService eventService;
 
     private List<EventNew> eventsDB = new ArrayList<>();
-    private Path path = Paths.get("src", "main", "resources", "data.json");
+    private Path path = Paths.get("src", "main", "resources", "data1.json");
 
     public ListEventRepository(PictureService pictureService, EventsRepository eventsRepository, EntityManager entityManager, EventService eventService) {
         this.pictureService = pictureService;
@@ -37,12 +38,13 @@ public class ListEventRepository {
         clearList();
         Gson gson = new Gson();
         try {
-            FileReader reader = new FileReader(String.valueOf(path));
+            FileReader reader = new FileReader(String.valueOf(path), StandardCharsets.UTF_8);
             EventNew[] eventList = gson.fromJson(reader, EventNew[].class);
 
             for (EventNew eventNew : eventList) {
                 eventsDB.add(eventNew);
 
+                                                        //System.out.println(eventNew.getDescLong());
                 //eventNew.getPlace().setSubname(pictureService.getPictureFilename());
                 eventService.eventEntityFromJsonSave(eventNew);
 

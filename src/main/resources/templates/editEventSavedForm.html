@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns: th="http://www.thymeleaf.org" lang="pl">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title>Kulturalni - Formularz edycji wydarzenia </title>
+
+  <!-- Favicon-->
+  <link rel="icon" type="image/x-icon" sizes="32x32" href="images/favicon.ico">
+
+  <!-- Core theme CSS (includes Bootstrap)-->
+
+  <link href="css/styles.css" type="text/css" rel="stylesheet"/>
+
+</head>
+
+<body>
+<!-- Navigation-->
+<div th:insert="index :: copy-masthead"></div>
+<!-- Masthead-->
+<header class="masthead text-dark">
+  <div class="container" id="greeting">
+    <img class="mb-4" src="images/img/logos/logo.png" alt="" width="150" height="145">
+    <h4 class="mb-3 fw-normal text-warning" th:text="#{editEvent.greeting}"></h4>
+  </div>
+
+  <div class="container col-lg-6">
+<!--    <form action="#" th:action="@{/updateEvent}" th:object="${eventDto}" method="post">-->
+      <!-- idEvent input -->
+      <div class="row event-description">
+        <div class="text-warning">
+          <p>Id wydarzenia <input type="text" class="form-control" th:value="${eventDto.getId()}" readonly style="background-color: #20c997"></p>
+        </div>
+      </div>
+      <!-- nameEvent input -->
+      <div class="row event-description">
+        <div class="text-warning">
+          <label for="nameEvent"></label>
+          <p>Nazwa wydarzenia <input type="text" class="form-control" id="nameEvent" th:value="${eventDto.getName()}" readonly style="background-color: #20c997"></p>
+        </div>
+      </div>
+      <!-- placeEvent input -->
+      <div class="row event-description">
+        <div class="text-warning">
+          <label for="placeEvent"></label>
+          <p>Miejsce <input type="text" class="form-control" id="placeEvent" th:value="${eventDto.getPlaceName()}" readonly style="background-color: #20c997"></p>
+        </div>
+      </div>
+      <!-- categoryId input -->
+      <div class="row event-description">
+          <div class="text-warning">
+              <label for="placeEvent"></label>
+              <p>Kategoria wydarzenia <input type="text" class="form-control" id="categoryid" th:value="${eventDto.getCategoryId()}" readonly style="background-color: #20c997"></p>
+          </div>
+      </div>
+      <!-- cityEvent input -->
+      <div class="row event-description">
+        <div class="text-warning">
+          <label for="cityEvent"></label>
+          <p>Miejscowość <input type="text" class="form-control" id="cityEvent" th:value="${eventDto.getCity()}" readonly style="background-color: #20c997"></p>
+        </div>
+      </div>
+      <!-- startEvent input -->
+      <div class="row event-description">
+        <div class="col">
+          <label for="sortEventsDateStart" class="text-warning">Początek wydarzenia</label>
+          <p class="text-warning">Data rozpoczęcia <input type="date" class="form-control" id="sortEventsDateStart" th:value="${eventDto.getStartDateDate()}" readonly style="background-color: #20c997"></p>
+        </div>
+        <div class="col">
+          <label for="startEventTimeStart"></label>
+          <p class="text-warning">Godzina rozpoczęcia <input type="time" class="form-control" id="startEventTimeStart" th:value="${eventDto.getStartDateTime()}" readonly style="background-color: #20c997"></p>
+        </div>
+      </div>
+      <!-- endEvent input -->
+      <div class="row event-description">
+        <div class="col">
+          <label for="sortEventsDateEnd" class="text-warning">Koniec wydarzenia</label>
+          <p class="text-warning">Data zakończenia <input type="date" class="form-control" id="sortEventsDateEnd" th:value="${eventDto.getEndDateDate()}" readonly style="background-color: #20c997"></p>
+        </div>
+        <div class="col">
+          <label for="startEventTimeEnd"></label>
+          <p class="text-warning">Godzina zakończenia <input type="time" class="form-control" id="startEventTimeEnd" th:value="${eventDto.getEndDateTime()}" readonly style="background-color: #20c997"></p>
+        </div>
+      </div>
+      <!-- priceEvent input -->
+      <div class="row event-description">
+        <div class="col text-warning">
+          <label for="priceEvent"></label>
+          <p>Cena <input type="text" class="form-control" id="priceEvent" th:value="${eventDto.getTicket()}" readonly style="background-color: #20c997"></p>
+        </div>
+<!--        <div class="col text-warning">
+          <br><p></p>
+          <input class="form-check-input" type="checkbox" id="priceEventFree"
+                 onclick="this.form.elements['priceEvent'].disabled = this.checked" fname="newEventPriceFree">
+          <label class="form-check-label text-warning" for="priceEventFree">Wydarzenie Bezpłatne</label>
+        </div>-->
+      </div>
+      <!-- urlAddress input -->
+      <div class="row event-description">
+        <div class="col text-warning">
+          <label for="urlAddress"></label>
+          <p>URL <input type="text" class="form-control" id="urlAddress" th:value="${eventDto.getUrl()}" readonly style="background-color: #20c997"></p>
+        </div>
+      </div>
+      <!-- descriptionEvent input -->
+      <div class="row event-description">
+        <div class="col text-warning">
+          <label for="descriptionEvent"></label>
+          <p>Opis wydarzenia (długi) <textarea th:utext="${eventDto.getDescLong()}" class="form-control" id="descriptionEvent"
+                                               rows="15" name="newEventDescription"></textarea></p>
+        </div>
+      </div>
+      <!-- imageEvent display -->
+      <div class="row event-description">
+        <div class="col text-warning">
+          <p>Obrazek przypisany do wydarzenia</p>
+          <p><img th:src="${eventDto.getPicture()}" style="margin-bottom: 30px"></p>
+        </div>
+      </div>
+  </div>
+    <!-- Back to top button -->
+    <div th:insert="index :: copy-topButton"></div>
+</header>
+<!--    Footer-->
+<div th:insert="index :: copy-footer"></div>
+<!-- JS-->
+<div th:insert="index :: end-scripts"></div>
+</body>
+</html>
