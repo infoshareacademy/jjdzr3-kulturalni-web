@@ -15,7 +15,7 @@
     <h6 class="mb-3 fw-normal text-warning" th:text="#{events.subtitle}"></h6>
     <!--FILTERS-->
     <button class="btn text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters"
-            aria-expanded="false" aria-controls="collapseFilters">
+            aria-expanded="true" aria-controls="collapseFilters">
         <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor"
              class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
             <path fill-rule="evenodd"
@@ -28,7 +28,7 @@
                   d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z"/>
         </svg>
     </button>
-    <div class="collapse" id="collapseFilters">
+    <div class="collapse show" id="collapseFilters">
         <div class="bg-transparent">
             <div class="container  rounded-3">
                 <div class="row">
@@ -230,11 +230,6 @@
     <!--SEARCH BAR-->
     <div class="container my-3">
         <form class="d-flex">
-            <!--            <input class="form-control me-2" style="width:85%" type="search"
-                               th:placeholder="#{filters.search.placeholder}" aria-label="Search">
-                        <button class="col-md-2 btn btn-warning text-dark" type="submit" th:text="#{filters.search.button}">
-                            SZUKAJ
-                        </button>-->
         </form>
     </div>
     <!--TABLE HEADERS-->
