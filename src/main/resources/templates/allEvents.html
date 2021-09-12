@@ -33,7 +33,7 @@
             <div class="container  rounded-3">
                 <div class="row">
                     <div class="col-auto">
-                        <form action="/eventFilterType">
+                        <form th:action="@{/eventFilterType}">
                             <label style="width: 245px">
                                 <select class="form-select" name="eventFilterType"
                                         onchange="this.form.submit()">
@@ -102,7 +102,7 @@
                         </form>
                     </div>
                     <div class="col-auto">
-                        <form action="/eventFilterPlace">
+                        <form th:action="@{/eventFilterPlace}">
                             <label style="width: 245px">
                                 <select class="form-select" name="eventFilterPlace"
                                         onchange="this.form.submit()">
@@ -145,7 +145,7 @@
                         </form>
                     </div>
                     <div class="col-auto">
-                        <form action="/eventSortType">
+                        <form th:action="@{/eventSortType}">
                             <label style="width: 245px">
                                 <select class="form-select" name="eventSortType"
                                         onchange="this.form.submit()">
@@ -174,7 +174,7 @@
                         </form>
                     </div>
                     <div class="col-auto">
-                        <form action="/eventSortDirection">
+                        <form th:action="@{/eventSortDirection}">
                             <label style="width: 245px">
                                 <select class="form-select" name="eventSortDirection"
                                         onchange="this.form.submit()">
@@ -197,7 +197,7 @@
                         </form>
                     </div>
                     <div class="col-auto">
-                        <form action="/eventsPerPage">
+                        <form th:action="@{/eventsPerPage}">
                             <label style=" width: 220px">
                                 <select class="form-select" name="eventsPerPage"
                                         onchange="this.form.submit()">
@@ -226,14 +226,17 @@
                 </div>
             </div>
         </div>
-    </div>
-    <!--SEARCH BAR-->
-    <div class="container my-3">
-        <form action="/searchByText" class="d-flex">
-            <input class="form-control me-2" style="width:85%" type="text"
-                   th:placeholder="#{filters.search.placeholder}" th:value="${searchText}" name="searchText" id="searchText">
-            <button class="col-md-2 btn btn-warning text-dark" type="submit" th:text="#{filters.search.button}">SZUKAJ</button>
-        </form>
+        <!--SEARCH BAR-->
+        <div class="container my-3">
+            <form th:action="@{/searchByText}" class="d-flex">
+                <label for="searchText"></label>
+                <input class="form-control me-2" style="width:85%" type="text"
+                       th:placeholder="#{filters.search.placeholder}" th:value="${searchText}" name="searchText"
+                       id="searchText">
+                <button class="col-md-2 btn btn-warning text-dark" type="submit" th:text="#{filters.search.button}">SZUKAJ
+                </button>
+            </form>
+        </div>
     </div>
     <!--TABLE HEADERS-->
     <div class="container-lg bg-dark border border-warning border-3 text-warning mb-3">
